@@ -139,16 +139,6 @@ buildscript {
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            url "$mavenLibRepo"
-            credentials(HttpHeaderCredentials) {
-                name = "$mavenLibUser"
-                value = "$mavenLibToken"
-            }
-            authentication {
-                header(HttpHeaderAuthentication)
-            }
-        }
     }
 
     dependencies {
@@ -164,31 +154,12 @@ buildscript {
     }
 }
 
-configurations {
-    implementation {
-        exclude module: "play-services-safetynet"
-        exclude group: 'com.tuanha', module: 'core'
-        exclude group: 'com.tuanha', module: 'core-app'
-        exclude group: 'com.tuanha', module: 'detect'
-    }
-}
-
 allprojects {
     repositories {
         google()
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
-        maven {
-            url "$mavenLibRepo"
-            credentials(HttpHeaderCredentials) {
-                name = "$mavenLibUser"
-                value = "$mavenLibToken"
-            }
-            authentication {
-                header(HttpHeaderAuthentication)
-            }
-        }
     }
 }
 

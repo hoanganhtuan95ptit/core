@@ -4,7 +4,6 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
-    id 'maven-publish'
 }
 
 android {
@@ -66,29 +65,4 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     androidTestImplementation 'androidx.annotation:annotation:1.1.0'
-
-}
-
-publishing {
-    publications {
-        "release"(MavenPublication) {
-            groupId 'com.tuanha'
-            artifactId 'core-app'
-            artifact "$buildDir/outputs/aar/core-app-release.aar"
-
-            version "$core_app_version"
-        }
-    }
-    repositories {
-        maven {
-            url "$mavenLibRepo"
-            credentials(HttpHeaderCredentials) {
-                name = "$mavenLibUser"
-                value = "$mavenLibToken"
-            }
-            authentication {
-                header(HttpHeaderAuthentication)
-            }
-        }
-    }
 }

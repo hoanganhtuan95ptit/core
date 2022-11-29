@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.iml" filepath="$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.iml" filepath="$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-app/Core.core-app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.iml" filepath="$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-navigation/Core.core-navigation.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.iml" filepath="$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-review/Core.core-review.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.iml" filepath="$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" />
+    </modules>
+  </component>
+</project>

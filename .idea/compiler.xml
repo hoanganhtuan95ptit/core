@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel target="1.7">
+      <module name="Core.app" target="11" />
+      <module name="Core.core-ads" target="11" />
+      <module name="Core.core-app" target="11" />
+      <module name="Core.core-navigation" target="11" />
+      <module name="Core.core-review" target="11" />
+      <module name="Core.core-update" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

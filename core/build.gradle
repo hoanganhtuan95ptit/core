@@ -1,7 +1,6 @@
 plugins {
     id 'java-library'
     id 'kotlin'
-    id 'maven-publish'
 }
 
 java {
@@ -16,28 +15,4 @@ dependencies {
 
     testImplementation testDependencies.values()
 
-}
-
-publishing {
-    publications {
-        "release" (MavenPublication) {
-            groupId 'com.tuanha'
-            artifactId 'core'
-            artifact "$buildDir/libs/core.jar"
-
-            version "$core_version"
-        }
-    }
-    repositories {
-        maven {
-            url "$mavenLibRepo"
-            credentials(HttpHeaderCredentials) {
-                name = "$mavenLibUser"
-                value = "$mavenLibToken"
-            }
-            authentication {
-                header(HttpHeaderAuthentication)
-            }
-        }
-    }
 }
