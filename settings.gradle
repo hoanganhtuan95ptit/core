@@ -1,0 +1,11 @@
+rootProject.name = "Core"
+
+include ':app'
+
+include ':core'
+include ':core-app'
+include ':core-ads'
+include ':core-review'
+include ':core-update'
+include ':core-navigation'
+

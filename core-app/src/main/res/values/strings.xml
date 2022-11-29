@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false" />
+
+    <string name="core_loading">Loading</string>
+
+    <string name="message_load_ads">Thanks for your support. Ads keep us motivated to sustain and grow the project.</string>
+
+    <string name="title_core_error">Error</string>
+    <string name="title_core_update_app">Update APP</string>
+    <string name="title_loading_ads">Loading ads</string>
+    <string name="title_core_migration_app">Migration APP</string>
+
+    <string name="action_core_back">Back</string>
+    <string name="action_core_retry">Retry</string>
+    <string name="action_core_close">close</string>
+    <string name="action_core_update">Update</string>
+    <string name="action_core_migration">Convert</string>
+
+    <string name="message_core_error">Error, please try again later</string>
+    <string name="message_core_error_network">No internet connection, please check again</string>
+    <string name="message_core_update_app">"The old version is used, please update app to have the best experience"</string>
+    <string name="message_core_migration_app">The current app is no longer updated and supported. Please switch to the new version, for the best support!!</string>
+
+</resources>

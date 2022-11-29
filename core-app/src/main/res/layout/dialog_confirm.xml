@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.one.coreapp.ui.view.round.RoundView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rv_backgroundColor="?android:attr/colorBackground"
+        app:rv_cornerRadius_TL="@dimen/padding"
+        app:rv_cornerRadius_TR="@dimen/padding" />
+
+    <com.one.coreapp.ui.view.round.RoundView
+        android:id="@+id/v_anchor"
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="@dimen/padding"
+        android:alpha="0.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rv_backgroundColor="?attr/colorOnBackground"
+        app:rv_cornerRadius="150dp" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginTop="@dimen/padding"
+        app:layout_constraintTop_toBottomOf="@id/v_anchor"
+        app:lottie_loop="true"
+        app:lottie_speed="1"
+        tools:lottie_autoPlay="true"
+        tools:lottie_rawRes="@raw/error" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="?attr/textHeadline5"
+        android:layout_width="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="@dimen/padding"
+        android:layout_marginEnd="32dp"
+        android:gravity="center_vertical"
+        android:textColor="?attr/colorOnBackground"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/lottieAnimationView"
+        tools:text="Delete" />
+
+    <TextView
+        android:id="@+id/tvMessage"
+        style="?attr/textBody1"
+        android:layout_width="0dp"
+        android:layout_marginTop="@dimen/padding"
+        android:textColor="?attr/colorOnBackground"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Bạn có chắc chắn muốn DOC này hay không??" />
+
+    <com.one.coreapp.ui.view.round.RoundTextView
+        android:id="@+id/tvNegative"
+        style="?attr/textBody1"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="@dimen/padding"
+        android:gravity="center"
+        android:minWidth="100dp"
+        android:minHeight="36dp"
+        android:paddingStart="@dimen/padding"
+        android:paddingEnd="@dimen/padding"
+        android:textColor="?attr/colorOnNegative"
+        app:layout_constraintEnd_toStartOf="@id/tvPositive"
+        app:layout_constraintTop_toBottomOf="@id/tvMessage"
+        app:rv_backgroundColor="?attr/colorNegative"
+        app:rv_cornerRadius="150dp"
+        tools:text="Ok" />
+
+    <com.one.coreapp.ui.view.round.RoundTextView
+        android:id="@+id/tvPositive"
+        style="?attr/textBody1"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:minWidth="100dp"
+        android:minHeight="36dp"
+        android:paddingStart="@dimen/padding"
+        android:paddingEnd="@dimen/padding"
+        android:textColor="?attr/colorOnPositive"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvMessage"
+        app:rv_backgroundColor="?attr/colorPositive"
+        app:rv_cornerRadius="150dp"
+        tools:text="Hủy" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvMessage, tvPositive" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="@id/bottom" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,94 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'maven-publish'
+}
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    api tuanhaDependencies.core
+
+    api koinDependencies.values()
+
+    api coroutinesDependencies.values()
+
+    api androidxDependencies.values()
+    kapt "androidx.room:room-compiler:$room_version"
+
+    api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    api('com.google.firebase:firebase-auth') {
+        exclude module: "play-services-safetynet"
+    }
+    api firebaseDependencies.values()
+
+    api "com.google.android.material:material:$material_components_version"
+
+    api playDependencies.values()
+
+    api "com.squareup.retrofit2:converter-jackson:$retrofit_version"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    api "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    api "com.airbnb.android:lottie:$lottie_version"
+
+    api 'io.supercharge:shimmerlayout:2.1.0'
+
+    testImplementation testDependencies.values()
+
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.annotation:annotation:1.1.0'
+
+}
+
+publishing {
+    publications {
+        "release"(MavenPublication) {
+            groupId 'com.tuanha'
+            artifactId 'core-app'
+            artifact "$buildDir/outputs/aar/core-app-release.aar"
+
+            version "$core_app_version"
+        }
+    }
+    repositories {
+        maven {
+            url "$mavenLibRepo"
+            credentials(HttpHeaderCredentials) {
+                name = "$mavenLibUser"
+                value = "$mavenLibToken"
+            }
+            authentication {
+                header(HttpHeaderAuthentication)
+            }
+        }
+    }
+}
