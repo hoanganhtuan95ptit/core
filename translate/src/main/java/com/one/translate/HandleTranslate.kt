@@ -4,7 +4,5 @@ interface HandleTranslate {
 
     fun priority(): Int = 0
 
-    suspend fun init(inputCode: String, outputCode: String)
-
     suspend fun handle(text: String, inputCode: String, outputCode: String): String?
 }

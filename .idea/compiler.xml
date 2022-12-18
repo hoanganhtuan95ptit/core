@@ -8,6 +8,9 @@
       <module name="Core.core-navigation" target="11" />
       <module name="Core.core-review" target="11" />
       <module name="Core.core-update" target="11" />
+      <module name="Core.detect" target="11" />
+      <module name="Core.detect-mlkit" target="11" />
+      <module name="Core.detect-mlkit-latin" target="11" />
       <module name="Core.translate" target="11" />
       <module name="Core.translate-mlkit" target="11" />
     </bytecodeTargetLevel>

@@ -29,10 +29,6 @@ android {
 
 dependencies {
 
-    api koinDependencies.values()
-
-    api coroutinesDependencies.values()
-
     implementation project(path: ':translate')
 
     implementation 'com.google.mlkit:translate:17.0.1'

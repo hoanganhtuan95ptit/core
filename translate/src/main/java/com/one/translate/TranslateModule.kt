@@ -2,7 +2,6 @@ package com.one.translate
 
 import android.app.Application
 import com.one.coreapp.Module
-import com.one.translate.data.usecase.InitTranslateUseCase
 import com.one.translate.data.usecase.TranslateUseCase
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
@@ -13,9 +12,6 @@ private val translateModule = module {
         TranslateUseCase(getAll())
     }
 
-    single {
-        InitTranslateUseCase(getAll())
-    }
 }
 
 private val loadKoinModules by lazy {
