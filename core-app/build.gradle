@@ -38,17 +38,8 @@ dependencies {
     api coroutinesDependencies.values()
 
     api androidxDependencies.values()
-    kapt "androidx.room:room-compiler:$room_version"
-
-    api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
-    api('com.google.firebase:firebase-auth') {
-        exclude module: "play-services-safetynet"
-    }
-    api firebaseDependencies.values()
 
     api "com.google.android.material:material:$material_components_version"
-
-    api playDependencies.values()
 
     api "com.squareup.retrofit2:converter-jackson:$retrofit_version"
     api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"

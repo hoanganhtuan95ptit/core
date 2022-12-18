@@ -9,3 +9,5 @@ include ':core-review'
 include ':core-update'
 include ':core-navigation'
 
+include ':translate'
+include ':translate-mlkit'

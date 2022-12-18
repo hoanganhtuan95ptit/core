@@ -30,6 +30,14 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.main.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.unitTest.iml" />
     </modules>
   </component>
 </project>

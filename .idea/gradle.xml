@@ -17,6 +17,8 @@
             <option value="$PROJECT_DIR$/core-navigation" />
             <option value="$PROJECT_DIR$/core-review" />
             <option value="$PROJECT_DIR$/core-update" />
+            <option value="$PROJECT_DIR$/translate" />
+            <option value="$PROJECT_DIR$/translate-mlkit" />
           </set>
         </option>
       </GradleProjectSettings>
