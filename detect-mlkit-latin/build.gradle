@@ -29,11 +29,7 @@ android {
 
 dependencies {
 
-    implementation project(path: ':detect')
-
-    implementation project(path: ':core-app')
-
-    implementation 'com.google.mlkit:text-recognition:16.0.0-beta6'
+    api tuanhaDependencies.core_app
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
