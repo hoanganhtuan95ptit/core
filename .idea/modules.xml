@@ -30,18 +30,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.main.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit-latin/Core.detect-mlkit-latin.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.main.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.unitTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.main.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.androidTest.iml" />
