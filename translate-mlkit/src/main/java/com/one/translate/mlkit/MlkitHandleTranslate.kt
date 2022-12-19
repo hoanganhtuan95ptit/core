@@ -15,41 +15,6 @@ class MlkitHandleTranslate : HandleTranslate {
     private val map: Map<String, String> = hashMapOf(
     )
 
-
-    override suspend fun init(inputCode: String, outputCode: String) {
-
-        val sourceLanguage = map[inputCode] ?: inputCode
-
-        val targetLanguage = map[outputCode] ?: outputCode
-
-
-        val options = TranslatorOptions.Builder()
-            .setSourceLanguage(sourceLanguage)
-            .setTargetLanguage(targetLanguage)
-            .build()
-
-
-        val translator = Translation.getClient(options)
-
-
-        val conditions = DownloadConditions.Builder()
-            .requireWifi()
-            .build()
-
-
-        suspendCancellableCoroutine<Boolean> { continuation ->
-
-            translator.downloadModelIfNeeded(conditions).addOnSuccessListener {
-
-                continuation.resumeActive(true)
-            }.addOnFailureListener {
-
-                Log.d("tuanha", "init: ", it)
-                continuation.resumeActive(false)
-            }
-        }
-    }
-
     override suspend fun handle(text: String, inputCode: String, outputCode: String): String? {
 
         val sourceLanguage = map[inputCode] ?: inputCode
