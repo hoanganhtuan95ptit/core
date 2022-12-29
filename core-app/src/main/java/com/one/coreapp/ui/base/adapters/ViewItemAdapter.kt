@@ -56,14 +56,14 @@ class MultiAdapter(
     private val onViewHolderDetachedFromWindow: (BaseBindingViewHolder<*>) -> Unit = {},
 ) : BaseAsyncAdapter<ViewItemCloneable, ViewBinding>(onLoadMore) {
 
-    private val list: List<ViewItemAdapter<ViewItemCloneable, ViewBinding>> by lazy {
+    val list: List<ViewItemAdapter<ViewItemCloneable, ViewBinding>> by lazy {
 
         val adapters = adapter.toMutableList()
 
         adapters
     }
 
-    private val typeAndAdapter: Map<Int, ViewItemAdapter<ViewItemCloneable, ViewBinding>> by lazy {
+    val typeAndAdapter: Map<Int, ViewItemAdapter<ViewItemCloneable, ViewBinding>> by lazy {
 
         val map = HashMap<Int, ViewItemAdapter<ViewItemCloneable, ViewBinding>>()
 
@@ -74,7 +74,7 @@ class MultiAdapter(
         map
     }
 
-    private val viewItemClassAndType: Map<Class<*>, Int> by lazy {
+    val viewItemClassAndType: Map<Class<*>, Int> by lazy {
 
         val map = HashMap<Class<*>, Int>()
 
