@@ -150,7 +150,7 @@ abstract class BaseAsyncAdapter<T : ViewItem, B : ViewBinding>(
         val _item = item.takeIf { itemClass?.isInstance(it) == true }
         val _binding = binding.takeIf { bindingClass?.isInstance(it) == true }
 
-        val payload = payloads.getOrNull(0) as? MutableList<Any>
+        val payload = payloads.flatMap { (it as? List<Any>) ?: emptyList() } as? MutableList<Any>
 
 
         if (!payload.isNullOrEmpty() && _binding != null && _item != null) {
