@@ -2,14 +2,14 @@ package com.one.translate.mlkit
 
 import android.app.Application
 import com.one.coreapp.Module
-import com.one.translate.HandleTranslate
+import com.one.translate.TranslateTask
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
 private val module = module {
 
-    single { MlkitHandleTranslate() } bind HandleTranslate::class
+    single { MlkitTranslateTask() } bind TranslateTask::class
 }
 
 private val loadKoinModules by lazy {

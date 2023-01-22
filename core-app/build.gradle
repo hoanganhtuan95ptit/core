@@ -40,11 +40,11 @@ dependencies {
     api coroutinesDependencies.values()
 
 
-    api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
-    api('com.google.firebase:firebase-auth') {
-        exclude module: "play-services-safetynet"
-    }
-    api firebaseDependencies.values()
+//    api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+//    api('com.google.firebase:firebase-auth') {
+//        exclude module: "play-services-safetynet"
+//    }
+//    api firebaseDependencies.values()
 
 
     api "com.google.android.material:material:$material_components_version"

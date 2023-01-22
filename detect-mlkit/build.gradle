@@ -29,9 +29,22 @@ android {
 
 dependencies {
 
-    api tuanhaDependencies.core_app
+    api project(path: ':detect')
+
+    implementation tuanhaDependencies.core_app
+
+    implementation 'com.google.mlkit:text-recognition:16.0.0-beta6'
+
+    implementation 'com.google.mlkit:text-recognition-chinese:16.0.0-beta6'
+
+    implementation 'com.google.mlkit:text-recognition-devanagari:16.0.0-beta6'
+
+    implementation 'com.google.mlkit:text-recognition-japanese:16.0.0-beta6'
+
+    implementation 'com.google.mlkit:text-recognition-korean:16.0.0-beta6'
 
     testImplementation 'junit:junit:4.13.2'
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

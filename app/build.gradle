@@ -46,7 +46,9 @@ dependencies {
 //    implementation project(path: ':core-navigation')
 
 //    implementation project(path: ':translate')
-//    implementation project(path: ':translate-mlkit')
+
+    implementation project(path: ':detect-mlkit')
+    implementation project(path: ':translate-mlkit')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

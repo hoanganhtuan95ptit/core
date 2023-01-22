@@ -3,7 +3,9 @@ package com.one.coreapp
 import android.app.Activity
 import android.os.Bundle
 import androidx.multidex.MultiDexApplication
+import com.one.coreapp.utils.extentions.Analytics
 import kotlinx.coroutines.newSingleThreadContext
+import org.koin.android.ext.android.getKoin
 
 open class App : MultiDexApplication() {
 
@@ -13,7 +15,14 @@ open class App : MultiDexApplication() {
         var numStart: Int = 0
     }
 
+
+    val analytics by lazy {
+        getKoin().getAll<Analytics>()
+    }
+
+
     val dispatcherForHandleDataUi = newSingleThreadContext("handle_data_for_ui")
+
 
     override fun onCreate() {
         shared = this

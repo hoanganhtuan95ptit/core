@@ -1,4 +1,4 @@
-package com.one.detect.data.entities
+package com.one.detect.entities
 
 import androidx.annotation.Keep
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties

@@ -12,6 +12,5 @@ include ':core-navigation'
 include ':translate'
 include ':translate-mlkit'
 
-//include ':detect'
-//include ':detect-mlkit'
-//include ':detect-mlkit-latin'
+include ':detect'
+include ':detect-mlkit'

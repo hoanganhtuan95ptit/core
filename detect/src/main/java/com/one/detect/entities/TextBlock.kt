@@ -1,16 +1,18 @@
 package com.one.detect.entities
 
+import android.os.Parcelable
 import androidx.annotation.CallSuper
 import androidx.annotation.Keep
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
-import java.io.Serializable
+import kotlinx.parcelize.Parcelize
 import java.util.*
 
 @Keep
+@Parcelize
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-open class TextBlock : Serializable {
+open class TextBlock : Parcelable {
 
     val id: String = UUID.randomUUID().toString()
 

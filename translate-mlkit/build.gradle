@@ -29,7 +29,9 @@ android {
 
 dependencies {
 
-    implementation project(path: ':translate')
+    api project(path: ':translate')
+
+    implementation tuanhaDependencies.core_app
 
     implementation 'com.google.mlkit:translate:17.0.1'
 
