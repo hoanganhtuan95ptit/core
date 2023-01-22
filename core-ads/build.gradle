@@ -36,10 +36,7 @@ dependencies {
     api coroutinesDependencies.values()
 
     api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
-    api('com.google.firebase:firebase-auth') {
-        exclude module: "play-services-safetynet"
-    }
-    api firebaseDependencies.values()
+    api firebaseDependencies.ads
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -5,6 +5,7 @@ import androidx.annotation.CallSuper
 import androidx.annotation.Keep
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
+import com.one.core.utils.extentions.validate
 import kotlinx.parcelize.Parcelize
 import java.util.*
 
@@ -43,5 +44,8 @@ open class TextBlock : Parcelable {
     override fun hashCode(): Int {
         return id.hashCode()
     }
+}
 
+fun <T : TextBlock> List<T>.wrap(ratio: Float) = validate {
+    rect = rect?.wrap(ratio)
 }

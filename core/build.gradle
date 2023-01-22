@@ -9,10 +9,10 @@ java {
 }
 
 dependencies {
+
     api jacksonDependencies.values()
 
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    testImplementation testDependencies.values()
-
+    testImplementation testDependencies.junit
 }

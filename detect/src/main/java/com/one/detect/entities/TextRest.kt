@@ -20,3 +20,10 @@ class TextRest(var left: Int = 0, var top: Int = 0, var right: Int = 0, var bott
         return "$left - $top - $right - $bottom"
     }
 }
+
+fun TextRest.wrap(ratio: Float) = TextRest().apply {
+    left = (ratio * this@wrap.left).toInt()
+    top = (ratio * this@wrap.top).toInt()
+    right = (ratio * this@wrap.right).toInt()
+    bottom = (ratio * this@wrap.bottom).toInt()
+}
