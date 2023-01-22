@@ -21,6 +21,5 @@ object ConfigUtils {
 
             if (!continuation.isCompleted) continuation.resume(config.getString(fieldName))
         }
-
     }
 }

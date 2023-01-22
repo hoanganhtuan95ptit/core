@@ -39,6 +39,9 @@ dependencies {
 
     api coroutinesDependencies.values()
 
+    api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    api firebaseDependencies.config
+
     api "com.google.android.material:material:$material_components_version"
 
     api "com.squareup.retrofit2:converter-jackson:$retrofit_version"
