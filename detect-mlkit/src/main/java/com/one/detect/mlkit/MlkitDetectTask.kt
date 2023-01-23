@@ -17,7 +17,7 @@ abstract class MlkitDetectTask : DetectTask {
     override suspend fun execute(param: DetectTask.Param): ResultState<List<Paragraph>> {
 
 
-        if (param.detectOption.isDetectText()) {
+        if (!param.detectOption.isDetectText()) {
 
             return ResultState.Failed(RuntimeException("not support ${param.detectOption.name}"))
         }
