@@ -14,7 +14,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 
 abstract class MlkitDetectTask : DetectTask {
 
-    override suspend fun execute(param: DetectTask.Param): ResultState<List<TextBlock>> {
+    override suspend fun execute(param: DetectTask.Param): ResultState<List<Paragraph>> {
 
 
         if (param.detectOption.isDetectText()) {

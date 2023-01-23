@@ -5,13 +5,13 @@ import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.utils.extentions.executeByPriority
 import com.one.detect.DetectTask
 import com.one.detect.entities.DetectOption
-import com.one.detect.entities.TextBlock
+import com.one.detect.entities.Paragraph
 
 class DetectUseCase(
     private val list: List<DetectTask>
-) : BaseUseCase<DetectUseCase.Param, ResultState<List<TextBlock>>> {
+) : BaseUseCase<DetectUseCase.Param, ResultState<List<Paragraph>>> {
 
-    override suspend fun execute(param: Param?): ResultState<List<TextBlock>> {
+    override suspend fun execute(param: Param?): ResultState<List<Paragraph>> {
         checkNotNull(param)
 
         return list.executeByPriority(DetectTask.Param(param.path, param.inputCode, param.outputCode, param.detectOption))
