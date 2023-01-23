@@ -3,11 +3,13 @@ package com.one.coreapp.utils.extentions
 import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.data.usecase.isFailed
 import com.one.coreapp.data.usecase.isSuccess
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.channels.awaitClose
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
-import kotlin.coroutines.coroutineContext
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 interface Task<Param, Result> {
 
@@ -17,7 +19,7 @@ interface Task<Param, Result> {
 }
 
 
-suspend fun <Param, Result> List<Task<Param, Result>>.executeByPriority(param: Param): ResultState<Result> = withContext(coroutineContext) {
+suspend fun <Param, Result> List<Task<Param, Result>>.executeByPriority(param: Param): ResultState<Result> = channelFlow {
 
 
     val listDeferred = sortedByDescending {
@@ -29,22 +31,34 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeByPriority(param: P
     }
 
 
-    val outputs = arrayListOf<ResultState<Result>>()
 
+    launch(Dispatchers.IO) {
 
-    for (deferred in listDeferred) deferred.await().let {
+        val outputs = arrayListOf<ResultState<Result>>()
 
-        if (it.isSuccess()) return@withContext it
+        for (deferred in listDeferred) deferred.await().let {
 
-        outputs.add(it)
+            if (it.isSuccess()) {
+
+                offerActive(it)
+            }
+
+            outputs.add(it)
+        }
+
+        if (outputs.all { it.isFailed() }) {
+
+            offerActive(outputs.first())
+        }
     }
 
 
-    return@withContext outputs.first()
-}
+    awaitClose {
+    }
+}.first()
 
 
-suspend fun <Param, Result> List<Task<Param, Result>>.executeByFast(param: Param): Flow<ResultState<Result>> = channelFlow {
+suspend fun <Param, Result> List<Task<Param, Result>>.executeByFast(param: Param): ResultState<Result> = channelFlow {
 
 
     val listDeferred = sortedByDescending {
@@ -56,7 +70,10 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeByFast(param: Param
 
             val output = it.execute(param)
 
-            if (output.isSuccess()) offerActive(output)
+            if (output.isSuccess()) {
+
+                offerActive(output)
+            }
 
             output
         }
@@ -66,10 +83,12 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeByFast(param: Param
 
         val listTranslate = listDeferred.awaitAll()
 
-        if (listTranslate.all { it.isFailed() }) offerActive(listTranslate.first())
+        if (listTranslate.all { it.isFailed() }) {
+
+            offerActive(listTranslate.first())
+        }
     }
 
     awaitClose {
-
     }
-}
+}.first()

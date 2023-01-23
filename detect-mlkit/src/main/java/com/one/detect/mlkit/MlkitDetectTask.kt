@@ -35,7 +35,7 @@ abstract class MlkitDetectTask : DetectTask {
         val bitmap = param.path.toBitmap()
 
 
-        return suspendCancellableCoroutine<ResultState<List<Paragraph>>> { continuation ->
+        return suspendCancellableCoroutine { continuation ->
 
             process(InputImage.fromBitmap(bitmap, 0)).addOnSuccessListener { visionText ->
 
