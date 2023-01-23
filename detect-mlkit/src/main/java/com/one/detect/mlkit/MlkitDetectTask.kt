@@ -17,6 +17,12 @@ abstract class MlkitDetectTask : DetectTask {
     override suspend fun execute(param: DetectTask.Param): ResultState<List<TextBlock>> {
 
 
+        if (param.detectOption.isDetectText()) {
+
+            return ResultState.Failed(RuntimeException("not support ${param.detectOption.name}"))
+        }
+
+
         val inputCodeSupport = inputCodeSupport()
 
 
