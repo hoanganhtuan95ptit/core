@@ -11,6 +11,7 @@ import com.one.coreapp.data.usecase.doSuccess
 import com.one.coreapp.utils.extentions.setImage
 import com.one.coreapp.utils.extentions.toBitmap
 import com.one.detect.data.usecase.DetectUseCase
+import com.one.detect.entities.DetectOption
 import com.one.translate.data.usecase.TranslateUseCase
 import com.tuanha.app.utils.DrawTextTransformation
 import kotlinx.coroutines.Dispatchers
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             val bitmap = path.toBitmap()
 
 
-            detectUseCase.execute(DetectUseCase.Param(path = path, "vi", "en")).let { state ->
+            detectUseCase.execute(DetectUseCase.Param(path = path, "vi", "en", DetectOption.TEXT_TRANSLATE)).let { state ->
 
                 state.doSuccess { list ->
 
