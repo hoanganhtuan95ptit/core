@@ -9,8 +9,7 @@ import com.one.coreapp.BuildConfig
 import com.one.coreapp.data.cache.ReviewCache
 import com.one.coreapp.data.cache.sharedpreference.ReviewCacheImpl
 import com.one.coreapp.ui.base.activities.BaseActivity
-import com.one.coreapp.utils.Analytics
-import com.one.coreapp.utils.Analytics.handler
+import com.one.coreapp.utils.extentions.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -42,7 +41,7 @@ interface ReviewView {
         injectReviewModule()
     }
 
-    fun checkAndShowReview(show: Boolean) = self().lifecycleScope.launch(handler + Dispatchers.IO) {
+    fun checkAndShowReview(show: Boolean) = self().lifecycleScope.launch(self().handler + Dispatchers.IO) {
 
         if (!reviewEnable) {
             return@launch
@@ -106,7 +105,7 @@ interface ReviewView {
             }
         } ?: return@launch
 
-        Analytics.log("review")
+        log("review")
     }
 
     open fun canShowReview(count: Long): Boolean {

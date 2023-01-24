@@ -11,8 +11,8 @@ import com.one.coreapp.ui.base.fragments.BaseFragment
 import com.one.coreapp.ui.dialogs.ConfirmDialogFragment
 import com.one.coreapp.ui.dialogs.LoadingDialog
 import com.one.coreapp.ui.worker.NotificationDateWorker
-import com.one.coreapp.utils.Analytics
 import com.one.coreapp.utils.extentions.findThisNavController
+import com.one.coreapp.utils.extentions.logException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlin.coroutines.CoroutineContext
 
@@ -21,7 +21,7 @@ open class BaseActivity : AppCompatActivity() {
     open var isEnableScheduleNotify: Boolean = false
 
     val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
-        Analytics.logException(throwable)
+        logException(throwable)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

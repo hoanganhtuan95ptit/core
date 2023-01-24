@@ -67,6 +67,7 @@
     <orderEntry type="module" module-name="Core.core-ads.main" />
     <orderEntry type="module" module-name="Core.core-update.main" />
     <orderEntry type="module" module-name="Core.core-review.main" />
+    <orderEntry type="module" module-name="Core.word.main" />
     <orderEntry type="module" module-name="Core.core-navigation.main" />
     <orderEntry type="module" module-name="Core.translate-mlkit.main" />
     <orderEntry type="module" module-name="Core.translate.main" />

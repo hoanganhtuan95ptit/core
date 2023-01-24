@@ -21,6 +21,7 @@
             <option value="$PROJECT_DIR$/detect-mlkit" />
             <option value="$PROJECT_DIR$/translate" />
             <option value="$PROJECT_DIR$/translate-mlkit" />
+            <option value="$PROJECT_DIR$/word" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -4,6 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="core-app/src/main/res/drawable/bg_corner_10dp_solid_surface.xml" value="0.166" />
+        <entry key="core-app/src/main/res/drawable/bg_corner_24dp_solid_loading.xml" value="0.166" />
+        <entry key="core-app/src/main/res/drawable/bg_corner_top_24dp_solid_background.xml" value="0.166" />
+        <entry key="core-app/src/main/res/layout/item_space.xml" value="0.10277777777777777" />
+        <entry key="word/src/main/res/drawable/ic_call_on_primary_24dp.xml" value="0.166" />
+        <entry key="word/src/main/res/drawable/ic_close_on_primary_24dp.xml" value="0.166" />
+        <entry key="word/src/main/res/drawable/ic_copy_on_primary_24dp.xml" value="0.166" />
+        <entry key="word/src/main/res/drawable/ic_export_on_primary_24dp.xml" value="0.122" />
+        <entry key="word/src/main/res/drawable/ic_share_on_primary_24dp.xml" value="0.166" />
+        <entry key="word/src/main/res/drawable/ic_volume_accent_24dp.xml" value="0.166" />
+        <entry key="word/src/main/res/drawable/img_google_24dp.xml" value="0.166" />
+        <entry key="word/src/main/res/layout/fragment_word_detail.xml" value="0.2056434373663959" />
+        <entry key="word/src/main/res/layout/item_spelling.xml" value="0.10277777777777777" />
+        <entry key="word/src/main/res/layout/item_text.xml" value="0.10277777777777777" />
+        <entry key="word/src/main/res/layout/item_text_loading_1.xml" value="0.10277777777777777" />
+        <entry key="word/src/main/res/layout/item_text_loading_2.xml" value="0.10277777777777777" />
+        <entry key="word/src/main/res/layout/layout_audio.xml" value="0.10277777777777777" />
       </map>
     </option>
   </component>

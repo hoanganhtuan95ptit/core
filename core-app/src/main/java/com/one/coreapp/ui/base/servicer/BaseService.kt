@@ -11,8 +11,8 @@ import androidx.lifecycle.LiveDataScope
 import androidx.lifecycle.switchMap
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.one.coreapp.App
-import com.one.coreapp.utils.Analytics
 import com.one.coreapp.utils.extentions.CloseableCoroutineScope
+import com.one.coreapp.utils.extentions.logException
 import kotlinx.coroutines.*
 import java.io.Closeable
 import java.io.IOException
@@ -37,7 +37,7 @@ abstract class BaseService : LifecycleService() {
     val tags: MutableMap<String, Any> = HashMap()
 
     val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
-        Analytics.logException(throwable)
+        logException(throwable)
     }
 
     protected open fun registerReceiver(vararg action: String, receiver: (Intent) -> Unit) {

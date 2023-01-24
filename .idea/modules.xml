@@ -46,6 +46,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.main.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/word/Core.word.iml" filepath="$PROJECT_DIR$/.idea/modules/word/Core.word.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/word/Core.word.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/word/Core.word.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/word/Core.word.main.iml" filepath="$PROJECT_DIR$/.idea/modules/word/Core.word.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/word/Core.word.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/word/Core.word.unitTest.iml" />
     </modules>
   </component>
 </project>

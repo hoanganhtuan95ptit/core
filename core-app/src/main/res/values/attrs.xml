@@ -22,6 +22,8 @@
 
     <attr name="colorOnAccent" format="color" />
 
+    <attr name="color10Accent" format="color" />
+
     <attr name="colorAccentVariant" type="color" />
     <attr name="colorOnAccentVariant" type="color" />
 
@@ -37,6 +39,11 @@
     <attr name="colorDivider" format="color" />
 
     <attr name="colorPlaceHolder" format="color" />
+
+    <attr name="colorLoading" format="color" />
+
+    <attr name="colorWarning" format="color" />
+    <attr name="colorOnWarning" format="color" />
 
     <attr name="colorNegative" format="color" />
     <attr name="colorOnNegative" format="color" />

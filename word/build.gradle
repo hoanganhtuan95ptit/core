@@ -1,0 +1,50 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    api project(path: ':core-app')
+
+    api project(path: ':core-navigation')
+
+    api project(path: ':translate')
+
+    implementation 'org.jsoup:jsoup:1.13.1'
+
+    implementation 'com.google.mlkit:language-id:17.0.4'
+
+    implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.31'
+
+    implementation 'com.github.donkingliang:ConsecutiveScroller:4.6.3'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}

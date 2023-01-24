@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_corner_top_24dp_solid_background"
+    android:minHeight="250dp"
+    android:theme="@style/Theme.WordDetail">
+
+    <ImageView
+        android:id="@+id/iv_close"
+        style="?attr/buttonNormal"
+        android:layout_margin="4dp"
+        android:padding="12dp"
+        android:src="@drawable/ic_close_on_primary_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintStart_toStartOf="@id/tv_title"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="?attr/textHeadline5"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="1"
+        android:paddingStart="56dp"
+        android:paddingEnd="16dp"
+        android:textColor="?attr/colorOnSurface"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/iv_share"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/iv_copy"
+        style="?attr/buttonNormal"
+        android:src="@drawable/ic_copy_on_primary_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+    <ImageView
+        android:id="@+id/iv_call"
+        style="?attr/buttonNormal"
+        android:src="@drawable/ic_call_on_primary_24dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintEnd_toStartOf="@id/iv_copy"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/iv_export"
+        style="?attr/buttonNormal"
+        android:src="@drawable/ic_export_on_primary_24dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintEnd_toStartOf="@id/iv_call"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/iv_share"
+        style="?attr/buttonNormal"
+        android:src="@drawable/ic_share_on_primary_24dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        app:layout_constraintEnd_toStartOf="@id/iv_export"
+        app:layout_constraintTop_toTopOf="@id/tv_title" />
+
+    <com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@id/tv_title">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/padding"
+            android:paddingBottom="@dimen/padding"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frame_search"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.1"
+                android:background="@drawable/bg_corner_24dp_solid_accent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="?attr/textBody1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="@string/message_search_google"
+                android:textColor="?attr/colorAccent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_google_search"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iv_google_search"
+                style="?attr/buttonNormal"
+                android:src="@drawable/img_google_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <WebView
+            android:id="@+id/web_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+    </com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

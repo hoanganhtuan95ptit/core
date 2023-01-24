@@ -14,3 +14,4 @@ include ':translate-mlkit'
 
 include ':detect'
 include ':detect-mlkit'
+include ':word'

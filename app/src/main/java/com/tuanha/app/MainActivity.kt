@@ -12,6 +12,7 @@ import com.one.coreapp.utils.extentions.setImage
 import com.one.detect.data.usecase.DetectUseCase
 import com.one.detect.entities.DetectOption
 import com.one.translate.data.usecase.TranslateUseCase
+import com.one.word.ui.WordDetailFragment
 import com.tuanha.app.utils.DrawTextTransformation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     list.forEach {
-                        Log.d("tuanha", "onCreate: detectUseCase ${it.text}")
+                        Log.d("tuanha", "onCreate: detectUseCase languageCode:${it.languageCode} text:${it.text}")
                     }
                 }
 
@@ -78,6 +79,11 @@ class MainActivity : AppCompatActivity() {
                     Log.d("tuanha", "onCreate: translateUseCase ", it)
                 }
             }
+        }
+
+        lifecycleScope.launchWhenResumed {
+
+            WordDetailFragment.newInstance("hello", "").show(supportFragmentManager, "")
         }
     }
 }

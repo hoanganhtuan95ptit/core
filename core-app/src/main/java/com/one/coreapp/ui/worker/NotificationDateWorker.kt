@@ -12,7 +12,7 @@ import com.one.coreapp.App
 import com.one.coreapp.R
 import com.one.coreapp.data.api.retrofit.ConfigApi
 import com.one.coreapp.data.cache.NotificationCache
-import com.one.coreapp.utils.Analytics
+import com.one.coreapp.utils.extentions.log
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import java.util.*
@@ -100,7 +100,7 @@ class NotificationDateWorker(context: Context, workerParams: WorkerParameters) :
             this.contentIntent = intent
         })
 
-        Analytics.log("notification", "")
+        log("notification", "")
 
         return Result.retry()
     }

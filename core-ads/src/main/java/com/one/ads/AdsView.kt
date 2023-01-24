@@ -8,8 +8,7 @@ import com.one.coreapp.App
 import com.one.coreapp.data.cache.AdsCache
 import com.one.coreapp.data.cache.sharedpreference.AdsCacheImpl
 import com.one.coreapp.ui.base.activities.BaseActivity
-import com.one.coreapp.utils.Analytics
-import com.one.coreapp.utils.Analytics.handler
+import com.one.coreapp.utils.extentions.log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -49,7 +48,7 @@ interface AdsView {
         MobileAds.initialize(App.shared) {}
     }
 
-    fun checkAndShowAds(show: Boolean) = self().lifecycleScope.launch(handler + Dispatchers.IO) {
+    fun checkAndShowAds(show: Boolean) = self().lifecycleScope.launch(self().handler + Dispatchers.IO) {
 
         if (!adsEnable) {
             return@launch
@@ -107,7 +106,7 @@ interface AdsView {
             }
         } ?: return@launch
 
-        Analytics.log("ads")
+        log("ads")
     }
 
     open fun canShowAds(count: Long): Boolean {

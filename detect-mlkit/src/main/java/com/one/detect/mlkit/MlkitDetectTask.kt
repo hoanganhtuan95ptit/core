@@ -1,11 +1,14 @@
 package com.one.detect.mlkit
 
 import com.google.android.gms.tasks.Task
+import com.google.mlkit.nl.languageid.LanguageIdentification
+import com.google.mlkit.nl.languageid.LanguageIdentificationOptions
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.one.coreapp.data.usecase.ResultState
+import com.one.coreapp.data.usecase.toSuccess
 import com.one.coreapp.utils.extentions.resumeActive
 import com.one.coreapp.utils.extentions.toBitmap
 import com.one.detect.DetectTask
@@ -35,21 +38,24 @@ abstract class MlkitDetectTask : DetectTask {
         val bitmap = param.path.toBitmap(width = param.sizeMax, height = param.sizeMax)
 
 
-        return suspendCancellableCoroutine { continuation ->
+        val state = suspendCancellableCoroutine<ResultState<List<Paragraph>>> { continuation ->
 
             process(InputImage.fromBitmap(bitmap, 0)).addOnSuccessListener { visionText ->
 
                 val textBlockList = visionText.textBlocks.map { _paragraph ->
 
                     val paragraph = Paragraph()
+                    paragraph.languageCode = _paragraph.recognizedLanguage
 
                     paragraph.sentences = _paragraph.lines.map { _sequence ->
 
                         val sequence = Sentence()
+                        sequence.languageCode = _sequence.recognizedLanguage
 
                         sequence.words = _sequence.elements.map { _word ->
 
                             val word = Word()
+                            word.languageCode = _word.recognizedLanguage
 
                             word.text = _word.symbols.joinToString(separator = "") {
 
@@ -79,6 +85,7 @@ abstract class MlkitDetectTask : DetectTask {
 
                         it.text
                     }
+
                     paragraph.rect = paragraph.sentences.mapNotNull { it.rect }.let { rects ->
 
                         TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
@@ -98,6 +105,40 @@ abstract class MlkitDetectTask : DetectTask {
 
                 continuation.resumeActive(ResultState.Failed(e))
             }
+        }
+
+
+        state.toSuccess()?.data?.forEach { paragraph ->
+
+            if (paragraph.languageCode !in listOf("", "und")) return@forEach
+
+            paragraph.languageCode = identifyLanguage(paragraph.text)
+
+
+            paragraph.sentences.forEach { sentence ->
+
+                sentence.languageCode = sentence.languageCode.takeIf { it.isNotBlank() } ?: paragraph.languageCode
+
+                sentence.words.forEach { word ->
+
+                    word.languageCode = word.languageCode.takeIf { it.isNotBlank() } ?: paragraph.languageCode
+                }
+            }
+        }
+
+
+        return state
+    }
+
+
+    private suspend fun identifyLanguage(text: String) = suspendCancellableCoroutine<String> { a ->
+
+        LanguageIdentification.getClient(LanguageIdentificationOptions.Builder().setConfidenceThreshold(0.34f).build()).identifyLanguage(text).addOnSuccessListener { languageCode ->
+
+            a.resumeActive(languageCode.takeIf { !it.equals("und", true) } ?: "")
+        }.addOnFailureListener {
+
+            a.resumeActive("")
         }
     }
 

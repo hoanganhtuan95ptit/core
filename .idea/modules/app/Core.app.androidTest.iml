@@ -66,6 +66,7 @@
     <orderEntry type="module" module-name="Core.core-ads.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.core-update.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.core-review.main" scope="TEST" />
+    <orderEntry type="module" module-name="Core.word.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.core-navigation.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.translate-mlkit.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.translate.main" scope="TEST" />

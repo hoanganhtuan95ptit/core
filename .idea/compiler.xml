@@ -13,6 +13,7 @@
       <module name="Core.detect-mlkit-latin" target="11" />
       <module name="Core.translate" target="11" />
       <module name="Core.translate-mlkit" target="11" />
+      <module name="Core.word" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>
