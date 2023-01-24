@@ -14,8 +14,8 @@ class DetectUseCase(
     override suspend fun execute(param: Param?): ResultState<List<Paragraph>> {
         checkNotNull(param)
 
-        return list.executeByPriority(DetectTask.Param(param.path, param.inputCode, param.outputCode, param.detectOption))
+        return list.executeByPriority(DetectTask.Param(param.path, param.inputCode, param.outputCode, param.detectOption, param.sizeMax))
     }
 
-    data class Param(val path: String, val inputCode: String, val outputCode: String, val detectOption: DetectOption) : BaseUseCase.Param()
+    data class Param(val path: String, val inputCode: String, val outputCode: String, val detectOption: DetectOption, val sizeMax: Int) : BaseUseCase.Param()
 }

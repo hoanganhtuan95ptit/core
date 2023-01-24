@@ -32,7 +32,7 @@ abstract class MlkitDetectTask : DetectTask {
         }
 
 
-        val bitmap = param.path.toBitmap()
+        val bitmap = param.path.toBitmap(width = param.sizeMax, height = param.sizeMax)
 
 
         return suspendCancellableCoroutine { continuation ->

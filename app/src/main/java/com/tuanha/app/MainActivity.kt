@@ -9,7 +9,6 @@ import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.one.coreapp.data.usecase.doFailed
 import com.one.coreapp.data.usecase.doSuccess
 import com.one.coreapp.utils.extentions.setImage
-import com.one.coreapp.utils.extentions.toBitmap
 import com.one.detect.data.usecase.DetectUseCase
 import com.one.detect.entities.DetectOption
 import com.one.translate.data.usecase.TranslateUseCase
@@ -38,16 +37,16 @@ class MainActivity : AppCompatActivity() {
             val path = "https://images.hindustantimes.com/img/2022/12/30/original/newyear2023c_1672394271188.jpg"
 
 
-            val bitmap = path.toBitmap()
+            val sizeMax = 1500
 
 
-            detectUseCase.execute(DetectUseCase.Param(path = path, "vi", "en", DetectOption.TEXT_TRANSLATE)).let { state ->
+            detectUseCase.execute(DetectUseCase.Param(path = path, "vi", "en", DetectOption.TEXT_TRANSLATE, sizeMax)).let { state ->
 
                 state.doSuccess { list ->
 
                     lifecycleScope.launch(Dispatchers.Main) {
 
-                        findViewById<ImageView>(R.id.image).setImage(path, FitCenter(), DrawTextTransformation(maxOf(bitmap.width, bitmap.height), list))
+                        findViewById<ImageView>(R.id.image).setImage(path, FitCenter(), DrawTextTransformation(sizeMax, list))
                     }
 
                     list.forEach {
