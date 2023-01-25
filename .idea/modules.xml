@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" />
