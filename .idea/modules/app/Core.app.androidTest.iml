@@ -70,6 +70,7 @@
     <orderEntry type="module" module-name="Core.core-navigation.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.detect-mlkit.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.translate-mlkit.main" scope="TEST" />
+    <orderEntry type="module" module-name="Core.config-firebase.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.translate.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.core-app.main" scope="TEST" />
     <orderEntry type="module" module-name="Core.detect.main" scope="TEST" />

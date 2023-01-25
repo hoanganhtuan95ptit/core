@@ -49,6 +49,8 @@ dependencies {
     implementation project(path: ':detect-mlkit')
     implementation project(path: ':translate-mlkit')
 
+    implementation project(path: ':config-firebase')
+
     implementation project(path: ':word')
 
     testImplementation 'junit:junit:4.13.2'

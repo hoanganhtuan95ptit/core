@@ -1,5 +1,6 @@
 package com.tuanha.app.di
 
+import com.one.config.firebase.FirebaseConfigModule
 import com.one.coreapp.Module
 import com.one.detect.DetectModule
 import com.one.detect.mlkit.MlkitDetectModule
@@ -12,6 +13,10 @@ import org.koin.dsl.module
 val appModule = module {
 
     single { WordModule() } bind Module::class
+
+
+    single { FirebaseConfigModule() } bind Module::class
+
 
     single { TranslateModule() } bind Module::class
 
