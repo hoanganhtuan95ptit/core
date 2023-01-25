@@ -33,6 +33,7 @@ dependencies {
 
     api project(path: ':core-app')
 
+    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
     implementation firebaseDependencies.crashlytics
 
     testImplementation 'junit:junit:4.13.2'

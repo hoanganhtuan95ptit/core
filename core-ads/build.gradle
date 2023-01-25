@@ -31,6 +31,7 @@ dependencies {
 
     api project(path: ":core-app")
 
+    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
     api firebaseDependencies.ads
 
     api koinDependencies.values()
