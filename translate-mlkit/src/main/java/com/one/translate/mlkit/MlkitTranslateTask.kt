@@ -29,6 +29,11 @@ class MlkitTranslateTask : TranslateTask {
         val targetLanguage = map[param.outputCode] ?: param.outputCode
 
 
+        if (sourceLanguage.lowercase() in listOf("", "wo") || targetLanguage.lowercase() in listOf("", "wo")) {
+
+            return@withContext ResultState.Failed(java.lang.RuntimeException("not support sourceLanguage:$sourceLanguage targetLanguage:$targetLanguage"))
+        }
+
         val options = TranslatorOptions.Builder()
             .setSourceLanguage(sourceLanguage)
             .setTargetLanguage(targetLanguage)
@@ -50,7 +55,7 @@ class MlkitTranslateTask : TranslateTask {
                 continuation.resumeActive(ResultState.Success(emptyList()))
             }.addOnFailureListener {
 
-                logException(RuntimeException("MlkitTranslateTask downloadModelIfNeeded", it))
+                logException(RuntimeException("Mlkit Translate Task download Model If Needed", it))
 
                 continuation.resumeActive(ResultState.Failed(it))
             }
@@ -62,7 +67,7 @@ class MlkitTranslateTask : TranslateTask {
             return@withContext downloadState
         }
 
-        log("MlkitTranslateTask", "")
+        log("Mlkit Translate Task", "$sourceLanguage $targetLanguage")
 
         val translateStateList = param.text.map {
 
@@ -98,7 +103,7 @@ class MlkitTranslateTask : TranslateTask {
                 continuation.resumeActive(ResultState.Success(translatedText))
             }.addOnFailureListener {
 
-                logException(RuntimeException("MlkitTranslateTask translate", it))
+                logException(RuntimeException("Mlkit Translate Task translate", it))
 
                 continuation.resumeActive(ResultState.Failed(it))
             }
