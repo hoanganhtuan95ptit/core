@@ -6,6 +6,8 @@ import com.google.mlkit.nl.translate.Translator
 import com.google.mlkit.nl.translate.TranslatorOptions
 import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.data.usecase.isFailed
+import com.one.coreapp.utils.extentions.log
+import com.one.coreapp.utils.extentions.logException
 import com.one.coreapp.utils.extentions.resumeActive
 import com.one.translate.TranslateTask
 import kotlinx.coroutines.async
@@ -48,6 +50,8 @@ class MlkitTranslateTask : TranslateTask {
                 continuation.resumeActive(ResultState.Success(emptyList()))
             }.addOnFailureListener {
 
+                logException(RuntimeException("MlkitTranslateTask downloadModelIfNeeded", it))
+
                 continuation.resumeActive(ResultState.Failed(it))
             }
         }
@@ -58,6 +62,7 @@ class MlkitTranslateTask : TranslateTask {
             return@withContext downloadState
         }
 
+        log("MlkitTranslateTask", "")
 
         val translateStateList = param.text.map {
 
@@ -92,6 +97,8 @@ class MlkitTranslateTask : TranslateTask {
 
                 continuation.resumeActive(ResultState.Success(translatedText))
             }.addOnFailureListener {
+
+                logException(RuntimeException("MlkitTranslateTask translate", it))
 
                 continuation.resumeActive(ResultState.Failed(it))
             }

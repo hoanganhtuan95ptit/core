@@ -9,6 +9,8 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.data.usecase.toSuccess
+import com.one.coreapp.utils.extentions.log
+import com.one.coreapp.utils.extentions.logException
 import com.one.coreapp.utils.extentions.resumeActive
 import com.one.coreapp.utils.extentions.toBitmap
 import com.one.detect.DetectTask
@@ -33,6 +35,9 @@ abstract class MlkitDetectTask : DetectTask {
 
             return ResultState.Failed(RuntimeException("not support ${param.inputCode}"))
         }
+
+
+        log("MlkitDetectTask", "")
 
 
         val bitmap = param.path.toBitmap(width = param.sizeMax, height = param.sizeMax)
@@ -102,6 +107,8 @@ abstract class MlkitDetectTask : DetectTask {
                     continuation.resumeActive(ResultState.Success(textBlockList))
                 }
             }.addOnFailureListener { e ->
+
+                logException(RuntimeException("MlkitDetectTask", e))
 
                 continuation.resumeActive(ResultState.Failed(e))
             }
