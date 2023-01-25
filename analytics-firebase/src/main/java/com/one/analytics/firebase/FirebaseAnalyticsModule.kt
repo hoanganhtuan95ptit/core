@@ -26,7 +26,7 @@ private val loadKoinModules by lazy {
 private fun injectModule() = loadKoinModules
 
 
-class AnalyticsFirebaseModule : Module {
+class FirebaseAnalyticsModule : Module {
 
     override fun init(application: Application) {
         injectModule()
