@@ -1,6 +1,8 @@
 package com.one.translate.mlkit
 
 import com.google.mlkit.common.model.DownloadConditions
+import com.google.mlkit.common.model.RemoteModelManager
+import com.google.mlkit.nl.translate.TranslateRemoteModel
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.Translator
 import com.google.mlkit.nl.translate.TranslatorOptions
@@ -10,14 +12,14 @@ import com.one.coreapp.utils.extentions.log
 import com.one.coreapp.utils.extentions.logException
 import com.one.coreapp.utils.extentions.resumeActive
 import com.one.translate.TranslateTask
-import kotlinx.coroutines.async
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import kotlin.coroutines.coroutineContext
 
 class MlkitTranslateTask : TranslateTask {
 
+    private val modelManager = RemoteModelManager.getInstance()
+
+    private val downloadConditions = DownloadConditions.Builder().requireWifi().build()
 
     private val map: Map<String, String> = hashMapOf(
     )
@@ -43,36 +45,39 @@ class MlkitTranslateTask : TranslateTask {
         val translator = Translation.getClient(options)
 
 
-        val conditions = DownloadConditions.Builder()
-            .requireWifi()
-            .build()
+        val downloadState1Deferred = async {
 
+            downloadModelIfNeededTimeout(sourceLanguage)
+        }
 
-        val downloadState = suspendCancellableCoroutine<ResultState<List<String>>> { continuation ->
+        val downloadState2Deferred = async {
 
-            translator.downloadModelIfNeeded(conditions).addOnSuccessListener {
-
-                continuation.resumeActive(ResultState.Success(emptyList()))
-            }.addOnFailureListener {
-
-                logException(RuntimeException("Mlkit Translate Task download Model If Needed", it))
-
-                continuation.resumeActive(ResultState.Failed(it))
-            }
+            downloadModelIfNeededTimeout(targetLanguage)
         }
 
 
-        if (downloadState.isFailed()) {
+        val downloadState1 = downloadState1Deferred.await()
 
-            return@withContext downloadState
+        if (downloadState1.isFailed()) {
+
+            return@withContext downloadState1
         }
+
+
+        val downloadState2 = downloadState2Deferred.await()
+
+        if (downloadState2.isFailed()) {
+
+            return@withContext downloadState2
+        }
+
 
         log("Mlkit Translate Task", "$sourceLanguage $targetLanguage")
 
         val translateStateList = param.text.map {
 
             async {
-                execute(translator, it)
+                translate(translator, it)
             }
         }.awaitAll()
 
@@ -94,19 +99,39 @@ class MlkitTranslateTask : TranslateTask {
         }
     }
 
-    private suspend fun execute(translator: Translator, text: String): ResultState<String> {
+    private suspend fun downloadModelIfNeededTimeout(languageCode: String) = kotlin.runCatching {
 
-        return suspendCancellableCoroutine { continuation ->
+        withTimeout(2 * 60 * 1000) {
+            downloadModelIfNeeded(languageCode)
+        }
+    }.getOrElse {
 
-            translator.translate(text).addOnSuccessListener { translatedText ->
+        ResultState.Failed(it)
+    }
 
-                continuation.resumeActive(ResultState.Success(translatedText))
-            }.addOnFailureListener {
+    private suspend fun downloadModelIfNeeded(languageCode: String) = suspendCancellableCoroutine<ResultState<List<String>>> { continuation ->
 
-                logException(RuntimeException("Mlkit Translate Task translate", it))
+        modelManager.download(TranslateRemoteModel.Builder(languageCode).build(), downloadConditions).addOnSuccessListener {
 
-                continuation.resumeActive(ResultState.Failed(it))
-            }
+            continuation.resumeActive(ResultState.Success(emptyList()))
+        }.addOnFailureListener {
+
+            logException(RuntimeException("Mlkit Translate Task download Model If Needed", it))
+
+            continuation.resumeActive(ResultState.Failed(it))
+        }
+    }
+
+    private suspend fun translate(translator: Translator, text: String): ResultState<String> = suspendCancellableCoroutine { continuation ->
+
+        translator.translate(text).addOnSuccessListener { translatedText ->
+
+            continuation.resumeActive(ResultState.Success(translatedText))
+        }.addOnFailureListener {
+
+            logException(RuntimeException("Mlkit Translate Task translate", it))
+
+            continuation.resumeActive(ResultState.Failed(it))
         }
     }
 }
