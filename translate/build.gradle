@@ -29,7 +29,7 @@ android {
 
 dependencies {
 
-    api tuanhaDependencies.core_app
+    api project(path: ":core-app")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

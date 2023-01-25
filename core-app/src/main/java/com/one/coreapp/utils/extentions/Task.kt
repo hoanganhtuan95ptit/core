@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -92,3 +93,38 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeByFast(param: Param
     awaitClose {
     }
 }.first()
+
+suspend fun <Param, Result> List<Task<Param, Result>>.executeAsync(param: Param): Flow<ResultState<Result>> = channelFlow {
+
+
+    val listDeferred = sortedByDescending {
+
+        it.priority()
+    }.map {
+
+        async {
+
+            val output = it.execute(param)
+
+            if (output.isSuccess()) {
+
+                offerActive(output)
+            }
+
+            output
+        }
+    }
+
+    launch(Dispatchers.IO) {
+
+        val listTranslate = listDeferred.awaitAll()
+
+        if (listTranslate.all { it.isFailed() }) {
+
+            offerActive(listTranslate.first())
+        }
+    }
+
+    awaitClose {
+    }
+}

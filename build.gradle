@@ -123,15 +123,6 @@ buildscript {
                 core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.0",
                 android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0",
         ]
-
-        tuanhaDependencies = [
-                core           : project(":core"),
-                core_app       : project(":core-app"),
-                core_ads       : project(":core-ads"),
-                core_review    : project(":core-review"),
-                core_update    : project(":core-update"),
-                core_navigation: project(":core-navigation"),
-        ]
     }
 
     repositories {

@@ -31,7 +31,7 @@ dependencies {
 
     api project(path: ':detect')
 
-    implementation tuanhaDependencies.core_app
+    api project(path: ":core-app")
 
     implementation 'com.google.mlkit:language-id:17.0.4'
 

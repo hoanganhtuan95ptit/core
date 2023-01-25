@@ -21,10 +21,6 @@ open class App : MultiDexApplication() {
         getKoin().getAll<Config>()
     }
 
-    val analytics by lazy {
-        getKoin().getAll<Analytics>()
-    }
-
     val logAnalytics by lazy {
         getKoin().getAll<Analytics>()
     }

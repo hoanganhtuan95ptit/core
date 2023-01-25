@@ -1,7 +1,8 @@
 package com.one.coreapp.data.usecase
 
 import com.one.coreapp.App
-import com.one.coreapp.utils.ConfigUtils
+import com.one.coreapp.data.task.config.Config
+import com.one.coreapp.utils.extentions.getConfig
 
 class FetchMigrationPackageConfigUseCase : BaseUseCase<FetchMigrationPackageConfigUseCase.Param, String> {
 
@@ -9,7 +10,7 @@ class FetchMigrationPackageConfigUseCase : BaseUseCase<FetchMigrationPackageConf
 
         val keyName = App.shared.packageName.replace(".", "")
 
-        return ConfigUtils.configAsync(keyName)
+        return getConfig(Config.Param(keyName, "", 60 * 60L))
     }
 
     class Param : BaseUseCase.Param()

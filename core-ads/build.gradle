@@ -29,14 +29,13 @@ android {
 
 dependencies {
 
-    api tuanhaDependencies.core_app
+    api project(path: ":core-app")
+
+    api firebaseDependencies.ads
 
     api koinDependencies.values()
 
     api coroutinesDependencies.values()
-
-    api platform("com.google.firebase:firebase-bom:$firebase_bom_version")
-    api firebaseDependencies.ads
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

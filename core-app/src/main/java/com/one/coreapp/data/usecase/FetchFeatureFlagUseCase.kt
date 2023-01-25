@@ -5,7 +5,8 @@ package com.one.coreapp.data.usecase
 import android.content.pm.PackageInfo
 import android.os.Build
 import com.one.coreapp.App
-import com.one.coreapp.utils.ConfigUtils
+import com.one.coreapp.data.task.config.Config
+import com.one.coreapp.utils.extentions.getConfig
 import com.one.coreapp.utils.extentions.offerActiveAwait
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
@@ -26,7 +27,7 @@ class FetchFeatureFlagUseCase : BaseUseCase<FetchFeatureFlagUseCase.Param, Flow<
     override suspend fun execute(param: Param?) = channelFlow {
         checkNotNull(param)
 
-        val versionCodeActive = ConfigUtils.configAsync(fieldName = param.featureFlagKey, time = 10 * 60L).toLongOrNull()
+        val versionCodeActive = getConfig(Config.Param(param.featureFlagKey, "", 10 * 60L)).toLongOrNull()
 
         val enable = if (versionCodeActive == null) {
             param.defaultValue
