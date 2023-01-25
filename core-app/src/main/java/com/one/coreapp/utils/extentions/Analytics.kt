@@ -1,37 +1,23 @@
 package com.one.coreapp.utils.extentions
 
-import android.os.Bundle
 import com.one.core.utils.extentions.normalize
 import com.one.coreapp.App
 import com.one.coreapp.BuildConfig
+import com.one.coreapp.data.task.analytics.Analytics
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-interface Analytics {
-
-    fun logEvent(eventName: String, bundle: Bundle)
-
-    fun logException(throwable: Throwable)
-}
-
 private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
+
     if (BuildConfig.DEBUG) throwable.printStackTrace()
 }
 
-fun log(name: String, any: String = name) = GlobalScope.launch(handler + Dispatchers.IO) {
+fun log(name: String, data: String = "") = GlobalScope.launch(handler + Dispatchers.IO) {
 
     val eventName = name.normalize().replace(".", "").replace("-", "_")
 
-    val bundle = Bundle()
-    bundle.putString("data", any)
-
-    App.shared.analytics.map { it.logEvent(eventName, bundle) }
-}
-
-fun logException(throwable: Throwable) = GlobalScope.launch(handler + Dispatchers.IO) {
-
-    App.shared.analytics.map { it.logException(throwable) }
+    App.shared.logAnalytics.executeByFast(Analytics.Param(eventName, data))
 }

@@ -12,12 +12,14 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/analytics-firebase" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/config-firebase" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core-ads" />
             <option value="$PROJECT_DIR$/core-app" />
             <option value="$PROJECT_DIR$/core-navigation" />
             <option value="$PROJECT_DIR$/core-review" />
             <option value="$PROJECT_DIR$/core-update" />
+            <option value="$PROJECT_DIR$/crashlytics-firebase" />
             <option value="$PROJECT_DIR$/detect" />
             <option value="$PROJECT_DIR$/detect-mlkit" />
             <option value="$PROJECT_DIR$/translate" />

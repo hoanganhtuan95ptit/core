@@ -18,3 +18,5 @@ include ':detect-mlkit'
 include ':word'
 
 include ':analytics-firebase'
+include ':config-firebase'
+include ':crashlytics-firebase'

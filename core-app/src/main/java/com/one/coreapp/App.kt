@@ -3,7 +3,9 @@ package com.one.coreapp
 import android.app.Activity
 import android.os.Bundle
 import androidx.multidex.MultiDexApplication
-import com.one.coreapp.utils.extentions.Analytics
+import com.one.coreapp.data.task.analytics.Analytics
+import com.one.coreapp.data.task.config.Config
+import com.one.coreapp.data.task.crashlytics.Crashlytics
 import kotlinx.coroutines.newSingleThreadContext
 import org.koin.android.ext.android.getKoin
 
@@ -15,9 +17,20 @@ open class App : MultiDexApplication() {
         var numStart: Int = 0
     }
 
+    val configs by lazy {
+        getKoin().getAll<Config>()
+    }
 
     val analytics by lazy {
         getKoin().getAll<Analytics>()
+    }
+
+    val logAnalytics by lazy {
+        getKoin().getAll<Analytics>()
+    }
+
+    val logCrashlytics by lazy {
+        getKoin().getAll<Crashlytics>()
     }
 
 

@@ -1,20 +1,17 @@
 package com.one.analytics.firebase
 
-import android.os.Bundle
+import androidx.core.os.bundleOf
 import com.google.firebase.analytics.FirebaseAnalytics
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.one.coreapp.App
-import com.one.coreapp.utils.extentions.Analytics
+import com.one.coreapp.data.task.analytics.Analytics
+import com.one.coreapp.data.usecase.ResultState
 
 class FirebaseAnalytics : Analytics {
 
-    override fun logEvent(eventName: String, bundle: Bundle) {
+    override suspend fun execute(param: Analytics.Param): ResultState<Unit> {
 
-        FirebaseAnalytics.getInstance(App.shared).logEvent(eventName, bundle)
-    }
+        FirebaseAnalytics.getInstance(App.shared).logEvent(param.name, bundleOf("data" to param.data))
 
-    override fun logException(throwable: Throwable) {
-
-        FirebaseCrashlytics.getInstance().recordException(throwable)
+        return ResultState.Success(Unit)
     }
 }
