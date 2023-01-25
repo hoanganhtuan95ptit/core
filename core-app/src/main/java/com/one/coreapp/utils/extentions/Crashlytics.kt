@@ -16,5 +16,5 @@ private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable
 
 fun logException(throwable: Throwable) = GlobalScope.launch(handler + Dispatchers.IO) {
 
-    App.shared.logCrashlytics.executeByFast(Crashlytics.Param(throwable))
+    App.shared.logCrashlytics.map { it.execute(Crashlytics.Param(throwable)) }
 }

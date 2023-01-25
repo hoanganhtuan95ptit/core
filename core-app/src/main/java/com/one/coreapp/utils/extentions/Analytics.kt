@@ -19,5 +19,5 @@ fun log(name: String, data: String = "") = GlobalScope.launch(handler + Dispatch
 
     val eventName = name.normalize().replace(".", "").replace("-", "_")
 
-    App.shared.logAnalytics.executeByFast(Analytics.Param(eventName, data))
+    App.shared.logAnalytics.map { it.execute(Analytics.Param(eventName, data)) }
 }
