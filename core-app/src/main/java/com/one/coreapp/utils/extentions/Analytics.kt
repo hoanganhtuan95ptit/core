@@ -17,7 +17,7 @@ private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable
 
 fun log(name: String, data: String = "") = GlobalScope.launch(handler + Dispatchers.IO) {
 
-    val eventName = name.normalize().replace(".", "").replace("-", "_")
+    val eventName = name.normalize().replace(".", "").replace(" ", "_").replace("-", "_")
 
     App.shared.logAnalytics.map { it.execute(Analytics.Param(eventName, data)) }
 }

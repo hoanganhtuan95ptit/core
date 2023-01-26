@@ -53,7 +53,6 @@ class EnSpellingTask : SpellingTask {
                 val audio = it.getElementsByTag("source").firstOrNull()?.attr("src")?.takeIf { url -> url.isNotBlank() }
                     ?: it.getElementsByClass("mw-tmh-play").firstOrNull()?.attr("href")?.takeIf { url -> url.isNotBlank() }
 
-                Log.d("tuanha", "handleFromWiki: $text $audio")
 
                 val spelling = it.getElementsByClass("IPA").firstOrNull()
 
