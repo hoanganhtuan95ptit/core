@@ -31,7 +31,7 @@ class MlkitTranslateTask : TranslateTask {
         val targetLanguage = map[param.outputCode] ?: param.outputCode
 
 
-        if (sourceLanguage.lowercase() in listOf("", "wo") || targetLanguage.lowercase() in listOf("", "wo")) {
+        if (sourceLanguage.lowercase() in listOf("", "wo") || targetLanguage.lowercase() in listOf("", "wo") || sourceLanguage == targetLanguage) {
 
             return@withContext ResultState.Failed(java.lang.RuntimeException("not support sourceLanguage:$sourceLanguage targetLanguage:$targetLanguage"))
         }
