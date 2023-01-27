@@ -40,6 +40,10 @@ class MlkitTranslateTask : TranslateTask {
             return@withContext ResultState.Failed(java.lang.RuntimeException("not support inputCode:$inputCode outputCode:$outputCode"))
         }
 
+
+        log("mlkit translate task step 1 inputCode:$inputCode outputCode:$outputCode", "")
+
+
         val downloadInputCodeStateDeferred = async {
 
             Lock.withLock(inputCode) { downloadModelIfNeededTimeout(inputCode) }
@@ -76,7 +80,8 @@ class MlkitTranslateTask : TranslateTask {
         val translator = Translation.getClient(options)
 
 
-        log("Mlkit Translate Task", "$inputCode $outputCode")
+        log("mlkit translate task step 2 inputCode:$inputCode outputCode:$outputCode", "")
+
 
         val translateStateList = param.text.map {
 
@@ -105,10 +110,7 @@ class MlkitTranslateTask : TranslateTask {
 
     private suspend fun downloadModelIfNeededTimeout(languageCode: String) = kotlin.runCatching {
 
-        if (isModelDownloaded(languageCode)) {
-
-            return@runCatching ResultState.Success(emptyList())
-        } else withTimeout(2 * 60 * 1000) {
+        withTimeout(2 * 60 * 1000) {
 
             downloadModelIfNeeded(languageCode)
         }
@@ -126,24 +128,9 @@ class MlkitTranslateTask : TranslateTask {
             continuation.resumeActive(ResultState.Success(emptyList()))
         }.addOnFailureListener {
 
-            logException(RuntimeException("Mlkit Translate Task download Model If Needed $languageCode", it))
+            logException(RuntimeException("mlkit translate task download model if needed $languageCode", it))
 
             continuation.resumeActive(ResultState.Failed(it))
-        }
-    }
-
-    private suspend fun isModelDownloaded(languageCode: String) = suspendCancellableCoroutine<Boolean> { continuation ->
-
-        val remoteModel = TranslateRemoteModel.Builder(languageCode).build()
-
-        modelManager.isModelDownloaded(remoteModel).addOnSuccessListener {
-
-            continuation.resumeActive(it)
-        }.addOnFailureListener {
-
-            logException(RuntimeException("IS MODEL DOWNLOADED $languageCode", it))
-
-            continuation.resumeActive(false)
         }
     }
 
@@ -154,7 +141,7 @@ class MlkitTranslateTask : TranslateTask {
             continuation.resumeActive(ResultState.Success(translatedText))
         }.addOnFailureListener {
 
-            logException(RuntimeException("Mlkit Translate Task translate", it))
+            logException(RuntimeException("mlkit translate task translate", it))
 
             continuation.resumeActive(ResultState.Failed(it))
         }

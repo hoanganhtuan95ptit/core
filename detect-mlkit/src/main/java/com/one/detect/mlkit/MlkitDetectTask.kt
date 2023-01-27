@@ -117,7 +117,6 @@ abstract class MlkitDetectTask : DetectTask {
 
         state.toSuccess()?.data?.forEach { paragraph ->
 
-            if (paragraph.languageCode !in listOf("", "und")) return@forEach
 
             paragraph.languageCode = identifyLanguage(paragraph.text)
 
@@ -142,7 +141,7 @@ abstract class MlkitDetectTask : DetectTask {
 
         LanguageIdentification.getClient(LanguageIdentificationOptions.Builder().setConfidenceThreshold(0.34f).build()).identifyLanguage(text).addOnSuccessListener { languageCode ->
 
-            a.resumeActive(languageCode.takeIf { !it.equals("und", true) } ?: "")
+            a.resumeActive(languageCode.lowercase().replace("-latn", "").replace("und", ""))
         }.addOnFailureListener {
 
             a.resumeActive("")
