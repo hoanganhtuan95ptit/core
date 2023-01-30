@@ -2,6 +2,7 @@ package com.one.word.data.task.dictionary.envi
 
 import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.data.usecase.toSuccess
+import com.one.coreapp.utils.extentions.logException
 import com.one.word.data.task.dictionary.DictionaryTask
 import com.one.word.entities.TextLevel
 import com.one.word.entities.TextLevelType
@@ -13,12 +14,19 @@ class WikiEnViDictionaryTask : DictionaryTask {
 
     override suspend fun execute(param: DictionaryTask.Param): ResultState<List<TextLevel>> {
 
-        return if (param.inputCode != "en" || param.outputCode != "vi") {
+        if (param.inputCode != "en" || param.outputCode != "vi") {
 
-            ResultState.Failed(RuntimeException("Not support"))
-        } else {
+            return ResultState.Failed(RuntimeException("Not support"))
+        }
+
+        return runCatching {
 
             handleFromWiki(param.text)
+        }.getOrElse {
+
+            logException(java.lang.RuntimeException("WikiEnViDictionaryTask", it))
+
+            ResultState.Failed(it)
         }
     }
 

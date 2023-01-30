@@ -1,7 +1,7 @@
 package com.one.word.data.task.spelling.en
 
-import android.util.Log
 import com.one.coreapp.data.usecase.ResultState
+import com.one.coreapp.utils.extentions.logException
 import com.one.word.data.task.spelling.SpellingTask
 import com.one.word.entities.Spelling
 import org.jsoup.Jsoup
@@ -10,12 +10,19 @@ class EnSpellingTask : SpellingTask {
 
     override suspend fun execute(param: SpellingTask.Param): ResultState<List<Spelling>> {
 
-        return if (param.inputCode != "en") {
+        if (param.inputCode != "en") {
 
-            ResultState.Failed(RuntimeException("Not support"))
-        } else {
+            return ResultState.Failed(RuntimeException("Not support"))
+        }
+
+        return runCatching {
 
             handleFromWiki(param.text)
+        }.getOrElse {
+
+            logException(java.lang.RuntimeException("EnSpellingTask", it))
+
+            ResultState.Failed(it)
         }
     }
 
@@ -66,7 +73,7 @@ class EnSpellingTask : SpellingTask {
                 }
 
                 if (text.contains("us", true) && audio != null) {
-                    map["us"]?.audio = "https:" + audio
+                    map["us"]?.audio = "https:$audio"
                 }
 
 

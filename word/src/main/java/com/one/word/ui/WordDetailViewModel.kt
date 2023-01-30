@@ -30,7 +30,6 @@ import com.one.word.ui.adapters.SpellingViewItem
 import com.one.word.ui.adapters.TextViewItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.*
 
@@ -96,7 +95,7 @@ class WordDetailViewModel(
         }
 
         val translateAsync = viewModelScope.async(handler + Dispatchers.IO) {
-            translateUseCase.execute(TranslateUseCase.Param(listOf(text), inputCode, Locale.getDefault().language)).toSuccess()?.data?.first()
+            translateUseCase.execute(TranslateUseCase.Param(listOf(text), inputCode, Locale.getDefault().language)).toSuccess()?.data?.firstOrNull()
         }
 
         val dictionaryAsync = viewModelScope.async(handler + Dispatchers.IO) {
