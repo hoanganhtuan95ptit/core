@@ -1,7 +1,9 @@
 package com.tuanha.app.di
 
+import com.one.analytics.firebase.FirebaseAnalyticsModule
 import com.one.config.firebase.FirebaseConfigModule
 import com.one.coreapp.Module
+import com.one.crashlytics.firebase.FirebaseCrashlyticsModule
 import com.one.detect.DetectModule
 import com.one.detect.mlkit.MlkitDetectModule
 import com.one.translate.TranslateModule
@@ -16,6 +18,10 @@ val appModule = module {
 
 
     single { FirebaseConfigModule() } bind Module::class
+
+    single { FirebaseAnalyticsModule() } bind Module::class
+
+    single { FirebaseCrashlyticsModule() } bind Module::class
 
 
     single { TranslateModule() } bind Module::class

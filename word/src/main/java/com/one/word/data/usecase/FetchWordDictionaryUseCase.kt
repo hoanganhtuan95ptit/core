@@ -2,7 +2,7 @@ package com.one.word.data.usecase
 
 import com.one.coreapp.data.usecase.BaseUseCase
 import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.utils.extentions.executeByFast
+import com.one.coreapp.utils.extentions.executeAsyncByFast
 import com.one.coreapp.utils.extentions.log
 import com.one.word.data.task.dictionary.DictionaryTask
 import com.one.word.entities.TextLevel
@@ -16,7 +16,7 @@ class FetchWordDictionaryUseCase(
 
         log("fetch word dictionary use case ${param.inputCode} ${param.outputCode}")
 
-        return list.executeByFast(DictionaryTask.Param(param.text, param.inputCode, param.outputCode))
+        return list.executeAsyncByFast(DictionaryTask.Param(param.text, param.inputCode, param.outputCode))
     }
 
     data class Param(val text: String, val inputCode: String, val outputCode: String) : BaseUseCase.Param()

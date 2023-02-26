@@ -17,8 +17,14 @@ include ':detect-mlkit'
 
 include ':word'
 
+include ':task'
+
+include ':state'
+
 include ':config-firebase'
 
+include ':analytics'
 include ':analytics-firebase'
 
+include ':crashlytics'
 include ':crashlytics-firebase'

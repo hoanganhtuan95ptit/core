@@ -6,6 +6,8 @@ import androidx.multidex.MultiDexApplication
 import com.one.coreapp.data.task.analytics.Analytics
 import com.one.coreapp.data.task.config.Config
 import com.one.coreapp.data.task.crashlytics.Crashlytics
+import com.one.coreapp.utils.extentions.AnalyticsSdk
+import com.one.coreapp.utils.extentions.CrashlyticsSdk
 import kotlinx.coroutines.newSingleThreadContext
 import org.koin.android.ext.android.getKoin
 
@@ -37,6 +39,10 @@ open class App : MultiDexApplication() {
         shared = this
 
         super.onCreate()
+
+        AnalyticsSdk.init(logAnalytics)
+
+        CrashlyticsSdk.init(logCrashlytics)
 
         registerActivityLifecycleCallbacks(AppLifeCycle())
     }

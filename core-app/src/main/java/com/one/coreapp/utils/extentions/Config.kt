@@ -6,6 +6,6 @@ import com.one.coreapp.data.usecase.ResultState
 
 suspend fun getConfig(param: Config.Param): String {
 
-    return (App.shared.configs.executeByFast(param) as? ResultState.Success)?.data ?: param.default
+    return (App.shared.configs.executeAsyncByFast(param) as? ResultState.Success)?.data ?: param.default
 }
 

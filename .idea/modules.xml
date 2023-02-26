@@ -3,10 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.main.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" />
@@ -38,10 +42,14 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-update/Core.core-update.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics-firebase/Core.crashlytics-firebase.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.main.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/crashlytics/Core.crashlytics.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect-mlkit/Core.detect-mlkit.androidTest.iml" />
@@ -50,6 +58,13 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.main.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/state/Core.state.iml" filepath="$PROJECT_DIR$/.idea/modules/state/Core.state.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/state/Core.state.main.iml" filepath="$PROJECT_DIR$/.idea/modules/state/Core.state.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/state/Core.state.test.iml" filepath="$PROJECT_DIR$/.idea/modules/state/Core.state.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/task/Core.task.iml" filepath="$PROJECT_DIR$/.idea/modules/task/Core.task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/task/Core.task.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/task/Core.task.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/task/Core.task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/task/Core.task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/task/Core.task.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/task/Core.task.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate/Core.translate.iml" filepath="$PROJECT_DIR$/.idea/modules/translate/Core.translate.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/translate-mlkit/Core.translate-mlkit.androidTest.iml" />
