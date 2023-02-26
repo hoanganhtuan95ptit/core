@@ -30,9 +30,11 @@ android {
 dependencies {
 
     api project(path: ":core")
-    
+
     api androidxDependencies.recyclerview
     api androidxDependencies.constraintlayout
+
+    api coroutinesDependencies.values()
 
     api 'io.supercharge:shimmerlayout:2.1.0'
 

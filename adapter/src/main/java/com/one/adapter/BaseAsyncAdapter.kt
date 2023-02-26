@@ -5,14 +5,18 @@ import android.view.ViewGroup
 import androidx.annotation.Keep
 import androidx.recyclerview.widget.*
 import androidx.viewbinding.ViewBinding
-import com.one.coreapp.App
+import kotlinx.coroutines.newSingleThreadContext
+
+
+private val dispatcherForHandleDataUi = newSingleThreadContext("handle_data_for_ui")
+
 
 abstract class BaseAsyncAdapter<T : ViewItemCloneable, B : ViewBinding>(
     itemCallback: DiffUtil.ItemCallback<T>? = null,
 ) : ListAdapter<T, BaseBindingViewHolder<B>>(
     AsyncDifferConfig
         .Builder(itemCallback ?: DefaultItemCallback<T>())
-        .setBackgroundThreadExecutor(App.shared.dispatcherForHandleDataUi.executor).build()
+        .setBackgroundThreadExecutor(dispatcherForHandleDataUi.executor).build()
 ) {
 
 
