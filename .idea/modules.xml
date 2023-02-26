@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.main.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" />

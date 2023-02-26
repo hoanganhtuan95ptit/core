@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
+      <module name="Core.adapter" target="11" />
       <module name="Core.analytics" target="11" />
       <module name="Core.analytics-firebase" target="11" />
       <module name="Core.app" target="11" />

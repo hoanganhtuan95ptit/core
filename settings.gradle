@@ -23,6 +23,8 @@ include ':state'
 
 include ':config-firebase'
 
+include ':adapter'
+
 include ':analytics'
 include ':analytics-firebase'
 
