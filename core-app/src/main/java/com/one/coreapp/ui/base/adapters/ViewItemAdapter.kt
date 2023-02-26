@@ -46,7 +46,7 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
     fun bindView(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
 
         binding.root.setOnClickListener { view ->
-            adapter?.currentList?.getOrNull(position)?.let { onItemClick.invoke(view, it as VI) }
+            getViewItem(position)?.let { onItemClick.invoke(view, it) }
         }
 
         bind(binding, viewType, position, item)
@@ -54,6 +54,9 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
 
     open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
     }
+
+
+    protected fun getViewItem(position: Int) = adapter?.currentList?.getOrNull(position) as? VI
 }
 
 class MultiAdapter(
@@ -112,7 +115,6 @@ class MultiAdapter(
 
 
     override fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>) {
-        super.onViewAttachedToWindow(holder)
 
         typeAndAdapter[holder.viewType]?.onViewAttachedToWindow(holder, this)
 
@@ -120,7 +122,6 @@ class MultiAdapter(
     }
 
     override fun onViewDetachedFromWindow(holder: BaseBindingViewHolder<ViewBinding>) {
-        super.onViewDetachedFromWindow(holder)
 
         typeAndAdapter[holder.viewType]?.onViewDetachedFromWindow(holder)
 
@@ -129,13 +130,11 @@ class MultiAdapter(
 
 
     override fun bind(binding: ViewBinding, viewType: Int, position: Int, item: ViewItemCloneable, payloads: MutableList<Any>) {
-        super.bind(binding, viewType, position, item, payloads)
 
         typeAndAdapter[viewType]?.bindView(binding, viewType, position, item, payloads)
     }
 
     override fun bind(binding: ViewBinding, viewType: Int, position: Int, item: ViewItemCloneable) {
-        super.bind(binding, viewType, position, item)
 
         typeAndAdapter[viewType]?.bindView(binding, viewType, position, item)
     }

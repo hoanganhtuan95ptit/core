@@ -3,20 +3,16 @@
 package com.one.coreapp.ui.dialogs
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.GridLayoutManager
-import com.one.coreapp.R
 import com.one.coreapp.databinding.FragmentOptionsBinding
 import com.one.coreapp.databinding.ItemOptionBinding
-import com.one.coreapp.ui.base.adapters.BaseAsyncAdapter
-import com.one.coreapp.ui.base.adapters.ViewItem
+import com.one.coreapp.ui.base.adapters.MultiAdapter
+import com.one.coreapp.ui.base.adapters.ViewItemAdapter
+import com.one.coreapp.ui.base.adapters.ViewItemCloneable
 import com.one.coreapp.ui.base.dialogs.BaseViewBindingSheetFragment
-import com.one.coreapp.utils.extentions.setDebouncedClickListener
-import java.io.Serializable
 import kotlin.math.min
 
 class OptionFragment : BaseViewBindingSheetFragment<FragmentOptionsBinding>() {
@@ -27,18 +23,25 @@ class OptionFragment : BaseViewBindingSheetFragment<FragmentOptionsBinding>() {
         setupRec()
     }
 
-    private fun setupRec() = OptionAdapter { _, item ->
+    private fun setupRec() {
 
-        setFragmentResult(requireArguments().getString(KEY_REQUEST, ""), bundleOf(requireArguments().getString(KEY_DATA, "") to item))
-        dismiss()
-    }.apply {
+        val binding = binding ?: return
 
         val list = requireArguments().getSerializable(DATA) as List<OptionViewItem>
 
-        submitList(list)
+        val optionAdapter = OptionAdapter { _, item ->
 
-        binding?.recyclerView?.layoutManager = GridLayoutManager(requireContext(), min(4, list.size))
-        binding?.recyclerView?.adapter = this
+            setFragmentResult(requireArguments().getString(KEY_REQUEST, ""), bundleOf(requireArguments().getString(KEY_DATA, "") to item))
+            dismiss()
+        }
+
+        MultiAdapter(optionAdapter).apply {
+
+            binding.recyclerView.adapter = this
+            binding.recyclerView.layoutManager = GridLayoutManager(requireContext(), min(4, list.size))
+
+            submitList(list)
+        }
     }
 
     companion object {
@@ -58,21 +61,7 @@ class OptionFragment : BaseViewBindingSheetFragment<FragmentOptionsBinding>() {
     }
 }
 
-class OptionAdapter(
-    private val onItemClickListener: (View, OptionViewItem) -> Unit = { _, _ -> }
-) : BaseAsyncAdapter<OptionViewItem, ItemOptionBinding>() {
-
-    override fun createView(parent: ViewGroup, viewType: Int?): ItemOptionBinding {
-
-        val binding = ItemOptionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
-        binding.root.setDebouncedClickListener { v ->
-
-            getViewItem<OptionViewItem>(binding)?.let { onItemClickListener.invoke(v, it) }
-        }
-
-        return binding
-    }
+class OptionAdapter(onItemClick: (View, OptionViewItem) -> Unit = { _, _ -> }) : ViewItemAdapter<OptionViewItem, ItemOptionBinding>(onItemClick) {
 
     override fun bind(binding: ItemOptionBinding, viewType: Int, position: Int, item: OptionViewItem) {
         super.bind(binding, viewType, position, item)
@@ -85,11 +74,9 @@ class OptionAdapter(
 data class OptionViewItem(
     val textRes: Int = 0,
     var imageRes: Int = 0,
-) : ViewItem, Serializable {
+) : ViewItemCloneable {
 
-    fun clone(): OptionViewItem = OptionViewItem(textRes, imageRes)
-
-    fun refresh() {}
+    override fun clone() = copy()
 
     override fun areItemsTheSame(): List<Any> = listOf(
         textRes, imageRes

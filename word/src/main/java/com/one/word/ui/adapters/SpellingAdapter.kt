@@ -1,7 +1,5 @@
 package com.one.word.ui.adapters
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import com.one.coreapp.ui.base.adapters.ViewItemAdapter
 import com.one.coreapp.ui.base.adapters.ViewItemCloneable
 import com.one.coreapp.utils.extentions.setDebouncedClickListener
@@ -11,19 +9,12 @@ import com.one.word.entities.Spelling
 
 class SpellingAdapter : ViewItemAdapter<SpellingViewItem, ItemSpellingBinding>() {
 
-    override fun createViewItem(parent: ViewGroup): ItemSpellingBinding {
-
-        val binding = ItemSpellingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    override fun bind(binding: ItemSpellingBinding, viewType: Int, position: Int, item: SpellingViewItem) {
 
         binding.ivSpelling.setDebouncedClickListener {
 
-            adapter?.getViewItem<SpellingViewItem>(binding)?.let { binding.ivSpelling.play(it.audio) }
+            getViewItem(position)?.let { binding.ivSpelling.play(it.audio) }
         }
-
-        return binding
-    }
-
-    override fun bind(binding: ItemSpellingBinding, viewType: Int, position: Int, item: SpellingViewItem) {
 
         binding.tvSpelling.setText(item.text)
         binding.ivSpelling.setVisible(item.audio.isNotBlank())
