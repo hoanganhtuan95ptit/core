@@ -3,8 +3,8 @@ package com.one.word.ui.adapters
 import android.graphics.Typeface
 import android.widget.TextView
 import androidx.core.view.updatePadding
-import com.one.coreapp.ui.base.adapters.ViewItemAdapter
-import com.one.coreapp.ui.base.adapters.ViewItemCloneable
+import com.one.adapter.ViewItemAdapter
+import com.one.adapter.ViewItemCloneable
 import com.one.coreapp.utils.extentions.Text
 import com.one.coreapp.utils.extentions.setText
 import com.one.word.databinding.ItemTextBinding

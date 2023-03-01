@@ -3,6 +3,7 @@ package com.one.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.one.coreapp.utils.extentions.findGenericClassBySuperClass
 import java.lang.reflect.Method
@@ -26,11 +27,13 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
     }
 
 
-    open fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>, adapter: BaseAsyncAdapter<*, *>) {
+    @CallSuper
+    open fun onViewAttachedToWindow(binding: @UnsafeVariance VB, adapter: BaseAsyncAdapter<*, *>) {
         this.adapter = adapter
     }
 
-    open fun onViewDetachedFromWindow(holder: BaseBindingViewHolder<ViewBinding>) {
+    @CallSuper
+    open fun onViewDetachedFromWindow(binding: @UnsafeVariance VB) {
         this.adapter = null
     }
 
@@ -117,14 +120,14 @@ class MultiAdapter(
 
     override fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>) {
 
-        typeAndAdapter[holder.viewType]?.onViewAttachedToWindow(holder, this)
+        typeAndAdapter[holder.viewType]?.onViewAttachedToWindow(holder.binding, this)
 
         onViewHolderAttachedToWindow?.invoke(holder)
     }
 
     override fun onViewDetachedFromWindow(holder: BaseBindingViewHolder<ViewBinding>) {
 
-        typeAndAdapter[holder.viewType]?.onViewDetachedFromWindow(holder)
+        typeAndAdapter[holder.viewType]?.onViewDetachedFromWindow(holder.binding)
 
         onViewHolderDetachedFromWindow?.invoke(holder)
     }

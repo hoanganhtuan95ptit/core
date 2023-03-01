@@ -5,6 +5,7 @@
       <map>
         <entry key="adapter/src/main/res/layout/item_load_more.xml" value="0.30854700854700856" />
         <entry key="adapter/src/main/res/layout/item_loading.xml" value="0.30854700854700856" />
+        <entry key="adapter/src/main/res/layout/item_space.xml" value="0.1641025641025641" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="core-app/src/main/res/drawable/bg_corner_10dp_solid_surface.xml" value="0.166" />
         <entry key="core-app/src/main/res/drawable/bg_corner_24dp_solid_loading.xml" value="0.166" />

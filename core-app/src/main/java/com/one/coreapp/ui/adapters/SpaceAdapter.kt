@@ -1,8 +1,8 @@
 package com.one.coreapp.ui.adapters
 
+import com.one.adapter.ViewItemAdapter
+import com.one.adapter.ViewItemCloneable
 import com.one.coreapp.databinding.ItemSpaceBinding
-import com.one.coreapp.ui.base.adapters.ViewItemAdapter
-import com.one.coreapp.ui.base.adapters.ViewItemCloneable
 import com.one.coreapp.utils.extentions.resize
 import java.util.*
 

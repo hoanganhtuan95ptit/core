@@ -1,9 +1,23 @@
 package com.one.adapter
 
 import android.view.LayoutInflater
+import androidx.core.view.children
 import com.one.adapter.databinding.ItemLoadingBinding
+import io.supercharge.shimmerlayout.ShimmerLayout
 
 class LoadingViewAdapter : ViewItemAdapter<LoadingViewItem, ItemLoadingBinding>() {
+
+    override fun onViewAttachedToWindow(binding: ItemLoadingBinding, adapter: BaseAsyncAdapter<*, *>) {
+        super.onViewAttachedToWindow(binding, adapter)
+
+        binding.root.let { it.children.filterIsInstance<ShimmerLayout>().firstOrNull() ?: it }.startShimmerAnimation()
+    }
+
+    override fun onViewDetachedFromWindow(binding: ItemLoadingBinding) {
+        super.onViewDetachedFromWindow(binding)
+
+        binding.root.let { it.children.filterIsInstance<ShimmerLayout>().firstOrNull() ?: it }.stopShimmerAnimation()
+    }
 
     override fun bind(binding: ItemLoadingBinding, viewType: Int, position: Int, item: LoadingViewItem) {
         super.bind(binding, viewType, position, item)

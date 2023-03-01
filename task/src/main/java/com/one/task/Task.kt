@@ -1,9 +1,9 @@
 package com.one.coreapp.utils.extentions
 
-import android.util.Log
 import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.data.usecase.isFailed
 import com.one.coreapp.data.usecase.isSuccess
+import com.one.coreapp.data.usecase.toFailed
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
@@ -70,7 +70,7 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeSyncByPriority(para
 
     if (outputs.all { it.isFailed() }) {
 
-        offerActive(outputs.first())
+        offerActive(outputs.minByOrNull { if (it.toFailed()?.error !is LowException) 0 else 1 }!!)
     }
 
 
@@ -113,7 +113,7 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeAsyncByPriority(par
 
         if (outputs.all { it.isFailed() }) {
 
-            offerActive(outputs.first())
+            offerActive(outputs.minByOrNull { if (it.toFailed()?.error !is LowException) 0 else 1 }!!)
         }
     }
 
@@ -155,11 +155,11 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeAsyncByFast(param: 
 
     val job = launch {
 
-        val listTranslate = listDeferred.awaitAll()
+        val outputs = listDeferred.awaitAll()
 
-        if (listTranslate.all { it.isFailed() }) {
+        if (outputs.all { it.isFailed() }) {
 
-            offerActive(listTranslate.first())
+            offerActive(outputs.minByOrNull { if (it.toFailed()?.error !is LowException) 0 else 1 }!!)
         }
     }
 
@@ -202,6 +202,9 @@ suspend fun <Param, Result> List<Task<Param, Result>>.executeAsyncAll(param: Par
         listDeferred.map { it.cancel() }
     }
 }
+
+
+class LowException(message: String? = null, cause: Throwable? = null) : RuntimeException(message, cause)
 
 
 private suspend fun <T> ProducerScope<T>.offerActiveAwait(t: T, start: Long = -1, max: Long = -1) {

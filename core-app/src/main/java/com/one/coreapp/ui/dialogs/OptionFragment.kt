@@ -7,11 +7,11 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.recyclerview.widget.GridLayoutManager
+import com.one.adapter.MultiAdapter
+import com.one.adapter.ViewItemAdapter
+import com.one.adapter.ViewItemCloneable
 import com.one.coreapp.databinding.FragmentOptionsBinding
 import com.one.coreapp.databinding.ItemOptionBinding
-import com.one.coreapp.ui.base.adapters.MultiAdapter
-import com.one.coreapp.ui.base.adapters.ViewItemAdapter
-import com.one.coreapp.ui.base.adapters.ViewItemCloneable
 import com.one.coreapp.ui.base.dialogs.BaseViewBindingSheetFragment
 import kotlin.math.min
 

@@ -1,7 +1,7 @@
 package com.one.word.ui.adapters
 
-import com.one.coreapp.ui.base.adapters.ViewItemAdapter
-import com.one.coreapp.ui.base.adapters.ViewItemCloneable
+import com.one.adapter.ViewItemAdapter
+import com.one.adapter.ViewItemCloneable
 import com.one.coreapp.utils.extentions.setDebouncedClickListener
 import com.one.coreapp.utils.extentions.setVisible
 import com.one.word.databinding.ItemSpellingBinding

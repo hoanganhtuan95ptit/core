@@ -12,13 +12,13 @@ import androidx.lifecycle.viewModelScope
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberType
 import com.google.mlkit.nl.languageid.LanguageIdentification
+import com.one.adapter.LoadingViewItem
+import com.one.adapter.ViewItemCloneable
 import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.data.usecase.doSuccess
 import com.one.coreapp.data.usecase.isStart
 import com.one.coreapp.data.usecase.toSuccess
 import com.one.coreapp.ui.adapters.SpaceViewItem
-import com.one.coreapp.ui.base.adapters.LoadingViewItem
-import com.one.coreapp.ui.base.adapters.ViewItemCloneable
 import com.one.coreapp.ui.base.viewmodels.BaseViewModel
 import com.one.coreapp.utils.extentions.*
 import com.one.translate.data.usecase.TranslateUseCase

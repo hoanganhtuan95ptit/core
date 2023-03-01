@@ -35,6 +35,7 @@ dependencies {
     api project(path: ":core")
     api project(path: ":task")
     api project(path: ":state")
+    api project(path: ":adapter")
     api project(path: ":analytics")
     api project(path: ":crashlytics")
 

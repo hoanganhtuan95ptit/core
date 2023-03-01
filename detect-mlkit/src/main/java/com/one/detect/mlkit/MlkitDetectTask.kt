@@ -1,39 +1,30 @@
 package com.one.detect.mlkit
 
-import com.google.android.gms.tasks.Task
 import com.google.mlkit.nl.languageid.LanguageIdentification
 import com.google.mlkit.nl.languageid.LanguageIdentificationOptions
-import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
-import com.google.mlkit.vision.text.TextRecognition
-import com.google.mlkit.vision.text.latin.TextRecognizerOptions
+import com.one.core.utils.extentions.toArrayList
+import com.one.core.utils.extentions.validate
 import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.data.usecase.toSuccess
-import com.one.coreapp.utils.extentions.log
-import com.one.coreapp.utils.extentions.logException
-import com.one.coreapp.utils.extentions.resumeActive
-import com.one.coreapp.utils.extentions.toBitmap
+import com.one.coreapp.data.usecase.isFailed
+import com.one.coreapp.data.usecase.toFailed
+import com.one.coreapp.utils.extentions.*
 import com.one.detect.DetectTask
 import com.one.detect.entities.*
+import com.one.detect.mlkit.data.task.MlkitTask
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.suspendCancellableCoroutine
 
-abstract class MlkitDetectTask : DetectTask {
+class MlkitDetectTask(
+    private val taskList: List<MlkitTask>
+) : DetectTask {
 
     override suspend fun execute(param: DetectTask.Param): ResultState<List<Paragraph>> {
 
 
         if (!param.detectOption.isDetectText()) {
 
-            return ResultState.Failed(RuntimeException("not support ${param.detectOption.name}"))
-        }
-
-
-        val inputCodeSupport = inputCodeSupport()
-
-
-        if (inputCodeSupport.isNotEmpty() && inputCodeSupport.all { !it.equals(param.inputCode, true) }) {
-
-            return ResultState.Failed(RuntimeException("not support ${param.inputCode}"))
+            return ResultState.Failed(LowException("not support ${param.detectOption.name}"))
         }
 
 
@@ -43,97 +34,110 @@ abstract class MlkitDetectTask : DetectTask {
         val bitmap = param.path.toBitmap(width = param.sizeMax, height = param.sizeMax)
 
 
-        val state = suspendCancellableCoroutine<ResultState<List<Paragraph>>> { continuation ->
+        val states = taskList.executeAsyncAll(MlkitTask.Param(bitmap)).first()
 
-            process(InputImage.fromBitmap(bitmap, 0)).addOnSuccessListener { visionText ->
 
-                val textBlockList = visionText.textBlocks.map { _paragraph ->
+        if (states.all { it.isFailed() }) {
 
-                    val paragraph = Paragraph()
-                    paragraph.languageCode = _paragraph.recognizedLanguage
+            return states.filterIsInstance<ResultState.Failed>().minByOrNull { if (it.toFailed()?.error !is LowException) 0 else 1 }!!
+        }
 
-                    paragraph.sentences = _paragraph.lines.map { _sequence ->
 
-                        val sequence = Sentence()
-                        sequence.languageCode = _sequence.recognizedLanguage
+        val stateSuccessList = states.filterIsInstance<ResultState.Success<List<Text.TextBlock>>>().toMutableList()
 
-                        sequence.words = _sequence.elements.map { _word ->
+        val stateSuccessPrimary = stateSuccessList.maxByOrNull { it.data.flatMap { textBlock -> textBlock.lines.flatMap { it.elements } }.size }
 
-                            val word = Word()
-                            word.languageCode = _word.recognizedLanguage
+        stateSuccessList.remove(stateSuccessPrimary)
 
-                            word.text = _word.symbols.joinToString(separator = "") {
 
-                                it.text
-                            }
-                            word.rect = _word.symbols.mapNotNull { it.boundingBox }.let { rects ->
+        val boxList = stateSuccessPrimary?.data?.mapNotNull { it.boundingBox } ?: emptyList()
 
-                                TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-                            }
+        val textBlockList = stateSuccessPrimary?.data?.toArrayList() ?: arrayListOf()
 
-                            word
-                        }
 
-                        sequence.text = sequence.words.joinToString(separator = " ") {
+        stateSuccessList.flatMap {
 
-                            it.text
-                        }
-                        sequence.rect = sequence.words.mapNotNull { it.rect }.let { rects ->
+            it.data
+        }.forEach { textBlock ->
 
-                            TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-                        }
+            if (!boxList.contains(textBlock.boundingBox)) textBlockList.add(textBlock)
+        }
 
-                        sequence
-                    }
 
-                    paragraph.text = paragraph.sentences.joinToString(separator = "\n") {
+        textBlockList.sortBy { it.boundingBox?.bottom }
+
+
+        val paragraphList = textBlockList.map { _paragraph ->
+
+            val paragraph = Paragraph()
+            paragraph.languageCode = _paragraph.recognizedLanguage
+
+
+            paragraph.sentences = _paragraph.lines.map { _sequence ->
+
+                val sequence = Sentence()
+                sequence.languageCode = _sequence.recognizedLanguage
+
+                sequence.words = _sequence.elements.map { _word ->
+
+                    val word = Word()
+                    word.languageCode = _word.recognizedLanguage
+
+                    word.text = _word.symbols.joinToString(separator = "") {
 
                         it.text
                     }
-
-                    paragraph.rect = paragraph.sentences.mapNotNull { it.rect }.let { rects ->
+                    word.rect = _word.symbols.mapNotNull { it.boundingBox }.let { rects ->
 
                         TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
                     }
 
-                    paragraph
+                    word
                 }
 
-                if (textBlockList.isEmpty()) {
+                sequence.text = sequence.words.joinToString(separator = " ") {
 
-                    continuation.resumeActive(ResultState.Failed(RuntimeException("")))
-                } else {
-
-                    continuation.resumeActive(ResultState.Success(textBlockList))
+                    it.text
                 }
-            }.addOnFailureListener { e ->
+                sequence.rect = sequence.words.mapNotNull { it.rect }.let { rects ->
 
-                logException(RuntimeException("MlkitDetectTask", e))
+                    TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
+                }
 
-                continuation.resumeActive(ResultState.Failed(e))
+                sequence
             }
-        }
 
 
-        state.toSuccess()?.data?.forEach { paragraph ->
+            paragraph.text = paragraph.sentences.joinToString(separator = "\n") {
+
+                it.text
+            }
 
 
-            paragraph.languageCode = identifyLanguage(paragraph.text)
+            paragraph.rect = paragraph.sentences.mapNotNull { it.rect }.let { rects ->
+
+                TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
+            }
+
+            paragraph
+        }.validate {
 
 
-            paragraph.sentences.forEach { sentence ->
+            languageCode = identifyLanguage(text)
 
-                sentence.languageCode = sentence.languageCode.takeIf { it.isNotBlank() } ?: paragraph.languageCode
+
+            sentences.forEach { sentence ->
+
+                sentence.languageCode = sentence.languageCode.takeIf { it.isNotBlank() } ?: languageCode
 
                 sentence.words.forEach { word ->
 
-                    word.languageCode = word.languageCode.takeIf { it.isNotBlank() } ?: paragraph.languageCode
+                    word.languageCode = word.languageCode.takeIf { it.isNotBlank() } ?: languageCode
                 }
             }
         }
 
-
-        return state
+        return ResultState.Success(paragraphList)
     }
 
 
@@ -147,14 +151,4 @@ abstract class MlkitDetectTask : DetectTask {
             a.resumeActive("")
         }
     }
-
-
-    open protected fun inputCodeSupport(): List<String> = emptyList()
-
-
-    open protected fun process(inputImage: InputImage): Task<Text> {
-
-        return TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS).process(inputImage)
-    }
-
 }

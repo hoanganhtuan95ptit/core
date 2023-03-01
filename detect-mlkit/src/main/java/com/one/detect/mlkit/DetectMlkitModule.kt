@@ -3,6 +3,7 @@ package com.one.detect.mlkit
 import android.app.Application
 import com.one.coreapp.Module
 import com.one.detect.DetectTask
+import com.one.detect.mlkit.data.task.*
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -10,16 +11,19 @@ import org.koin.dsl.module
 
 private val module = module {
 
-    single { ChinaMlkitDetectTask() } bind DetectTask::class
 
-    single { LatinMlkitDetectTask() } bind DetectTask::class
+    single { MlkitDetectTask(getAll()) } bind DetectTask::class
 
-    single { KoreanMlkitDetectTask() } bind DetectTask::class
 
-    single { JapaneseMlkitDetectTask() } bind DetectTask::class
+    single { ChinaMlkitDetectTask() } bind MlkitTask::class
 
-    single { DevanagariMlkitDetectTask() } bind DetectTask::class
+    single { LatinMlkitDetectTask() } bind MlkitTask::class
 
+    single { KoreanMlkitDetectTask() } bind MlkitTask::class
+
+    single { JapaneseMlkitDetectTask() } bind MlkitTask::class
+
+    single { DevanagariMlkitDetectTask() } bind MlkitTask::class
 }
 
 private val loadKoinModules by lazy {

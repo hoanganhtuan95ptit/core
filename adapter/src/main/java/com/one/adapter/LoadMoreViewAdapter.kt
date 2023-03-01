@@ -1,7 +1,6 @@
 package com.one.adapter
 
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.viewbinding.ViewBinding
 import com.one.adapter.databinding.ItemLoadMoreBinding
 import java.util.*
 
@@ -9,7 +8,8 @@ class LoadMoreViewAdapter(
     private val onLoadMore: (() -> Unit)? = null,
 ) : ViewItemAdapter<LoadMoreViewItem, ItemLoadMoreBinding>() {
 
-    override fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>, adapter: BaseAsyncAdapter<*, *>) {
+    override fun onViewAttachedToWindow(binding: ItemLoadMoreBinding, adapter: BaseAsyncAdapter<*, *>) {
+        super.onViewAttachedToWindow(binding, adapter)
 
         onLoadMore?.invoke()
     }
