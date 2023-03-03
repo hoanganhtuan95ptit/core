@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.CallSuper
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.one.coreapp.utils.extentions.findGenericClassBySuperClass
 import java.lang.reflect.Method
@@ -15,7 +16,7 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
 
     var adapter: BaseAsyncAdapter<*, *>? = null
 
-    val className: String by lazy {
+    val transitionName: String by lazy {
 
         this.javaClass.name
     }
@@ -33,13 +34,11 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
 
 
     @CallSuper
-    open fun onViewAttachedToWindow(binding: @UnsafeVariance VB, adapter: BaseAsyncAdapter<*, *>) {
-        this.adapter = adapter
+    open fun onViewAttachedToWindow(binding: @UnsafeVariance VB) {
     }
 
     @CallSuper
     open fun onViewDetachedFromWindow(binding: @UnsafeVariance VB) {
-        this.adapter = null
     }
 
 
@@ -54,7 +53,7 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
 
     fun bindView(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
 
-        binding.root.transitionName = "$className-$position"
+        binding.root.transitionName = "$transitionName-$position"
 
         binding.root.setOnClickListener { view ->
             getViewItem(position)?.let { onItemClick.invoke(view, it) }
@@ -114,6 +113,22 @@ class MultiAdapter(
         map
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+
+        list.forEach {
+            it.adapter = this
+        }
+    }
+
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+
+        list.forEach {
+            it.adapter = null
+        }
+    }
+
     override fun getItemViewType(position: Int): Int {
 
         return viewItemClassAndType[getItem(position).javaClass] ?: super.getItemViewType(position)
@@ -127,7 +142,7 @@ class MultiAdapter(
 
     override fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>) {
 
-        typeAndAdapter[holder.viewType]?.onViewAttachedToWindow(holder.binding, this)
+        typeAndAdapter[holder.viewType]?.onViewAttachedToWindow(holder.binding)
 
         onViewHolderAttachedToWindow?.invoke(holder)
     }
