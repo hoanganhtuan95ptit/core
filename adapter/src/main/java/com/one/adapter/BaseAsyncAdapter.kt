@@ -1,11 +1,13 @@
 package com.one.adapter
 
 import android.content.Context
+import android.os.Parcelable
 import android.view.ViewGroup
 import androidx.annotation.Keep
 import androidx.recyclerview.widget.*
 import androidx.viewbinding.ViewBinding
 import kotlinx.coroutines.newSingleThreadContext
+import java.io.Serializable
 
 
 private val dispatcherForHandleDataUi = newSingleThreadContext("handle_data_for_ui")
@@ -143,7 +145,7 @@ class DefaultItemCallback<T : ViewItem> : DiffUtil.ItemCallback<T>() {
 }
 
 @Keep
-interface ViewItem {
+interface ViewItem : Serializable, Parcelable {
 
     fun areItemsTheSame(): List<Any>
 
