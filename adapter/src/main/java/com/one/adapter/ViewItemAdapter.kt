@@ -15,6 +15,11 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
 
     var adapter: BaseAsyncAdapter<*, *>? = null
 
+    val className: String by lazy {
+
+        this.javaClass.name
+    }
+
 
     open fun getViewItemClass(): Class<ViewItemCloneable> {
         return findGenericClassBySuperClass(ViewItemCloneable::class.java)!!.java
@@ -48,6 +53,8 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
 
 
     fun bindView(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
+
+        binding.root.transitionName = "$className-$position"
 
         binding.root.setOnClickListener { view ->
             getViewItem(position)?.let { onItemClick.invoke(view, it) }
