@@ -1,7 +1,6 @@
 package com.one.adapter
 
 import android.content.Context
-import android.os.Parcelable
 import android.view.ViewGroup
 import androidx.annotation.Keep
 import androidx.recyclerview.widget.*
@@ -145,7 +144,7 @@ class DefaultItemCallback<T : ViewItem> : DiffUtil.ItemCallback<T>() {
 }
 
 @Keep
-interface ViewItem : Serializable, Parcelable {
+interface ViewItem : Serializable {
 
     fun areItemsTheSame(): List<Any>
 
