@@ -8,8 +8,8 @@ class LoadMoreViewAdapter(
     private val onLoadMore: (() -> Unit)? = null,
 ) : ViewItemAdapter<LoadMoreViewItem, ItemLoadMoreBinding>() {
 
-    override fun onViewAttachedToWindow(binding: ItemLoadMoreBinding, adapter: BaseAsyncAdapter<*, *>) {
-        super.onViewAttachedToWindow(binding, adapter)
+    override fun onViewAttachedToWindow(binding: ItemLoadMoreBinding) {
+        super.onViewAttachedToWindow(binding)
 
         onLoadMore?.invoke()
     }

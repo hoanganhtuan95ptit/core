@@ -7,8 +7,8 @@ import io.supercharge.shimmerlayout.ShimmerLayout
 
 class LoadingViewAdapter : ViewItemAdapter<LoadingViewItem, ItemLoadingBinding>() {
 
-    override fun onViewAttachedToWindow(binding: ItemLoadingBinding, adapter: BaseAsyncAdapter<*, *>) {
-        super.onViewAttachedToWindow(binding, adapter)
+    override fun onViewAttachedToWindow(binding: ItemLoadingBinding) {
+        super.onViewAttachedToWindow(binding)
 
         binding.root.let { it.children.filterIsInstance<ShimmerLayout>().firstOrNull() ?: it }.startShimmerAnimation()
     }
