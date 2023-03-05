@@ -2,17 +2,10 @@ package com.tuanha.app
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.bumptech.glide.load.resource.bitmap.FitCenter
-import com.one.coreapp.data.usecase.doFailed
-import com.one.coreapp.data.usecase.doSuccess
-import com.one.coreapp.utils.extentions.setImage
 import com.one.detect.data.usecase.DetectUseCase
-import com.one.detect.entities.DetectOption
 import com.one.translate.data.usecase.TranslateUseCase
-import com.tuanha.app.utils.DrawTextTransformation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin

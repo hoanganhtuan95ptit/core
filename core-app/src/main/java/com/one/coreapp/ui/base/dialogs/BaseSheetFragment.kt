@@ -1,5 +1,6 @@
 package com.one.coreapp.ui.base.dialogs
 
+import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.one.coreapp.R
 import com.one.coreapp.utils.extentions.getColorFromAttr
+import com.one.coreapp.utils.extentions.getNavigationBarHeight
 
 abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) : BottomSheetDialogFragment() {
 
@@ -19,9 +21,29 @@ abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) :
 
     protected lateinit var behavior: BottomSheetBehavior<*>
 
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        val dialog = super.onCreateDialog(savedInstanceState)
+
+        dialog.setOnShowListener {
+
+            val activity = activity ?: return@setOnShowListener
+
+            val windowDialog = dialog.window ?: return@setOnShowListener
+
+            val windowActivity = activity.window ?: return@setOnShowListener
+
+            windowDialog.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, windowActivity.decorView.bottom + getNavigationBarHeight(activity))
+        }
+
+        return dialog
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = if (contentLayoutId != 0) {
+
         inflater.cloneInContext(requireActivity()).inflate(contentLayoutId, container, false)
     } else {
+
         null
     }
 
@@ -43,5 +65,4 @@ abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) :
     open fun onBackPressed(): Boolean {
         return false
     }
-
 }

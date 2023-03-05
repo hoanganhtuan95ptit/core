@@ -10,9 +10,11 @@
         <item name="colorOnAccent">#000000</item>
 
         <item name="colorStatusBar">?attr/colorPrimaryVariant</item>
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorStatusBar</item>
+        <item name="android:statusBarColor" >?attr/colorStatusBar</item>
 
         <item name="android:colorBackground">#F7F7F9</item>
+
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
 
         <item name="colorSurface">#FFFFFF</item>
         <item name="colorOnSurface">#000000</item>
