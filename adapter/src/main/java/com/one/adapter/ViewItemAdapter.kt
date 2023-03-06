@@ -42,27 +42,32 @@ abstract class ViewItemAdapter<out VI : ViewItemCloneable, out VB : ViewBinding>
     }
 
 
+    open fun onBindViewHolder(binding: @UnsafeVariance VB, position: Int) {
+
+        binding.root.transitionName = "$transitionName-$position"
+
+        binding.root.setOnClickListener { view ->
+
+            getViewItem(position)?.let { onItemClick.invoke(view, it) }
+        }
+    }
+
+
     fun bindView(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI, payloads: MutableList<Any>) {
 
         bind(binding, viewType, position, item, payloads)
     }
 
-    open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI, payloads: MutableList<Any>) {
+    protected open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI, payloads: MutableList<Any>) {
     }
 
 
     fun bindView(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
 
-        binding.root.transitionName = "$transitionName-$position"
-
-        binding.root.setOnClickListener { view ->
-            getViewItem(position)?.let { onItemClick.invoke(view, it) }
-        }
-
         bind(binding, viewType, position, item)
     }
 
-    open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
+    protected open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
     }
 
 
@@ -154,6 +159,11 @@ class MultiAdapter(
         onViewHolderDetachedFromWindow?.invoke(holder)
     }
 
+    override fun onBindViewHolder(holder: BaseBindingViewHolder<ViewBinding>, position: Int, payloads: MutableList<Any>) {
+        super.onBindViewHolder(holder, position, payloads)
+
+        typeAndAdapter[holder.viewType]?.onBindViewHolder(holder.binding, position)
+    }
 
     override fun bind(binding: ViewBinding, viewType: Int, position: Int, item: ViewItemCloneable, payloads: MutableList<Any>) {
 
