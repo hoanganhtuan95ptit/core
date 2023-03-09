@@ -1,6 +1,6 @@
 package com.one.word.data.task.dictionary
 
-import com.one.coreapp.utils.extentions.Task
+import com.one.task.Task
 import com.one.word.entities.TextLevel
 
 interface DictionaryTask : Task<DictionaryTask.Param, List<TextLevel>> {

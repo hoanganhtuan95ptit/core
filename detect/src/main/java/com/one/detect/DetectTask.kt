@@ -1,6 +1,6 @@
 package com.one.detect
 
-import com.one.coreapp.utils.extentions.Task
+import com.one.task.Task
 import com.one.detect.entities.DetectOption
 import com.one.detect.entities.Paragraph
 

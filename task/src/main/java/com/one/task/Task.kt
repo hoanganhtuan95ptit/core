@@ -1,14 +1,17 @@
-package com.one.coreapp.utils.extentions
+package com.one.task
 
 import com.one.coreapp.data.usecase.ResultState
 import com.one.coreapp.data.usecase.isFailed
 import com.one.coreapp.data.usecase.isSuccess
 import com.one.coreapp.data.usecase.toFailed
+import com.one.coreapp.utils.extentions.log
+import com.one.coreapp.utils.extentions.logException
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.first
+import java.util.*
 import kotlin.math.max
 
 
@@ -18,27 +21,40 @@ interface Task<Param, Result> {
 
     suspend fun execute(param: Param): ResultState<Result> {
 
+        val taskId = UUID.randomUUID().toString()
+
         return runCatching {
 
-            logSuccess()
+            logStart(taskId)
 
-            ResultState.Success(executeTask(param))
+            val state = ResultState.Success(executeTask(param))
+
+            logSuccess(taskId)
+
+            state
         }.getOrElse {
 
-            logFailed(it)
+            logFailed(taskId, it)
 
             ResultState.Failed(it)
         }
     }
 
-    suspend fun logSuccess() {
+    suspend fun logStart(taskId: String) {
 
-        log("${this.javaClass.simpleName} success")
+        log("${this.javaClass.simpleName} $taskId start")
     }
 
-    suspend fun logFailed(throwable: Throwable) {
+    suspend fun logSuccess(taskId: String) {
 
-        logException(java.lang.RuntimeException("${this.javaClass.simpleName} error", throwable))
+        log("${this.javaClass.simpleName} $taskId success")
+    }
+
+    suspend fun logFailed(taskId: String, throwable: Throwable) {
+
+        if (throwable is LowException || throwable is CancellationException) return
+
+        logException(java.lang.RuntimeException("${this.javaClass.simpleName} $taskId failed", throwable))
     }
 
     suspend fun executeTask(param: Param): Result {

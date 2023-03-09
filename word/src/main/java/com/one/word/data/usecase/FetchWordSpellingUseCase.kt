@@ -2,7 +2,7 @@ package com.one.word.data.usecase
 
 import com.one.coreapp.data.usecase.BaseUseCase
 import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.utils.extentions.executeAsyncByFast
+import com.one.task.executeAsyncByFast
 import com.one.coreapp.utils.extentions.log
 import com.one.word.data.task.spelling.SpellingTask
 import com.one.word.entities.Spelling

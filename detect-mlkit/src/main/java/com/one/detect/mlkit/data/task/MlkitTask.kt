@@ -4,7 +4,7 @@ import android.graphics.Bitmap
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.utils.extentions.Task
+import com.one.task.Task
 import com.one.coreapp.utils.extentions.logException
 import com.one.coreapp.utils.extentions.resumeActive
 import kotlinx.coroutines.suspendCancellableCoroutine

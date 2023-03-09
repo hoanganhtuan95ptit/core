@@ -2,7 +2,7 @@ package com.one.translate.data.usecase
 
 import com.one.coreapp.data.usecase.BaseUseCase
 import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.utils.extentions.executeAsyncByPriority
+import com.one.task.executeAsyncByPriority
 import com.one.translate.TranslateTask
 
 class TranslateUseCase(

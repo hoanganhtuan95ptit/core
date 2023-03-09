@@ -1,6 +1,6 @@
 package com.one.coreapp.data.task.config
 
-import com.one.coreapp.utils.extentions.Task
+import com.one.task.Task
 
 interface Config : Task<Config.Param, String> {
 

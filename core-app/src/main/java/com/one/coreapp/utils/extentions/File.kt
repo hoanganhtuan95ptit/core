@@ -1,4 +1,4 @@
-package com.one.core.utils.extentions
+package com.one.coreapp.utils.extentions
 
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
@@ -7,8 +7,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Environment
+import com.one.core.utils.extentions.toJson
 import com.one.coreapp.App
-import com.one.coreapp.utils.extentions.resumeActive
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -37,6 +37,15 @@ fun File.saveSync(text: String? = "") {
 
         fileWriter?.close()
     }
+}
+
+suspend fun handleFile(shortPath: String, checkExits: Boolean = true, block: suspend (shortPath: String) -> Unit) {
+
+    val file = shortPath.getFile(false)
+
+    if (file.exists() && checkExits) return
+
+    block.invoke(shortPath)
 }
 
 suspend fun File.downloadSync(url: String, title: String? = null) = suspendCancellableCoroutine<Boolean> {
