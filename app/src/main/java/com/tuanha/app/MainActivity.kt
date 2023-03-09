@@ -2,10 +2,17 @@ package com.tuanha.app
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.load.resource.bitmap.FitCenter
+import com.one.coreapp.data.usecase.doFailed
+import com.one.coreapp.data.usecase.doSuccess
+import com.one.coreapp.utils.extentions.setImage
 import com.one.detect.data.usecase.DetectUseCase
+import com.one.detect.entities.DetectOption
 import com.one.translate.data.usecase.TranslateUseCase
+import com.tuanha.app.utils.DrawTextTransformation
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
@@ -27,31 +34,31 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             Log.d("tuanha", "onCreate: detectUseCase start")
 
-//            val path = "https://www.apkonline.net/imagescropped/viewinhindiicon128.jpgplus.webp"
-//
-//
-//            val sizeMax = 1500
-//
-//
-//            detectUseCase.execute(DetectUseCase.Param(path = path, "en", "en", DetectOption.TEXT_TRANSLATE, sizeMax)).let { state ->
-//
-//                state.doSuccess { list ->
-//
-//                    lifecycleScope.launch(Dispatchers.Main) {
-//
-//                        findViewById<ImageView>(R.id.image).setImage(path, FitCenter(), DrawTextTransformation(sizeMax, list))
-//                    }
-//
-//                    list.forEach {
-//                        Log.d("tuanha", "onCreate: detectUseCase languageCode:${it.languageCode} text:${it.text}")
-//                    }
-//                }
-//
-//                state.doFailed {
-//
-//                    Log.d("tuanha", "onCreate: detectUseCase", it)
-//                }
-//            }
+            val path = "https://www.apkonline.net/imagescropped/viewinhindiicon128.jpgplus.webp"
+
+
+            val sizeMax = 1500
+
+
+            detectUseCase.execute(DetectUseCase.Param(path = path, "en", "en", DetectOption.TEXT_TRANSLATE, sizeMax)).let { state ->
+
+                state.doSuccess { list ->
+
+                    lifecycleScope.launch(Dispatchers.Main) {
+
+                        findViewById<ImageView>(R.id.image).setImage(path, FitCenter(), DrawTextTransformation(sizeMax, list))
+                    }
+
+                    list.forEach {
+                        Log.d("tuanha", "onCreate: detectUseCase languageCode:${it.languageCode} text:${it.text}")
+                    }
+                }
+
+                state.doFailed {
+
+                    Log.d("tuanha", "onCreate: detectUseCase", it)
+                }
+            }
         }
 
         lifecycleScope.launch(Dispatchers.IO) {

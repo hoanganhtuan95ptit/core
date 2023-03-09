@@ -17,6 +17,7 @@
       <module name="Core.detect" target="11" />
       <module name="Core.detect-mlkit" target="11" />
       <module name="Core.detect-mlkit-latin" target="11" />
+      <module name="Core.detect-tesseract" target="11" />
       <module name="Core.task" target="11" />
       <module name="Core.translate" target="11" />
       <module name="Core.translate-mlkit" target="11" />

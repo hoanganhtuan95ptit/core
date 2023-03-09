@@ -33,7 +33,10 @@ class MlkitDetectTask(
         log("MlkitDetectTask", "")
 
 
-        val bitmap = param.path.toBitmap(width = param.sizeMax, height = param.sizeMax)
+        val path = param.source as? String ?: throw LowException("not support source ${param.source.javaClass.simpleName}")
+
+
+        val bitmap = path.toBitmap(width = param.sizeMax, height = param.sizeMax)
 
 
         val states = taskList.executeAsyncAll(MlkitTask.Param(bitmap)).first()

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="Gradle: cz.adaptech.tesseract4android:tesseract4android-openmp:4.3.0@aar">
+    <ANNOTATIONS>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dc0d07d2a8385d42d391cc9c4712ef0f/transformed/tesseract4android-openmp-4.3.0/annotations.zip!/" />
+    </ANNOTATIONS>
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dc0d07d2a8385d42d391cc9c4712ef0f/transformed/tesseract4android-openmp-4.3.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc0d07d2a8385d42d391cc9c4712ef0f/transformed/tesseract4android-openmp-4.3.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc0d07d2a8385d42d391cc9c4712ef0f/transformed/tesseract4android-openmp-4.3.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cz.adaptech.tesseract4android/tesseract4android-openmp/4.3.0/6fc456a3341c5303d167c38bc002a51d00478188/tesseract4android-openmp-4.3.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cz.adaptech.tesseract4android/tesseract4android-openmp/4.3.0/d77eb0e207bea70eebdc8ee040ef0b4102a135dd/tesseract4android-openmp-4.3.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -47,6 +47,8 @@ dependencies {
 
 
     implementation project(path: ':detect-mlkit')
+    implementation project(path: ':detect-tesseract')
+
     implementation project(path: ':translate-mlkit')
 
     implementation project(path: ':config-firebase')

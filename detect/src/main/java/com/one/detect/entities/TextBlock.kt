@@ -23,6 +23,8 @@ open class TextBlock : Parcelable {
 
     var languageCode: String = ""
 
+    var from: String = ""
+
     var rect: TextRest? = null
 
     @CallSuper

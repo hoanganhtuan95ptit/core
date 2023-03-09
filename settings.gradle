@@ -14,6 +14,7 @@ include ':translate-mlkit'
 
 include ':detect'
 include ':detect-mlkit'
+include ':detect-tesseract'
 
 include ':word'
 
