@@ -6,7 +6,6 @@ import com.one.coreapp.Module
 import com.one.crashlytics.firebase.FirebaseCrashlyticsModule
 import com.one.detect.DetectModule
 import com.one.detect.mlkit.MlkitDetectModule
-import com.one.detect.tesseract.TesseractDetectModule
 import com.one.translate.TranslateModule
 import com.one.translate.mlkit.MlkitTranslateModule
 import com.one.word.WordModule
@@ -32,8 +31,5 @@ val appModule = module {
 
     single { DetectModule() } bind Module::class
 
-//    single { MlkitDetectModule() } bind Module::class
-
-    single { TesseractDetectModule() } bind Module::class
-
+    single { MlkitDetectModule() } bind Module::class
 }

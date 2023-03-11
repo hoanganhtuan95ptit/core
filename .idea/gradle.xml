@@ -25,7 +25,6 @@
             <option value="$PROJECT_DIR$/crashlytics-firebase" />
             <option value="$PROJECT_DIR$/detect" />
             <option value="$PROJECT_DIR$/detect-mlkit" />
-            <option value="$PROJECT_DIR$/detect-tesseract" />
             <option value="$PROJECT_DIR$/state" />
             <option value="$PROJECT_DIR$/task" />
             <option value="$PROJECT_DIR$/translate" />

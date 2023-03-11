@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Environment
-import android.util.Log
 import com.one.core.utils.extentions.toJson
 import com.one.coreapp.App
 import kotlinx.coroutines.Dispatchers
@@ -131,7 +130,7 @@ fun String.getFile(createFile: Boolean): File {
 
 fun String.getFile(parent: File, createFile: Boolean): File {
 
-    val file = File(parent.absolutePath, this)
+    val file = File(parent.absolutePath + "/" + this)
 
     file.parentFile?.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
     file.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
