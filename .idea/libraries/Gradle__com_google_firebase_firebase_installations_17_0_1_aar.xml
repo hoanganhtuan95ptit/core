@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.firebase:firebase-installations:17.0.1@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/28a4276d4b20576324cc5da02c46ff56/transformed/firebase-installations-17.0.1/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/28a4276d4b20576324cc5da02c46ff56/transformed/firebase-installations-17.0.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/28a4276d4b20576324cc5da02c46ff56/transformed/firebase-installations-17.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

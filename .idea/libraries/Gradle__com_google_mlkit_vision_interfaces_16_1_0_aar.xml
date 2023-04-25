@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.mlkit:vision-interfaces:16.1.0@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9601b9c0212e276f32654d58d12d4580/transformed/vision-interfaces-16.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9601b9c0212e276f32654d58d12d4580/transformed/vision-interfaces-16.1.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9601b9c0212e276f32654d58d12d4580/transformed/vision-interfaces-16.1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

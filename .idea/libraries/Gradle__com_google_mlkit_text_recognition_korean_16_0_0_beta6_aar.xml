@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.mlkit:text-recognition-korean:16.0.0-beta6@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6c7bfb905b92fc2f5f7130e9e805bfd2/transformed/text-recognition-korean-16.0.0-beta6/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6c7bfb905b92fc2f5f7130e9e805bfd2/transformed/text-recognition-korean-16.0.0-beta6/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6c7bfb905b92fc2f5f7130e9e805bfd2/transformed/text-recognition-korean-16.0.0-beta6/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

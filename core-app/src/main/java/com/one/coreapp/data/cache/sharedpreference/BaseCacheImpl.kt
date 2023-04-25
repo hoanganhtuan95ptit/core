@@ -51,7 +51,6 @@ abstract class BaseCacheImpl : BaseCache {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     private inline fun <reified T> findFlow(key: String): Flow<T?> = callbackFlow {
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { _, k ->
             if (k == key) {

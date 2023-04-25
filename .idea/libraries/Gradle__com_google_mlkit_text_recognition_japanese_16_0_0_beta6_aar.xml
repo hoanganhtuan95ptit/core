@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.mlkit:text-recognition-japanese:16.0.0-beta6@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/43846bd0064a72f9f1b1ebf227996fd3/transformed/text-recognition-japanese-16.0.0-beta6/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/43846bd0064a72f9f1b1ebf227996fd3/transformed/text-recognition-japanese-16.0.0-beta6/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/43846bd0064a72f9f1b1ebf227996fd3/transformed/text-recognition-japanese-16.0.0-beta6/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

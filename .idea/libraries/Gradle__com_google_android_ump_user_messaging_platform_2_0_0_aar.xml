@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.android.ump:user-messaging-platform:2.0.0@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/09d3f0298aadf093bf21dc92a43f5a42/transformed/user-messaging-platform-2.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/09d3f0298aadf093bf21dc92a43f5a42/transformed/user-messaging-platform-2.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/09d3f0298aadf093bf21dc92a43f5a42/transformed/user-messaging-platform-2.0.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

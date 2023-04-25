@@ -11,6 +11,7 @@
           <option name="classpath" value="$MODULE_DIR$/../../../adapter/build/intermediates/compile_library_classes_jar/debug/classes.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/f8249dc988919d4c0c7cecc88b90f885/transformed/junit-1.1.5-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/4a01daefd1c34bd2e20a582e650fbd2d/transformed/espresso-core-3.5.1-api.jar:/Users/hoanganhtuan/AndroidStudioProjects/1CorePublic/core/build/libs/core.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/2e150841226dd560e37b04449d1fda62/transformed/core-ktx-1.8.0-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/aa1cf2e0d31626376e79c60cd6698082/transformed/recyclerview-1.2.1-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/3dd03458a590ad976afeaf125beaa606/transformed/constraintlayout-2.1.4-api.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-core-jvm/1.6.4/2c997cd1c0ef33f3e751d3831929aeff1390cb30/kotlinx-coroutines-core-jvm-1.6.4.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlinx/kotlinx-coroutines-android/1.6.4/f955fc8b2ad196e2f4429598440e15f7492eeb2b/kotlinx-coroutines-android-1.6.4.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/2b6380b00d85816496f0273da67ba73b/transformed/shimmerlayout-2.1.0-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/86f7f41598834d2de7364dae15f43506/transformed/viewbinding-7.0.4-api.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk8/1.6.21/eeb4d60d75e9ea9c11200d52974e522793b14fba/kotlin-stdlib-jdk8-1.6.21.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/c3bd211f99e3d2b18709e0e6514ae2db/transformed/runner-1.5.2-api.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/junit/junit/4.13.2/8ac9e16d933b6fb43bc7f576336b8f4d7eb5ba12/junit-4.13.2.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-integration/1.3/5de0c73fef18917cd85d0ab70bb23818685e4dfd/hamcrest-integration-1.3.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-library/1.3/4785a3c21320980282f9f33d0d1264a69040538f/hamcrest-library-1.3.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.hamcrest/hamcrest-core/1.3/42a25dc3219429f0e5d060061f71acb49bf010a0/hamcrest-core-1.3.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/31f60fab99729b94ecb473f30b926de1/transformed/core-1.5.0-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/8af3ea8e68ee0f81adacb689694f700c/transformed/storage-1.4.2-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/0caddc566bea5e27e8685228321174e2/transformed/monitor-1.6.1-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/364dda6acac3a2d45448bbeabb0bdc23/transformed/annotation-1.0.1-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/f6722e096766a754549d479bca59a48b/transformed/customview-1.0.0-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/898063dc12d74c8ae11705d6e5e29201/transformed/core-1.8.0-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/b0b85764b479d9acbca1a07939a772c4/transformed/lifecycle-runtime-2.3.1-api.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.3.1/fc466261d52f4433863642fb40d12441ae274a98/lifecycle-common-2.3.1.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/androidx.concurrent/concurrent-futures/1.0.0/c1e77e3ee6f4643b77496a1ddf7a2eef1aefdaa1/concurrent-futures-1.0.0.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/8d90a22493eb2337f9d0464d19bfdee7/transformed/versionedparcelable-1.1.1-api.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/androidx.arch.core/core-common/2.1.0/b3152fc64428c9354344bd89848ecddc09b6f07e/core-common-2.1.0.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/androidx.collection/collection/1.1.0/1f27220b47669781457de0d600849a5de0e89909/collection-1.1.0.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/androidx.annotation/annotation/1.2.0/57136ff68ee784c6e19db34ed4a175338fadfde1/annotation-1.2.0.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/eede8eb6b4ab772b96ed1aca7308baac/transformed/annotation-experimental-1.1.0-api.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/3f100b3cc411ba668214244871e99cfd/transformed/tracing-1.0.0-api.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.2/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.2.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/com.google.guava/listenablefuture/1.0/c949a840a6acbc5268d088e47b04177bf90b3cad/listenablefuture-1.0.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-jdk7/1.6.21/568c1b78a8e17a4f35b31f0a74e2916095ed74c2/kotlin-stdlib-jdk7-1.6.21.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib/1.6.21/11ef67f1900634fd951bad28c53ec957fabbe5b8/kotlin-stdlib-1.6.21.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.6.21/5e5b55c26dbc80372a920aef60eb774b714559b8/kotlin-stdlib-common-1.6.21.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar:/Users/hoanganhtuan/.gradle/caches/transforms-3/27384c057018ce8babbec1e08cea5cac/transformed/espresso-idling-resource-3.5.1-api.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/com.squareup/javawriter/2.1.1/67ff45d9ae02e583d0f9b3432a5ebbe05c30c966/javawriter-2.1.1.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.11.3/4f7b27416934dc929bb6c2d2c5fe521829e6a4ec/jackson-databind-2.11.3.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.11.3/c2351800432bdbdd8284c3f5a7f0782a352aa84a/jackson-core-2.11.3.jar:/Users/hoanganhtuan/.gradle/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.11.3/25d4e9c777e7a8805c4a000a8629d3009c779c9b/jackson-annotations-2.11.3.jar:/Users/hoanganhtuan/Library/Android/sdk/platforms/android-31/android.jar:/Users/hoanganhtuan/Library/Android/sdk/build-tools/30.0.2/core-lambda-stubs.jar" />
           <option name="noStdlib" value="true" />
           <option name="moduleName" value="adapter_debug" />
+          <option name="jvmTarget" value="1.8" />
           <option name="friendPaths">
             <array>
               <option value="$MODULE_DIR$/../../../adapter/build/tmp/kotlin-classes/debug" />
@@ -20,10 +21,10 @@
           </option>
           <option name="languageVersion" value="1.6" />
           <option name="apiVersion" value="1.6" />
-          <option name="pluginOptions">
+          <option name="pluginClasspaths">
             <array />
           </option>
-          <option name="pluginClasspaths">
+          <option name="pluginOptions">
             <array />
           </option>
           <option name="errors">
@@ -35,11 +36,6 @@
     <facet type="android" name="Android">
       <configuration>
         <option name="SELECTED_BUILD_VARIANT" value="debug" />
-        <option name="ASSEMBLE_TASK_NAME" value="assembleDebug" />
-        <option name="COMPILE_JAVA_TASK_NAME" value="compileDebugSources" />
-        <afterSyncTasks>
-          <task>generateDebugSources</task>
-        </afterSyncTasks>
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
@@ -50,7 +46,9 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="true">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
+    <output url="file://$MODULE_DIR$/../../../adapter/build/intermediates/javac/debug/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../adapter/build/intermediates/javac/debugUnitTest/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../adapter/build/generated/aidl_source_output_dir/debugAndroidTest/out" />
     <content url="file://$MODULE_DIR$/../../../adapter/build/generated/ap_generated_sources/debugAndroidTest/out" />

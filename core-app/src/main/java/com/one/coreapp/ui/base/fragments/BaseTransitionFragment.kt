@@ -45,6 +45,8 @@ private fun injectModule() = loadKoinModules
 
 open class BaseTransitionFragment<T : ViewBinding>(@LayoutRes contentLayoutId: Int = 0) : BaseViewBindingFragment<T>(contentLayoutId) {
 
+    var isSupportTransition: Boolean = true
+
     private val transitionViewModel: BaseTransitionViewModel by lazy {
         getKoin().getViewModel(this, BaseTransitionViewModel::class)
     }
@@ -57,10 +59,15 @@ open class BaseTransitionFragment<T : ViewBinding>(@LayoutRes contentLayoutId: I
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        view.transitionName = arguments?.getString(TRANSITION, null) ?: TRANSITION
+        if (isSupportTransition) {
 
+            view.transitionName = arguments?.getString(TRANSITION, null) ?: TRANSITION
 
-        onCreateTransition()
+            onCreateTransition()
+        } else {
+
+            transitionViewModel.animationEnd()
+        }
 
         observeTransitionData()
     }

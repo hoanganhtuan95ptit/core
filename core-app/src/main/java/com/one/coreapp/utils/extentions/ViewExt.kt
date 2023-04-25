@@ -3,6 +3,7 @@ package com.one.coreapp.utils.extentions
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Rect
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,10 @@ import androidx.core.view.marginBottom
 import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.transition.TransitionManager
+import com.google.android.material.transition.MaterialArcMotion
+import com.google.android.material.transition.MaterialContainerTransform
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
@@ -270,4 +275,26 @@ suspend fun View.awaitAnim() = suspendCancellableCoroutine<Boolean> { continuati
 
         if (!continuation.isCompleted) continuation.resume(true)
     }
+}
+
+fun ViewGroup.show(startView: View, endView: View) {
+
+    val transform = MaterialContainerTransform().apply {
+
+        duration = 350
+
+        this.startView = startView
+        this.endView = endView
+
+        addTarget(endView)
+        setPathMotion(MaterialArcMotion())
+
+        interpolator = FastOutSlowInInterpolator()
+        scrimColor = Color.TRANSPARENT
+    }
+
+    TransitionManager.beginDelayedTransition(this, transform)
+
+    startView.visibility = View.GONE
+    endView.visibility = View.VISIBLE
 }

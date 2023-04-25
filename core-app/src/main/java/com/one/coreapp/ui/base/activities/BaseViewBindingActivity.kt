@@ -6,7 +6,7 @@ import com.one.coreapp.utils.extentions.findBinding
 
 abstract class BaseViewBindingActivity<T : ViewBinding> : BaseActivity() {
 
-    var binding: ViewBinding? = null
+    var binding: T? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,5 +14,11 @@ abstract class BaseViewBindingActivity<T : ViewBinding> : BaseActivity() {
         binding = findBinding(layoutInflater)
 
         setContentView(binding!!.root)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        binding = null
     }
 }

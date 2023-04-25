@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
-import com.one.coreapp.utils.autoCleared
 import com.one.coreapp.utils.extentions.findBinding
 
 abstract class BaseViewBindingFragment<T : ViewBinding>(@LayoutRes val contentLayoutId: Int = 0) : BaseFragment(contentLayoutId) {
 
-    var binding by autoCleared<T>()
+    var binding: T? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -29,5 +28,11 @@ abstract class BaseViewBindingFragment<T : ViewBinding>(@LayoutRes val contentLa
         super.onViewCreated(view, savedInstanceState)
 
         binding = binding ?: findBinding(view)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        binding = null
     }
 }
