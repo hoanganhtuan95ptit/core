@@ -18,7 +18,7 @@ import java.io.IOException
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 
-open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId) {
+open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), BackPressedView {
 
     private val confirmDialogList: CopyOnWriteArrayList<AlertDialog> = CopyOnWriteArrayList<AlertDialog>()
 
@@ -40,10 +40,6 @@ open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentL
     @CallSuper
     open fun onRetry(action: String) {
 
-    }
-
-    open fun onBackPressed(): Boolean {
-        return false
     }
 
     @CallSuper

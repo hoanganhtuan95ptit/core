@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentManager
 import com.one.coreapp.R
 import com.one.coreapp.databinding.DialogConfirmBinding
-import com.one.coreapp.ui.base.dialogs.BaseSheetFragment
+import com.one.coreapp.ui.base.fragments.BaseSheetFragment
 import com.one.coreapp.utils.extentions.setDebouncedClickListener
 import com.one.coreapp.utils.extentions.setGone
 

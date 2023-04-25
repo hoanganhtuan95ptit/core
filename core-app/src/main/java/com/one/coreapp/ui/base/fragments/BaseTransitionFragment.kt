@@ -45,7 +45,7 @@ private fun injectModule() = loadKoinModules
 
 open class BaseTransitionFragment<T : ViewBinding>(@LayoutRes contentLayoutId: Int = 0) : BaseViewBindingFragment<T>(contentLayoutId) {
 
-    var isSupportTransition: Boolean = true
+    open var isSupportTransition: Boolean = true
 
     private val transitionViewModel: BaseTransitionViewModel by lazy {
         getKoin().getViewModel(this, BaseTransitionViewModel::class)

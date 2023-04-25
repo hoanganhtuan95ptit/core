@@ -4,14 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import com.one.coreapp.ui.base.dialogs.BaseSheetFragment
-import com.one.coreapp.ui.base.fragments.BaseFragment
+import com.one.coreapp.ui.base.fragments.BackPressedView
 import com.one.coreapp.ui.dialogs.ConfirmDialogFragment
 import com.one.coreapp.ui.dialogs.LoadingDialog
 import com.one.coreapp.ui.worker.NotificationDateWorker
-import com.one.coreapp.utils.extentions.findThisNavController
+import com.one.coreapp.utils.extentions.getAllFragment
 import com.one.coreapp.utils.extentions.logException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlin.coroutines.CoroutineContext
@@ -32,38 +29,13 @@ open class BaseActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
 
-        val list = arrayListOf<Fragment>()
+        val list = supportFragmentManager.getAllFragment()
 
-        getFragments(supportFragmentManager, list)
-
-        var back = list.isEmpty() || list.all {
-
-            when (it) {
-                is BaseFragment -> !it.onBackPressed()
-                is BaseSheetFragment -> !it.onBackPressed()
-                else -> true
-            }
+        if (list.reversed().any { (it as? BackPressedView)?.onBackPressed() == true }) {
+            return
         }
 
-        if (back) {
-            back = !findThisNavController().navigateUp()
-        }
-
-        if (back) {
-            super.onBackPressed()
-        }
-    }
-
-    private fun getFragments(fragmentManager: FragmentManager, list: ArrayList<Fragment>) {
-
-        fragmentManager.fragments.forEach {
-
-            getFragments(it.childFragmentManager, list)
-
-            if (it is BaseFragment || it is BaseSheetFragment) {
-                list.add(it)
-            }
-        }
+        super.onBackPressed()
     }
 
     open fun showConfirm(

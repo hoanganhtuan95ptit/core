@@ -12,7 +12,7 @@ import com.one.adapter.ViewItemAdapter
 import com.one.adapter.ViewItemCloneable
 import com.one.coreapp.databinding.FragmentOptionsBinding
 import com.one.coreapp.databinding.ItemOptionBinding
-import com.one.coreapp.ui.base.dialogs.BaseViewBindingSheetFragment
+import com.one.coreapp.ui.base.fragments.BaseViewBindingSheetFragment
 import kotlin.math.min
 
 class OptionFragment : BaseViewBindingSheetFragment<FragmentOptionsBinding>() {

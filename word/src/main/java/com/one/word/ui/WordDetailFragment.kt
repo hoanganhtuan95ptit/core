@@ -9,7 +9,7 @@ import android.webkit.WebViewClient
 import androidx.core.os.bundleOf
 import com.one.adapter.MultiAdapter
 import com.one.coreapp.ui.adapters.SpaceAdapter
-import com.one.coreapp.ui.base.dialogs.BaseViewModelSheetFragment
+import com.one.coreapp.ui.base.fragments.BaseViewModelSheetFragment
 import com.one.coreapp.utils.Utils
 import com.one.coreapp.utils.autoCleared
 import com.one.coreapp.utils.extentions.setDebouncedClickListener
