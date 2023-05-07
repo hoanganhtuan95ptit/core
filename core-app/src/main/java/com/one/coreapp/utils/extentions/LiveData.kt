@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import androidx.annotation.AnyThread
 import androidx.annotation.MainThread
 import androidx.lifecycle.*
+import com.one.adapter.ViewItem
 import com.one.coreapp.App
 import com.one.coreapp.ui.base.viewmodels.BaseViewModel
 import kotlinx.coroutines.Job
@@ -116,6 +117,13 @@ fun <T> LiveData<T>?.postDifferentValue(t: T) {
     }
 
     postValue(t)
+}
+
+
+@AnyThread
+fun <T : ViewItem> LiveData<List<T>>.postDifferentValue(t: List<T>) = postDifferentValue(t) { old, new ->
+
+    old?.flatMap { item -> item.getContentsCompare().map { pair -> pair.first } } == new.flatMap { item -> item.getContentsCompare().map { pair -> pair.first } }
 }
 
 

@@ -36,7 +36,7 @@ fun Any.toBitmap(cache: Boolean = true, width: Int = 0, height: Int = 0, vararg 
             .get()
     }
 
-fun ImageView.setImage(source: Any, vararg transformations: Transformation<Bitmap>? = arrayOf(FitCenter()), withCrossFade: Boolean = true, placeHolderRes: Int? = null, errorRes: Int? = null) {
+fun ImageView.setImage(source: Any, vararg transformations: Transformation<Bitmap>? = arrayOf(FitCenter()), withCrossFade: Boolean = true, cache: Boolean = true, placeHolderRes: Int? = null, errorRes: Int? = null) {
 
     val image = (source as? Image<*>)?.getImage(context) ?: source
 
@@ -66,6 +66,16 @@ fun ImageView.setImage(source: Any, vararg transformations: Transformation<Bitma
 
         (requestBuilder as RequestBuilder<Bitmap>).transition(BitmapTransitionOptions.withCrossFade())
     }
+
+
+    requestBuilder = if (cache) {
+
+        requestBuilder.diskCacheStrategy(DiskCacheStrategy.ALL).skipMemoryCache(false)
+    } else {
+
+        requestBuilder.diskCacheStrategy(DiskCacheStrategy.NONE).skipMemoryCache(true)
+    }
+
 
     requestBuilder.transform(MultiTransformation(*transformations)).load(image).into(this)
 }
