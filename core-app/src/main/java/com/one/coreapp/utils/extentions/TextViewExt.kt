@@ -152,7 +152,7 @@ class TextHtml : Text<Text<*>> {
         return true
     }
 
-    
+
     override fun hashCode(): Int {
         return data.hashCode()
     }

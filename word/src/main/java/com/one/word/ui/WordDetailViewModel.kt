@@ -122,7 +122,7 @@ class WordDetailViewModel(
 
             val paddingLeft = it.level.value * 24.toPx()
 
-            TextViewItem(text = TextHtml(it.text, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.FROM_HTML_MODE_COMPACT else 0), textSize = textSize, textTypeface = textTypeface, paddingLeft = paddingLeft)
+            TextViewItem(text = TextHtml(it.text), textSize = textSize, textTypeface = textTypeface, paddingLeft = paddingLeft)
         }?.let {
 
             list.addAll(it)
