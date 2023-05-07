@@ -3,11 +3,8 @@ package com.one.coreapp.utils.extentions
 import android.content.Context
 import android.os.Build
 import android.text.Html
-import android.text.SpannableStringBuilder
-import android.text.Spanned
 import android.widget.TextView
 import androidx.annotation.ColorRes
-import androidx.annotation.RequiresApi
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 
@@ -44,14 +41,13 @@ fun TextView.setHint(res: Int, text: String) {
 
 abstract class Text<T>(val data: T) {
 
-    abstract fun getString(context: Context): Spanned
-
+    abstract fun getString(context: Context): CharSequence
 }
 
 class TextStr(data: String) : Text<String>(data) {
 
-    override fun getString(context: Context): Spanned {
-        return SpannableStringBuilder(data)
+    override fun getString(context: Context): CharSequence {
+        return data
     }
 
     override fun equals(other: Any?): Boolean {
@@ -70,8 +66,8 @@ class TextStr(data: String) : Text<String>(data) {
 
 class TextNumber(data: Number) : Text<Number>(data) {
 
-    override fun getString(context: Context): Spanned {
-        return SpannableStringBuilder("$data")
+    override fun getString(context: Context): CharSequence {
+        return "$data"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -98,8 +94,8 @@ class TextRes : Text<Int> {
         this.params = params
     }
 
-    override fun getString(context: Context): Spanned {
-        return SpannableStringBuilder(context.getString(data, *params.map { it.getString(context) }.toTypedArray()))
+    override fun getString(context: Context): CharSequence {
+        return context.getString(data, *params.map { it.getString(context) }.toTypedArray())
     }
 
     override fun equals(other: Any?): Boolean {
@@ -119,7 +115,7 @@ class TextRes : Text<Int> {
 
 class TextHtml : Text<String> {
 
-    
+
     private var flags: Int = 0
 
 
@@ -129,7 +125,7 @@ class TextHtml : Text<String> {
         this.flags = flags
     }
 
-    override fun getString(context: Context): Spanned {
+    override fun getString(context: Context): CharSequence {
 
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Html.fromHtml(data, flags)
