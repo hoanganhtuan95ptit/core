@@ -113,24 +113,33 @@ class TextRes : Text<Int> {
     }
 }
 
-class TextHtml : Text<String> {
+class TextHtml : Text<Text<*>> {
 
 
     private var flags: Int = 0
 
 
-    constructor(data: String) : super(data)
+    constructor(data: String) : this(TextStr(data))
 
-    constructor(data: String, flags: Int = Html.FROM_HTML_MODE_COMPACT) : super(data) {
+    constructor(@StringRes data: Int, vararg params: Text<*>) : this(TextRes(data, *params))
+
+
+    constructor(data: Text<*>) : this(data, if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.FROM_HTML_MODE_COMPACT else 0)
+
+    constructor(data: Text<*>, flags: Int = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) Html.FROM_HTML_MODE_COMPACT else 0) : super(data) {
+
         this.flags = flags
     }
 
+
     override fun getString(context: Context): CharSequence {
 
+        val text = data.getString(context).toString()
+
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Html.fromHtml(data, flags)
+            Html.fromHtml(text, flags)
         } else {
-            Html.fromHtml(data)
+            Html.fromHtml(text)
         }
     }
 
@@ -143,6 +152,7 @@ class TextHtml : Text<String> {
         return true
     }
 
+    
     override fun hashCode(): Int {
         return data.hashCode()
     }
