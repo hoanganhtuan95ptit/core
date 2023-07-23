@@ -1,27 +1,15 @@
 package com.one.coreapp.utils
 
-import android.app.DownloadManager
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
-import com.one.core.utils.extentions.toJson
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 import com.one.coreapp.BuildConfig
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.suspendCancellableCoroutine
 import java.io.File
 import java.io.FileOutputStream
-import java.io.FileWriter
-import java.io.IOException
 
 object FileUtils {
 
@@ -98,7 +86,7 @@ object FileUtils {
 
     fun deletePrivateDownload(path: String) {
         val directoryPrivateDownload =
-            App.shared.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) ?: return
+            BaseApp.shared.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS) ?: return
 
         if (!path.contains(directoryPrivateDownload.absolutePath)) return
 

@@ -1,6 +1,6 @@
-package com.one.coreapp.data.task.analytics
+package com.one.analytics
 
-import com.one.coreapp.data.usecase.ResultState
+import com.one.state.ResultState
 
 interface Analytics {
 

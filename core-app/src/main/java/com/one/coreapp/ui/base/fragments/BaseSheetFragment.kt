@@ -12,10 +12,13 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.one.coreapp.R
+import com.one.coreapp.ui.ComponentCache
 import com.one.coreapp.utils.extentions.getColorFromAttr
 import com.one.coreapp.utils.extentions.getNavigationBarHeight
 
-abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) : BottomSheetDialogFragment(), BackPressedView {
+abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) : BottomSheetDialogFragment(), BackPressedView , ComponentCache {
+
+    override val mBagOfTags: HashMap<String, Any> = hashMapOf()
 
     protected lateinit var bottomSheet: View
 

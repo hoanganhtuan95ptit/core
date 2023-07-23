@@ -3,8 +3,13 @@ package com.one.adapter
 import android.content.Context
 import android.view.ViewGroup
 import androidx.annotation.Keep
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.AsyncDifferConfig
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.one.core.entities.Comparable
 import kotlinx.coroutines.newSingleThreadContext
 import java.io.Serializable
 
@@ -144,11 +149,13 @@ class DefaultItemCallback<T : ViewItem> : DiffUtil.ItemCallback<T>() {
 }
 
 @Keep
-interface ViewItem : Serializable {
+interface ViewItem : Serializable, Comparable {
 
     fun areItemsTheSame(): List<Any>
 
     fun getContentsCompare(): List<Pair<Any, String>> = listOf()
+
+    override fun getListCompare(): List<*> = listOf(*areItemsTheSame().toTypedArray(), *getContentsCompare().map { it.first }.toTypedArray())
 }
 
 @Keep

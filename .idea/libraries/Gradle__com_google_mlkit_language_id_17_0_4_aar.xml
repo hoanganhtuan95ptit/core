@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.mlkit:language-id:17.0.4@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/4ebb911c4c286d7171abf46076de3338/transformed/language-id-17.0.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/4ebb911c4c286d7171abf46076de3338/transformed/language-id-17.0.4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bbc5393bbd9c0ec3b4ee1cfe6a682c31/transformed/language-id-17.0.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bbc5393bbd9c0ec3b4ee1cfe6a682c31/transformed/language-id-17.0.4/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/language-id/17.0.4/e30555d01f4b419de1eed6ceed27b98aedecf946/language-id-17.0.4-javadoc.jar!/" />

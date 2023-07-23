@@ -1,7 +1,7 @@
 package com.one.coreapp.data.repository
 
 import kotlinx.coroutines.flow.Flow
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 
 interface BaseRepository<T> : KoinComponent {
 

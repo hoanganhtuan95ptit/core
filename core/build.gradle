@@ -4,15 +4,15 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = rootProject.javaVersion
+    targetCompatibility = rootProject.javaVersion
 }
 
 dependencies {
 
     api jacksonDependencies.values()
 
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api coroutinesDependencies.core
 
-    testImplementation testDependencies.junit
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

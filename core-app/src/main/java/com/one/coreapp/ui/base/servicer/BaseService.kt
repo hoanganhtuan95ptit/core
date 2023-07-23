@@ -10,9 +10,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataScope
 import androidx.lifecycle.switchMap
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 import com.one.coreapp.utils.extentions.CloseableCoroutineScope
-import com.one.coreapp.utils.extentions.logException
+import com.one.crashlytics.logCrashlytics
 import kotlinx.coroutines.*
 import java.io.Closeable
 import java.io.IOException
@@ -37,7 +37,7 @@ abstract class BaseService : LifecycleService() {
     val tags: MutableMap<String, Any> = HashMap()
 
     val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
-        logException(throwable)
+        logCrashlytics(throwable)
     }
 
     protected open fun registerReceiver(vararg action: String, receiver: (Intent) -> Unit) {
@@ -55,20 +55,20 @@ abstract class BaseService : LifecycleService() {
     protected open fun registerReceiver(receiver: BroadcastReceiver, vararg action: String) {
         listBroadcastReceiver.add(receiver)
         for (s in action) {
-            LocalBroadcastManager.getInstance(App.shared).registerReceiver(receiver, IntentFilter(s))
+            LocalBroadcastManager.getInstance(BaseApp.shared).registerReceiver(receiver, IntentFilter(s))
         }
     }
 
     fun sendBroadcast(action: String, block: Intent.() -> Unit) {
         val intent = Intent(action).apply { block(this) }
-        LocalBroadcastManager.getInstance(App.shared).sendBroadcast(intent)
+        LocalBroadcastManager.getInstance(BaseApp.shared).sendBroadcast(intent)
     }
 
     override fun onDestroy() {
         mCleared = true
 
         for (broadcastReceiver in listBroadcastReceiver) {
-            LocalBroadcastManager.getInstance(App.shared).unregisterReceiver(broadcastReceiver)
+            LocalBroadcastManager.getInstance(BaseApp.shared).unregisterReceiver(broadcastReceiver)
         }
 
         synchronized(mBagOfTags) {

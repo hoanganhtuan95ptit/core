@@ -1,15 +1,13 @@
 package com.tuanha.app
 
-import com.one.coreapp.App
+import com.one.analytics.logAnalytics
+import com.one.coreapp.BaseApp
 import com.one.coreapp.Module
 import com.tuanha.app.di.appModule
 import org.koin.android.ext.android.getKoin
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
-import org.koin.core.logger.Level
+import org.koin.core.context.loadKoinModules
 
-class App : App() {
+class App : BaseApp() {
 
     private val modules by lazy {
         getKoin().getAll<Module>()
@@ -17,14 +15,13 @@ class App : App() {
 
     override fun onCreate() {
 
-        startKoin {
-            androidContext(this@App)
-            androidLogger(Level.NONE)
-
-            modules(
+        loadKoinModules(
+            listOf(
                 appModule
             )
-        }
+        )
+
+        logAnalytics("test", data = "test")
 
         super.onCreate()
 

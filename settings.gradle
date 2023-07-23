@@ -30,3 +30,5 @@ include ':analytics-firebase'
 
 include ':crashlytics'
 include ':crashlytics-firebase'
+include ':job'
+include ':config'

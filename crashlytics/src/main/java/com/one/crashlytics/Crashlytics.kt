@@ -1,6 +1,6 @@
-package com.one.coreapp.data.task.crashlytics
+package com.one.crashlytics
 
-import com.one.coreapp.data.usecase.ResultState
+import com.one.state.ResultState
 
 interface Crashlytics {
 

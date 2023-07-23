@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7">
-      <module name="Core.adapter" target="11" />
-      <module name="Core.analytics" target="11" />
-      <module name="Core.analytics-firebase" target="11" />
-      <module name="Core.app" target="11" />
-      <module name="Core.config-firebase" target="11" />
-      <module name="Core.core-ads" target="11" />
-      <module name="Core.core-app" target="11" />
-      <module name="Core.core-navigation" target="11" />
-      <module name="Core.core-review" target="11" />
-      <module name="Core.core-update" target="11" />
-      <module name="Core.crashlytics" target="11" />
-      <module name="Core.crashlytics-firebase" target="11" />
-      <module name="Core.detect" target="11" />
-      <module name="Core.detect-mlkit" target="11" />
+    <bytecodeTargetLevel target="11">
+      <module name="Core.adapter" target="17" />
+      <module name="Core.analytics" target="17" />
+      <module name="Core.analytics-firebase" target="17" />
+      <module name="Core.app" target="17" />
+      <module name="Core.config" target="17" />
+      <module name="Core.config-firebase" target="17" />
+      <module name="Core.core-ads" target="17" />
+      <module name="Core.core-app" target="17" />
+      <module name="Core.core-navigation" target="17" />
+      <module name="Core.core-review" target="17" />
+      <module name="Core.core-update" target="17" />
+      <module name="Core.crashlytics" target="17" />
+      <module name="Core.crashlytics-firebase" target="17" />
+      <module name="Core.detect" target="17" />
+      <module name="Core.detect-mlkit" target="17" />
       <module name="Core.detect-mlkit-latin" target="11" />
       <module name="Core.detect-tesseract" target="11" />
-      <module name="Core.task" target="11" />
-      <module name="Core.translate" target="11" />
-      <module name="Core.translate-mlkit" target="11" />
-      <module name="Core.word" target="11" />
+      <module name="Core.job" target="17" />
+      <module name="Core.task" target="17" />
+      <module name="Core.translate" target="17" />
+      <module name="Core.translate-mlkit" target="17" />
+      <module name="Core.word" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

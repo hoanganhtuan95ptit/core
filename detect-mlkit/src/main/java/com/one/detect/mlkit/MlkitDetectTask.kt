@@ -3,11 +3,12 @@ package com.one.detect.mlkit
 import com.google.mlkit.nl.languageid.LanguageIdentification
 import com.google.mlkit.nl.languageid.LanguageIdentificationOptions
 import com.google.mlkit.vision.text.Text
+import com.one.analytics.logAnalytics
 import com.one.core.utils.extentions.toArrayList
 import com.one.core.utils.extentions.validate
-import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.data.usecase.isFailed
-import com.one.coreapp.data.usecase.toFailed
+import com.one.state.ResultState
+import com.one.state.isFailed
+import com.one.state.toFailed
 import com.one.coreapp.utils.extentions.*
 import com.one.detect.DetectTask
 import com.one.detect.entities.*
@@ -30,7 +31,7 @@ class MlkitDetectTask(
         }
 
 
-        log("MlkitDetectTask", "")
+        logAnalytics("MlkitDetectTask", "")
 
 
         val path = param.source as? String ?: throw LowException("not support source ${param.source.javaClass.simpleName}")

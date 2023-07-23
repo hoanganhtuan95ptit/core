@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    namespace 'com.four.config'
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    api project(path: ":job")
+    api project(path: ":core")
+    api project(path: ":task")
+    api project(path: ":state")
+
+    api koinDependencies.values()
+
+    api coroutinesDependencies.values()
+}

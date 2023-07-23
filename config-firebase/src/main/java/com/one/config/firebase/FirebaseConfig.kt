@@ -1,11 +1,11 @@
 package com.one.config.firebase
 
+import com.four.config.Config
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
-import com.one.coreapp.data.task.config.Config
-import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.utils.extentions.log
-import com.one.coreapp.utils.extentions.logException
+import com.one.state.ResultState
+import com.one.analytics.logAnalytics
+import com.one.crashlytics.logCrashlytics
 import com.one.coreapp.utils.extentions.resumeActive
 import kotlinx.coroutines.suspendCancellableCoroutine
 
@@ -16,19 +16,19 @@ class FirebaseConfig : Config {
         val config = FirebaseRemoteConfig.getInstance()
 
         val configSettings = FirebaseRemoteConfigSettings.Builder()
-            .setMinimumFetchIntervalInSeconds(param.timeOut)
+            .setMinimumFetchIntervalInSeconds(param.timeout)
             .build()
 
         config.setConfigSettingsAsync(configSettings)
 
         config.fetchAndActivate().addOnSuccessListener {
 
-            log("firebase config", param.key)
+            logAnalytics("firebase config", param.key)
 
             continuation.resumeActive(ResultState.Success(config.getString(param.key)))
         }.addOnFailureListener {
 
-            logException(RuntimeException("firebase config", it))
+            logCrashlytics(RuntimeException("firebase config", it))
 
             continuation.resumeActive(ResultState.Failed(it))
         }

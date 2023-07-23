@@ -1,34 +1,23 @@
-package com.one.coreapp.utils.extentions
+package com.one.analytics
 
-import com.one.analytics.BuildConfig
+import android.util.Log
+import com.four.job.JobQueueManager
 import com.one.core.utils.extentions.normalize
-import com.one.coreapp.data.task.analytics.Analytics
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import org.koin.java.KoinJavaComponent.getKoin
 import kotlin.coroutines.CoroutineContext
+
+private const val ANALYTICS = "ANALYTICS"
 
 private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
 
-    if (BuildConfig.DEBUG) throwable.printStackTrace()
+    Log.d("Analytics", "error: ", throwable)
 }
 
-private var analyticsList: List<Analytics>? = null
-
-
-object AnalyticsSdk {
-
-    fun init(logAnalytics: List<Analytics>) {
-
-        analyticsList = logAnalytics
-    }
-}
-
-
-fun log(name: String, data: String = "") = GlobalScope.launch(handler + Dispatchers.IO) {
+fun logAnalytics(name: String, data: String = "") = JobQueueManager.submit(ANALYTICS, handler) {
 
     val eventName = name.normalize().replace(".", "").replace(" ", "_").replace("-", "_")
 
-    analyticsList?.map { it.execute(Analytics.Param(eventName, data)) }
+    val listAnalytics = getKoin().getAll<Analytics>()
+    listAnalytics.map { it.execute(Analytics.Param(eventName, data)) }
 }

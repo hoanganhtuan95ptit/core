@@ -22,7 +22,7 @@ interface Navigation {
 
         if (BuildConfig.DEBUG && this is Activity) {
 
-            Log.d("tuanha", "offerNavEvent: ${event.navigationList}")
+            Log.d("tuanha1", "offerNavEvent: ${event.navigationList}")
         }
 
         if (this is Activity) {

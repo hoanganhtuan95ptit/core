@@ -4,11 +4,11 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.ads.*
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 import com.one.coreapp.data.cache.AdsCache
 import com.one.coreapp.data.cache.sharedpreference.AdsCacheImpl
 import com.one.coreapp.ui.base.activities.BaseActivity
-import com.one.coreapp.utils.extentions.log
+import com.one.analytics.logAnalytics
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -45,7 +45,7 @@ interface AdsView {
 
         MobileAds.setRequestConfiguration(requestConfiguration)
 
-        MobileAds.initialize(App.shared) {}
+        MobileAds.initialize(BaseApp.shared) {}
     }
 
     fun checkAndShowAds(show: Boolean) = self().lifecycleScope.launch(self().handler + Dispatchers.IO) {
@@ -69,7 +69,7 @@ interface AdsView {
 
             launch(coroutineContext + Dispatchers.Main) {
 
-                InterstitialAd.load(App.shared, self().getString(R.string.key_interstitial), AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
+                InterstitialAd.load(BaseApp.shared, self().getString(R.string.key_interstitial), AdRequest.Builder().build(), object : InterstitialAdLoadCallback() {
 
                     override fun onAdLoaded(interstitialAd: InterstitialAd) {
 
@@ -106,7 +106,7 @@ interface AdsView {
             }
         } ?: return@launch
 
-        log("ads")
+        logAnalytics("ads")
     }
 
     open fun canShowAds(count: Long): Boolean {

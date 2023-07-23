@@ -4,17 +4,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModel
 import com.one.coreapp.utils.extentions.Enable
-import com.one.coreapp.utils.extentions.logException
+import com.one.crashlytics.logCrashlytics
 import com.one.coreapp.utils.extentions.postDifferentValue
 import com.one.coreapp.utils.extentions.toEnable
 import kotlinx.coroutines.CoroutineExceptionHandler
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 import kotlin.coroutines.CoroutineContext
 
 abstract class BaseViewModel : ViewModel(), KoinComponent {
 
     open val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
-        logException(throwable)
+        logCrashlytics(throwable)
     }
 
     val uiReady: LiveData<Boolean> = MediatorLiveData()

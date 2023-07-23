@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.android.gms:play-services-mlkit-text-recognition-devanagari:16.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/fd8614ca95d6b3126b38fd791a34334f/transformed/play-services-mlkit-text-recognition-devanagari-16.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fd8614ca95d6b3126b38fd791a34334f/transformed/play-services-mlkit-text-recognition-devanagari-16.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.gms/play-services-mlkit-text-recognition-devanagari/16.0.0/768e05dd3fb66b22fc346e69e3c5b00ddafa9aa6/play-services-mlkit-text-recognition-devanagari-16.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: io.supercharge:shimmerlayout:2.1.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b47bce7856b99e3f70f9d75d5b85c887/transformed/shimmerlayout-2.1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b47bce7856b99e3f70f9d75d5b85c887/transformed/shimmerlayout-2.1.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b47bce7856b99e3f70f9d75d5b85c887/transformed/shimmerlayout-2.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5a16b4af0d0393c599cfe22efa1303db/transformed/shimmerlayout-2.1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5a16b4af0d0393c599cfe22efa1303db/transformed/shimmerlayout-2.1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5a16b4af0d0393c599cfe22efa1303db/transformed/shimmerlayout-2.1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.supercharge/shimmerlayout/2.1.0/f58f1307869a4b9817c33a6522b99add5260b004/shimmerlayout-2.1.0-javadoc.jar!/" />

@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.mlkit:common:18.4.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9f58b3dd5f0397cfc3863d9b9c5cc4a9/transformed/common-18.4.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9f58b3dd5f0397cfc3863d9b9c5cc4a9/transformed/common-18.4.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0b8274684df749e184ea13f7e8bc23e5/transformed/common-18.4.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0b8274684df749e184ea13f7e8bc23e5/transformed/common-18.4.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/common/18.4.0/fff8ea7a8fc02ef74360659df86d0d1511e24d98/common-18.4.0-javadoc.jar!/" />

@@ -4,12 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdkVersion rootProject.compileSdkVersion
 
     defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
         applicationId "com.tuanha.app"
-        minSdk 23
-        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -26,11 +27,11 @@ android {
         viewBinding true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.javaVersion.toString()
     }
 }
 
@@ -48,7 +49,6 @@ dependencies {
     implementation project(path: ':core-review')
     implementation project(path: ':core-navigation')
 
-
     implementation project(path: ':detect-mlkit')
 
     implementation project(path: ':translate-mlkit')
@@ -58,8 +58,4 @@ dependencies {
     implementation project(path: ":crashlytics-firebase")
 
     implementation project(path: ':word')
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

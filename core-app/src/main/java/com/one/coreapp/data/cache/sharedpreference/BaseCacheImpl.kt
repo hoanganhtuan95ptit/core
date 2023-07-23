@@ -4,24 +4,23 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.one.core.utils.extentions.toJson
 import com.one.core.utils.extentions.toObject
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 import com.one.coreapp.data.cache.BaseCache
 import com.one.coreapp.utils.extentions.decodeBase64
 import com.one.coreapp.utils.extentions.encodeBase64
 import com.one.coreapp.utils.extentions.encodeMd5
 import com.one.coreapp.utils.extentions.offerActive
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.flow.map
 
 private val keyCache by lazy {
-    encodeMd5(App.shared.packageName)
+    encodeMd5(BaseApp.shared.packageName)
 }
 
 private val sharedPreferences by lazy {
-    PreferenceManager.getDefaultSharedPreferences(App.shared)
+    PreferenceManager.getDefaultSharedPreferences(BaseApp.shared)
 }
 
 abstract class BaseCacheImpl : BaseCache {

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.one.coreapp.R
+import com.one.coreapp.ui.ComponentCache
 import com.one.coreapp.ui.base.activities.BaseActivity
 import com.one.coreapp.utils.AppException
 import com.one.coreapp.utils.extentions.getColorFromAttr
@@ -17,8 +18,11 @@ import kotlinx.coroutines.Job
 import java.io.IOException
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
+import kotlin.collections.HashMap
 
-open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), BackPressedView {
+open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), BackPressedView, ComponentCache {
+
+    override val mBagOfTags: HashMap<String, Any> = hashMapOf()
 
     private val confirmDialogList: CopyOnWriteArrayList<AlertDialog> = CopyOnWriteArrayList<AlertDialog>()
 

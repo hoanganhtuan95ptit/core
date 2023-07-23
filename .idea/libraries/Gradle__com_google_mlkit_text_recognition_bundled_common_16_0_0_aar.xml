@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.mlkit:text-recognition-bundled-common:16.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5f4fd4d85f5643dc1d4e7318006e23cf/transformed/text-recognition-bundled-common-16.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5f4fd4d85f5643dc1d4e7318006e23cf/transformed/text-recognition-bundled-common-16.0.0/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/text-recognition-bundled-common/16.0.0/5b281bd72292ced83ab7661efe4ba6967809a396/text-recognition-bundled-common-16.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>

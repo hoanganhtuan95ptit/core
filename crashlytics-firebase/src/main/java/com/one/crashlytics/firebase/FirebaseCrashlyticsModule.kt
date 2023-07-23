@@ -2,7 +2,7 @@ package com.one.crashlytics.firebase
 
 import android.app.Application
 import com.one.coreapp.Module
-import com.one.coreapp.data.task.crashlytics.Crashlytics
+import com.one.crashlytics.Crashlytics
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.bind
 import org.koin.dsl.module

@@ -4,77 +4,10 @@ import android.annotation.SuppressLint
 import androidx.annotation.AnyThread
 import androidx.annotation.MainThread
 import androidx.lifecycle.*
-import com.one.adapter.ViewItem
-import com.one.coreapp.App
-import com.one.coreapp.ui.base.viewmodels.BaseViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
+import com.one.core.entities.Comparable
 import kotlinx.coroutines.suspendCancellableCoroutine
 import java.util.concurrent.CountDownLatch
 import kotlin.coroutines.resume
-
-@MainThread
-fun <T> BaseViewModel.liveData(onChanged: suspend MediatorLiveData<T>.() -> Unit): LiveData<T> {
-
-    val liveData = MediatorLiveData<T>()
-
-    viewModelScope.launch(handler + App.shared.dispatcherForHandleDataUi) {
-        onChanged.invoke(liveData)
-    }
-
-    return liveData
-}
-
-@MainThread
-fun <T> BaseViewModel.combineSources(vararg sources: LiveData<*>, onChanged: suspend MediatorLiveData<T>.(List<LiveData<*>>) -> Unit): LiveData<T> {
-
-    var job: Job? = null
-
-    val liveData = MediatorLiveData<T>()
-
-    val change: () -> Unit = {
-
-        job?.cancel()
-
-        job = viewModelScope.launch(handler + App.shared.dispatcherForHandleDataUi) {
-            onChanged.invoke(liveData, sources.toList())
-        }
-    }
-
-    sources.forEach {
-        liveData.addSource(it) {
-            if (sources.mapNotNull { source -> source.value }.filterIsInstance<Enable>().any { enable -> !enable.enable }) liveData.postDifferentValue(null)
-            else if (sources.all { source -> source.value != null }) change.invoke()
-        }
-    }
-
-    return liveData
-}
-
-@MainThread
-fun <T> BaseViewModel.listenerSources(vararg sources: LiveData<*>, onChanged: suspend MediatorLiveData<T>.(List<LiveData<*>>) -> Unit): LiveData<T> {
-
-    var job: Job? = null
-
-    val liveData = MediatorLiveData<T>()
-
-    val change: () -> Unit = {
-
-        job?.cancel()
-
-        job = viewModelScope.launch(handler + App.shared.dispatcherForHandleDataUi) {
-            onChanged.invoke(liveData, sources.toList())
-        }
-    }
-
-    sources.forEach {
-        liveData.addSource(it) {
-            change.invoke()
-        }
-    }
-
-    return liveData
-}
 
 @MainThread
 @SuppressLint("NullSafeMutableLiveData")
@@ -100,13 +33,59 @@ fun <X> LiveData<X>.toEvent(): LiveData<Event<X>> = map {
     Event(it)
 }
 
+@SuppressLint("WrongThread")
 @AnyThread
-fun <T> LiveData<T>?.postValue(t: T?) {
-    when (this) {
-        is MediatorLiveData<T> -> this.postValue(t)
-        is MutableLiveData<T> -> this.postValue(t)
-        else -> error("Not support ${this?.javaClass?.simpleName}")
+suspend fun <T : Comparable> LiveData<T>.postDifferentValueIfActive(t: T): Boolean {
+
+    return if (isActive()) postDifferentValue(t)
+    else false
+}
+
+@SuppressLint("WrongThread")
+@AnyThread
+suspend fun <T : Comparable> LiveData<List<T>>.postDifferentValueIfActive(t: List<T>): Boolean {
+
+    return if (isActive()) postDifferentValue(t)
+    else false
+}
+
+@SuppressLint("WrongThread")
+@AnyThread
+suspend fun <T> LiveData<T>.postDifferentValueIfActive(t: T, checkSame: (old: T?, new: T) -> Boolean = { old, new -> old == new }): Boolean {
+
+    return if (isActive()) postDifferentValue(t, checkSame)
+    else false
+}
+
+@SuppressLint("WrongThread")
+@AnyThread
+fun <T : Comparable> LiveData<T>.postDifferentValue(t: T) = postDifferentValue(t) { old, new ->
+
+    old?.getListCompare() == new.getListCompare()
+}
+
+@SuppressLint("WrongThread")
+@AnyThread
+fun <T : Comparable> LiveData<List<T>>.postDifferentValue(t: List<T>) = postDifferentValue(t) { old, new ->
+
+    old?.flatMap { item -> item.getListCompare() } == new.flatMap { item -> item.getListCompare() }
+}
+
+@SuppressLint("WrongThread")
+@AnyThread
+fun <T> LiveData<T>.postDifferentValue(t: T, checkSame: (old: T?, new: T) -> Boolean = { old, new -> old == new }): Boolean {
+
+    if (checkSame.invoke(this.value, t)) {
+        return false
     }
+
+    if (this is MutableLiveData && Thread.currentThread().name.contains("main", true)) {
+        value = t
+    } else {
+        postValue(t)
+    }
+
+    return true
 }
 
 @AnyThread
@@ -119,22 +98,13 @@ fun <T> LiveData<T>?.postDifferentValue(t: T) {
     postValue(t)
 }
 
-
 @AnyThread
-fun <T : ViewItem> LiveData<List<T>>.postDifferentValue(t: List<T>) = postDifferentValue(t) { old, new ->
-
-    old?.flatMap { item -> item.getContentsCompare().map { pair -> pair.first } } == new.flatMap { item -> item.getContentsCompare().map { pair -> pair.first } }
-}
-
-
-@AnyThread
-fun <T> LiveData<T>.postDifferentValue(t: T, checkSame: (old: T?, new: T) -> Boolean = { old, new -> old == new }) {
-
-    if (checkSame.invoke(this.value, t)) {
-        return
+fun <T> LiveData<T>?.postValue(t: T?) {
+    when (this) {
+        is MediatorLiveData<T> -> this.postValue(t)
+        is MutableLiveData<T> -> this.postValue(t)
+        else -> error("Not support ${this?.javaClass?.simpleName}")
     }
-
-    postValue(t)
 }
 
 
@@ -206,7 +176,7 @@ suspend fun <T> LiveData<T>.getOrAwaitCause(caseStop: (T?) -> Boolean = { true }
 
     val observer = object : Observer<T> {
 
-        override fun onChanged(o: T?) {
+        override fun onChanged(o: T) {
             data = o
 
             if (caseStop.invoke(o)) {
@@ -225,4 +195,21 @@ suspend fun <T> LiveData<T>.getOrAwaitCause(caseStop: (T?) -> Boolean = { true }
     it.invokeOnCancellation {
         this@getOrAwaitCause.removeObserver(observer)
     }
+}
+
+
+inline fun <T> LiveData<T>.doDifferent(action: MediatorLiveData<T>.() -> Unit) {
+
+    if (this !is CacheLiveData) {
+        error("not support ${this.javaClass.simpleName}")
+    }
+
+    if (isDifferentSourceListener) {
+        action(this)
+    }
+}
+
+open class CacheLiveData<T> : MediatorLiveData<T>() {
+
+    var isDifferentSourceListener: Boolean = false
 }

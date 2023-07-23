@@ -1,7 +1,7 @@
 package com.one.detect.data.usecase
 
 import com.one.coreapp.data.usecase.BaseUseCase
-import com.one.coreapp.data.usecase.ResultState
+import com.one.state.ResultState
 import com.one.task.executeAsyncByPriority
 import com.one.detect.DetectTask
 import com.one.detect.entities.DetectOption

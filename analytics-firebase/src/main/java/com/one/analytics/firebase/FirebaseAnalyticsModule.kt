@@ -2,7 +2,7 @@ package com.one.analytics.firebase
 
 import android.app.Application
 import com.one.coreapp.Module
-import com.one.coreapp.data.task.analytics.Analytics
+import com.one.analytics.Analytics
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.bind
 import org.koin.dsl.module

@@ -7,15 +7,22 @@ import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.work.*
-import com.one.coreapp.App
+import androidx.work.Constraints
+import androidx.work.CoroutineWorker
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
+import androidx.work.WorkRequest
+import androidx.work.WorkerParameters
+import com.one.coreapp.BaseApp
 import com.one.coreapp.R
 import com.one.coreapp.data.api.retrofit.ConfigApi
 import com.one.coreapp.data.cache.NotificationCache
-import com.one.coreapp.utils.extentions.log
-import org.koin.core.KoinComponent
-import org.koin.core.inject
-import java.util.*
+import com.one.analytics.logAnalytics
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
+import java.util.Calendar
+import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 class NotificationDateWorker(context: Context, workerParams: WorkerParameters) : CoroutineWorker(context, workerParams), KoinComponent {
@@ -26,7 +33,7 @@ class NotificationDateWorker(context: Context, workerParams: WorkerParameters) :
 
     override suspend fun doWork(): Result {
 
-        if (App.numStart != 0) {
+        if (BaseApp.numStart != 0) {
 
             return Result.retry()
         }
@@ -100,7 +107,7 @@ class NotificationDateWorker(context: Context, workerParams: WorkerParameters) :
             this.contentIntent = intent
         })
 
-        log("notification", "")
+        logAnalytics("notification", "")
 
         return Result.retry()
     }
@@ -119,12 +126,12 @@ class NotificationDateWorker(context: Context, workerParams: WorkerParameters) :
                 .addTag("test")
                 .build()
 
-            WorkManager.getInstance(App.shared).let {
+            WorkManager.getInstance(BaseApp.shared).let {
                 it.cancelAllWorkByTag("test")
                 it.enqueue(work)
             }
 
-            NotificationManagerCompat.from(App.shared).cancelAll()
+            NotificationManagerCompat.from(BaseApp.shared).cancelAll()
         }
     }
 

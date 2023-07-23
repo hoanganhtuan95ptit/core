@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.room:room-ktx:2.4.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/986310825a1cd8d140bd4c19a90eecff/transformed/room-ktx-2.4.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/986310825a1cd8d140bd4c19a90eecff/transformed/room-ktx-2.4.3/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/986310825a1cd8d140bd4c19a90eecff/transformed/room-ktx-2.4.3/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8740692f93424bcdfe893c3a701754e4/transformed/room-ktx-2.4.3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8740692f93424bcdfe893c3a701754e4/transformed/room-ktx-2.4.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8740692f93424bcdfe893c3a701754e4/transformed/room-ktx-2.4.3/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

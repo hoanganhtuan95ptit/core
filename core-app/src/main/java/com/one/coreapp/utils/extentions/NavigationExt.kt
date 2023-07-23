@@ -41,7 +41,7 @@ fun NavController.navigate(directions: NavDirections, navOptions: NavOptions? = 
         navigate(directions.actionId, bundle, navOptions ?: navBuilder.build(), navigatorExtras)
     } catch (e: Exception) {
 
-        if (BuildConfig.DEBUG) Log.e("tuanha", "navigate: ", e)
+        if (BuildConfig.DEBUG) Log.e("tuanha1", "navigate: ", e)
     }
 }
 

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.donkingliang:ConsecutiveScroller:4.6.3@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/cd0f411a4a1fb81fd935c3738ac93e24/transformed/ConsecutiveScroller-4.6.3/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cd0f411a4a1fb81fd935c3738ac93e24/transformed/ConsecutiveScroller-4.6.3/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/cd0f411a4a1fb81fd935c3738ac93e24/transformed/ConsecutiveScroller-4.6.3/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/b40ad215e933f074d5cf1cabd4a3f538/transformed/ConsecutiveScroller-4.6.3/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b40ad215e933f074d5cf1cabd4a3f538/transformed/ConsecutiveScroller-4.6.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/b40ad215e933f074d5cf1cabd4a3f538/transformed/ConsecutiveScroller-4.6.3/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

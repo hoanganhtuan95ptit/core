@@ -13,14 +13,14 @@ android {
         multiDexEnabled = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
     }
     buildFeatures {
         viewBinding true
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.javaVersion.toString()
     }
     lintOptions {
         abortOnError false
@@ -29,12 +29,11 @@ android {
 
 dependencies {
 
+    api project(path: ":job")
     api project(path: ":core")
     api project(path: ":state")
 
-    api coroutinesDependencies.values()
+    api koinDependencies.values()
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    api coroutinesDependencies.values()
 }

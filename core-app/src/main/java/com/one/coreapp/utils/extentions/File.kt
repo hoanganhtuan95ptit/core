@@ -8,7 +8,7 @@ import android.content.IntentFilter
 import android.net.Uri
 import android.os.Environment
 import com.one.core.utils.extentions.toJson
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -65,12 +65,12 @@ suspend fun File.downloadSync(url: String, title: String? = null) = suspendCance
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
         request.setDestinationUri(Uri.fromFile(this@downloadSync))
 
-        val manager = App.shared.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+        val manager = BaseApp.shared.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
 
         val downloadId = manager.enqueue(request)
 
 
-        App.shared.registerReceiver(object : BroadcastReceiver() {
+        BaseApp.shared.registerReceiver(object : BroadcastReceiver() {
 
             override fun onReceive(context: Context?, intent: Intent?) {
 
@@ -112,7 +112,7 @@ fun File.downloadSyncV2(path: String) {
 
 fun String.getFile(createFile: Boolean): File {
 
-    val file = File(App.shared.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.absolutePath + "/" + this)
+    val file = File(BaseApp.shared.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)!!.absolutePath + "/" + this)
 
     file.parentFile?.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
     file.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()

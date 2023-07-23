@@ -1,8 +1,8 @@
 package com.one.word.data.task.dictionary.envi
 
-import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.data.usecase.toSuccess
-import com.one.coreapp.utils.extentions.logException
+import com.one.state.ResultState
+import com.one.state.toSuccess
+import com.one.crashlytics.logCrashlytics
 import com.one.word.data.task.dictionary.DictionaryTask
 import com.one.word.entities.TextLevel
 import com.one.word.entities.TextLevelType
@@ -24,7 +24,7 @@ class WikiEnViDictionaryTask : DictionaryTask {
             handleFromWiki(param.text)
         }.getOrElse {
 
-            logException(java.lang.RuntimeException("WikiEnViDictionaryTask", it))
+            logCrashlytics(java.lang.RuntimeException("WikiEnViDictionaryTask", it))
 
             ResultState.Failed(it)
         }

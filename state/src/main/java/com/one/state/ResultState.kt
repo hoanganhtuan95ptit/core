@@ -1,4 +1,4 @@
-package com.one.coreapp.data.usecase
+package com.one.state
 
 
 open class ResultState<out T> {

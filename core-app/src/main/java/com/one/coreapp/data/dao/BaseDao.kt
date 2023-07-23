@@ -1,7 +1,7 @@
 package com.one.coreapp.data.dao
 
 import kotlinx.coroutines.flow.Flow
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 
 interface BaseDao<T> : KoinComponent {
 

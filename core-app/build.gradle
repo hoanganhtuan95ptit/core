@@ -16,14 +16,14 @@ android {
         multiDexEnabled = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
     }
     buildFeatures {
         viewBinding true
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.javaVersion.toString()
     }
     lintOptions {
         abortOnError false
@@ -36,6 +36,8 @@ dependencies {
     api project(path: ":task")
     api project(path: ":state")
     api project(path: ":adapter")
+
+    api project(path: ":config")
     api project(path: ":analytics")
     api project(path: ":crashlytics")
 
@@ -54,11 +56,5 @@ dependencies {
 
     api "com.airbnb.android:lottie:$lottie_version"
 
-    api 'io.supercharge:shimmerlayout:2.1.0'
-
-    testImplementation testDependencies.values()
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    androidTestImplementation 'androidx.annotation:annotation:1.1.0'
+    api "io.supercharge:shimmerlayout:$shimmerlayout_version"
 }

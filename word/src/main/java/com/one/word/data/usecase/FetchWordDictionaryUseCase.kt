@@ -1,9 +1,9 @@
 package com.one.word.data.usecase
 
 import com.one.coreapp.data.usecase.BaseUseCase
-import com.one.coreapp.data.usecase.ResultState
+import com.one.state.ResultState
 import com.one.task.executeAsyncByFast
-import com.one.coreapp.utils.extentions.log
+import com.one.analytics.logAnalytics
 import com.one.word.data.task.dictionary.DictionaryTask
 import com.one.word.entities.TextLevel
 
@@ -14,7 +14,7 @@ class FetchWordDictionaryUseCase(
     override suspend fun execute(param: Param?): ResultState<List<TextLevel>> {
         checkNotNull(param)
 
-        log("fetch word dictionary use case ${param.inputCode} ${param.outputCode}")
+        logAnalytics("fetch word dictionary use case ${param.inputCode} ${param.outputCode}")
 
         return list.executeAsyncByFast(DictionaryTask.Param(param.text, param.inputCode, param.outputCode))
     }

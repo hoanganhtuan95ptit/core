@@ -1,31 +1,19 @@
-package com.one.coreapp.utils.extentions
+package com.one.crashlytics
 
-import com.one.coreapp.data.task.crashlytics.Crashlytics
-import com.one.crashlytics.BuildConfig
+import com.four.job.JobQueueManager
 import kotlinx.coroutines.CoroutineExceptionHandler
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import org.koin.java.KoinJavaComponent.getKoin
 import kotlin.coroutines.CoroutineContext
+
+private const val CRASHLYTICS = "CRASHLYTICS"
 
 private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
 
     if (BuildConfig.DEBUG) throwable.printStackTrace()
 }
 
-private var crashlyticsList: List<Crashlytics>? = null
+fun logCrashlytics(throwable: Throwable) = JobQueueManager.submit(CRASHLYTICS, handler) {
 
-
-object CrashlyticsSdk {
-
-    fun init(logCrashlytics: List<Crashlytics>) {
-
-        crashlyticsList = logCrashlytics
-    }
-}
-
-
-fun logException(throwable: Throwable) = GlobalScope.launch(handler + Dispatchers.IO) {
-
-    crashlyticsList?.map { it.execute(Crashlytics.Param(throwable)) }
+    val listAnalytics = getKoin().getAll<Crashlytics>()
+    listAnalytics.map { it.execute(Crashlytics.Param(throwable)) }
 }

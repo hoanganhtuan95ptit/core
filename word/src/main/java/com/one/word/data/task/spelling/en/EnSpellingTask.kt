@@ -1,7 +1,7 @@
 package com.one.word.data.task.spelling.en
 
-import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.utils.extentions.logException
+import com.one.state.ResultState
+import com.one.crashlytics.logCrashlytics
 import com.one.word.data.task.spelling.SpellingTask
 import com.one.word.entities.Spelling
 import org.jsoup.Jsoup
@@ -20,7 +20,7 @@ class EnSpellingTask : SpellingTask {
             handleFromWiki(param.text)
         }.getOrElse {
 
-            logException(java.lang.RuntimeException("EnSpellingTask", it))
+            logCrashlytics(java.lang.RuntimeException("EnSpellingTask", it))
 
             ResultState.Failed(it)
         }

@@ -6,11 +6,11 @@ import com.google.mlkit.nl.translate.TranslateRemoteModel
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.Translator
 import com.google.mlkit.nl.translate.TranslatorOptions
-import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.data.usecase.isFailed
+import com.one.state.ResultState
+import com.one.state.isFailed
 import com.one.coreapp.utils.Lock
-import com.one.coreapp.utils.extentions.log
-import com.one.coreapp.utils.extentions.logException
+import com.one.analytics.logAnalytics
+import com.one.crashlytics.logCrashlytics
 import com.one.coreapp.utils.extentions.resumeActive
 import com.one.translate.TranslateTask
 import kotlinx.coroutines.*
@@ -41,7 +41,7 @@ class MlkitTranslateTask : TranslateTask {
         }
 
 
-        log("mlkit translate task step 1 inputCode:$inputCode outputCode:$outputCode", "")
+        logAnalytics("mlkit translate task step 1 inputCode:$inputCode outputCode:$outputCode", "")
 
 
         val downloadInputCodeStateDeferred = async {
@@ -80,7 +80,7 @@ class MlkitTranslateTask : TranslateTask {
         val translator = Translation.getClient(options)
 
 
-        log("mlkit translate task step 2 inputCode:$inputCode outputCode:$outputCode", "")
+        logAnalytics("mlkit translate task step 2 inputCode:$inputCode outputCode:$outputCode", "")
 
 
         val translateStateList = param.text.map {
@@ -128,7 +128,7 @@ class MlkitTranslateTask : TranslateTask {
             continuation.resumeActive(ResultState.Success(emptyList()))
         }.addOnFailureListener {
 
-            logException(RuntimeException("mlkit translate task download model if needed $languageCode", it))
+            logCrashlytics(RuntimeException("mlkit translate task download model if needed $languageCode", it))
 
             continuation.resumeActive(ResultState.Failed(it))
         }
@@ -141,7 +141,7 @@ class MlkitTranslateTask : TranslateTask {
             continuation.resumeActive(ResultState.Success(translatedText))
         }.addOnFailureListener {
 
-            logException(RuntimeException("mlkit translate task translate", it))
+            logCrashlytics(RuntimeException("mlkit translate task translate", it))
 
             continuation.resumeActive(ResultState.Failed(it))
         }

@@ -7,15 +7,15 @@ import com.google.android.play.core.appupdate.testing.FakeAppUpdateManager
 import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 import com.one.coreapp.BuildConfig
 import com.one.coreapp.Constants
 import com.one.coreapp.R
 import com.one.coreapp.data.usecase.FetchMigrationPackageConfigUseCase
-import com.one.coreapp.data.usecase.ResultState
+import com.one.state.ResultState
 import com.one.coreapp.ui.base.activities.BaseActivity
 import com.one.coreapp.utils.Utils
-import com.one.coreapp.utils.extentions.log
+import com.one.analytics.logAnalytics
 import com.one.coreapp.utils.extentions.offerActive
 import com.one.coreapp.utils.extentions.offerActiveAwait
 import kotlinx.coroutines.Dispatchers
@@ -80,9 +80,9 @@ interface UpdateView {
          * kiểm tra update app
          */
         val appUpdateManager = if (BuildConfig.DEBUG) {
-            FakeAppUpdateManager(App.shared).apply { setUpdateAvailable(0) }
+            FakeAppUpdateManager(BaseApp.shared).apply { setUpdateAvailable(0) }
         } else {
-            AppUpdateManagerFactory.create(App.shared)
+            AppUpdateManagerFactory.create(BaseApp.shared)
         }
 
         appUpdateManager.appUpdateInfo.addOnSuccessListener {
@@ -106,14 +106,14 @@ interface UpdateView {
 
     private fun openUpdate() = self().showConfirm(self().getString(R.string.title_core_update_app), self().getString(R.string.message_core_update_app), image = R.raw.img_core_update, positive = self().getString(R.string.action_core_update), listenerPositive = {
 
-        log("app-update", "")
+        logAnalytics("app-update", "")
 
         Utils.updateApp(self())
     })
 
     private fun openMigration(packageName: String) = self().showConfirm(self().getString(R.string.title_core_migration_app), self().getString(R.string.message_core_migration_app), image = R.raw.img_core_update, positive = self().getString(R.string.action_core_migration), listenerPositive = {
 
-        log("app-migration", "")
+        logAnalytics("app-migration", "")
 
         Utils.openApp(self(), packageName)
     })

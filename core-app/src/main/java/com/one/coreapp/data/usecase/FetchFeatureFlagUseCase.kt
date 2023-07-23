@@ -4,16 +4,16 @@ package com.one.coreapp.data.usecase
 
 import android.content.pm.PackageInfo
 import android.os.Build
-import com.one.coreapp.App
-import com.one.coreapp.data.task.config.Config
-import com.one.coreapp.utils.extentions.getConfig
+import com.four.config.Config
+import com.four.config.getConfig
+import com.one.coreapp.BaseApp
 import com.one.coreapp.utils.extentions.offerActiveAwait
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 
 val versionCode: Long by lazy {
 
-    val packageInfo: PackageInfo = App.shared.packageManager.getPackageInfo(App.shared.packageName, 0)
+    val packageInfo: PackageInfo = BaseApp.shared.packageManager.getPackageInfo(BaseApp.shared.packageName, 0)
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
         packageInfo.longVersionCode

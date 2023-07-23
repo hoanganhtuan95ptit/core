@@ -3,9 +3,9 @@ package com.one.detect.mlkit.data.task
 import android.graphics.Bitmap
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
-import com.one.coreapp.data.usecase.ResultState
+import com.one.state.ResultState
 import com.one.task.Task
-import com.one.coreapp.utils.extentions.logException
+import com.one.crashlytics.logCrashlytics
 import com.one.coreapp.utils.extentions.resumeActive
 import kotlinx.coroutines.suspendCancellableCoroutine
 
@@ -28,7 +28,7 @@ abstract class MlkitTask : Task<MlkitTask.Param, List<Text.TextBlock>> {
             }
         }.addOnFailureListener { e ->
 
-            logException(RuntimeException(this.javaClass.simpleName, e))
+            logCrashlytics(RuntimeException(this.javaClass.simpleName, e))
 
             continuation.resumeActive(ResultState.Failed(e))
         }

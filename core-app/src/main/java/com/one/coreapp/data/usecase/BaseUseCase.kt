@@ -1,6 +1,6 @@
 package com.one.coreapp.data.usecase
 
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinComponent
 
 
 interface BaseUseCase<Param : BaseUseCase.Param, Result> : KoinComponent {

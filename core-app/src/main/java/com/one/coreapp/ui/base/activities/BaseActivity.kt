@@ -4,21 +4,24 @@ import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import com.one.coreapp.ui.ComponentCache
 import com.one.coreapp.ui.base.fragments.BackPressedView
 import com.one.coreapp.ui.dialogs.ConfirmDialogFragment
 import com.one.coreapp.ui.dialogs.LoadingDialog
 import com.one.coreapp.ui.worker.NotificationDateWorker
 import com.one.coreapp.utils.extentions.getAllFragment
-import com.one.coreapp.utils.extentions.logException
+import com.one.crashlytics.logCrashlytics
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlin.coroutines.CoroutineContext
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : AppCompatActivity(), ComponentCache {
+
+    override val mBagOfTags: HashMap<String, Any> = hashMapOf()
 
     open var isEnableScheduleNotify: Boolean = false
 
     val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
-        logException(throwable)
+        logCrashlytics(throwable)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,10 +8,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.main.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/Analytics-Firebase/Core.analytics-firebase.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics-firebase/Core.analytics-firebase.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.main.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/analytics/Core.analytics.unitTest.iml" />
@@ -19,10 +19,14 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/config/Core.config.iml" filepath="$PROJECT_DIR$/.idea/modules/config/Core.config.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/config/Core.config.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/config/Core.config.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/config/Core.config.main.iml" filepath="$PROJECT_DIR$/.idea/modules/config/Core.config.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/config/Core.config.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/config/Core.config.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.iml" filepath="$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core-ads/Core.core-ads.androidTest.iml" />
@@ -62,6 +66,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.main.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/detect/Core.detect.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/detect/Core.detect.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/job/Core.job.iml" filepath="$PROJECT_DIR$/.idea/modules/job/Core.job.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/job/Core.job.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/job/Core.job.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/job/Core.job.main.iml" filepath="$PROJECT_DIR$/.idea/modules/job/Core.job.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/job/Core.job.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/job/Core.job.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/state/Core.state.iml" filepath="$PROJECT_DIR$/.idea/modules/state/Core.state.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/state/Core.state.main.iml" filepath="$PROJECT_DIR$/.idea/modules/state/Core.state.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/state/Core.state.test.iml" filepath="$PROJECT_DIR$/.idea/modules/state/Core.state.test.iml" />

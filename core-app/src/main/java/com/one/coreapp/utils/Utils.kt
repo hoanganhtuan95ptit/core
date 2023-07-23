@@ -7,7 +7,7 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.core.content.FileProvider
 import com.one.core.utils.extentions.toArrayList
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 import com.one.coreapp.R
 import java.io.File
 import java.util.*
@@ -51,7 +51,7 @@ object Utils {
 
     @JvmStatic
     private fun File.provideUri(): Uri {
-        return FileProvider.getUriForFile(App.shared, App.shared.packageName + ".provider", this)
+        return FileProvider.getUriForFile(BaseApp.shared, BaseApp.shared.packageName + ".provider", this)
     }
 
     @JvmStatic
@@ -61,7 +61,7 @@ object Utils {
             action = Intent.ACTION_SEND_MULTIPLE
 
             putParcelableArrayListExtra(Intent.EXTRA_STREAM, files.toArrayList())
-            putExtra(Intent.EXTRA_SUBJECT, "Create by " + App.shared.getString(R.string.app_name).toUpperCase(Locale.getDefault()))
+            putExtra(Intent.EXTRA_SUBJECT, "Create by " + BaseApp.shared.getString(R.string.app_name).toUpperCase(Locale.getDefault()))
         }
         activity.startActivity(intent)
     }
@@ -97,7 +97,7 @@ object Utils {
             action = Intent.ACTION_SEND
 
             putExtra(Intent.EXTRA_TEXT, text)
-            putExtra(Intent.EXTRA_SUBJECT, "Share by " + App.shared.getString(R.string.app_name).uppercase(Locale.getDefault()))
+            putExtra(Intent.EXTRA_SUBJECT, "Share by " + BaseApp.shared.getString(R.string.app_name).uppercase(Locale.getDefault()))
         }
 
         activity.startActivity(intent)
@@ -110,13 +110,13 @@ object Utils {
     }
 
     fun getAppName(): String = kotlin.runCatching {
-        App.shared.getString(R.string.app_name)
+        BaseApp.shared.getString(R.string.app_name)
     }.getOrElse {
         ""
     }
 
     fun getAppVersion(): String = kotlin.runCatching {
-        App.shared.packageManager.getPackageInfo(App.shared.packageName, 0).versionName
+        BaseApp.shared.packageManager.getPackageInfo(BaseApp.shared.packageName, 0).versionName
     }.getOrElse {
         ""
     }

@@ -17,7 +17,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransitionOptions
 import com.bumptech.glide.load.resource.bitmap.FitCenter
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
-import com.one.coreapp.App
+import com.one.coreapp.BaseApp
 
 fun Any.toBitmap(vararg transformations: Transformation<Bitmap>?): Bitmap =
     toBitmap(0, 0, *transformations)
@@ -27,11 +27,11 @@ fun Any.toBitmap(width: Int = 0, height: Int = 0, vararg transformations: Transf
 
 fun Any.toBitmap(cache: Boolean = true, width: Int = 0, height: Int = 0, vararg transformations: Transformation<Bitmap>?): Bitmap =
     if (width != 0 || height != 0) {
-        get(cache, Glide.with(App.shared), *transformations)
+        get(cache, Glide.with(BaseApp.shared), *transformations)
             .submit(width, height)
             .get()
     } else {
-        get(cache, Glide.with(App.shared), *transformations)
+        get(cache, Glide.with(BaseApp.shared), *transformations)
             .submit()
             .get()
     }

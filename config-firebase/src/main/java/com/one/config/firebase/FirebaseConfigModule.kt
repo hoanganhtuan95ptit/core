@@ -1,8 +1,8 @@
 package com.one.config.firebase
 
 import android.app.Application
+import com.four.config.Config
 import com.one.coreapp.Module
-import com.one.coreapp.data.task.config.Config
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.bind
 import org.koin.dsl.module

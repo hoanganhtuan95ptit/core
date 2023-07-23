@@ -21,6 +21,7 @@ import com.one.coreapp.TRANSITION_DURATION
 import com.one.coreapp.ui.base.fragments.BaseViewBindingFragment
 import com.one.coreapp.ui.base.viewmodels.BaseViewModel
 import com.one.coreapp.utils.extentions.Event
+import com.one.coreapp.utils.extentions.getViewModel
 import com.one.coreapp.utils.extentions.postDifferentValue
 import com.one.coreapp.utils.extentions.toEvent
 import kotlinx.coroutines.Dispatchers
@@ -29,7 +30,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.androidx.viewmodel.koin.getViewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
 
@@ -48,7 +48,7 @@ open class BaseTransitionFragment<T : ViewBinding>(@LayoutRes contentLayoutId: I
     open var isSupportTransition: Boolean = true
 
     private val transitionViewModel: BaseTransitionViewModel by lazy {
-        getKoin().getViewModel(this, BaseTransitionViewModel::class)
+        getViewModel(this, BaseTransitionViewModel::class)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

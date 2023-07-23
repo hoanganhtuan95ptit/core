@@ -1,8 +1,6 @@
 package com.one.word.ui
 
 import android.graphics.Typeface
-import android.os.Build
-import android.text.Html
 import android.text.TextUtils
 import android.webkit.URLUtil
 import androidx.annotation.VisibleForTesting
@@ -14,10 +12,10 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil.PhoneNumberType
 import com.google.mlkit.nl.languageid.LanguageIdentification
 import com.one.adapter.LoadingViewItem
 import com.one.adapter.ViewItemCloneable
-import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.data.usecase.doSuccess
-import com.one.coreapp.data.usecase.isStart
-import com.one.coreapp.data.usecase.toSuccess
+import com.one.state.ResultState
+import com.one.state.doSuccess
+import com.one.state.isStart
+import com.one.state.toSuccess
 import com.one.coreapp.ui.adapters.SpaceViewItem
 import com.one.coreapp.ui.base.viewmodels.BaseViewModel
 import com.one.coreapp.utils.extentions.*

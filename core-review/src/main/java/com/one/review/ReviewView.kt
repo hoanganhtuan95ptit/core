@@ -9,7 +9,7 @@ import com.one.coreapp.BuildConfig
 import com.one.coreapp.data.cache.ReviewCache
 import com.one.coreapp.data.cache.sharedpreference.ReviewCacheImpl
 import com.one.coreapp.ui.base.activities.BaseActivity
-import com.one.coreapp.utils.extentions.log
+import com.one.analytics.logAnalytics
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -105,7 +105,7 @@ interface ReviewView {
             }
         } ?: return@launch
 
-        log("review")
+        logAnalytics("review")
     }
 
     open fun canShowReview(count: Long): Boolean {

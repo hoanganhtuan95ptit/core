@@ -1,11 +1,11 @@
 package com.one.task
 
-import com.one.coreapp.data.usecase.ResultState
-import com.one.coreapp.data.usecase.isFailed
-import com.one.coreapp.data.usecase.isSuccess
-import com.one.coreapp.data.usecase.toFailed
-import com.one.coreapp.utils.extentions.log
-import com.one.coreapp.utils.extentions.logException
+import com.one.state.ResultState
+import com.one.state.isFailed
+import com.one.state.isSuccess
+import com.one.state.toFailed
+import com.one.analytics.logAnalytics
+import com.one.crashlytics.logCrashlytics
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.ProducerScope
 import kotlinx.coroutines.channels.awaitClose
@@ -42,19 +42,19 @@ interface Task<Param, Result> {
 
     suspend fun logStart(taskId: String) {
 
-        log("${this.javaClass.simpleName} $taskId start")
+        logAnalytics("${this.javaClass.simpleName} $taskId start")
     }
 
     suspend fun logSuccess(taskId: String) {
 
-        log("${this.javaClass.simpleName} $taskId success")
+        logAnalytics("${this.javaClass.simpleName} $taskId success")
     }
 
     suspend fun logFailed(taskId: String, throwable: Throwable) {
 
         if (throwable is LowException || throwable is CancellationException) return
 
-        logException(java.lang.RuntimeException("${this.javaClass.simpleName} $taskId failed", throwable))
+        logCrashlytics(java.lang.RuntimeException("${this.javaClass.simpleName} $taskId failed", throwable))
     }
 
     suspend fun executeTask(param: Param): Result {

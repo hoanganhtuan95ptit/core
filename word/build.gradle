@@ -17,11 +17,11 @@ android {
         viewBinding true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.javaVersion.toString()
     }
     lintOptions {
         abortOnError false
@@ -43,8 +43,4 @@ dependencies {
     implementation 'com.googlecode.libphonenumber:libphonenumber:8.12.31'
 
     implementation 'com.github.donkingliang:ConsecutiveScroller:4.6.3'
-
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
