@@ -29,6 +29,7 @@
                 <arg>$MODULE_DIR$/../../../core-ads/build/intermediates/compile_r_class_jar/debug/R.jar</arg>
                 <arg>$MODULE_DIR$/../../../core-app/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/f265284f87834d79fb946beef5af5ae4/transformed/firebase-ads-21.1.0-api.jar</arg>
+                <arg>$MODULE_DIR$/../../../config/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../task/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../analytics/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../crashlytics/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>

@@ -19,6 +19,7 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ef04d132edef1cbe647b621e5acc1798/transformed/junit-1.1.5-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/e979e7a3a883af44930e9082dcedbe71/transformed/espresso-core-3.5.1-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../core-app/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
+                <arg>$MODULE_DIR$/../../../config/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../task/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../adapter/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../analytics/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>

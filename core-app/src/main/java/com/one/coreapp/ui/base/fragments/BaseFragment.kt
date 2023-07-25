@@ -16,9 +16,8 @@ import com.one.coreapp.utils.extentions.navigateUp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import java.io.IOException
-import java.util.*
+import java.util.UUID
 import java.util.concurrent.CopyOnWriteArrayList
-import kotlin.collections.HashMap
 
 open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), BackPressedView, ComponentCache {
 
@@ -39,6 +38,11 @@ open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentL
         for (confirmDialog in confirmDialogList) {
             if (confirmDialog != null && confirmDialog.isShowing) confirmDialog.dismiss()
         }
+    }
+
+    open fun dismiss() {
+        
+        (parentFragment?.childFragmentManager ?: activity?.supportFragmentManager)?.popBackStack()
     }
 
     @CallSuper
