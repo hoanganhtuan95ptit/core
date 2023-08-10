@@ -3,11 +3,9 @@ package com.one.coreapp.utils
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Environment
-import android.util.Log
 import android.webkit.MimeTypeMap
 import android.webkit.URLUtil
 import com.one.coreapp.BaseApp
-import com.one.coreapp.BuildConfig
 import java.io.File
 import java.io.FileOutputStream
 
@@ -54,7 +52,6 @@ object FileUtils {
         val file = File(directory, name)
 
         return if (file.exists() || file.createNewFile()) {
-            if (BuildConfig.DEBUG) Log.d("Đã tạo file: %s", file.absolutePath)
             file
         } else {
             null
@@ -69,7 +66,6 @@ object FileUtils {
         }
 
         return if (directory.exists() || directory.mkdirs()) {
-            if (BuildConfig.DEBUG) Log.d("Đã tạo folder: %s", directory.absolutePath)
             directory
         } else {
             null

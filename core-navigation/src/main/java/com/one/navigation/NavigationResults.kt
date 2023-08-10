@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentResultListener
 import androidx.lifecycle.*
-import com.one.coreapp.BuildConfig
 import com.one.coreapp.utils.extentions.Event
 import com.one.coreapp.utils.extentions.getViewModelGlobal
 import com.one.coreapp.utils.extentions.postValue
@@ -16,7 +15,6 @@ import com.one.coreapp.utils.extentions.toEvent
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
-import org.koin.java.KoinJavaComponent
 
 private val module = module {
 
@@ -24,8 +22,6 @@ private val module = module {
 }
 
 private val loadKoinModules by lazy {
-
-    if (BuildConfig.DEBUG) Log.d("tuanha1", "loadKoinModules: ")
 
     loadKoinModules(module)
 }

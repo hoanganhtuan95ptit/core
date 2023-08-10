@@ -3,6 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.iml" filepath="$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.main.iml" filepath="$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/aaconstant/Core.aaconstant.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.main.iml" filepath="$PROJECT_DIR$/.idea/modules/adapter/Core.adapter.main.iml" />
@@ -19,6 +23,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.iml" filepath="$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/-1250868953/Core.bottomsheet.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config/Core.config.iml" filepath="$PROJECT_DIR$/.idea/modules/config/Core.config.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/config-firebase/Core.config-firebase.androidTest.iml" />

@@ -46,7 +46,7 @@ abstract class BaseCacheImpl : BaseCache {
             Float::class -> data?.toFloat() as? T?
             Long::class -> data?.toLong() as? T?
             Int::class -> data?.toInt() as? T?
-            else -> data?.toObject(T::class.java)
+            else -> data?.toObject()
         }
     }
 

@@ -2,12 +2,15 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
+      <module name="Core.aaconstant" target="17" />
       <module name="Core.adapter" target="17" />
       <module name="Core.analytics" target="17" />
       <module name="Core.analytics-firebase" target="17" />
       <module name="Core.app" target="17" />
+      <module name="Core.bottomsheet" target="17" />
       <module name="Core.config" target="17" />
       <module name="Core.config-firebase" target="17" />
+      <module name="Core.constant" target="17" />
       <module name="Core.core-ads" target="17" />
       <module name="Core.core-app" target="17" />
       <module name="Core.core-navigation" target="17" />

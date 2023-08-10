@@ -3,7 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
 }
 
+apply from: "../aaconstant/constants.gradle"
+
 java {
-    sourceCompatibility = rootProject.javaVersion
-    targetCompatibility = rootProject.javaVersion
+    sourceCompatibility project.ext.javaVersion
+    targetCompatibility project.ext.javaVersion
 }

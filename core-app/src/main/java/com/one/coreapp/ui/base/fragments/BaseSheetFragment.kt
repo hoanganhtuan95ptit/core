@@ -15,16 +15,26 @@ import com.one.coreapp.R
 import com.one.coreapp.ui.ComponentCache
 import com.one.coreapp.utils.extentions.getColorFromAttr
 import com.one.coreapp.utils.extentions.getNavigationBarHeight
+import com.tuanhoang.bottomsheet.CustomBottomSheetDialog
 
-abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) : BottomSheetDialogFragment(), BackPressedView , ComponentCache {
+abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) : BottomSheetDialogFragment(), BackPressedView, ComponentCache {
 
     override val mBagOfTags: HashMap<String, Any> = hashMapOf()
+
+
+    open val isSupportAnimation: Boolean = true
+
 
     protected lateinit var bottomSheet: View
 
     protected lateinit var behavior: BottomSheetBehavior<*>
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
+        if (isSupportAnimation) {
+
+            return CustomBottomSheetDialog(requireContext(), theme)
+        }
 
         val dialog = super.onCreateDialog(savedInstanceState)
 

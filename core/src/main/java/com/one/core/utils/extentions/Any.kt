@@ -1,5 +1,6 @@
 package com.one.core.utils.extentions
 
+import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
 
 class ObjectMapperProvider {
@@ -16,32 +17,26 @@ class ObjectMapperProvider {
 
 }
 
-fun <T> String.toObject(clazz: Class<T>): T {
-    return ObjectMapperProvider.instance.objectMapper.readValue(this, clazz)
+inline fun <reified T> String.toObject(): T {
+
+    return ObjectMapperProvider.instance.objectMapper.readValue(this, object : TypeReference<T>() {})
 }
 
-fun <T> String.toObjectOrNull(clazz: Class<T>): T? {
+inline fun <reified T> String?.toListOrEmpty(): List<T> {
+
+    return toObjectOrNull<List<T>>() ?: emptyList()
+}
+
+inline fun <reified T> String?.toObjectOrNull(): T? {
+
     if (isNullOrBlank()) return null
 
-    return ObjectMapperProvider.instance.objectMapper.readValue(this, clazz)
-}
-
-fun <T> String.toListObject(clazz: Class<T>): List<T> {
-    if (isNullOrBlank()) return emptyList()
-
-    val listType = ObjectMapperProvider.instance.objectMapper.typeFactory.constructCollectionType(List::class.java, clazz)
-    return ObjectMapperProvider.instance.objectMapper.readValue(this, listType)
-}
-
-fun <T> String.toListObjectOrEmpty(clazz: Class<T>): List<T> {
-    if (isNullOrBlank()) return emptyList()
-
-    val listType = ObjectMapperProvider.instance.objectMapper.typeFactory.constructCollectionType(List::class.java, clazz)
-    return ObjectMapperProvider.instance.objectMapper.readValue(this, listType)
+    return toObject()
 }
 
 
 fun Any?.toJson(): String {
+
     if (this == null) return ""
 
     return ObjectMapperProvider.instance.objectMapper.writeValueAsString(this)

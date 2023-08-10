@@ -1,14 +1,16 @@
 package com.one.coreapp.utils.extentions
 
 import android.app.Activity
-import android.util.Log
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.*
+import androidx.navigation.NavController
+import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
+import androidx.navigation.Navigation
+import androidx.navigation.Navigator
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import com.one.coreapp.BuildConfig
 import com.one.coreapp.TRANSITION
 
 fun FragmentActivity.navigate(directions: NavDirections, navOptions: NavOptions? = null, navigatorExtras: Navigator.Extras? = null) {
@@ -41,7 +43,6 @@ fun NavController.navigate(directions: NavDirections, navOptions: NavOptions? = 
         navigate(directions.actionId, bundle, navOptions ?: navBuilder.build(), navigatorExtras)
     } catch (e: Exception) {
 
-        if (BuildConfig.DEBUG) Log.e("tuanha1", "navigate: ", e)
     }
 }
 

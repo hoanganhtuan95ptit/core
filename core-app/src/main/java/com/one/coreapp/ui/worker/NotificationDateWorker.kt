@@ -107,7 +107,7 @@ class NotificationDateWorker(context: Context, workerParams: WorkerParameters) :
             this.contentIntent = intent
         })
 
-        logAnalytics("notification", "")
+        logAnalytics("notification" to  "")
 
         return Result.retry()
     }

@@ -3,9 +3,11 @@ plugins {
     id 'kotlin'
 }
 
+apply from: "../aaconstant/constants.gradle"
+
 java {
-    sourceCompatibility = rootProject.javaVersion
-    targetCompatibility = rootProject.javaVersion
+    sourceCompatibility = project.ext.javaVersion
+    targetCompatibility = project.ext.javaVersion
 }
 
 dependencies {
@@ -15,4 +17,6 @@ dependencies {
     api coroutinesDependencies.core
 
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    testImplementation 'junit:junit:4.13.2'
 }

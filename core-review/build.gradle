@@ -3,12 +3,15 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply from: "../aaconstant/constants.gradle"
+
 android {
-    compileSdkVersion rootProject.compileSdkVersion
+    namespace "$project.ext.namespacePrefix.$project.name"
+    compileSdkVersion project.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
 
         multiDexEnabled = true
     }
@@ -16,11 +19,11 @@ android {
         viewBinding true
     }
     compileOptions {
-        sourceCompatibility rootProject.javaVersion
-        targetCompatibility rootProject.javaVersion
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
     }
     kotlinOptions {
-        jvmTarget = rootProject.javaVersion.toString()
+        jvmTarget = project.ext.javaVersion.toString()
     }
     lintOptions {
         abortOnError false

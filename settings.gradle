@@ -9,26 +9,27 @@ include ':core-review'
 include ':core-update'
 include ':core-navigation'
 
-include ':translate'
-include ':translate-mlkit'
+include ':job'
+include ':task'
+include ':word'
+include ':state'
+include ':adapter'
+include ':aaconstant'
 
 include ':detect'
 include ':detect-mlkit'
 
-include ':word'
-
-include ':task'
-
-include ':state'
-
+include ':config'
 include ':config-firebase'
-
-include ':adapter'
 
 include ':analytics'
 include ':analytics-firebase'
 
+include ':translate'
+include ':translate-mlkit'
+
 include ':crashlytics'
 include ':crashlytics-firebase'
-include ':job'
-include ':config'
+
+include ':bottomsheet'
+project(':bottomsheet').projectDir = file('../Android-HackBottomSheet/bottomsheet')

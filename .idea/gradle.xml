@@ -7,9 +7,11 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/aaconstant" />
             <option value="$PROJECT_DIR$/adapter" />
             <option value="$PROJECT_DIR$/analytics" />
             <option value="$PROJECT_DIR$/analytics-firebase" />
@@ -32,6 +34,7 @@
             <option value="$PROJECT_DIR$/translate" />
             <option value="$PROJECT_DIR$/translate-mlkit" />
             <option value="$PROJECT_DIR$/word" />
+            <option value="$PROJECT_DIR$/../Android-HackBottomSheet/bottomsheet" />
           </set>
         </option>
       </GradleProjectSettings>

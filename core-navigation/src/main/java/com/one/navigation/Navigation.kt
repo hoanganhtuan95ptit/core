@@ -1,10 +1,8 @@
 package com.one.navigation
 
 import android.app.Activity
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigator
-import com.one.coreapp.BuildConfig
 import com.one.coreapp.ui.dialogs.OptionViewItem
 import java.io.Serializable
 
@@ -19,11 +17,6 @@ interface Navigation {
         }
 
         event.navigationList.add(this.javaClass.simpleName)
-
-        if (BuildConfig.DEBUG && this is Activity) {
-
-            Log.d("tuanha1", "offerNavEvent: ${event.navigationList}")
-        }
 
         if (this is Activity) {
 
