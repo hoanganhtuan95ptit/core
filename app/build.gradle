@@ -6,7 +6,7 @@ plugins {
 apply from: "../constant/build.gradle"
 
 android {
-    namespace "$project.ext.namespacePrefix.$project.name"
+    namespace "com.tuanha.app"
     compileSdkVersion project.ext.compileSdkVersion
 
     defaultConfig {

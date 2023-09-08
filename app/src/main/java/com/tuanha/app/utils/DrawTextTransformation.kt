@@ -10,8 +10,8 @@
 //import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool
 //import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 //import com.bumptech.glide.util.Util
-//import com.one.detect.entities.TextBlock
-//import com.one.detect.entities.wrap
+//import com.simple.detect.entities.TextBlock
+//import com.simple.detect.entities.wrap
 //import java.nio.ByteBuffer
 //import java.security.MessageDigest
 //import kotlin.math.max

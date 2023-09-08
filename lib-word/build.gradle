@@ -7,7 +7,7 @@ plugins {
 apply from: "../constant/build.gradle"
 
 android {
-    namespace 'com.tuanha.analytics'
+    namespace 'com.simple.word'
     compileSdkVersion project.ext.compileSdkVersion
 
     defaultConfig {

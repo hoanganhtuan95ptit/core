@@ -1,8 +1,8 @@
 package com.tuanha.app
 
-import com.one.analytics.logAnalytics
-import com.one.coreapp.BaseApp
-import com.one.coreapp.Module
+import com.simple.analytics.logAnalytics
+import com.simple.coreapp.BaseApp
+import com.simple.coreapp.Module
 import com.tuanha.app.di.appModule
 import org.koin.android.ext.android.getKoin
 import org.koin.core.context.loadKoinModules
@@ -21,7 +21,7 @@ class App : BaseApp() {
             )
         )
 
-        logAnalytics("test", data = "test")
+        logAnalytics("test" to "test")
 
         super.onCreate()
 

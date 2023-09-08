@@ -1,6 +1,6 @@
 package com.tuanha.app.di
 
-import com.one.analytics.Analytics
+import com.simple.analytics.Analytics
 import com.tuanha.app.data.analytics.LogAnalytics
 import org.koin.dsl.bind
 import org.koin.dsl.module

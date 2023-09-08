@@ -1,17 +1,15 @@
 package com.tuanha.app.data.analytics
 
 import android.util.Log
-import com.one.analytics.Analytics
-import com.one.analytics.BuildConfig
-import com.one.core.utils.extentions.toJson
-import com.one.state.ResultState
+import com.simple.analytics.Analytics
+import com.simple.analytics.BuildConfig
+import com.simple.core.utils.extentions.toJson
+import com.simple.state.ResultState
 
 class LogAnalytics : Analytics {
 
-    override suspend fun execute(param: Analytics.Param): ResultState<Unit> {
+    override suspend fun execute(vararg params: Pair<String, String>) {
 
-        if (BuildConfig.DEBUG) Log.d("tuanha1", "LogAnalytics execute: ${param.toJson()}")
-
-        return ResultState.Success(Unit)
+        if (BuildConfig.DEBUG) Log.d("tuanha1", "Analytics: ${params.toMap().toJson()}")
     }
 }
