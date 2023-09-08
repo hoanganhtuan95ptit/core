@@ -1,12 +1,8 @@
 project.ext {
 
-    versionCode = new Date().format('yyyyMMddHH').toInteger()
-    versionName = "1.1." + new Date().format('yyyy.MM.dd.hh.mm').toString()
     minSdkVersion = 21
     targetSdkVersion = 33
     compileSdkVersion = 33
-
-    namespacePrefix = 'com.tuanha'
 
     javaVersion = JavaVersion.VERSION_11
 

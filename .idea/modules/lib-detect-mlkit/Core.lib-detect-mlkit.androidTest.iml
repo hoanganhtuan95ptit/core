@@ -46,17 +46,9 @@
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/9fac11d5651ca4b0b63b3e1c44f9acab/transformed/jetified-glide-4.15.1-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/34bfea2efb93c7760c20c6fed4a6cdbf/transformed/jetified-language-id-17.0.4-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/f190a774be4f27e184766f696dd400d2/transformed/jetified-text-recognition-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/700ceebebfcfd7661bef04ee2da3eee4/transformed/jetified-text-recognition-chinese-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/87c3f9f41794d508e3ad9551871fc015/transformed/jetified-text-recognition-devanagari-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/3365076f20051f92493de99ba264c0d9/transformed/jetified-text-recognition-japanese-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/8520818c1648ee66d0c247e901d86e71/transformed/jetified-text-recognition-korean-16.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/246b808fcd32c6e133915b1cccf5e600/transformed/jetified-language-id-common-16.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/ca937c3418c560c61bf52d72568234e4/transformed/jetified-play-services-mlkit-text-recognition-19.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/8d8195ee544a72be0311d8633a474cc3/transformed/jetified-text-recognition-bundled-common-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/3ee5cf0ba8ef90d4505d878bb9d4cd1e/transformed/jetified-play-services-mlkit-text-recognition-chinese-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/02db5f1475dafeff0322ba9c5633a874/transformed/jetified-play-services-mlkit-text-recognition-devanagari-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/8d0b311b880ea6e0c7e8fc9791e04d7c/transformed/jetified-play-services-mlkit-text-recognition-japanese-16.0.0-api.jar</arg>
-                <arg>$USER_HOME$/.gradle/caches/transforms-3/536594b45cafedf0ae9809a2be9250f2/transformed/jetified-play-services-mlkit-text-recognition-korean-16.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/78674ebcc2ccf8ff3a111d973782f693/transformed/jetified-play-services-mlkit-text-recognition-common-19.0.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/7b0b9d296a7b28b457c012f4731173be/transformed/jetified-vision-common-17.3.0-api.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/cea9aef378d959fd12d2ebe040e2dad9/transformed/jetified-common-18.8.0-api.jar</arg>
@@ -241,17 +233,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.github.bumptech.glide:glide:4.15.1@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:language-id:17.0.4@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:text-recognition:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:text-recognition-chinese:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:text-recognition-devanagari:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:text-recognition-japanese:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:text-recognition-korean:16.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:language-id-common:16.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-mlkit-text-recognition:19.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:text-recognition-bundled-common:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-mlkit-text-recognition-chinese:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-mlkit-text-recognition-devanagari:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-mlkit-text-recognition-japanese:16.0.0@aar" level="project" />
-    <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:vision-common:17.3.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.mlkit:common:18.8.0@aar" level="project" />
