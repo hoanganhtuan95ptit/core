@@ -1,0 +1,93 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.App" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="colorPrimary">#37aa5f</item>
+        <item name="colorPrimaryVariant">#37aa5f</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="colorAccent">#FFC800</item>
+        <item name="colorOnAccent">#000000</item>
+
+        <item name="colorStatusBar">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorStatusBar</item>
+
+        <item name="android:colorBackground">#F7F7F9</item>
+
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#000000</item>
+        <item name="colorOnSurfaceVariant">#5b5b5b</item>
+
+        <item name="colorPositive">#37aa5f</item>
+        <item name="colorOnPositive">#FFFFFF</item>
+        <item name="colorNegative">#FF0000</item>
+        <item name="colorOnNegative">#FFFFFF</item>
+
+        <item name="colorTrue">#37aa5f</item>
+        <item name="colorError">#FF0000</item>
+        <item name="colorDivider">#e1e1e1</item>
+        <item name="colorPlaceHolder">#e1e1e1</item>
+
+        <item name="textBody1">@style/TextBody1</item>
+        <item name="textBody2">@style/TextBody2</item>
+        <item name="textButton">@style/TextButton</item>
+        <item name="textCaption">@style/TextCaption</item>
+        <item name="textOverline">@style/TextOverline</item>
+        <item name="textSubtitle1">@style/TextSubtitle1</item>
+        <item name="textSubtitle2">@style/TextSubtitle2</item>
+        <item name="textHeadline1">@style/TextHeadline1</item>
+        <item name="textHeadline2">@style/TextHeadline2</item>
+        <item name="textHeadline3">@style/TextHeadline3</item>
+        <item name="textHeadline4">@style/TextHeadline4</item>
+        <item name="textHeadline5">@style/TextHeadline5</item>
+        <item name="textHeadline6">@style/TextHeadline6</item>
+
+        <item name="buttonNormal">@style/ButtonNormal</item>
+
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="Theme.Dark" parent="Base.Theme.App">
+
+        <item name="colorPrimary">#17171A</item>
+        <item name="colorPrimaryVariant">#17171A</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="android:colorBackground">#000000</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <item name="colorOnBackground">#FFFFFF</item>
+
+        <item name="colorSurface">#17171A</item>
+        <item name="colorOnSurface">#FFFFFF</item>
+
+        <item name="colorSurfaceVariant">#222228</item>
+        <item name="colorOnSurfaceVariant">#FFFFFF</item>
+
+        <item name="colorTrue">#37aa5f</item>
+        <item name="colorError">#FF0000</item>
+        <item name="colorDivider">#e1e1e1</item>
+    </style>
+
+    <style name="Theme.Night" parent="Base.Theme.App">
+
+        <item name="colorPrimary">#37aa5f</item>
+        <item name="colorPrimaryVariant">#37aa5f</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#000000</item>
+        <item name="colorOnSurfaceVariant">#5b5b5b</item>
+
+        <item name="colorTrue">#37aa5f</item>
+        <item name="colorError">#FF0000</item>
+        <item name="colorDivider">#e1e1e1</item>
+    </style>
+</resources>

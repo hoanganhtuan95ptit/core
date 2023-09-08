@@ -2,31 +2,29 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="11">
-      <module name="Core.aaconstant" target="17" />
-      <module name="Core.adapter" target="17" />
-      <module name="Core.analytics" target="17" />
-      <module name="Core.analytics-firebase" target="17" />
       <module name="Core.app" target="17" />
-      <module name="Core.bottomsheet" target="17" />
-      <module name="Core.config" target="17" />
-      <module name="Core.config-firebase" target="17" />
-      <module name="Core.constant" target="17" />
-      <module name="Core.core-ads" target="17" />
-      <module name="Core.core-app" target="17" />
-      <module name="Core.core-navigation" target="17" />
-      <module name="Core.core-review" target="17" />
-      <module name="Core.core-update" target="17" />
-      <module name="Core.crashlytics" target="17" />
-      <module name="Core.crashlytics-firebase" target="17" />
-      <module name="Core.detect" target="17" />
-      <module name="Core.detect-mlkit" target="17" />
       <module name="Core.detect-mlkit-latin" target="11" />
       <module name="Core.detect-tesseract" target="11" />
-      <module name="Core.job" target="17" />
-      <module name="Core.task" target="17" />
-      <module name="Core.translate" target="17" />
-      <module name="Core.translate-mlkit" target="17" />
-      <module name="Core.word" target="17" />
+      <module name="Core.lib-adapter" target="17" />
+      <module name="Core.lib-analytics" target="17" />
+      <module name="Core.lib-analytics-firebase" target="17" />
+      <module name="Core.lib-bottomsheet" target="17" />
+      <module name="Core.lib-config" target="17" />
+      <module name="Core.lib-config-firebase" target="17" />
+      <module name="Core.lib-core-ads" target="17" />
+      <module name="Core.lib-core-app" target="17" />
+      <module name="Core.lib-core-navigation" target="17" />
+      <module name="Core.lib-core-review" target="17" />
+      <module name="Core.lib-core-update" target="17" />
+      <module name="Core.lib-crashlytics" target="17" />
+      <module name="Core.lib-crashlytics-firebase" target="17" />
+      <module name="Core.lib-detect" target="17" />
+      <module name="Core.lib-detect-mlkit" target="17" />
+      <module name="Core.lib-job" target="17" />
+      <module name="Core.lib-task" target="17" />
+      <module name="Core.lib-translate" target="17" />
+      <module name="Core.lib-translate-mlkit" target="17" />
+      <module name="Core.lib-word" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -2,34 +2,34 @@ rootProject.name = "Core"
 
 include ':app'
 
-include ':core'
-include ':core-app'
-include ':core-ads'
-include ':core-review'
-include ':core-update'
-include ':core-navigation'
+include ':lib-core'
+include ':lib-core-app'
+include ':lib-core-ads'
+include ':lib-core-review'
+include ':lib-core-update'
+include ':lib-core-navigation'
 
-include ':job'
-include ':task'
-include ':word'
-include ':state'
-include ':adapter'
-include ':aaconstant'
+include ':lib-job'
+include ':lib-task'
+include ':lib-word'
+include ':lib-state'
+include ':lib-adapter'
+include ':constant'
 
-include ':detect'
-include ':detect-mlkit'
+include ':lib-detect'
+include ':lib-detect-mlkit'
 
-include ':config'
-include ':config-firebase'
+include ':lib-config'
+include ':lib-config-firebase'
 
-include ':analytics'
-include ':analytics-firebase'
+include ':lib-analytics'
+include ':lib-analytics-firebase'
 
-include ':translate'
-include ':translate-mlkit'
+include ':lib-translate'
+include ':lib-translate-mlkit'
 
-include ':crashlytics'
-include ':crashlytics-firebase'
+include ':lib-crashlytics'
+include ':lib-crashlytics-firebase'
 
-include ':bottomsheet'
-project(':bottomsheet').projectDir = file('../Android-HackBottomSheet/bottomsheet')
+include ':lib-bottomsheet'
+project(':lib-bottomsheet').projectDir = file('../Android-HackBottomSheet/lib-bottomsheet')

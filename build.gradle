@@ -1,6 +1,6 @@
 buildscript {
 
-    apply from: 'aaconstant/constants.gradle'
+    apply from: 'constant/build.gradle'
 
     repositories {
         google()

@@ -11,30 +11,30 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/aaconstant" />
-            <option value="$PROJECT_DIR$/adapter" />
-            <option value="$PROJECT_DIR$/analytics" />
-            <option value="$PROJECT_DIR$/analytics-firebase" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/config" />
-            <option value="$PROJECT_DIR$/config-firebase" />
-            <option value="$PROJECT_DIR$/core" />
-            <option value="$PROJECT_DIR$/core-ads" />
-            <option value="$PROJECT_DIR$/core-app" />
-            <option value="$PROJECT_DIR$/core-navigation" />
-            <option value="$PROJECT_DIR$/core-review" />
-            <option value="$PROJECT_DIR$/core-update" />
-            <option value="$PROJECT_DIR$/crashlytics" />
-            <option value="$PROJECT_DIR$/crashlytics-firebase" />
-            <option value="$PROJECT_DIR$/detect" />
-            <option value="$PROJECT_DIR$/detect-mlkit" />
-            <option value="$PROJECT_DIR$/job" />
-            <option value="$PROJECT_DIR$/state" />
-            <option value="$PROJECT_DIR$/task" />
-            <option value="$PROJECT_DIR$/translate" />
-            <option value="$PROJECT_DIR$/translate-mlkit" />
-            <option value="$PROJECT_DIR$/word" />
-            <option value="$PROJECT_DIR$/../Android-HackBottomSheet/bottomsheet" />
+            <option value="$PROJECT_DIR$/constant" />
+            <option value="$PROJECT_DIR$/lib-adapter" />
+            <option value="$PROJECT_DIR$/lib-analytics" />
+            <option value="$PROJECT_DIR$/lib-analytics-firebase" />
+            <option value="$PROJECT_DIR$/lib-config" />
+            <option value="$PROJECT_DIR$/lib-config-firebase" />
+            <option value="$PROJECT_DIR$/lib-core" />
+            <option value="$PROJECT_DIR$/lib-core-ads" />
+            <option value="$PROJECT_DIR$/lib-core-app" />
+            <option value="$PROJECT_DIR$/lib-core-navigation" />
+            <option value="$PROJECT_DIR$/lib-core-review" />
+            <option value="$PROJECT_DIR$/lib-core-update" />
+            <option value="$PROJECT_DIR$/lib-crashlytics" />
+            <option value="$PROJECT_DIR$/lib-crashlytics-firebase" />
+            <option value="$PROJECT_DIR$/lib-detect" />
+            <option value="$PROJECT_DIR$/lib-detect-mlkit" />
+            <option value="$PROJECT_DIR$/lib-job" />
+            <option value="$PROJECT_DIR$/lib-state" />
+            <option value="$PROJECT_DIR$/lib-task" />
+            <option value="$PROJECT_DIR$/lib-translate" />
+            <option value="$PROJECT_DIR$/lib-translate-mlkit" />
+            <option value="$PROJECT_DIR$/lib-word" />
+            <option value="$PROJECT_DIR$/../Android-HackBottomSheet/lib-bottomsheet" />
           </set>
         </option>
       </GradleProjectSettings>
