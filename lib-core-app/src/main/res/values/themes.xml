@@ -58,7 +58,7 @@
         <item name="android:colorBackground">#000000</item>
 
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
 
         <item name="colorOnBackground">#FFFFFF</item>
 
