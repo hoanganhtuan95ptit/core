@@ -110,7 +110,8 @@ project.ext {
             android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4",
     ]
 
-    hoanganhtuan95ptit = [
-            bottomsheet: "com.github.hoanganhtuan95ptit:Android-HackBottomSheet:1.0.0"
+    sentryDependencies = [
+
+            android: "io.sentry:sentry-android:6.28.0"
     ]
 }

@@ -26,7 +26,6 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
-                <arg>$MODULE_DIR$/../../../lib-core-ads/build/intermediates/compile_r_class_jar/debug/R.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-core-app/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$USER_HOME$/.gradle/caches/transforms-3/c6a5f583de4a689c581a562f74d2709d/transformed/jetified-firebase-ads-21.1.0-api.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-config/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>

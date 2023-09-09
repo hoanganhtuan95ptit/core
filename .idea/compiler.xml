@@ -8,6 +8,7 @@
       <module name="Core.lib-adapter" target="17" />
       <module name="Core.lib-analytics" target="17" />
       <module name="Core.lib-analytics-firebase" target="17" />
+      <module name="Core.lib-analytics-sentry" target="17" />
       <module name="Core.lib-bottomsheet" target="17" />
       <module name="Core.lib-config" target="17" />
       <module name="Core.lib-config-firebase" target="17" />
@@ -18,6 +19,7 @@
       <module name="Core.lib-core-update" target="17" />
       <module name="Core.lib-crashlytics" target="17" />
       <module name="Core.lib-crashlytics-firebase" target="17" />
+      <module name="Core.lib-crashlytics-sentry" target="17" />
       <module name="Core.lib-detect" target="17" />
       <module name="Core.lib-detect-mlkit" target="17" />
       <module name="Core.lib-job" target="17" />

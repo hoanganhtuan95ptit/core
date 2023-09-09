@@ -41,7 +41,8 @@ class MlkitTranslateTask : TranslateTask {
         }
 
 
-        logAnalytics("key" to "mlkit translate task step 1 inputCode:$inputCode outputCode:$outputCode")
+        logAnalytics("Mlkit_Translate_Task_InputCode $inputCode" to inputCode)
+        logAnalytics("Mlkit_Translate_Task_OutputCode $outputCode" to outputCode)
 
 
         val downloadInputCodeStateDeferred = async {
@@ -78,9 +79,6 @@ class MlkitTranslateTask : TranslateTask {
 
 
         val translator = Translation.getClient(options)
-
-
-        logAnalytics("key" to "mlkit translate task step 2 inputCode:$inputCode outputCode:$outputCode")
 
 
         val translateStateList = param.text.map {

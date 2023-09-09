@@ -17,6 +17,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics-firebase/Core.lib-analytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics-firebase/Core.lib-analytics-firebase.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics-firebase/Core.lib-analytics-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics-firebase/Core.lib-analytics-firebase.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics-firebase/Core.lib-analytics-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics-firebase/Core.lib-analytics-firebase.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics-sentry/Core.lib-analytics-sentry.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics/Core.lib-analytics.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics/Core.lib-analytics.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics/Core.lib-analytics.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics/Core.lib-analytics.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-analytics/Core.lib-analytics.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-analytics/Core.lib-analytics.unitTest.iml" />
@@ -60,6 +64,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics-firebase/Core.lib-crashlytics-firebase.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics-firebase/Core.lib-crashlytics-firebase.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics-firebase/Core.lib-crashlytics-firebase.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics-firebase/Core.lib-crashlytics-firebase.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics-firebase/Core.lib-crashlytics-firebase.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics-firebase/Core.lib-crashlytics-firebase.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics-sentry/Core.lib-crashlytics-sentry.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics/Core.lib-crashlytics.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics/Core.lib-crashlytics.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics/Core.lib-crashlytics.main.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics/Core.lib-crashlytics.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/lib-crashlytics/Core.lib-crashlytics.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/lib-crashlytics/Core.lib-crashlytics.unitTest.iml" />

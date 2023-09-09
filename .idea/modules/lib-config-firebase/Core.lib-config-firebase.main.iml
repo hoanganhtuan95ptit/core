@@ -26,7 +26,6 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
-                <arg>$MODULE_DIR$/../../../lib-config-firebase/build/intermediates/compile_r_class_jar/debug/R.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-core-app/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-config/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-task/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>

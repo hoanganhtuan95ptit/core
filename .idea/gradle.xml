@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/lib-adapter" />
             <option value="$PROJECT_DIR$/lib-analytics" />
             <option value="$PROJECT_DIR$/lib-analytics-firebase" />
+            <option value="$PROJECT_DIR$/lib-analytics-sentry" />
             <option value="$PROJECT_DIR$/lib-config" />
             <option value="$PROJECT_DIR$/lib-config-firebase" />
             <option value="$PROJECT_DIR$/lib-core" />
@@ -26,6 +27,7 @@
             <option value="$PROJECT_DIR$/lib-core-update" />
             <option value="$PROJECT_DIR$/lib-crashlytics" />
             <option value="$PROJECT_DIR$/lib-crashlytics-firebase" />
+            <option value="$PROJECT_DIR$/lib-crashlytics-sentry" />
             <option value="$PROJECT_DIR$/lib-detect" />
             <option value="$PROJECT_DIR$/lib-detect-mlkit" />
             <option value="$PROJECT_DIR$/lib-job" />

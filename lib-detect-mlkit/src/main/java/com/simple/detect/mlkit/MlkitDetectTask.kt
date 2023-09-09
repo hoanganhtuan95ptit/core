@@ -36,7 +36,7 @@ class MlkitDetectTask(
         }
 
 
-        logAnalytics("MlkitDetectTask" to "MlkitDetectTask")
+        logAnalytics("MLKIT_DETECT_TASK" to "MLKIT_DETECT_TASK")
 
 
         val path = param.source as? String ?: throw LowException("not support source ${param.source.javaClass.simpleName}")

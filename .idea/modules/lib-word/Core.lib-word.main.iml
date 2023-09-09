@@ -14,7 +14,6 @@
           <stringArguments>
             <stringArg name="classpath">
               <args>
-                <arg>$MODULE_DIR$/../../../lib-word/build/intermediates/compile_r_class_jar/debug/R.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-core-navigation/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-translate/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>
                 <arg>$MODULE_DIR$/../../../lib-core-app/build/intermediates/compile_library_classes_jar/debug/classes.jar</arg>

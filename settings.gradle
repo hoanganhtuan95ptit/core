@@ -33,3 +33,5 @@ include ':lib-crashlytics-firebase'
 
 include ':lib-bottomsheet'
 project(':lib-bottomsheet').projectDir = file('../Android-HackBottomSheet/lib-bottomsheet')
+include ':lib-analytics-sentry'
+include ':lib-crashlytics-sentry'
