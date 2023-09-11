@@ -12,7 +12,7 @@ project.ext {
     nav_version = '2.5.1'
     ktx_version = '1.9.0'
     koin_version = '3.4.1'
-    room_version = "2.4.3"
+    room_version = "2.5.2"
     work_version = "2.7.1"
     glide_version = '4.15.1'
     junit_version = '4.12'
@@ -52,11 +52,25 @@ project.ext {
     firebase_ads_version = '21.1.0'
 
     koinDependencies = [
+
             core   : "io.insert-koin:koin-core:$koin_version",
             android: "io.insert-koin:koin-android:$koin_version",
     ]
 
+    roomDependencies = [
+
+            room_ktx    : "androidx.room:room-ktx:$room_version",
+            room_runtime: "androidx.room:room-runtime:$room_version",
+    ]
+
+    retrofit2Dependencies = [
+
+            retrofit         : "com.squareup.retrofit2:retrofit:2.9.0",
+            converter_jackson: "com.squareup.retrofit2:converter-jackson:2.9.0"
+    ]
+
     jacksonDependencies = [
+
             core       : "com.fasterxml.jackson.core:jackson-core:$jackson_version",
             databind   : "com.fasterxml.jackson.core:jackson-databind:$jackson_version",
             annotations: "com.fasterxml.jackson.core:jackson-annotations:$jackson_version",
@@ -76,9 +90,6 @@ project.ext {
             swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout_version",
             recyclerview         : "androidx.recyclerview:recyclerview:$recycler_version",
             localbroadcastmanager: "androidx.localbroadcastmanager:localbroadcastmanager:$localbroadcastmanager_version",
-
-            room_ktx             : "androidx.room:room-ktx:$room_version",
-            room_runtime         : "androidx.room:room-runtime:$room_version",
 
             work                 : "androidx.work:work-runtime-ktx:$work_version",
 
