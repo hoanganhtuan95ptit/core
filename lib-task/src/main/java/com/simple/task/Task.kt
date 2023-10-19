@@ -52,7 +52,7 @@ interface Task<Param, Result> {
 
     suspend fun logFailed(taskId: String, throwable: Throwable) {
 
-        if (throwable is LowException || throwable is CancellationException) return
+        if (throwable is LowException) return
 
         logCrashlytics(java.lang.RuntimeException("${this.javaClass.simpleName} $taskId failed", throwable))
     }

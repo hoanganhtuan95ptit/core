@@ -2,6 +2,7 @@ package com.simple.crashlytics
 
 import android.util.Log
 import com.simple.job.JobQueueManager
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
 import org.koin.java.KoinJavaComponent.getKoin
 import kotlin.coroutines.CoroutineContext
@@ -14,6 +15,8 @@ private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable
 }
 
 fun logCrashlytics(throwable: Throwable) = JobQueueManager.submit(CRASHLYTICS, handler) {
+
+    if (throwable is CancellationException) return@submit
 
     getKoin().getAll<Crashlytics>().map { it.execute(throwable) }
 }
