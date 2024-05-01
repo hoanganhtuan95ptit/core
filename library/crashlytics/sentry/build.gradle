@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "../../../constant/build.gradle"
+
+android {
+    namespace 'com.simple.crashlytics.sentry'
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = project.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    implementation project(path: ':library:crashlytics')
+
+    implementation sentryDependencies.values()
+}

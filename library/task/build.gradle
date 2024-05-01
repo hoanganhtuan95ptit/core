@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+apply from: "../../constant/build.gradle"
+
+android {
+    namespace "com.simple.task"
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = project.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    api project(path: ':library:state')
+    api project(path: ':library:analytics')
+    api project(path: ':library:crashlytics')
+
+    api coroutinesDependencies.values()
+}

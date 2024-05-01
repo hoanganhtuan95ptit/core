@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+apply from: "../../constant/build.gradle"
+
+android {
+    namespace "com.simple.adapter"
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = project.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    api project(path: ':core:base')
+    api project(path: ':core:binding')
+
+    api androidxDependencies.core
+    api androidxDependencies.recyclerview
+    api androidxDependencies.constraintlayout
+
+    api coroutinesDependencies.values()
+
+    api "io.supercharge:shimmerlayout:$shimmerlayout_version"
+}

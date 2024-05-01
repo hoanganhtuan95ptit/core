@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
+}
+
+apply from: "../../../constant/build.gradle"
+
+android {
+    namespace "com.simple.analytics.firebase"
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility rootProject.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+
+dependencies {
+
+    api project(path: ':library:analytics')
+    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    implementation firebaseDependencies.analytics
+}

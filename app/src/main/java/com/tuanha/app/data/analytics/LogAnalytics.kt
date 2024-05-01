@@ -4,7 +4,6 @@ import android.util.Log
 import com.simple.analytics.Analytics
 import com.simple.analytics.BuildConfig
 import com.simple.core.utils.extentions.toJson
-import com.simple.state.ResultState
 
 class LogAnalytics : Analytics {
 

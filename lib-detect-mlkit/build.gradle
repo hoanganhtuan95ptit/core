@@ -32,8 +32,8 @@ android {
 
 dependencies {
 
-    api project(path: ':lib-detect')
-    api project(path: ':lib-core-app')
+    api project(path: ':library:detect')
+    api project(path: ':library:core:app')
 
 
     implementation 'com.google.mlkit:language-id:17.0.4'

@@ -1,90 +1,132 @@
 package com.simple.navigation
 
-import android.app.Activity
+import android.content.ComponentCallbacks
+import android.view.ViewGroup
+import androidx.annotation.IdRes
+import androidx.core.view.children
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigator
-import com.simple.coreapp.ui.dialogs.OptionViewItem
-import java.io.Serializable
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
+import com.simple.coreapp.utils.extentions.getViewModelGlobal
+import com.simple.navigation.domain.entities.NavigationEvent
+import com.simple.navigation.utils.ext.findParentNavigationOrNull
 
 interface Navigation {
 
+    suspend fun offerNavigationDeepLink(deepLink: String): Boolean {
 
-    fun offerNavEvent(event: NavigationEvent) {
+        val viewModel = getViewModelGlobal(NavigationViewModel::class)
+
+
+        val provider = viewModel.getListProvider(deepLink) ?: return false
+
+        val navigationEvent = provider.second.firstNotNullOfOrNull { it.provideNavigationEvent(deepLink, provider.first) } ?: return false
+
+
+        return offerNavigationEvent(navigationEvent)
+    }
+
+    suspend fun offerNavigationEvent(event: NavigationEvent): Boolean {
 
         if (onNavigationEvent(event)) {
 
-            return
+            return true
         }
 
-        event.navigationList.add(this.javaClass.simpleName)
+        if (this !is ComponentCallbacks) {
 
-        if (this is Activity) {
-
-            return
+            return false
         }
 
-        findParentNavigationOrNull()?.offerNavEvent(event)
+        return findParentNavigationOrNull()?.offerNavigationEvent(event) ?: false
     }
 
-    fun onNavigationEvent(event: NavigationEvent): Boolean {
+    suspend fun onNavigationEvent(event: NavigationEvent): Boolean {
 
-        return false
-    }
+        val fragment = event.provideFragment() ?: return false
 
-    private fun findParentNavigationOrNull(): Navigation? {
 
-        if (this !is Fragment) {
+        val listScope = event.provideListScope()
 
-            return null
+
+        listScope.firstOrNull {
+
+            it.isInstance(this)
+        }?.let {
+
+            return navigateTo(event, it, fragment, tag = event.provideTag())
         }
 
-        var fragment: Fragment? = parentFragment
+        return if (this is FragmentActivity) {
 
-        while (fragment != null && fragment !is Navigation) {
-
-            fragment = fragment.parentFragment
-        }
-
-        return if (fragment is Navigation) {
-
-            fragment
+            navigateTo(event, null, fragment, tag = event.provideTag())
         } else {
 
-            this.activity as? Navigation
+            false
+        }
+    }
+
+    suspend fun navigateTo(event: NavigationEvent, scope: Class<*>?, fragment: Fragment, tag: String?): Boolean {
+
+        val containerViewId: Int
+
+        val fragmentManager: FragmentManager
+
+
+        when (this) {
+
+            is Fragment -> {
+
+                containerViewId = view?.id ?: 0
+
+                fragmentManager = childFragmentManager
+            }
+
+            is FragmentActivity -> {
+
+                containerViewId = findViewById<ViewGroup>(android.R.id.content).children.first().id
+
+                fragmentManager = supportFragmentManager
+            }
+
+            else -> {
+
+                return false
+            }
+        }
+
+
+        val screenLast = fragmentManager.fragments.lastOrNull()
+
+
+        if (screenLast?.javaClass?.isInstance(fragment) == true && screenLast is ChildNavigation) {
+
+            screenLast.updateEvent(event)
+        } else {
+
+            navigateTo(fragmentManager, containerViewId, fragment, tag)
+        }
+
+
+        return true
+    }
+
+    suspend fun navigateTo(fragmentManager: FragmentManager, @IdRes containerViewId: Int, fragment: Fragment, tag: String?) {
+
+        if (fragment is DialogFragment) {
+
+            fragment.show(fragmentManager, tag)
+        } else fragmentManager.commit {
+
+            replace(containerViewId, fragment, tag).addToBackStack("")
         }
     }
 }
 
-fun Fragment.offerNavEvent(event: NavigationEvent) {
+interface ChildNavigation {
 
-    var fragment: Fragment? = this
-
-    while (fragment != null && fragment !is Navigation) {
-        fragment = fragment.parentFragment
+    fun updateEvent(event: NavigationEvent) {
     }
-
-    val navigation: Navigation? = if (fragment is Navigation) {
-
-        fragment
-    } else {
-
-        this.activity as? Navigation
-    }
-
-    navigation?.offerNavEvent(event)
 }
-
-
-open class NavigationEvent : Serializable {
-
-    val navigationList: ArrayList<String> = arrayListOf()
-}
-
-open class ScreenEvent(val transitionName: String? = null, val navExtras: Navigator.Extras? = null) : NavigationEvent()
-
-
-open class BottomSheetEvent<T>(open val keyData: String, open val keyRequest: String, open val list: T) : NavigationEvent()
-
-
-open class OptionEvent(override val keyData: String, override val keyRequest: String, override val list: List<OptionViewItem>) : BottomSheetEvent<List<OptionViewItem>>(keyData, keyRequest, list)
-

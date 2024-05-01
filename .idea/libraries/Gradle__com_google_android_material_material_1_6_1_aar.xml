@@ -1,5 +1,5 @@
 <component name="libraryTable">
-  <library name="Gradle: com.google.android.material:material:1.6.1@aar">
+  <library name="Gradle: com.google.android.material:material:1.6.1@aar" external-system-id="GRADLE">
     <ANNOTATIONS>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/50aab57bcf144e1cc7bd1de0d683b5b5/transformed/material-1.6.1/annotations.zip!/" />
     </ANNOTATIONS>
@@ -9,8 +9,6 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/50aab57bcf144e1cc7bd1de0d683b5b5/transformed/material-1.6.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.6.1/d4d703885d24c61bc0ec39a9a705969e41d773ef/material-1.6.1-sources.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>

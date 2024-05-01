@@ -49,5 +49,5 @@ open class TextBlock : Parcelable {
 }
 
 fun <T : TextBlock> List<T>.wrap(ratio: Float) = validate {
-    rect = rect?.wrap(ratio)
+    it.rect = it.rect?.wrap(ratio)
 }

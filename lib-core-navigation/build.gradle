@@ -32,8 +32,10 @@ android {
 
 dependencies {
 
-    api project(path: ':lib-core-app')
+    api project(path: ':library:core:app')
     api koinDependencies.values()
 
     api coroutinesDependencies.values()
+
+    implementation("androidx.startup:startup-runtime:1.1.1")
 }

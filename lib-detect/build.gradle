@@ -32,6 +32,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':lib-core-app')
+    implementation project(path: ':library:core:app')
 }
 

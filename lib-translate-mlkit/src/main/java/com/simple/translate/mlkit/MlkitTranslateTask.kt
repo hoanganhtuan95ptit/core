@@ -94,7 +94,7 @@ class MlkitTranslateTask : TranslateTask {
 
         if (stateError != null) {
 
-            return@withContext ResultState.Failed(stateError.error)
+            return@withContext ResultState.Failed(stateError.cause)
         }
 
         return@withContext translateStateList.map {

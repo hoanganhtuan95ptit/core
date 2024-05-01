@@ -2,36 +2,55 @@ rootProject.name = "Core"
 
 include ':app'
 
-include ':lib-core'
-include ':lib-core-app'
-include ':lib-core-ads'
-include ':lib-core-review'
-include ':lib-core-update'
-include ':lib-core-navigation'
+//include ':library:core'
+//include ':library:core-app'
+//include ':library:core-ads'
+//include ':library:core-review'
+//include ':library:core-update'
+//include ':library:core-navigation'
+//
+//include ':library:job'
+//include ':library:task'
+//include ':library:word'
+//include ':library:state'
+//include ':library:adapter'
+//include ':constant'
+//
+//include ':library:detect'
+//include ':library:detect-mlkit'
+//
+//include ':library:config'
+//include ':library:config-firebase'
+//
+//include ':library:analytics'
+//include ':library:analytics-firebase'
+//
+//include ':library:translate'
+//include ':library:translate-mlkit'
+//
+//include ':library:crashlytics'
+//include ':library:crashlytics-firebase'
+//
+//include ':library:bottomsheet'
+//project(':library:bottomsheet').projectDir = file('../Android-HackBottomSheet/library:bottomsheet')
 
-include ':lib-job'
-include ':lib-task'
-include ':lib-word'
-include ':lib-state'
-include ':lib-adapter'
-include ':constant'
+include ':core'
+include ':core:app'
+include ':core:base'
 
-include ':lib-detect'
-include ':lib-detect-mlkit'
+include ':library'
+include ':library:job'
+include ':library:task'
+include ':library:state'
+include ':library:adapter'
 
-include ':lib-config'
-include ':lib-config-firebase'
+include ':library:analytics'
+include ':library:analytics:sentry'
+include ':library:analytics:firebase'
 
-include ':lib-analytics'
-include ':lib-analytics-firebase'
+include ':library:crashlytics'
+include ':library:crashlytics:sentry'
+include ':library:crashlytics:firebase'
 
-include ':lib-translate'
-include ':lib-translate-mlkit'
-
-include ':lib-crashlytics'
-include ':lib-crashlytics-firebase'
-
-include ':lib-bottomsheet'
-project(':lib-bottomsheet').projectDir = file('../Android-HackBottomSheet/lib-bottomsheet')
-include ':lib-analytics-sentry'
-include ':lib-crashlytics-sentry'
+//include ':library:translate'
+include ':core:binding'

@@ -32,10 +32,10 @@ android {
 
 dependencies {
 
-    api project(path: ':lib-job')
-    api project(path: ':lib-core')
-    api project(path: ':lib-task')
-    api project(path: ':lib-state')
+    api project(path: ':library:job')
+    api project(path: ':core:base')
+    api project(path: ':library:task')
+    api project(path: ':library:state')
 
     api koinDependencies.values()
 

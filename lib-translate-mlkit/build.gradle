@@ -32,8 +32,8 @@ android {
 
 dependencies {
 
-    api project(path: ':lib-core-app')
-    api project(path: ':lib-translate')
+    api project(path: ':library:core:app')
+    api project(path: ':library:translate')
 
     implementation 'com.google.mlkit:translate:17.0.1'
 

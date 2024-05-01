@@ -18,6 +18,7 @@ import com.simple.detect.mlkit.data.task.MlkitTask
 import com.simple.state.ResultState
 import com.simple.state.isFailed
 import com.simple.state.toFailed
+import com.simple.state.toSuccess
 import com.simple.task.LowException
 import com.simple.task.executeAsyncAll
 import kotlinx.coroutines.flow.first
@@ -45,12 +46,12 @@ class MlkitDetectTask(
         val bitmap = path.toBitmap(width = param.sizeMax, height = param.sizeMax)
 
 
-        val states = taskList.executeAsyncAll(MlkitTask.Param(bitmap)).first()
+        val states = taskList.executeAsyncAll(MlkitTask.Param(bitmap)).first().toSuccess()?.data?: emptyList()
 
 
         if (states.all { it.isFailed() }) {
 
-            return states.filterIsInstance<ResultState.Failed>().minByOrNull { if (it.toFailed()?.error !is LowException) 0 else 1 }!!
+            return states.filterIsInstance<ResultState.Failed>().minByOrNull { if (it.toFailed()?.cause !is LowException) 0 else 1 }!!
         }
 
 
@@ -131,19 +132,19 @@ class MlkitDetectTask(
             }
 
             paragraph
-        }.validate {
+        }.validate { paragraph ->
 
 
-            languageCode = identifyLanguage(text)
+            paragraph.languageCode = identifyLanguage(paragraph.text)
 
 
-            sentences.forEach { sentence ->
+            paragraph.sentences.forEach { sentence ->
 
-                sentence.languageCode = sentence.languageCode.takeIf { it.isNotBlank() } ?: languageCode
+                sentence.languageCode = sentence.languageCode.takeIf { it.isNotBlank() } ?: paragraph.languageCode
 
                 sentence.words.forEach { word ->
 
-                    word.languageCode = word.languageCode.takeIf { it.isNotBlank() } ?: languageCode
+                    word.languageCode = word.languageCode.takeIf { it.isNotBlank() } ?: paragraph.languageCode
                 }
             }
         }
