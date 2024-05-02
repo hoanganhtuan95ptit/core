@@ -7,7 +7,7 @@ apply from: "../../constant/build.gradle"
 
 android {
     namespace "com.simple.job"
-    compileSdkVersion project.ext.compileSdkVersion
+    compileSdk project.ext.compileSdkVersion
 
     defaultConfig {
         minSdkVersion project.ext.minSdkVersion
@@ -24,6 +24,6 @@ android {
 
 dependencies {
 
-    api project(path: ':core:base')
-    api androidxDependencies.values()
+    implementation project(path: ':core:base')
+    implementation androidxDependencies.values()
 }

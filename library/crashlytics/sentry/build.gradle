@@ -9,6 +9,7 @@ android {
     namespace 'com.simple.crashlytics.sentry'
 
     defaultConfig {
+        compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
 

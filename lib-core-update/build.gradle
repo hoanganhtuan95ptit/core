@@ -7,9 +7,9 @@ apply from: "../constant/build.gradle"
 
 android {
     namespace "com.simple.update"
-    compileSdkVersion project.ext.compileSdkVersion
-
+  
     defaultConfig {
+        compileSdk project.ext.compileSdkVersion
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
 

@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.mlkit:language-id-common:16.1.0@aar" external-system-id="GRADLE">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7b37b4d8297f3deb7a6859a1ff1643fc/transformed/jetified-language-id-common-16.1.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7b37b4d8297f3deb7a6859a1ff1643fc/transformed/jetified-language-id-common-16.1.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

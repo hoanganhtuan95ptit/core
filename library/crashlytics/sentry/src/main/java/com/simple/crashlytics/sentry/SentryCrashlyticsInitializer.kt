@@ -2,7 +2,6 @@ package com.simple.crashlytics.sentry
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.simple.analytics.Analytics
 import com.simple.crashlytics.Crashlytics
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.bind

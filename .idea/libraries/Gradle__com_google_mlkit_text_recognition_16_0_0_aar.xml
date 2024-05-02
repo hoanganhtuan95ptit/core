@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.google.mlkit:text-recognition:16.0.0@aar" external-system-id="GRADLE">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7c45197239428ffcd1a203a8996af6b1/transformed/jetified-text-recognition-16.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7c45197239428ffcd1a203a8996af6b1/transformed/jetified-text-recognition-16.0.0/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

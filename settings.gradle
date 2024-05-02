@@ -35,14 +35,18 @@ include ':app'
 //project(':library:bottomsheet').projectDir = file('../Android-HackBottomSheet/library:bottomsheet')
 
 include ':core'
-include ':core:app'
 include ':core:base'
+include ':core:android'
+include ':core:binding'
 
 include ':library'
 include ':library:job'
 include ':library:task'
 include ':library:state'
 include ':library:adapter'
+
+include ':library:config'
+include ':library:config:firebase'
 
 include ':library:analytics'
 include ':library:analytics:sentry'
@@ -52,5 +56,9 @@ include ':library:crashlytics'
 include ':library:crashlytics:sentry'
 include ':library:crashlytics:firebase'
 
-//include ':library:translate'
-include ':core:binding'
+include ':library:detect'
+include ':library:detect:mlkit'
+
+include ':library:translate'
+include ':library:translate:mlkit'
+include ':library:image'

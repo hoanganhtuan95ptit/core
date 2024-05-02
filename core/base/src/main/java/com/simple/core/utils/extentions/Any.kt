@@ -100,7 +100,7 @@ inline fun <reified T> Any?.asListOrDefault(needCheck: Boolean = false, list: Co
     return asListOrNull(needCheck) ?: list
 }
 
-inline fun <reified T> Any?.asListOrEmpty(needCheck: Boolean = false, list: Collection<T>): Collection<T> {
+inline fun <reified T> Any?.asListOrEmpty(needCheck: Boolean = false): Collection<T> {
 
     return asListOrDefault(needCheck, emptyList())
 }

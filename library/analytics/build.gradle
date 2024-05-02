@@ -7,8 +7,9 @@ apply from: "../../constant/build.gradle"
 
 android {
     namespace "com.simple.analytics"
-
+  
     defaultConfig {
+        compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
 

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="17">
+    <bytecodeTargetLevel target="1.8">
+      <module name="Core.app" target="17" />
+      <module name="Core.core.android" target="17" />
+      <module name="Core.core.binding" target="17" />
       <module name="Core.detect-mlkit-latin" target="11" />
       <module name="Core.detect-tesseract" target="11" />
       <module name="Core.lib-adapter" target="17" />
@@ -26,6 +29,22 @@
       <module name="Core.lib-translate" target="17" />
       <module name="Core.lib-translate-mlkit" target="17" />
       <module name="Core.lib-word" target="17" />
+      <module name="Core.library.adapter" target="17" />
+      <module name="Core.library.analytics" target="17" />
+      <module name="Core.library.analytics.firebase" target="17" />
+      <module name="Core.library.analytics.sentry" target="17" />
+      <module name="Core.library.config" target="17" />
+      <module name="Core.library.config.firebase" target="17" />
+      <module name="Core.library.crashlytics" target="17" />
+      <module name="Core.library.crashlytics.firebase" target="17" />
+      <module name="Core.library.crashlytics.sentry" target="17" />
+      <module name="Core.library.detect" target="17" />
+      <module name="Core.library.detect.mlkit" target="17" />
+      <module name="Core.library.image" target="17" />
+      <module name="Core.library.job" target="17" />
+      <module name="Core.library.task" target="17" />
+      <module name="Core.library.translate" target="17" />
+      <module name="Core.library.translate.mlkit" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

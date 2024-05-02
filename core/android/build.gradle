@@ -1,0 +1,65 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs.kotlin'
+}
+
+apply from: "../../constant/build.gradle"
+
+android {
+    namespace "com.simple.coreapp"
+  
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = project.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    api project(path: ':core:base')
+    api project(path: ':library:task')
+    api project(path: ':library:state')
+//    api project(path: ':library:config')
+    api project(path: ':library:adapter')
+
+    api project(path: ':library:analytics')
+    api project(path: ':library:crashlytics')
+
+//    api project(path: ':library:bottomsheet')
+
+    api koinDependencies.values()
+
+    api androidxDependencies.values()
+
+    api coroutinesDependencies.values()
+
+    api "com.google.android.material:material:$material_components_version"
+
+    api "com.squareup.retrofit2:converter-jackson:$retrofit_version"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+
+    api "com.github.bumptech.glide:glide:$glide_version"
+
+    api "com.airbnb.android:lottie:$lottie_version"
+
+    api "io.supercharge:shimmerlayout:$shimmerlayout_version"
+}

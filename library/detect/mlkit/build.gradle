@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "../../../constant/build.gradle"
+
+android {
+    namespace "com.simple.detect.mlkit"
+  
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    api project(path: ':core:android')
+    api project(path: ':library:detect')
+
+    implementation 'com.google.mlkit:language-id:17.0.5'
+    implementation 'com.google.mlkit:text-recognition:16.0.0'
+    implementation project(':library:image')
+}

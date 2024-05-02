@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "../../../constant/build.gradle"
+
+android {
+    namespace "com.simple.translate.mlkit"
+  
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility rootProject.javaVersion
+        targetCompatibility rootProject.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    api project(path: ':core:android')
+    api project(path: ':library:translate')
+
+    implementation 'com.google.mlkit:translate:17.0.2'
+}
