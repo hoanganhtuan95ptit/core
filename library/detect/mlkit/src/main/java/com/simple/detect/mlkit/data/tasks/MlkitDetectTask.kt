@@ -11,10 +11,9 @@ import com.simple.core.utils.extentions.validate
 import com.simple.detect.data.tasks.DetectTask
 import com.simple.detect.entities.Paragraph
 import com.simple.detect.entities.Sentence
-import com.simple.detect.entities.TextRest
 import com.simple.detect.entities.Word
 import com.simple.detect.entities.isDetectText
-import com.simple.detect.mlkit.data.tasks.mlkit.MlkitTask
+import com.simple.detect.mlkit.data.tasks.lanugage.LanguageDetectTask
 import com.simple.image.toBitmap
 import com.simple.state.ResultState
 import com.simple.state.isFailed
@@ -27,7 +26,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 
 class MlkitDetectTask(
     private val context: Context,
-    private val taskList: List<MlkitTask>
+    private val taskList: List<LanguageDetectTask>
 ) : DetectTask {
 
     override suspend fun execute(param: DetectTask.Param): ResultState<List<Paragraph>> {
@@ -47,8 +46,7 @@ class MlkitDetectTask(
 
         val bitmap = path.toBitmap(context = context, width = param.sizeMax, height = param.sizeMax)
 
-
-        val states = taskList.executeAsyncAll(MlkitTask.Param(bitmap)).first().toSuccess()?.data ?: emptyList()
+        val states = taskList.executeAsyncAll(LanguageDetectTask.Param(bitmap, inputCode = param.inputCode)).first().toSuccess()?.data ?: emptyList()
 
 
         if (states.all { it.isFailed() }) {
@@ -101,10 +99,19 @@ class MlkitDetectTask(
 
                         it.text
                     }
-                    word.rect = _word.symbols.mapNotNull { it.boundingBox }.let { rects ->
 
-                        TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-                    }
+                    word.angle = _word.angle
+                    word.points = _word.cornerPoints?.toList()
+                    word.confidence = _word.confidence
+
+//                    word.rect = _word.boundingBox?.let {
+//
+//                        TextRest(it.left, it.top, it.right, it.bottom)
+//                    }
+//                    word.rect = _word.symbols.mapNotNull { it.boundingBox }.let { rects ->
+//
+//                        TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
+//                    }
 
                     word
                 }
@@ -113,10 +120,15 @@ class MlkitDetectTask(
 
                     it.text
                 }
-                sequence.rect = sequence.words.mapNotNull { it.rect }.let { rects ->
 
-                    TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-                }
+                sequence.angle = _sequence.angle
+                sequence.points = _sequence.cornerPoints?.toList()
+                sequence.confidence = _sequence.confidence
+
+//                sequence.rect = sequence.words.mapNotNull { it.rect }.let { rects ->
+//
+//                    TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
+//                }
 
                 sequence
             }
@@ -127,11 +139,12 @@ class MlkitDetectTask(
                 it.text
             }
 
+            paragraph.points = _paragraph.cornerPoints?.toList()
 
-            paragraph.rect = paragraph.sentences.mapNotNull { it.rect }.let { rects ->
-
-                TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-            }
+//            paragraph.rect = paragraph.sentences.mapNotNull { it.rect }.let { rects ->
+//
+//                TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
+//            }
 
             paragraph
         }.validate { paragraph ->
@@ -153,7 +166,6 @@ class MlkitDetectTask(
 
         return ResultState.Success(paragraphList)
     }
-
 
     private suspend fun identifyLanguage(text: String) = suspendCancellableCoroutine<String> { a ->
 

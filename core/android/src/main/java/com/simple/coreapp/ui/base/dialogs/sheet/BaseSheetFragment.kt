@@ -1,5 +1,6 @@
 package com.simple.coreapp.ui.base.dialogs.sheet
 
+import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.simple.coreapp.R
+import com.simple.coreapp.ui.base.dialogs.OnDismissListener
 import com.simple.coreapp.utils.autoCleared
 import com.simple.coreapp.utils.extentions.getColorFromAttr
 
@@ -22,6 +24,9 @@ abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) :
 
 
     protected var behavior by autoCleared<BottomSheetBehavior<*>>()
+
+
+    var onDismissListener: OnDismissListener? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? = if (contentLayoutId != 0) {
@@ -53,5 +58,15 @@ abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) :
             bottomSheet?.setBackgroundColor(Color.TRANSPARENT)
             coordinator?.setBackgroundColor(Color.TRANSPARENT)
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismissListener?.onDismiss()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        onDismissListener = null
     }
 }

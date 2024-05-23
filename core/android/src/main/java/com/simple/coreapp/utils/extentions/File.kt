@@ -1,3 +1,11 @@
+import java.io.BufferedInputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
+import java.net.HttpURLConnection
+import java.net.URL
+
 //package com.simple.coreapp.utils.extentions
 //
 //import android.app.DownloadManager
@@ -83,31 +91,31 @@
 //    }
 //}
 //
-//fun File.downloadSyncV2(path: String) {
-//
-//    val url = URL(path)
-//
-//    val conn = url.openConnection() as HttpURLConnection
-//
-//    conn.connect()
-//
-//    val input: InputStream = BufferedInputStream(url.openStream(), 8192)
-//
-//    val output: OutputStream = FileOutputStream(this)
-//
-//    val data = ByteArray(1024 * 6)
-//
-//    var count: Int
-//    while (input.read(data).also { count = it } != -1) {
-//
-//        output.write(data, 0, count)
-//    }
-//
-//    output.flush()
-//    output.close()
-//
-//    input.close()
-//}
+fun File.downloadSyncV2(path: String) {
+
+    val url = URL(path)
+
+    val conn = url.openConnection() as HttpURLConnection
+
+    conn.connect()
+
+    val input: InputStream = BufferedInputStream(url.openStream(), 8192)
+
+    val output: OutputStream = FileOutputStream(this)
+
+    val data = ByteArray(1024 * 6)
+
+    var count: Int
+    while (input.read(data).also { count = it } != -1) {
+
+        output.write(data, 0, count)
+    }
+
+    output.flush()
+    output.close()
+
+    input.close()
+}
 //
 //fun String.getFile(createFile: Boolean): File {
 //
@@ -125,21 +133,21 @@
 //
 //    return file
 //}
-//
-//
-//fun String.getFile(parent: File, createFile: Boolean): File {
-//
-//    val file = File(parent.absolutePath + "/" + this)
-//
-//    file.parentFile?.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
-//    file.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
-//    file.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
-//    file.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
-//    file.parentFile?.takeIf { !it.exists() }?.mkdirs()
-//
-//    if (createFile && !file.exists()) {
-//        file.createNewFile()
-//    }
-//
-//    return file
-//}
+
+
+fun String.getFile(parent: File, createFile: Boolean): File {
+
+    val file = File(parent.absolutePath + "/" + this)
+
+    file.parentFile?.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
+    file.parentFile?.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
+    file.parentFile?.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
+    file.parentFile?.parentFile?.takeIf { !it.exists() }?.mkdirs()
+    file.parentFile?.takeIf { !it.exists() }?.mkdirs()
+
+    if (createFile && !file.exists()) {
+        file.createNewFile()
+    }
+
+    return file
+}

@@ -47,6 +47,8 @@
         <item name="buttonNormal">@style/ButtonNormal</item>
 
         <item name="android:textStyle">normal</item>
+
+        <item name="bottomSheetDialogTheme">@style/Theme.BottomSheetDialog</item>
     </style>
 
     <style name="Theme.Dark" parent="Base.Theme.App">
@@ -90,4 +92,9 @@
         <item name="colorError">#FF0000</item>
         <item name="colorDivider">#e1e1e1</item>
     </style>
+
+    <style name="Theme.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="paddingBottomSystemWindowInsets">false</item>
+    </style>
+
 </resources>

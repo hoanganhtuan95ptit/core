@@ -1,5 +1,7 @@
 package com.simple.detect.entities
 
+import android.graphics.Point
+import android.os.Parcelable
 import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 import java.util.UUID
@@ -12,13 +14,8 @@ data class Paragraph(
     override var text: String = "",
     override var languageCode: String = "",
 
-    override var rect: TextRest? = null,
+    override var points: List<Point>? = emptyList(),
 
     var words: List<Word> = emptyList(),
     var sentences: List<Sentence> = emptyList()
-) : TextBlock(
-    id,
-    text,
-    languageCode,
-    rect
-)
+) : TextBlock(), Parcelable

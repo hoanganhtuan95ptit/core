@@ -1,11 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.mlkit:translate:17.0.2@aar" external-system-id="GRADLE">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d185f8f7961f0fcc3298609f88c7f2b0/transformed/jetified-translate-17.0.2/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d185f8f7961f0fcc3298609f88c7f2b0/transformed/jetified-translate-17.0.2/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d185f8f7961f0fcc3298609f88c7f2b0/transformed/jetified-translate-17.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8454c6e4f1b0e8cbcca0825f219da8c3/transformed/jetified-translate-17.0.2/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/8454c6e4f1b0e8cbcca0825f219da8c3/transformed/jetified-translate-17.0.2/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/8454c6e4f1b0e8cbcca0825f219da8c3/transformed/jetified-translate-17.0.2/res" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/translate/17.0.2/f929fb2b4f7c66c3b1e5cfd6796bb9db5a87d576/translate-17.0.2-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>

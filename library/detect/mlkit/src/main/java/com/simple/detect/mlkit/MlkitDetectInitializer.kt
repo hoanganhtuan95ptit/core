@@ -2,10 +2,23 @@ package com.simple.detect.mlkit
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.simple.detect.data.usecase.tasks.DetectTask
-import com.simple.detect.mlkit.data.tasks.mlkit.LatinMlkitDetectTask
+import com.simple.detect.data.tasks.DetectStateTask
+import com.simple.detect.data.tasks.DetectTask
+import com.simple.detect.mlkit.data.tasks.MlkitDetectStateTask
+import com.simple.detect.mlkit.data.tasks.lanugage.latin.LatinDetectTask
 import com.simple.detect.mlkit.data.tasks.MlkitDetectTask
-import com.simple.detect.mlkit.data.tasks.mlkit.MlkitTask
+import com.simple.detect.mlkit.data.tasks.lanugage.LanguageDetectStateTask
+import com.simple.detect.mlkit.data.tasks.lanugage.china.ChinaDetectTask
+import com.simple.detect.mlkit.data.tasks.lanugage.devanagar.DevanagariDetectTask
+import com.simple.detect.mlkit.data.tasks.lanugage.japan.JapaneseDetectTask
+import com.simple.detect.mlkit.data.tasks.lanugage.korean.KoreanDetectTask
+import com.simple.detect.mlkit.data.tasks.lanugage.LanguageDetectTask
+import com.simple.detect.mlkit.data.tasks.lanugage.LanguageSupportTask
+import com.simple.detect.mlkit.data.tasks.lanugage.china.ChinaDetectStateTask
+import com.simple.detect.mlkit.data.tasks.lanugage.devanagar.DevanagariDetectStateTask
+import com.simple.detect.mlkit.data.tasks.lanugage.japan.JapaneseDetectStateTask
+import com.simple.detect.mlkit.data.tasks.lanugage.korean.KoreanDetectStateTask
+import com.simple.detect.mlkit.data.tasks.lanugage.latin.LatinDetectStateTask
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -16,18 +29,32 @@ class MlkitDetectInitializer : Initializer<Unit> {
 
         loadKoinModules(listOf(module {
 
-            single { MlkitDetectTask(getAll()) } bind DetectTask::class
+            single { LatinDetectTask() } bind LanguageDetectTask::class
+
+            single { ChinaDetectTask() } bind LanguageDetectTask::class
+
+            single { KoreanDetectTask() } bind LanguageDetectTask::class
+
+            single { JapaneseDetectTask() } bind LanguageDetectTask::class
+
+            single { DevanagariDetectTask() } bind LanguageDetectTask::class
+
+            single { MlkitDetectTask(context, getAll()) } bind DetectTask::class
 
 
-//            single { ChinaMlkitDetectTask() } bind MlkitTask::class
+            single { LatinDetectStateTask() } bind LanguageDetectStateTask::class
 
-            single { LatinMlkitDetectTask() } bind MlkitTask::class
+            single { ChinaDetectStateTask() } bind LanguageDetectStateTask::class
 
-//            single { KoreanMlkitDetectTask() } bind MlkitTask::class
-//
-//            single { JapaneseMlkitDetectTask() } bind MlkitTask::class
-//
-//            single { DevanagariMlkitDetectTask() } bind MlkitTask::class
+            single { KoreanDetectStateTask() } bind LanguageDetectStateTask::class
+
+            single { JapaneseDetectStateTask() } bind LanguageDetectStateTask::class
+
+            single { DevanagariDetectStateTask() } bind LanguageDetectStateTask::class
+
+
+            single { MlkitDetectStateTask(getAll()) } bind DetectStateTask::class
+
         }))
 
         return

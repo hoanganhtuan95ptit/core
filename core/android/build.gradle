@@ -52,7 +52,7 @@ dependencies {
 
     api coroutinesDependencies.values()
 
-    api "com.google.android.material:material:$material_components_version"
+    implementation 'com.google.android.material:material:1.12.0'
 
     api "com.squareup.retrofit2:converter-jackson:$retrofit_version"
     api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"

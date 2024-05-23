@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_corner_top_16dp_solid_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:theme="?attr/styleDialog">
+
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_corner_24dp_solid_divider" />
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="?attr/textBody1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="?attr/colorOnSurface"
+        tools:text="Hello" />
+
+    <TextView
+        android:id="@+id/tv_message"
+        style="?attr/textBody2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="8dp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        tools:text="This is a message" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_positive"
+            style="?attr/textHeadline6"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_corner_16dp_stroke_width_1dp_color_on_surface_variant"
+            android:gravity="center"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="OK" />
+
+
+        <TextView
+            android:id="@+id/tv_negative"
+            style="?attr/textHeadline6"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_corner_16dp_solid_primary"
+            android:gravity="center"
+            android:textColor="?attr/colorOnPrimary"
+            tools:text="Cancel" />
+    </LinearLayout>
+</LinearLayout>

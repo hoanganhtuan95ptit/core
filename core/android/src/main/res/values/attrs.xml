@@ -65,6 +65,10 @@
     <attr name="colorBackgroundVariant" type="color" />
     <attr name="colorOnBackgroundVariant" type="color" />
 
+
+    <attr name="styleDialog" type="reference" />
+
+
     <attr name="rv_backgroundColor" format="color" />
     <attr name="rv_backgroundPressColor" format="color" />
     <attr name="rv_cornerRadius" format="dimension" />

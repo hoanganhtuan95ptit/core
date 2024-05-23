@@ -1,7 +1,5 @@
 package com.simple.state
 
-import java.io.Serializable
-
 
 sealed class ResultState<out T> {
 

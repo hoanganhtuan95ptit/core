@@ -1,10 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.google.mlkit:vision-interfaces:16.2.0@aar" external-system-id="GRADLE">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/45458c5b0170d3831c27f8fad6c606dc/transformed/jetified-vision-interfaces-16.2.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/45458c5b0170d3831c27f8fad6c606dc/transformed/jetified-vision-interfaces-16.2.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/20c6ca55fdd1ab0c725e28bde9600501/transformed/jetified-vision-interfaces-16.2.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/20c6ca55fdd1ab0c725e28bde9600501/transformed/jetified-vision-interfaces-16.2.0/AndroidManifest.xml" />
     </CLASSES>
-    <JAVADOC />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.mlkit/vision-interfaces/16.2.0/999407bac78a164ecd1312764130f7353f0c227a/vision-interfaces-16.2.0-javadoc.jar!/" />
+    </JAVADOC>
     <SOURCES />
   </library>
 </component>

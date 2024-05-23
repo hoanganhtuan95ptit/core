@@ -19,11 +19,11 @@ android {
         viewBinding true
     }
     compileOptions {
-        sourceCompatibility rootProject.javaVersion
-        targetCompatibility rootProject.javaVersion
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
     }
     kotlinOptions {
-        jvmTarget = rootProject.javaVersion.toString()
+        jvmTarget = project.ext.javaVersion.toString()
     }
     lintOptions {
         abortOnError false

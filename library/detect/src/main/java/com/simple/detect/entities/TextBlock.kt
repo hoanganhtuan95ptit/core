@@ -1,22 +1,22 @@
 package com.simple.detect.entities
 
-import android.os.Parcelable
+import android.graphics.Point
 import androidx.annotation.Keep
 import com.simple.core.utils.extentions.validate
-import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.IgnoredOnParcel
 import java.util.UUID
 
 @Keep
-@Parcelize
-open class TextBlock(
-    open var id: String = UUID.randomUUID().toString(),
+abstract class TextBlock {
 
-    open var text: String = "",
-    open var languageCode: String = "",
+    open var id: String = UUID.randomUUID().toString()
 
-    open var rect: TextRest? = null
-) : Parcelable
+    open var text: String = ""
+    open var languageCode: String = ""
 
-fun <T : TextBlock> List<T>.wrap(ratio: Float) = validate {
-    it.rect = it.rect?.wrap(ratio)
+    open var points: List<Point>? = emptyList()
+
+    @IgnoredOnParcel
+    @Transient
+    var extraData: HashMap<String, Any> = hashMapOf()
 }

@@ -2,17 +2,30 @@ package com.simple.coreapp.ui.base.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.simple.coreapp.R
+import com.simple.coreapp.ui.base.ConfirmView
+import com.simple.coreapp.ui.base.ToastView
+import com.simple.coreapp.utils.JobQueue
 import com.simple.coreapp.utils.extentions.getColorFromAttr
 
-open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId) {
 
+open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), ToastView, ConfirmView {
+
+    override var popupQueue = JobQueue()
+
+    @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
         requireActivity().window.navigationBarColor = view.context.getColorFromAttr(R.attr.colorNavigationBar)
 
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        popupQueue.cancel()
     }
 }

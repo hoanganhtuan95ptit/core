@@ -2,6 +2,7 @@ package com.simple.translate.mlkit.data.tasks
 
 import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.common.model.RemoteModelManager
+import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.TranslateRemoteModel
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.Translator
@@ -21,10 +22,6 @@ import kotlin.coroutines.coroutineContext
 
 class MlkitTranslateTask : TranslateTask {
 
-    private val modelManager = RemoteModelManager.getInstance()
-
-    private val downloadConditions = DownloadConditions.Builder().requireWifi().build()
-
     private val map: Map<String, String> = hashMapOf(
     )
 
@@ -35,10 +32,10 @@ class MlkitTranslateTask : TranslateTask {
         val outputCode = map[param.outputCode] ?: param.outputCode
 
 
-        val listBreak = listOf("", "wo", "und-latn")
+        val listSupported = TranslateLanguage.getAllLanguages()
 
 
-        if (inputCode.lowercase() in listBreak || outputCode.lowercase() in listBreak || inputCode == outputCode) {
+        if (inputCode.lowercase() !in listSupported || outputCode.lowercase() !in listSupported || inputCode == outputCode) {
 
             return@withContext ResultState.Failed(java.lang.RuntimeException("not support inputCode:$inputCode outputCode:$outputCode"))
         }
@@ -124,7 +121,7 @@ class MlkitTranslateTask : TranslateTask {
 
         val remoteModel = TranslateRemoteModel.Builder(languageCode).build()
 
-        modelManager.download(remoteModel, downloadConditions).addOnSuccessListener {
+        RemoteModelManager.getInstance().download(remoteModel, DownloadConditions.Builder().build()).addOnSuccessListener {
 
             continuation.resumeActive(ResultState.Success(emptyList()))
         }.addOnFailureListener {

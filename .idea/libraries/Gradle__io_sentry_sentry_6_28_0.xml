@@ -4,7 +4,11 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.sentry/sentry/6.28.0/419b6576bede3f9bbadf8b6038de0850ec1d26b8/sentry-6.28.0.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.sentry/sentry/6.28.0/4d8345a80b94243af8f0defd0a54df486718096e/sentry-6.28.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.sentry/sentry/6.28.0/79ea3ffae306cb0033493eba6381a18b2e4cd9c9/sentry-6.28.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

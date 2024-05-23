@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
 import com.simple.binding.findBinding
@@ -12,6 +13,7 @@ abstract class BaseViewBindingFragment<T : ViewBinding>(@LayoutRes val contentLa
 
     var binding: T? = null
 
+    @CallSuper
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         return if (contentLayoutId > 0) {
@@ -24,12 +26,14 @@ abstract class BaseViewBindingFragment<T : ViewBinding>(@LayoutRes val contentLa
         }
     }
 
+    @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = binding ?: findBinding(view)
     }
 
+    @CallSuper
     override fun onDestroyView() {
         super.onDestroyView()
 

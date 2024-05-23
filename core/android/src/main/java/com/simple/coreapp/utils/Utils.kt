@@ -1,4 +1,15 @@
-//package com.simple.coreapp.utils
+package com.simple.coreapp.utils
+
+import android.app.Activity
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
+import android.content.Intent
+import android.widget.Toast
+import com.simple.coreapp.R
+import java.util.Locale
+
 //
 //import android.app.Activity
 //import android.content.*
@@ -12,8 +23,8 @@
 //import java.util.*
 //
 //
-//object Utils {
-//
+object Utils {
+    //
 //    fun updateApp(activity: Activity) {
 //        try {
 //
@@ -81,26 +92,26 @@
 //        context.startActivity(intent)
 //    }
 //
-//    fun copyText(context: Context, text: String) = kotlin.runCatching {
-//
-//        Toast.makeText(context, "Copy $text", Toast.LENGTH_LONG).show()
-//
-//        val clipboard: ClipboardManager = context.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager ?: return@runCatching
-//        clipboard.setPrimaryClip(ClipData.newPlainText("label", text))
-//    }
-//
-//    fun shareText(activity: Activity, text: String) = kotlin.runCatching {
-//
-//        val intent = Intent().apply {
-//            type = "text/plain"
-//            action = Intent.ACTION_SEND
-//
-//            putExtra(Intent.EXTRA_TEXT, text)
-//            putExtra(Intent.EXTRA_SUBJECT, "Share by " + BaseApp.shared.getString(R.string.app_name).uppercase(Locale.getDefault()))
-//        }
-//
-//        activity.startActivity(intent)
-//    }
+    fun copyText(context: Context, text: String) = kotlin.runCatching {
+
+        Toast.makeText(context, "Copy $text", Toast.LENGTH_LONG).show()
+
+        val clipboard: ClipboardManager = context.getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager ?: return@runCatching
+        clipboard.setPrimaryClip(ClipData.newPlainText("label", text))
+    }
+
+    fun shareText(activity: Activity, text: String) = kotlin.runCatching {
+
+        val intent = Intent().apply {
+            type = "text/plain"
+            action = Intent.ACTION_SEND
+
+            putExtra(Intent.EXTRA_TEXT, text)
+            putExtra(Intent.EXTRA_SUBJECT, "Share by " + activity.getString(R.string.app_name).uppercase(Locale.getDefault()))
+        }
+
+        activity.startActivity(intent)
+    }
 //
 //    @JvmStatic
 //    fun openBrowser(context: Context, link: String) {
@@ -119,6 +130,4 @@
 //    }.getOrElse {
 //        ""
 //    }
-//
-//
-//}
+}

@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/constant" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/android" />
             <option value="$PROJECT_DIR$/core/base" />

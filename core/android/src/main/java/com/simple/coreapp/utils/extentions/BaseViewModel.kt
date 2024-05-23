@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 @MainThread
-fun <T> BaseViewModel.liveData(context: CoroutineContext? = null, start: CoroutineStart = CoroutineStart.DEFAULT, onChanged: suspend MediatorLiveData<T>.() -> Unit): LiveData<T> {
+fun <T> BaseViewModel.mediatorLiveData(context: CoroutineContext? = null, start: CoroutineStart = CoroutineStart.DEFAULT, onChanged: suspend MediatorLiveData<T>.() -> Unit): LiveData<T> {
 
     val liveData = MediatorLiveData<T>()
 

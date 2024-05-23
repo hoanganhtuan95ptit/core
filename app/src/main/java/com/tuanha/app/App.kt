@@ -1,31 +1,20 @@
 package com.tuanha.app
 
+import android.app.Application
 import com.simple.analytics.logAnalytics
-import com.simple.coreapp.BaseApp
-import com.simple.coreapp.Module
 import com.tuanha.app.di.appModule
-import org.koin.android.ext.android.getKoin
-import org.koin.core.context.loadKoinModules
+import org.koin.core.context.startKoin
 
-class App : BaseApp() {
-
-    private val modules by lazy {
-        getKoin().getAll<Module>()
-    }
+class App : Application() {
 
     override fun onCreate() {
 
-        loadKoinModules(
-            listOf(
-                appModule
-            )
-        )
+        startKoin {
+            appModule
+        }
 
         logAnalytics("test" to "test")
 
         super.onCreate()
-
-        modules.forEach { it.init(this) }
     }
-
 }

@@ -1,20 +1,20 @@
 @file:Suppress("DEPRECATION")
 
-package net.gsm.driver.base.util.extension
+package com.simple.coreapp.utils.ext
 
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ComponentCallbacks
 import android.content.Context
-import android.content.res.Resources
 import android.os.Build
-import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowInsets
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import com.simple.core.utils.extentions.asObject
+import com.simple.core.utils.extentions.asObjectOrNull
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -50,16 +50,6 @@ fun getNavigationBarHeight(context: Context): Int {
     return if (resourceId > 0) {
         resources.getDimensionPixelSize(resourceId)
     } else 0
-}
-
-fun Int.toPx(): Int {
-
-    return toFloat().toPx().toInt()
-}
-
-fun Float.toPx(): Float {
-
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics)
 }
 
 fun ComponentCallbacks.doOnHeightStatusAndHeightNavigationChange(onChange: suspend (heightStatusBar: Int, heightNavigationBar: Int) -> Unit) {

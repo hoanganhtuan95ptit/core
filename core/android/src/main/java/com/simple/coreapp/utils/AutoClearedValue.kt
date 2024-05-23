@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.simple.core.utils.extentions.asObjectOrNull
+import java.io.Closeable
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -19,6 +21,7 @@ class AutoClearedValue<T>(val fragment: Fragment, val initWhenCreate: () -> T? =
 
                 viewLifecycleOwner.lifecycle.addObserver(object : DefaultLifecycleObserver {
                     override fun onDestroy(owner: LifecycleOwner) {
+                        _value.asObjectOrNull<Closeable>()?.close()
                         _value = null
                     }
 

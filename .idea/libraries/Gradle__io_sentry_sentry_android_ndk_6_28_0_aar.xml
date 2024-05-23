@@ -1,11 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: io.sentry:sentry-android-ndk:6.28.0@aar" external-system-id="GRADLE">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/6ea1e605e15bb5cbc14c7167921b44a9/transformed/jetified-sentry-android-ndk-6.28.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6ea1e605e15bb5cbc14c7167921b44a9/transformed/jetified-sentry-android-ndk-6.28.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/6ea1e605e15bb5cbc14c7167921b44a9/transformed/jetified-sentry-android-ndk-6.28.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/063b08d1014f1e96cde73307089812a8/transformed/jetified-sentry-android-ndk-6.28.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/063b08d1014f1e96cde73307089812a8/transformed/jetified-sentry-android-ndk-6.28.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/063b08d1014f1e96cde73307089812a8/transformed/jetified-sentry-android-ndk-6.28.0/jars/classes.jar!/" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.sentry/sentry-android-ndk/6.28.0/8744e1c64d9ee595e9559c20b89f1447dff1e002/sentry-android-ndk-6.28.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.sentry/sentry-android-ndk/6.28.0/b0bc3674103658e6c35a804bcee50f2ad1c5d893/sentry-android-ndk-6.28.0-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

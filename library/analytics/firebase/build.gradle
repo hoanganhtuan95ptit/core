@@ -21,10 +21,10 @@ android {
     }
     compileOptions {
         sourceCompatibility project.ext.javaVersion
-        targetCompatibility rootProject.javaVersion
+        targetCompatibility project.ext.javaVersion
     }
     kotlinOptions {
-        jvmTarget = rootProject.javaVersion.toString()
+        jvmTarget = project.ext.javaVersion.toString()
     }
     lintOptions {
         abortOnError false
