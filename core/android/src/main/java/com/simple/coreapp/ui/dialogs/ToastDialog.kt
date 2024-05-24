@@ -13,6 +13,7 @@ import com.simple.coreapp.Param
 import com.simple.coreapp.databinding.DialogToastBinding
 import com.simple.coreapp.entities.ToastType
 import com.simple.coreapp.ui.base.dialogs.BaseViewBindingDialogFragment
+import com.simple.coreapp.utils.ext.doOnHeightStatusAndHeightNavigationChange
 import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.coreapp.utils.ext.setVisible
 import kotlinx.coroutines.delay
@@ -52,8 +53,8 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-            delay(3 * 1000)
-            dismiss()
+//            delay(3 * 1000)
+//            dismiss()
         }
     }
 

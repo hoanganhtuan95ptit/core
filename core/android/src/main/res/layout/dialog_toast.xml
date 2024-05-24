@@ -1,36 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp">
 
-    <ImageView
-        android:id="@+id/iv_image"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        tools:src="@drawable/ic_download_on_surface_24dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
 
-    <TextView
-        android:id="@+id/tv_message"
-        style="?attr/textBody2"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:textColor="?attr/colorOnSurfaceVariant"
-        tools:text="This is a message" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_toast_state"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp">
 
-    <ImageView
-        android:id="@+id/iv_close"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        tools:src="@drawable/ic_download_on_surface_24dp" />
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            tools:src="@drawable/ic_download_on_surface_24dp" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_message"
+            style="?attr/textBody2"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="This is a message" />
+
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            tools:src="@drawable/ic_download_on_surface_24dp" />
+    </LinearLayout>
+</FrameLayout>
