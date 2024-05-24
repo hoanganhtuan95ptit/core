@@ -7,14 +7,16 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.simple.coreapp.R
 import com.simple.coreapp.ui.base.ConfirmView
+import com.simple.coreapp.ui.base.TagView
 import com.simple.coreapp.ui.base.ToastView
-import com.simple.coreapp.utils.JobQueue
 import com.simple.coreapp.utils.extentions.getColorFromAttr
 
 
-open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), ToastView, ConfirmView {
+open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentLayoutId), TagView, ToastView, ConfirmView {
 
-    override var popupQueue = JobQueue()
+    override var mCleared: Boolean = false
+
+    override val mBagOfTags: MutableMap<String, Any> = hashMapOf()
 
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,6 +28,6 @@ open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentL
 
     override fun onDestroy() {
         super.onDestroy()
-        popupQueue.cancel()
+        tagClear()
     }
 }

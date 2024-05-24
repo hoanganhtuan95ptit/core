@@ -3,7 +3,7 @@ package com.simple.coreapp.ui.base.fragments.transition
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.viewModelScope
-import com.simple.coreapp.ui.base.viewmodels.BaseViewModel
+import androidx.lifecycle.ViewModels.BaseViewModel
 import com.simple.coreapp.utils.ext.handler
 import com.simple.coreapp.utils.extentions.Event
 import com.simple.coreapp.utils.extentions.postDifferentValue

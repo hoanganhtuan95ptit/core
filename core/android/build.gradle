@@ -10,7 +10,7 @@ apply from: "../../constant/build.gradle"
 
 android {
     namespace "com.simple.coreapp"
-  
+
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
@@ -38,13 +38,11 @@ dependencies {
     api project(path: ':core:base')
     api project(path: ':library:task')
     api project(path: ':library:state')
-//    api project(path: ':library:config')
+    api project(path: ':library:image')
     api project(path: ':library:adapter')
 
     api project(path: ':library:analytics')
     api project(path: ':library:crashlytics')
-
-//    api project(path: ':library:bottomsheet')
 
     api koinDependencies.values()
 

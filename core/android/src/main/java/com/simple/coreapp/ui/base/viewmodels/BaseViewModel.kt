@@ -1,4 +1,4 @@
-package com.simple.coreapp.ui.base.viewmodels
+package androidx.lifecycle.ViewModels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData

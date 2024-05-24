@@ -5,16 +5,14 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.simple.core.utils.extentions.asObjectOrNull
 import com.simple.coreapp.ui.base.dialogs.OnDismissListener
-import com.simple.coreapp.ui.dialogs.HorizontalConfirmDialogFragment
-import com.simple.coreapp.ui.dialogs.VerticalConfirmDialogFragment
+import com.simple.coreapp.ui.dialogs.confirm.HorizontalConfirmDialogFragment
+import com.simple.coreapp.ui.dialogs.confirm.VerticalConfirmDialogFragment
 import com.simple.coreapp.utils.JobQueue
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.firstOrNull
 
 interface ConfirmView {
-
-    var popupQueue: JobQueue
 
     fun showConfirm(
         isCancel: Boolean = true,
@@ -32,7 +30,7 @@ interface ConfirmView {
         positive: String? = null
     ) {
 
-        popupQueue.submit {
+        getActivity().asObjectOrNull<TagView>()?.setTagIfAbsent("CONFIRM_VIEW", JobQueue())?.submit {
 
             awaitConfirm(
                 isCancel = isCancel,
@@ -90,5 +88,9 @@ interface ConfirmView {
 
     private fun getFragmentManager() = this.asObjectOrNull<FragmentActivity>()?.supportFragmentManager
         ?: this.asObjectOrNull<Fragment>()?.childFragmentManager
+        ?: error("not found")
+
+    private fun getActivity() = this.asObjectOrNull<FragmentActivity>()
+        ?: this.asObjectOrNull<Fragment>()?.activity
         ?: error("not found")
 }

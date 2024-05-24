@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: io.sentry:sentry-android-core:6.28.0@aar" external-system-id="GRADLE">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf66553d3fced28a5b5956d18e2fdf4c/transformed/jetified-sentry-android-core-6.28.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf66553d3fced28a5b5956d18e2fdf4c/transformed/jetified-sentry-android-core-6.28.0/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bf66553d3fced28a5b5956d18e2fdf4c/transformed/jetified-sentry-android-core-6.28.0/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/159ecc73fce1ac1e272502521f77e1d0/transformed/jetified-sentry-android-core-6.28.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/159ecc73fce1ac1e272502521f77e1d0/transformed/jetified-sentry-android-core-6.28.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/159ecc73fce1ac1e272502521f77e1d0/transformed/jetified-sentry-android-core-6.28.0/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.sentry/sentry-android-core/6.28.0/1fda663a250f8c06197b316bdee90e6a2cb17157/sentry-android-core-6.28.0-javadoc.jar!/" />
