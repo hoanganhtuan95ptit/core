@@ -2,7 +2,6 @@ package com.simple.detect.entities
 
 import android.graphics.Point
 import androidx.annotation.Keep
-import com.simple.core.utils.extentions.validate
 import kotlinx.parcelize.IgnoredOnParcel
 import java.util.UUID
 

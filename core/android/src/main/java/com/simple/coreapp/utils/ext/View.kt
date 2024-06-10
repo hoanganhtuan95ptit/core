@@ -200,6 +200,49 @@ fun View.resizeAnim(width: Int = -3, height: Int = -3, weight: Float = 0f, durat
     }
 }
 
+
+suspend fun View.awaitResizeAnim(width: Int = -3, height: Int = -3, weight: Float = 0f, duration: Long = 350) = channelFlow {
+
+    val list = arrayListOf<PropertyValuesHolder>()
+
+    val params = layoutParams as ViewGroup.LayoutParams
+
+    if (params.width != width && width >= -2) {
+        list.add(PropertyValuesHolder.ofInt("width", params.width, width))
+    }
+
+    if (params.height != height && height >= -2) {
+        list.add(PropertyValuesHolder.ofInt("height", params.height, height))
+    }
+
+    if (params is LinearLayout.LayoutParams && params.weight != weight) {
+        list.add(PropertyValuesHolder.ofFloat("weight", params.weight, weight))
+    }
+
+    if (list.isEmpty()) {
+
+        trySend(Unit)
+        return@channelFlow
+    }
+
+    val anim = list.animation(onUpdate = {
+        resize(
+            it.getAnimatedValue("width") as? Int ?: params.width,
+            it.getAnimatedValue("height") as? Int ?: params.height,
+            it.getAnimatedValue("weight") as? Float ?: (params as? LinearLayout.LayoutParams)?.weight ?: 0f
+        )
+    }, duration = duration, onEnd = {
+
+        trySend(Unit)
+    })
+
+    awaitClose {
+
+        anim.cancel()
+    }
+}.firstOrNull()
+
+
 fun View.setPaddingTop(top: Int = 0) {
 
     if (paddingTop != top) {

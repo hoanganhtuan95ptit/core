@@ -1,5 +1,3 @@
-@file:Suppress("NO_REFLECTION_IN_CLASS_PATH")
-
 package com.simple.core.utils.extentions
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect
@@ -9,8 +7,6 @@ import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.ObjectMapper
-import kotlin.reflect.full.instanceParameter
-import kotlin.reflect.full.memberFunctions
 
 
 val objectMapper: ObjectMapper by lazy {
@@ -57,21 +53,6 @@ fun Any?.toJson(): String {
 
     return objectMapper.writeValueAsString(this)
 }
-
-fun <T : Any> T.cloneOrNull(): T {
-
-    if (!this::class.isData) {
-
-        return this
-    }
-
-    val copy = this::class.memberFunctions.first { it.name == "copy" }
-
-    val instanceParam = copy.instanceParameter!!
-
-    return copy.callBy(mapOf(instanceParam to this)) as T
-}
-
 
 inline fun <reified T> Any?.asObject(): T {
 

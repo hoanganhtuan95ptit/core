@@ -10,7 +10,7 @@ project.ext {
     kotlin_plugin_version = '1.7.10'
 
     nav_version = '2.7.7'
-    ktx_version = '1.9.0'
+    ktx_version = '1.9.22'
     koin_version = '3.4.1'
     room_version = "2.5.2"
     work_version = "2.7.1"
@@ -65,8 +65,9 @@ project.ext {
 
     retrofit2Dependencies = [
 
-            retrofit         : "com.squareup.retrofit2:retrofit:2.9.0",
-            converter_jackson: "com.squareup.retrofit2:converter-jackson:2.9.0"
+            retrofit           : "com.squareup.retrofit2:retrofit:2.9.0",
+            converter_jackson  : "com.squareup.retrofit2:converter-jackson:2.9.0",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:4.12.0",
     ]
 
     jacksonDependencies = [
@@ -79,7 +80,7 @@ project.ext {
     androidxDependencies = [
 
             startup_runtim       : "androidx.startup:startup-runtime:1.1.1",
-            core                 : "androidx.core:core-ktx:$ktx_version",
+            core                 : "androidx.core:core-ktx:1.13.1",
             multidex             : "androidx.multidex:multidex:$multidex_version",
             appcompat            : "androidx.appcompat:appcompat:$appcompat_version",
             fragment             : "androidx.fragment:fragment-ktx:$fragment_version",

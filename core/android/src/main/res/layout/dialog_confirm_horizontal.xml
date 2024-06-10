@@ -25,7 +25,7 @@
         style="?attr/textBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
         android:textColor="?attr/colorOnSurface"
         tools:text="Hello" />
@@ -35,7 +35,7 @@
         style="?attr/textBody2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginTop="8dp"
         android:textColor="?attr/colorOnSurfaceVariant"
         tools:text="This is a message" />
@@ -43,8 +43,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="18dp"
+        android:layout_marginTop="24dp"
         android:orientation="horizontal">
 
         <TextView
@@ -52,20 +52,19 @@
             style="?attr/textHeadline6"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:layout_marginHorizontal="4dp"
+            android:layout_marginHorizontal="6dp"
             android:layout_weight="1"
             android:background="@drawable/bg_corner_16dp_stroke_width_1dp_color_on_surface_variant"
             android:gravity="center"
             android:textColor="?attr/colorOnSurfaceVariant"
             tools:text="OK" />
 
-
         <TextView
             android:id="@+id/tv_negative"
             style="?attr/textHeadline6"
             android:layout_width="0dp"
             android:layout_height="56dp"
-            android:layout_marginHorizontal="4dp"
+            android:layout_marginHorizontal="6dp"
             android:layout_weight="1"
             android:background="@drawable/bg_corner_16dp_solid_primary"
             android:gravity="center"

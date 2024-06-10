@@ -16,7 +16,7 @@ class MlkitTranslateInitializer : Initializer<Unit> {
 
         loadKoinModules(listOf(module {
 
-            single { MlkitTranslateTask() } bind TranslateTask::class
+            single { MlkitTranslateTask(get()) } bind TranslateTask::class
 
             single { MlkitTranslateStateTask() } bind TranslateStateTask::class
         }))

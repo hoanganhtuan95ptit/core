@@ -32,9 +32,10 @@ android {
 
 dependencies {
 
-    api project(path: ':library:state')
-    api project(path: ':library:analytics')
-    api project(path: ':library:crashlytics')
+    implementation project(path: ':library:state')
+    implementation project(path: ':library:analytics')
+    implementation project(path: ':library:crashlytics')
 
-    api coroutinesDependencies.values()
+    implementation androidxDependencies.values()
+    implementation coroutinesDependencies.values()
 }

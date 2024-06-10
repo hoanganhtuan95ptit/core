@@ -27,6 +27,7 @@
 
         <item name="colorTrue">#37aa5f</item>
         <item name="colorError">#FF0000</item>
+        <item name="colorErrorVariant">#50FF0000</item>
         <item name="colorDivider">#e1e1e1</item>
         <item name="colorPlaceHolder">#e1e1e1</item>
 

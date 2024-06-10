@@ -4,6 +4,8 @@ import com.simple.coreapp.utils.extentions.toPx
 
 object DP {
 
+    val DP_05 by lazy { 0.5f.toPx() }
+
     val DP_2 by lazy { 2.toPx() }
     val DP_4 by lazy { 4.toPx() }
     val DP_6 by lazy { 6.toPx() }
@@ -68,4 +70,6 @@ object DP {
     val DP_104 by lazy { 104.toPx() }
     val DP_106 by lazy { 106.toPx() }
     val DP_108 by lazy { 108.toPx() }
+
+    val DP_350 by lazy { 350.toPx() }
 }

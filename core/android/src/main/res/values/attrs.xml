@@ -35,6 +35,7 @@
     <attr name="colorTrue" format="color" />
 
     <attr name="colorOnError" type="color" />
+    <attr name="colorErrorVariant" type="color" />
 
     <attr name="colorDivider" format="color" />
 

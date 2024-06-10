@@ -1,26 +1,40 @@
 plugins {
-    id 'java-library'
-    id 'kotlin'
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
 apply from: "../../constant/build.gradle"
 
-java {
-    sourceCompatibility = project.ext.javaVersion
-    targetCompatibility = project.ext.javaVersion
+android {
+    namespace 'com.simple.base'
+
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = project.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
 
-    implementation jacksonDependencies.values()
-
     implementation coroutinesDependencies.core
+    implementation jacksonDependencies.values()
+    implementation androidxDependencies.values()
 
     implementation "com.google.code.gson:gson:2.9.1"
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-
-    testImplementation 'junit:junit:4.13.2'
 }

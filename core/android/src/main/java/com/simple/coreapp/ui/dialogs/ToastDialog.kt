@@ -5,15 +5,17 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import com.simple.core.utils.extentions.orZero
 import com.simple.coreapp.Param
+import com.simple.coreapp.R
 import com.simple.coreapp.databinding.DialogToastBinding
 import com.simple.coreapp.entities.ToastType
+import com.simple.coreapp.entities.ToastType.Companion.toToastType
 import com.simple.coreapp.ui.base.dialogs.BaseViewBindingDialogFragment
-import com.simple.coreapp.utils.ext.doOnHeightStatusAndHeightNavigationChange
 import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.coreapp.utils.ext.setVisible
 import kotlinx.coroutines.delay
@@ -26,11 +28,7 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
         dialog?.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
         dialog?.window?.setGravity(Gravity.TOP)
 
-//        val screenWidth = Resources.getSystem().displayMetrics.widthPixels
-//        val screenHeight = Resources.getSystem().displayMetrics.heightPixels
-//        val dialogWidth = min(screenWidth, screenHeight) * 0.95f
-//
-//        dialog?.window?.setLayout(dialogWidth.toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
@@ -46,6 +44,13 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
         binding.ivImage.setImageResource(image)
         binding.ivImage.setVisible(image != 0)
 
+        val type = arguments?.getString(Param.STATE).orEmpty().toToastType()
+        if (type == ToastType.SUCCESS) {
+            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_primary_variant)
+        } else if (type == ToastType.ERROR) {
+            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_error_variant)
+        }
+
         binding.ivClose.setDebouncedClickListener {
 
             dismiss()
@@ -53,8 +58,8 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
 
         viewLifecycleOwner.lifecycleScope.launch {
 
-//            delay(3 * 1000)
-//            dismiss()
+            delay(5 * 1000)
+            dismiss()
         }
     }
 

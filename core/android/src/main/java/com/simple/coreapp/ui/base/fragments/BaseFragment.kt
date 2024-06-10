@@ -26,8 +26,9 @@ open class BaseFragment(@LayoutRes contentLayoutId: Int = 0) : Fragment(contentL
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    @CallSuper
+    override fun onDestroyView() {
+        super.onDestroyView()
         tagClear()
     }
 }

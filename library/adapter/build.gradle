@@ -32,14 +32,11 @@ android {
 
 dependencies {
 
-    api project(path: ':core:base')
-    api project(path: ':core:binding')
+    implementation project(path: ':core:base')
+    implementation project(path: ':core:binding')
 
-    api androidxDependencies.core
-    api androidxDependencies.recyclerview
-    api androidxDependencies.constraintlayout
+    implementation androidxDependencies.values()
+    implementation coroutinesDependencies.values()
 
-    api coroutinesDependencies.values()
-
-    api "io.supercharge:shimmerlayout:$shimmerlayout_version"
+    implementation "io.supercharge:shimmerlayout:$shimmerlayout_version"
 }

@@ -32,8 +32,14 @@ android {
 
 dependencies {
 
-    api project(path: ':core:android')
-    api project(path: ':library:translate')
+    implementation project(':core:android')
+    implementation project(':library:task')
+    implementation project(':library:state')
+    implementation project(':library:analytics')
+    implementation project(':library:translate')
+    implementation project(':library:crashlytics')
+    implementation koinDependencies.values()
+    implementation androidxDependencies.values()
 
     implementation 'com.google.mlkit:translate:17.0.2'
 }

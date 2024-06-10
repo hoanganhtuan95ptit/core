@@ -1,12 +1,10 @@
 package com.simple.translate.mlkit.data.tasks
 
-import com.google.mlkit.common.model.RemoteModelManager
 import com.google.mlkit.nl.translate.TranslateLanguage
 import com.google.mlkit.nl.translate.TranslateRemoteModel
-import com.simple.coreapp.utils.extentions.resumeActive
-import com.simple.crashlytics.logCrashlytics
+import com.simple.state.ResultState
 import com.simple.translate.data.tasks.TranslateStateTask
-import kotlinx.coroutines.suspendCancellableCoroutine
+import com.simple.translate.mlkit.utils.exts.checkModelDownloaded
 
 class MlkitTranslateStateTask : TranslateStateTask {
 
@@ -21,18 +19,16 @@ class MlkitTranslateStateTask : TranslateStateTask {
         }
     }
 
-    private suspend fun checkDownloadModel(languageCode: String) = suspendCancellableCoroutine { continuation ->
+    private suspend fun checkDownloadModel(languageCode: String): Int {
 
-        val remoteModel = TranslateRemoteModel.Builder(languageCode).build()
+        val state = TranslateRemoteModel.Builder(languageCode).build().checkModelDownloaded()
 
-        RemoteModelManager.getInstance().isModelDownloaded(remoteModel).addOnSuccessListener {
+        return if (state is ResultState.Success) {
 
-            continuation.resumeActive(if (it) 1 else 0)
-        }.addOnFailureListener {
+            if (state.data) 1 else 0
+        } else {
 
-            logCrashlytics(RuntimeException("mlkit translate task download model if needed $languageCode", it))
-
-            continuation.resumeActive(-1)
+            -1
         }
     }
 }

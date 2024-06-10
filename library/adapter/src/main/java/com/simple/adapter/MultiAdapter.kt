@@ -19,8 +19,9 @@ class MultiAdapter(
 
         val adapters = arrayListOf<ViewItemAdapter<ViewItem, ViewBinding>>()
 
-        adapters.add(LoadingViewAdapter() as ViewItemAdapter<ViewItem, ViewBinding>)
-        adapters.add(LoadMoreViewAdapter(onLoadMore) as ViewItemAdapter<ViewItem, ViewBinding>)
+        adapters.add(SpaceAdapter())
+        adapters.add(LoadingViewAdapter())
+        adapters.add(LoadMoreViewAdapter(onLoadMore))
 
         adapters.addAll(adapter)
 

@@ -31,6 +31,10 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':core:android')
+
+    implementation project(path: ':library:task')
+    implementation project(path: ':library:state')
+    implementation koinDependencies.values()
+    implementation androidxDependencies.values()
 }
 

@@ -1,11 +1,34 @@
 plugins {
-    id 'java-library'
-    id 'org.jetbrains.kotlin.jvm'
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
 apply from: "../../constant/build.gradle"
 
-java {
-    sourceCompatibility project.ext.javaVersion
-    targetCompatibility project.ext.javaVersion
+android {
+    namespace 'com.simple.state'
+
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    kotlinOptions {
+        jvmTarget = project.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
 }

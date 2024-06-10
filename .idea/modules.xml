@@ -9,7 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Core.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/constant/Core.constant.iml" filepath="$PROJECT_DIR$/.idea/modules/constant/Core.constant.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/Core.core.iml" filepath="$PROJECT_DIR$/.idea/modules/core/Core.core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/app/Core.core.android.iml" filepath="$PROJECT_DIR$/.idea/modules/core/app/Core.core.android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.unitTest.iml" />

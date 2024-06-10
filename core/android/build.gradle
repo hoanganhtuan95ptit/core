@@ -35,29 +35,30 @@ android {
 
 dependencies {
 
-    api project(path: ':core:base')
-    api project(path: ':library:task')
-    api project(path: ':library:state')
-    api project(path: ':library:image')
-    api project(path: ':library:adapter')
+    implementation project(path: ':core:base')
+    implementation project(path: ':core:binding')
 
-    api project(path: ':library:analytics')
-    api project(path: ':library:crashlytics')
+    implementation project(path: ':library:job')
+    implementation project(path: ':library:task')
+    implementation project(path: ':library:state')
+    implementation project(path: ':library:image')
+    implementation project(path: ':library:adapter')
 
-    api koinDependencies.values()
+    implementation project(path: ':library:analytics')
+    implementation project(path: ':library:crashlytics')
 
-    api androidxDependencies.values()
-
-    api coroutinesDependencies.values()
+    implementation koinDependencies.values()
+    implementation androidxDependencies.values()
+    implementation coroutinesDependencies.values()
 
     implementation 'com.google.android.material:material:1.12.0'
 
-    api "com.squareup.retrofit2:converter-jackson:$retrofit_version"
-    api "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 
-    api "com.github.bumptech.glide:glide:$glide_version"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
 
-    api "com.airbnb.android:lottie:$lottie_version"
+    implementation "com.airbnb.android:lottie:$lottie_version"
 
-    api "io.supercharge:shimmerlayout:$shimmerlayout_version"
+    implementation "io.supercharge:shimmerlayout:$shimmerlayout_version"
 }
