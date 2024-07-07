@@ -66,6 +66,10 @@
     <attr name="colorBackgroundVariant" type="color" />
     <attr name="colorOnBackgroundVariant" type="color" />
 
+    <attr name="colorToastError" format="color" />
+    <attr name="colorOnToastError" format="color" />
+    <attr name="colorToastSuccess" format="color" />
+    <attr name="colorOnToastSuccess" format="color" />
 
     <attr name="styleDialog" type="reference" />
 

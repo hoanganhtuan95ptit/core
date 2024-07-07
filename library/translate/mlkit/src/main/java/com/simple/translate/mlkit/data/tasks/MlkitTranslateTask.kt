@@ -38,10 +38,16 @@ class MlkitTranslateTask(
         val outputCode = map[param.outputCode] ?: param.outputCode
 
 
+        if (inputCode == outputCode) {
+
+            return@withContext param.text
+        }
+
+
         val listSupported = TranslateLanguage.getAllLanguages()
 
 
-        if (inputCode.lowercase() !in listSupported || outputCode.lowercase() !in listSupported || inputCode == outputCode) {
+        if (inputCode.lowercase() !in listSupported || outputCode.lowercase() !in listSupported) {
 
             throw RuntimeException("not support inputCode:$inputCode outputCode:$outputCode")
         }

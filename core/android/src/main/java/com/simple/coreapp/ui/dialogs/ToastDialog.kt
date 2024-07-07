@@ -18,6 +18,7 @@ import com.simple.coreapp.entities.ToastType.Companion.toToastType
 import com.simple.coreapp.ui.base.dialogs.BaseViewBindingDialogFragment
 import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.coreapp.utils.ext.setVisible
+import com.simple.coreapp.utils.extentions.getColorFromAttr
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -46,9 +47,11 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
 
         val type = arguments?.getString(Param.STATE).orEmpty().toToastType()
         if (type == ToastType.SUCCESS) {
-            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_primary_variant)
+            binding.tvMessage.setTextColor(view.context.getColorFromAttr(R.attr.colorOnToastSuccess))
+            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_toast_success)
         } else if (type == ToastType.ERROR) {
-            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_error_variant)
+            binding.tvMessage.setTextColor(view.context.getColorFromAttr(R.attr.colorOnToastError))
+            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_toast_error)
         }
 
         binding.ivClose.setDebouncedClickListener {

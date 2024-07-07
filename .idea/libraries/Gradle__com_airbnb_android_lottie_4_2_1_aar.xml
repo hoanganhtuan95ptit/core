@@ -8,7 +8,11 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/78cb9b5ffd08edd6b5f536e86a187603/transformed/jetified-lottie-4.2.1/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/78cb9b5ffd08edd6b5f536e86a187603/transformed/jetified-lottie-4.2.1/AndroidManifest.xml" />
     </CLASSES>
-    <JAVADOC />
-    <SOURCES />
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.airbnb.android/lottie/4.2.1/845baf1002a1a255c35fdf2f11129d986450bde7/lottie-4.2.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.airbnb.android/lottie/4.2.1/3e955ca59d9dc940418cd8640b3cc6cf60282838/lottie-4.2.1-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>

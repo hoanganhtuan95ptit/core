@@ -14,12 +14,12 @@
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/android" />
             <option value="$PROJECT_DIR$/core/base" />
-            <option value="$PROJECT_DIR$/core/binding" />
             <option value="$PROJECT_DIR$/library" />
             <option value="$PROJECT_DIR$/library/adapter" />
             <option value="$PROJECT_DIR$/library/analytics" />
             <option value="$PROJECT_DIR$/library/analytics/firebase" />
             <option value="$PROJECT_DIR$/library/analytics/sentry" />
+            <option value="$PROJECT_DIR$/library/binding" />
             <option value="$PROJECT_DIR$/library/config" />
             <option value="$PROJECT_DIR$/library/config/firebase" />
             <option value="$PROJECT_DIR$/library/crashlytics" />

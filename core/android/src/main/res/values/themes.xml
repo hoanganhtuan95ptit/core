@@ -31,6 +31,11 @@
         <item name="colorDivider">#e1e1e1</item>
         <item name="colorPlaceHolder">#e1e1e1</item>
 
+        <item name="colorToastError">#FEF4F3</item>
+        <item name="colorOnToastError">#000000</item>
+        <item name="colorToastSuccess">#F6FFF9</item>
+        <item name="colorOnToastSuccess">#000000</item>
+
         <item name="textBody1">@style/TextBody1</item>
         <item name="textBody2">@style/TextBody2</item>
         <item name="textButton">@style/TextButton</item>

@@ -33,7 +33,7 @@ android {
 dependencies {
 
     implementation project(path: ':core:base')
-    implementation project(path: ':core:binding')
+    implementation project(path: ':library:binding')
 
     implementation androidxDependencies.values()
     implementation coroutinesDependencies.values()

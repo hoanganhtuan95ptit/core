@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:paddingVertical="8dp"
         android:paddingStart="8dp"
         android:paddingEnd="4dp">
 

@@ -13,6 +13,7 @@ import com.simple.detect.entities.Paragraph
 import com.simple.detect.entities.Sentence
 import com.simple.detect.entities.Word
 import com.simple.detect.entities.isDetectText
+import com.simple.detect.mlkit.Constants
 import com.simple.detect.mlkit.data.tasks.lanugage.LanguageDetectTask
 import com.simple.image.toBitmap
 import com.simple.state.ResultState
@@ -26,7 +27,7 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 
 class MlkitDetectTask(
     private val context: Context,
-    private val taskList: List<LanguageDetectTask>
+    private val taskList: List<LanguageDetectTask>,
 ) : DetectTask {
 
     override suspend fun execute(param: DetectTask.Param): ResultState<List<Paragraph>> {
@@ -82,18 +83,15 @@ class MlkitDetectTask(
         val paragraphList = textBlockList.map { _paragraph ->
 
             val paragraph = Paragraph()
-            paragraph.languageCode = _paragraph.recognizedLanguage
 
 
             paragraph.sentences = _paragraph.lines.map { _sequence ->
 
                 val sequence = Sentence()
-                sequence.languageCode = _sequence.recognizedLanguage
 
                 sequence.words = _sequence.elements.map { _word ->
 
                     val word = Word()
-                    word.languageCode = _word.recognizedLanguage
 
                     word.text = _word.symbols.joinToString(separator = "") {
 
@@ -103,15 +101,6 @@ class MlkitDetectTask(
                     word.angle = _word.angle
                     word.points = _word.cornerPoints?.toList()
                     word.confidence = _word.confidence
-
-//                    word.rect = _word.boundingBox?.let {
-//
-//                        TextRest(it.left, it.top, it.right, it.bottom)
-//                    }
-//                    word.rect = _word.symbols.mapNotNull { it.boundingBox }.let { rects ->
-//
-//                        TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-//                    }
 
                     word
                 }
@@ -125,11 +114,6 @@ class MlkitDetectTask(
                 sequence.points = _sequence.cornerPoints?.toList()
                 sequence.confidence = _sequence.confidence
 
-//                sequence.rect = sequence.words.mapNotNull { it.rect }.let { rects ->
-//
-//                    TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-//                }
-
                 sequence
             }
 
@@ -140,11 +124,6 @@ class MlkitDetectTask(
             }
 
             paragraph.points = _paragraph.cornerPoints?.toList()
-
-//            paragraph.rect = paragraph.sentences.mapNotNull { it.rect }.let { rects ->
-//
-//                TextRest(rects.minOf { it.left }, rects.minOf { it.top }, rects.maxOf { it.right }, rects.maxOf { it.bottom })
-//            }
 
             paragraph
         }.validate { paragraph ->
@@ -171,7 +150,7 @@ class MlkitDetectTask(
 
         LanguageIdentification.getClient(LanguageIdentificationOptions.Builder().setConfidenceThreshold(0.34f).build()).identifyLanguage(text).addOnSuccessListener { languageCode ->
 
-            a.resumeActive(languageCode.lowercase().replace("-latn", "").replace("und", ""))
+            a.resumeActive(languageCode.lowercase().replace("-latn", Constants.LATIN).replace("und", Constants.LATIN))
         }.addOnFailureListener {
 
             a.resumeActive("")

@@ -14,12 +14,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/android/Core.core.android.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.iml" filepath="$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.test.iml" filepath="$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.iml" filepath="$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.androidTest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.main.iml" filepath="$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/binding/Core.core.binding.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/core/base/Core.core.base.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/Core.library.iml" filepath="$PROJECT_DIR$/.idea/modules/library/Core.library.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/adapter/Core.library.adapter.iml" filepath="$PROJECT_DIR$/.idea/modules/library/adapter/Core.library.adapter.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/adapter/Core.library.adapter.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/adapter/Core.library.adapter.androidTest.iml" />
@@ -37,6 +34,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/analytics/sentry/Core.library.analytics.sentry.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/analytics/sentry/Core.library.analytics.sentry.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/analytics/sentry/Core.library.analytics.sentry.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/analytics/sentry/Core.library.analytics.sentry.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/analytics/Core.library.analytics.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/analytics/Core.library.analytics.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.iml" filepath="$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/binding/Core.library.binding.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/config/Core.library.config.iml" filepath="$PROJECT_DIR$/.idea/modules/library/config/Core.library.config.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/config/Core.library.config.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/config/Core.library.config.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/config/firebase/Core.library.config.firebase.iml" filepath="$PROJECT_DIR$/.idea/modules/library/config/firebase/Core.library.config.firebase.iml" />
@@ -74,8 +75,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/job/Core.library.job.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/job/Core.library.job.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/job/Core.library.job.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/job/Core.library.job.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.iml" filepath="$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.test.iml" filepath="$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/state/Core.library.state.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/task/Core.library.task.iml" filepath="$PROJECT_DIR$/.idea/modules/library/task/Core.library.task.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/task/Core.library.task.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/library/task/Core.library.task.androidTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/library/task/Core.library.task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/library/task/Core.library.task.main.iml" />

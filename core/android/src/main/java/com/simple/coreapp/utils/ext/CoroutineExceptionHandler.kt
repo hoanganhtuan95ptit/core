@@ -7,6 +7,7 @@ import kotlin.coroutines.CoroutineContext
 
 val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
     Log.d("tuanha", ": ", throwable)
+    throwable.printStackTrace()
     logCrashlytics(throwable)
 }
 

@@ -7,11 +7,11 @@ abstract class LanguageDetectStateTask : Task<LanguageDetectStateTask.Param, Int
 
     override suspend fun executeTask(param: Param): Int {
 
-        if (!checkSupport(param.languageCode)) {
+        return if (!checkSupport(param.languageCode)) {
             throw LowException("")
+        } else {
+            1
         }
-
-        return 1
     }
 
     data class Param(val languageCode: String)

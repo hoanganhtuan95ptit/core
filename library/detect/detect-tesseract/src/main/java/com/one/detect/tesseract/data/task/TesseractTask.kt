@@ -187,7 +187,6 @@ class TesseractTask(private val fileRoot: File, private val languageCode: String
             text.rect = getBoundingRect(level).let { TextRest(it.left, it.top, it.right, it.bottom) }
             text.text = kotlin.runCatching { getUTF8Text(level) }.getOrNull() ?: continue
 
-            Log.d("tuanha", "read: ${text.text}")
             list.add(text)
 
         } while (next(level))

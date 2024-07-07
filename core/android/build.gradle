@@ -36,12 +36,12 @@ android {
 dependencies {
 
     implementation project(path: ':core:base')
-    implementation project(path: ':core:binding')
 
     implementation project(path: ':library:job')
     implementation project(path: ':library:task')
     implementation project(path: ':library:state')
     implementation project(path: ':library:image')
+    implementation project(path: ':library:binding')
     implementation project(path: ':library:adapter')
 
     implementation project(path: ':library:analytics')
