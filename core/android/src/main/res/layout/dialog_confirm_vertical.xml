@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginHorizontal="16dp" />
 
     <TextView
@@ -27,6 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="16dp"
+        android:gravity="center"
         android:textColor="?attr/colorOnSurface"
         android:textStyle="bold"
         tools:text="Hello" />
@@ -38,6 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="24dp"
         android:layout_marginTop="8dp"
+        android:gravity="center"
         android:textColor="?attr/colorOnSurfaceVariant"
         tools:text="This is a message" />
 
