@@ -5,7 +5,6 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlin.coroutines.CoroutineContext
 
 val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable: Throwable ->
-    throwable.printStackTrace()
-    logCrashlytics(throwable)
+    logCrashlytics("error captured", throwable)
 }
 

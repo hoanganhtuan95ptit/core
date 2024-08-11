@@ -30,20 +30,20 @@ class MlkitDetectTask(
     private val taskList: List<LanguageDetectTask>,
 ) : DetectTask {
 
-    override suspend fun execute(param: DetectTask.Param): ResultState<List<Paragraph>> {
+    override suspend fun executeTask(param: DetectTask.Param): List<Paragraph> {
 
+        if (param.source !is String) {
+
+            throw LowException("not support source ${param.source.javaClass.simpleName}")
+        }
 
         if (!param.detectOption.isDetectText()) {
 
-            return ResultState.Failed(LowException("not support ${param.detectOption.name}"))
+            throw LowException("not support ${param.detectOption.name}")
         }
 
 
-        logAnalytics("MLKIT_DETECT_TASK" to "MLKIT_DETECT_TASK")
-
-
-        val path = param.source as? String ?: throw LowException("not support source ${param.source.javaClass.simpleName}")
-
+        val path = param.source
 
         val bitmap = path.toBitmap(context = context, width = param.sizeMax, height = param.sizeMax)
 
@@ -52,7 +52,7 @@ class MlkitDetectTask(
 
         if (states.all { it.isFailed() }) {
 
-            return states.filterIsInstance<ResultState.Failed>().minByOrNull { if (it.toFailed()?.cause !is LowException) 0 else 1 }!!
+            throw states.filterIsInstance<ResultState.Failed>().minByOrNull { if (it.toFailed()?.cause !is LowException) 0 else 1 }?.cause ?: error("")
         }
 
 
@@ -143,10 +143,10 @@ class MlkitDetectTask(
             }
         }
 
-        return ResultState.Success(paragraphList)
+        return paragraphList
     }
 
-    private suspend fun identifyLanguage(text: String) = suspendCancellableCoroutine<String> { a ->
+    private suspend fun identifyLanguage(text: String) = suspendCancellableCoroutine { a ->
 
         LanguageIdentification.getClient(LanguageIdentificationOptions.Builder().setConfidenceThreshold(0.34f).build()).identifyLanguage(text).addOnSuccessListener { languageCode ->
 

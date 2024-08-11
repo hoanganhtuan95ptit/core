@@ -47,17 +47,17 @@ interface Task<Param, Result> {
 
     suspend fun logStart(param: Param, taskId: String) {
 
-        logAnalytics(this.javaClass.simpleName to "$taskId start")
+        logAnalytics("${this.javaClass.simpleName} $taskId start")
     }
 
     suspend fun logSuccess(param: Param, taskId: String) {
 
-        logAnalytics(this.javaClass.simpleName to "$taskId success")
+        logAnalytics("${this.javaClass.simpleName} $taskId success")
     }
 
     suspend fun logFailed(param: Param, taskId: String, throwable: Throwable) {
 
-        logCrashlytics(java.lang.RuntimeException("${this.javaClass.simpleName} $taskId failed", throwable))
+        logCrashlytics("${this.javaClass.simpleName}_${taskId}_failed", throwable)
     }
 
     suspend fun executeTask(param: Param): Result {

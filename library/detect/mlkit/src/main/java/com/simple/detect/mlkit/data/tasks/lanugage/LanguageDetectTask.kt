@@ -36,7 +36,7 @@ abstract class LanguageDetectTask : Task<LanguageDetectTask.Param, List<Text.Tex
             }
         }.addOnFailureListener { e ->
 
-            logCrashlytics(RuntimeException(this.javaClass.simpleName, e))
+            logCrashlytics("mlkit_detect_failed", e, "input_language" to param.inputCode)
 
             continuation.resumeActive(ResultState.Failed(e))
         }

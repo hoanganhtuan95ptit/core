@@ -34,7 +34,11 @@ android {
 
 dependencies {
 
-    api project(path: ':library:analytics')
+    implementation project(path: ':library:analytics')
+
     implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
     implementation firebaseDependencies.analytics
+
+    implementation koinDependencies.values()
+    implementation androidxDependencies.values()
 }

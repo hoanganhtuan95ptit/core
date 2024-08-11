@@ -37,6 +37,7 @@ dependencies {
     implementation project(':library:crashlytics')
 
     implementation koinDependencies.values()
+    implementation androidxDependencies.values()
 
     implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
     implementation firebaseDependencies.crashlytics

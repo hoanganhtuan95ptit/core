@@ -14,7 +14,7 @@ private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable
     Log.d(ANALYTICS, "error: ", throwable)
 }
 
-fun logAnalytics(vararg params: Pair<String, String>) = JobQueueManager.submit(ANALYTICS, handler + Dispatchers.IO) {
+fun logAnalytics(eventName: String, vararg params: Pair<String, String>) = JobQueueManager.submit(ANALYTICS, handler + Dispatchers.IO) {
 
-    getKoin().getAll<Analytics>().map { it.execute(*params) }
+    getKoin().getAll<Analytics>().map { it.execute(eventName, *params) }
 }

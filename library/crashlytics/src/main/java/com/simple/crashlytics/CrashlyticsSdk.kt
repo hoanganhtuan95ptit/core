@@ -14,9 +14,10 @@ private val handler = CoroutineExceptionHandler { _: CoroutineContext, throwable
     Log.d(CRASHLYTICS, "error: ", throwable)
 }
 
-fun logCrashlytics(throwable: Throwable) = JobQueueManager.submit(CRASHLYTICS, handler) {
+
+fun logCrashlytics(event: String, throwable: Throwable, vararg params: Pair<String, String>) = JobQueueManager.submit(CRASHLYTICS, handler) {
 
     if (throwable is CancellationException) return@submit
 
-    getKoin().getAll<Crashlytics>().map { it.execute(throwable) }
+    getKoin().getAll<Crashlytics>().map { it.execute(event, throwable, *params) }
 }

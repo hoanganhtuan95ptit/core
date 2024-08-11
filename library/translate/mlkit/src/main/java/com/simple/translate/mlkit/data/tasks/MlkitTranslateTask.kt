@@ -49,12 +49,13 @@ class MlkitTranslateTask(
 
         if (inputCode.lowercase() !in listSupported || outputCode.lowercase() !in listSupported) {
 
+            logAnalytics("mlkit_translate_task_not_support", "inputCode" to inputCode, "outputCode" to outputCode)
+
             throw RuntimeException("not support inputCode:$inputCode outputCode:$outputCode")
         }
 
 
-        logAnalytics("Mlkit_Translate_Task_InputCode $inputCode" to inputCode)
-        logAnalytics("Mlkit_Translate_Task_OutputCode $outputCode" to outputCode)
+        logAnalytics("mlkit_translate_task_run_with_language", "inputCode" to inputCode, "outputCode" to outputCode)
 
 
         val downloadInputCodeStateDeferred = async {
@@ -150,7 +151,7 @@ class MlkitTranslateTask(
             continuation.resumeActive(ResultState.Success(translatedText))
         }.addOnFailureListener {
 
-            logCrashlytics(RuntimeException("mlkit translate task translate", it))
+            logCrashlytics("mlkit_translate_failed", it, "input" to text)
 
             continuation.resumeActive(ResultState.Failed(it))
         }
