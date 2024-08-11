@@ -12,6 +12,7 @@ include ':library'
 include ':library:job'
 include ':library:task'
 include ':library:state'
+include ':library:image'
 include ':library:adapter'
 include ':library:binding'
 
@@ -19,10 +20,12 @@ include ':library:config'
 include ':library:config:firebase'
 
 include ':library:analytics'
+include ':library:analytics:log'
 include ':library:analytics:sentry'
 include ':library:analytics:firebase'
 
 include ':library:crashlytics'
+include ':library:crashlytics:log'
 include ':library:crashlytics:sentry'
 include ':library:crashlytics:firebase'
 
@@ -31,37 +34,4 @@ include ':library:detect:mlkit'
 
 include ':library:translate'
 include ':library:translate:mlkit'
-
-include ':library:image'
-
-//include ':library:core'
-//include ':library:core-app'
-//include ':library:core-ads'
-//include ':library:core-review'
-//include ':library:core-update'
-//include ':library:core-navigation'
-//
-//include ':library:job'
-//include ':library:task'
-//include ':library:word'
-//include ':library:state'
-//include ':library:adapter'
-//
-//include ':library:detect'
-//include ':library:detect-mlkit'
-//
-//include ':library:config'
-//include ':library:config-firebase'
-//
-//include ':library:analytics'
-//include ':library:analytics-firebase'
-//
-//include ':library:translate'
-//include ':library:translate-mlkit'
-//
-//include ':library:crashlytics'
-//include ':library:crashlytics-firebase'
-//
-//include ':library:bottomsheet'
-//project(':library:bottomsheet').projectDir = file('../Android-HackBottomSheet/library:bottomsheet')
 

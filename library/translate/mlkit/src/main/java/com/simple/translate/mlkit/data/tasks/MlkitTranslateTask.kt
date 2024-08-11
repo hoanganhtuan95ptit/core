@@ -31,6 +31,11 @@ class MlkitTranslateTask(
     private val map: Map<String, String> = hashMapOf(
     )
 
+    override suspend fun tag(): String {
+
+        return "mlkit_translate_task"
+    }
+
     override suspend fun executeTask(param: TranslateTask.Param): List<String> = withContext(coroutineContext) {
 
         val inputCode = map[param.inputCode] ?: param.inputCode

@@ -30,6 +30,11 @@ class MlkitDetectTask(
     private val taskList: List<LanguageDetectTask>,
 ) : DetectTask {
 
+    override suspend fun tag(): String {
+
+        return "mlkit_detect_task"
+    }
+
     override suspend fun executeTask(param: DetectTask.Param): List<Paragraph> {
 
         if (param.source !is String) {

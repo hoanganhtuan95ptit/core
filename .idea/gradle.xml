@@ -18,12 +18,14 @@
             <option value="$PROJECT_DIR$/library/adapter" />
             <option value="$PROJECT_DIR$/library/analytics" />
             <option value="$PROJECT_DIR$/library/analytics/firebase" />
+            <option value="$PROJECT_DIR$/library/analytics/log" />
             <option value="$PROJECT_DIR$/library/analytics/sentry" />
             <option value="$PROJECT_DIR$/library/binding" />
             <option value="$PROJECT_DIR$/library/config" />
             <option value="$PROJECT_DIR$/library/config/firebase" />
             <option value="$PROJECT_DIR$/library/crashlytics" />
             <option value="$PROJECT_DIR$/library/crashlytics/firebase" />
+            <option value="$PROJECT_DIR$/library/crashlytics/log" />
             <option value="$PROJECT_DIR$/library/crashlytics/sentry" />
             <option value="$PROJECT_DIR$/library/detect" />
             <option value="$PROJECT_DIR$/library/detect/mlkit" />

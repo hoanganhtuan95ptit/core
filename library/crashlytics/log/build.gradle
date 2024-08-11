@@ -1,0 +1,41 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
+}
+
+apply from: "../../../constant/build.gradle"
+
+android {
+    namespace "com.simple.crashlytics.log"
+  
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    kotlinOptions {
+        jvmTarget = project.ext.javaVersion.toString()
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+
+dependencies {
+
+    implementation project(':library:crashlytics')
+
+    implementation koinDependencies.values()
+    implementation androidxDependencies.values()
+}

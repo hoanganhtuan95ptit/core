@@ -45,19 +45,23 @@ interface Task<Param, Result> {
         }
     }
 
+    suspend fun tag(): String {
+        return this.javaClass.simpleName
+    }
+
     suspend fun logStart(param: Param, taskId: String) {
 
-        logAnalytics("${this.javaClass.simpleName} $taskId start")
+        logAnalytics("${tag()}_${taskId}_start")
     }
 
     suspend fun logSuccess(param: Param, taskId: String) {
 
-        logAnalytics("${this.javaClass.simpleName} $taskId success")
+        logAnalytics("${tag()}_${taskId}_success")
     }
 
     suspend fun logFailed(param: Param, taskId: String, throwable: Throwable) {
 
-        logCrashlytics("${this.javaClass.simpleName}_${taskId}_failed", throwable)
+        logCrashlytics("${tag()}_${taskId}_failed", throwable)
     }
 
     suspend fun executeTask(param: Param): Result {
