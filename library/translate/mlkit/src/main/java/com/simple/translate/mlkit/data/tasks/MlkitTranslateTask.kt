@@ -47,11 +47,14 @@ class MlkitTranslateTask(
         val listSupported = TranslateLanguage.getAllLanguages()
 
 
-        if (inputCode.lowercase() !in listSupported || outputCode.lowercase() !in listSupported) {
+        // check language support
+        listOf(inputCode, outputCode).find {
 
-            logAnalytics("mlkit_translate_task_not_support", "inputCode" to inputCode, "outputCode" to outputCode)
+            inputCode.lowercase() !in listSupported
+        }?.let {
 
-            throw RuntimeException("not support inputCode:$inputCode outputCode:$outputCode")
+            logAnalytics("mlkit_translate_task_not_support", "code" to it)
+            throw RuntimeException("not support code:$it")
         }
 
 
