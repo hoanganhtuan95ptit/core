@@ -1,14 +1,13 @@
 plugins {
     id 'com.android.library'
-    id 'kotlin-parcelize'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
-apply from: "../../../constant/build.gradle"
+apply from: "../../constant/build.gradle"
 
 android {
-    namespace "com.simple.analytics.log"
-  
+    namespace 'com.simple.analytics.sentry'
+
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
@@ -16,12 +15,12 @@ android {
 
         multiDexEnabled = true
     }
-    buildFeatures {
-        viewBinding true
-    }
     compileOptions {
         sourceCompatibility project.ext.javaVersion
         targetCompatibility project.ext.javaVersion
+    }
+    buildFeatures {
+        viewBinding true
     }
     kotlinOptions {
         jvmTarget = project.ext.javaVersion.toString()
@@ -31,11 +30,12 @@ android {
     }
 }
 
-
 dependencies {
 
     implementation project(path: ':library:analytics')
 
     implementation koinDependencies.values()
+    implementation sentryDependencies.values()
     implementation androidxDependencies.values()
+    implementation coroutinesDependencies.values()
 }

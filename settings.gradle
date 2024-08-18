@@ -20,18 +20,17 @@ include ':library:config'
 include ':library:config:firebase'
 
 include ':library:analytics'
-include ':library:analytics:log'
-include ':library:analytics:sentry'
-include ':library:analytics:firebase'
+include ':library:analytics-log'
+include ':library:analytics-sentry'
+include ':library:analytics-firebase'
 
 include ':library:crashlytics'
-include ':library:crashlytics:log'
-include ':library:crashlytics:sentry'
-include ':library:crashlytics:firebase'
+include ':library:crashlytics-log'
+include ':library:crashlytics-sentry'
+include ':library:crashlytics-firebase'
 
 include ':library:detect'
-include ':library:detect:mlkit'
+include ':library:debug-mlkit'
 
 include ':library:translate'
-include ':library:translate:mlkit'
-
+include ':library:translate-mlkit'

@@ -4,10 +4,10 @@ plugins {
     id 'kotlin-android'
 }
 
-apply from: "../../../constant/build.gradle"
+apply from: "../../constant/build.gradle"
 
 android {
-    namespace "com.simple.analytics.firebase"
+    namespace "com.simple.crashlytics.log"
   
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
@@ -34,10 +34,7 @@ android {
 
 dependencies {
 
-    implementation project(path: ':library:analytics')
-
-    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
-    implementation firebaseDependencies.analytics
+    implementation project(':library:crashlytics')
 
     implementation koinDependencies.values()
     implementation androidxDependencies.values()

@@ -1,13 +1,14 @@
 plugins {
     id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'kotlin-android'
 }
 
-apply from: "../../../constant/build.gradle"
+apply from: "../../constant/build.gradle"
 
 android {
-    namespace 'com.simple.analytics.sentry'
-
+    namespace "com.simple.analytics.firebase"
+  
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
@@ -15,12 +16,12 @@ android {
 
         multiDexEnabled = true
     }
+    buildFeatures {
+        viewBinding true
+    }
     compileOptions {
         sourceCompatibility project.ext.javaVersion
         targetCompatibility project.ext.javaVersion
-    }
-    buildFeatures {
-        viewBinding true
     }
     kotlinOptions {
         jvmTarget = project.ext.javaVersion.toString()
@@ -30,12 +31,14 @@ android {
     }
 }
 
+
 dependencies {
 
     implementation project(path: ':library:analytics')
 
+    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    implementation firebaseDependencies.analytics
+
     implementation koinDependencies.values()
-    implementation sentryDependencies.values()
     implementation androidxDependencies.values()
-    implementation coroutinesDependencies.values()
 }

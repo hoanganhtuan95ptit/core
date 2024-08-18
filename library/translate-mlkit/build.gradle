@@ -1,13 +1,12 @@
 plugins {
     id 'com.android.library'
-    id 'kotlin-parcelize'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
 }
 
-apply from: "../../../constant/build.gradle"
+apply from: "../../constant/build.gradle"
 
 android {
-    namespace "com.simple.crashlytics.log"
+    namespace "com.simple.translate.mlkit"
   
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
@@ -31,11 +30,16 @@ android {
     }
 }
 
-
 dependencies {
 
+    implementation project(':core:android')
+    implementation project(':library:task')
+    implementation project(':library:state')
+    implementation project(':library:analytics')
+    implementation project(':library:translate')
     implementation project(':library:crashlytics')
-
     implementation koinDependencies.values()
     implementation androidxDependencies.values()
+
+    implementation 'com.google.mlkit:translate:17.0.2'
 }
