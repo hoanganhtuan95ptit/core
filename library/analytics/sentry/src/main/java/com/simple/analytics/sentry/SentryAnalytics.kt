@@ -5,9 +5,7 @@ import io.sentry.Sentry
 
 class SentryAnalytics : Analytics {
 
-    override suspend fun execute(vararg params: Pair<String, String>) {
-
-        val name = params.firstOrNull()?.first?.takeIf { it.isNotBlank() } ?: return
+    override suspend fun execute(eventName: String, vararg params: Pair<String, String>) {
 
         Sentry.withScope { scope ->
 
@@ -17,7 +15,7 @@ class SentryAnalytics : Analytics {
                 scope.setExtra(it.key, it.value)
             }
 
-            Sentry.captureMessage(name)
+            Sentry.captureMessage(eventName)
         }
     }
 }

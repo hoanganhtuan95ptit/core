@@ -34,5 +34,8 @@ dependencies {
 
     implementation project(path: ':library:analytics')
 
+    implementation koinDependencies.values()
     implementation sentryDependencies.values()
+    implementation androidxDependencies.values()
+    implementation coroutinesDependencies.values()
 }

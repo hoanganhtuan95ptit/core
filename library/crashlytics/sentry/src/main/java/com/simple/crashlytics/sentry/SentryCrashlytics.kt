@@ -10,7 +10,9 @@ internal val sentrySession by lazy {
 
 class SentryCrashlytics : Crashlytics {
 
-    override suspend fun execute(throwable: Throwable) {
+    override suspend fun execute(eventName: String, throwable: Throwable, vararg params: Pair<String, String>) {
+
+        val map = hashMapOf("eventName" to eventName, *params)
 
         Sentry.withScope { scope ->
 
@@ -18,7 +20,7 @@ class SentryCrashlytics : Crashlytics {
 
             scope.fingerprint = listOf(throwable.message)
 
-            Sentry.captureException(throwable)
+            Sentry.captureException(RuntimeException(map.toString(), throwable))
         }
     }
 }
