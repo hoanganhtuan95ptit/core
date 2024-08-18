@@ -3,7 +3,7 @@ package com.simple.state
 
 sealed class ResultState<out T> {
 
-    data object Start : ResultState<Nothing>()
+    object Start : ResultState<Nothing>()
 
     data class Running<T>(val data: T) : ResultState<T>()
 
