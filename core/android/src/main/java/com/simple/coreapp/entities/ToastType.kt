@@ -5,6 +5,6 @@ enum class ToastType {
 
     companion object {
 
-        fun String.toToastType(): ToastType? = entries.find { it.name == this }
+        fun String.toToastType(): ToastType? = values().find { it.name == this }
     }
 }
