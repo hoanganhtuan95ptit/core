@@ -17,7 +17,7 @@ include ':library:adapter'
 include ':library:binding'
 
 include ':library:config'
-include ':library:config:firebase'
+include ':library:config-firebase'
 
 include ':library:analytics'
 include ':library:analytics-log'
@@ -30,7 +30,7 @@ include ':library:crashlytics-sentry'
 include ':library:crashlytics-firebase'
 
 include ':library:detect'
-include ':library:debug-mlkit'
+include ':library:detect-mlkit'
 
 include ':library:translate'
 include ':library:translate-mlkit'
