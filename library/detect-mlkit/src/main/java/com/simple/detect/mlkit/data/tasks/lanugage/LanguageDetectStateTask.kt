@@ -15,5 +15,14 @@ abstract class LanguageDetectStateTask : Task<LanguageDetectStateTask.Param, Det
         }
     }
 
+    override suspend fun logStart(param: Param, taskId: String) {
+    }
+
+    override suspend fun logSuccess(param: Param, taskId: String) {
+    }
+
+    override suspend fun logFailed(param: Param, taskId: String, throwable: Throwable) {
+    }
+
     data class Param(val languageCode: String)
 }

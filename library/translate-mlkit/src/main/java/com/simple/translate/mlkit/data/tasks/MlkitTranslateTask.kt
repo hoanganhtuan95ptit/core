@@ -14,8 +14,12 @@ import com.simple.state.ResultState
 import com.simple.state.isFailed
 import com.simple.state.toSuccess
 import com.simple.translate.data.tasks.TranslateTask
+import com.simple.translate.entities.TranslateRequest
+import com.simple.translate.entities.TranslateResponse
+import com.simple.translate.mlkit.COUNTRY_LANGUAGE_MAP
 import com.simple.translate.mlkit.utils.exts.checkModelDownloaded
 import com.simple.translate.mlkit.utils.exts.downloadModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -28,24 +32,62 @@ class MlkitTranslateTask(
     private val context: Context
 ) : TranslateTask {
 
-    private val map: Map<String, String> = hashMapOf(
-    )
-
     override suspend fun tag(): String {
 
         return "mlkit_translate_task"
     }
 
-    override suspend fun executeTask(param: TranslateTask.Param): List<String> = withContext(coroutineContext) {
+    override suspend fun executeTask(param: TranslateTask.Param): List<TranslateResponse> {
 
-        val inputCode = map[param.inputCode] ?: param.inputCode
+        val list = param.input.groupBy {
 
-        val outputCode = map[param.outputCode] ?: param.outputCode
+            it.languageCode
+        }.map {
+
+            translateInput(it.value, it.key, param.outputCode)
+        }
+
+        return list.awaitAll().flatMap { it }
+    }
+
+    private suspend fun translateInput(input: List<TranslateRequest>, inputLanguageCode: String, outputLanguageCode: String) = CoroutineScope(coroutineContext).async {
+
+        val state = kotlin.runCatching {
+
+            val list = translateText(input.map { it.text }, inputLanguageCode, outputLanguageCode)
+
+            ResultState.Success(list)
+        }.getOrElse {
+
+            ResultState.Failed(it)
+        }
+
+
+        return@async input.mapIndexed { index, translateRequest ->
+
+            val translateState = if (state is ResultState.Failed) {
+                state
+            } else {
+                ResultState.Success(state.toSuccess()?.data.orEmpty().getOrNull(index).orEmpty())
+            }
+
+            TranslateResponse(
+                text = translateRequest.text,
+                translateState = translateState
+            )
+        }
+    }
+
+    private suspend fun translateText(text: List<String>, inputLanguageCode: String, outputLanguageCode: String) = withContext(coroutineContext) {
+
+        val inputCode = COUNTRY_LANGUAGE_MAP[inputLanguageCode] ?: inputLanguageCode
+
+        val outputCode = COUNTRY_LANGUAGE_MAP[outputLanguageCode] ?: outputLanguageCode
 
 
         if (inputCode == outputCode) {
 
-            return@withContext param.text
+            return@withContext text
         }
 
 
@@ -102,7 +144,7 @@ class MlkitTranslateTask(
         val translator = Translation.getClient(options)
 
 
-        val translateStateList = param.text.map {
+        val translateStateList = text.map {
 
             async {
                 translate(translator, it)
@@ -123,6 +165,19 @@ class MlkitTranslateTask(
         }
 
         return@withContext list
+    }
+
+    private suspend fun translate(translator: Translator, text: String): ResultState<String> = suspendCancellableCoroutine { continuation ->
+
+        translator.translate(text).addOnSuccessListener { translatedText ->
+
+            continuation.resumeActive(ResultState.Success(translatedText))
+        }.addOnFailureListener {
+
+            logCrashlytics("mlkit_translate_failed", it, "input" to text)
+
+            continuation.resumeActive(ResultState.Failed(it))
+        }
     }
 
     private suspend fun downloadModelIfNeededTimeout(languageCode: String): ResultState<Boolean> {
@@ -149,19 +204,6 @@ class MlkitTranslateTask(
         return withTimeout(2 * 60 * 1000) {
 
             remoteModel.downloadModel()
-        }
-    }
-
-    private suspend fun translate(translator: Translator, text: String): ResultState<String> = suspendCancellableCoroutine { continuation ->
-
-        translator.translate(text).addOnSuccessListener { translatedText ->
-
-            continuation.resumeActive(ResultState.Success(translatedText))
-        }.addOnFailureListener {
-
-            logCrashlytics("mlkit_translate_failed", it, "input" to text)
-
-            continuation.resumeActive(ResultState.Failed(it))
         }
     }
 }

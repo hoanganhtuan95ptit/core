@@ -61,7 +61,7 @@ interface Task<Param, Result> {
 
     suspend fun logFailed(param: Param, taskId: String, throwable: Throwable) {
 
-        logCrashlytics("${tag()}_${taskId}_failed", throwable)
+        if (throwable !is LowException) logCrashlytics("${tag()}_${taskId}_failed", throwable)
     }
 
     suspend fun executeTask(param: Param): Result {

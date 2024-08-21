@@ -34,6 +34,7 @@ android {
 
 dependencies {
 
+    implementation project(':core:base')
     implementation project(':library:crashlytics')
 
     implementation koinDependencies.values()

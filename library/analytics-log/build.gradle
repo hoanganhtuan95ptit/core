@@ -8,7 +8,7 @@ apply from: "../../constant/build.gradle"
 
 android {
     namespace "com.simple.analytics.log"
-  
+
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
@@ -34,7 +34,8 @@ android {
 
 dependencies {
 
-    implementation project(path: ':library:analytics')
+    implementation project(':core:base')
+    implementation project(':library:analytics')
 
     implementation koinDependencies.values()
     implementation androidxDependencies.values()

@@ -13,7 +13,7 @@ class FirebaseCrashlyticsInitializer : Initializer<Unit> {
 
         loadKoinModules(listOf(module {
 
-            single { FirebaseCrashlytics(get()) } bind Crashlytics::class
+            single { FirebaseCrashlytics() } bind Crashlytics::class
 
         }))
 

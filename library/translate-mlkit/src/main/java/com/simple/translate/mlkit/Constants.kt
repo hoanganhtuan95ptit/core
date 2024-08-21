@@ -1,6 +1,4 @@
 package com.simple.translate.mlkit
 
-object Constants {
-
-    const val TRANSLATE_MLKIT = "TRANSLATE_MLKIT"
-}
+val COUNTRY_LANGUAGE_MAP: Map<String, String> = hashMapOf(
+)
