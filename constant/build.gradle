@@ -152,28 +152,28 @@ project.ext {
 
             translate           : project(':library:translate'),
             translate_mlkit     : project(':library:translate-mlkit'),
-
-//            base                : "com.github.hoanganhtuan95ptit.core:base:1.1.17",
-//            android             : "com.github.hoanganhtuan95ptit.core:android:1.1.17",
 //
-//            task                : "com.github.hoanganhtuan95ptit.core:task:1.1.17",
-//            state               : "com.github.hoanganhtuan95ptit.core:state:1.1.17",
-//            image               : "com.github.hoanganhtuan95ptit.core:image:1.1.17",
-//            adapter             : "com.github.hoanganhtuan95ptit.core:adapter:1.1.17",
+//            base                : "com.github.hoanganhtuan95ptit.core:base:1.1.18",
+//            android             : "com.github.hoanganhtuan95ptit.core:android:1.1.18",
 //
-//            analytics           : "com.github.hoanganhtuan95ptit.core:analytics:1.1.17",
-//            analytics_log       : "com.github.hoanganhtuan95ptit.core:analytics-log:1.1.17",
-//            analytics_firebase  : "com.github.hoanganhtuan95ptit.core:analytics-firebase:1.1.17",
+//            task                : "com.github.hoanganhtuan95ptit.core:task:1.1.18",
+//            state               : "com.github.hoanganhtuan95ptit.core:state:1.1.18",
+//            image               : "com.github.hoanganhtuan95ptit.core:image:1.1.18",
+//            adapter             : "com.github.hoanganhtuan95ptit.core:adapter:1.1.18",
 //
-//            crashlytics         : "com.github.hoanganhtuan95ptit.core:crashlytics:1.1.17",
-//            crashlytics_log     : "com.github.hoanganhtuan95ptit.core:crashlytics-log:1.1.17",
-//            crashlytics_firebase: "com.github.hoanganhtuan95ptit.core:crashlytics-firebase:1.1.17",
+//            analytics           : "com.github.hoanganhtuan95ptit.core:analytics:1.1.18",
+//            analytics_log       : "com.github.hoanganhtuan95ptit.core:analytics-log:1.1.18",
+//            analytics_firebase  : "com.github.hoanganhtuan95ptit.core:analytics-firebase:1.1.18",
 //
-//            detect              : "com.github.hoanganhtuan95ptit.core:detect:1.1.17",
-//            detect_mlkit        : "com.github.hoanganhtuan95ptit.core:detect-mlkit:1.1.17",
+//            crashlytics         : "com.github.hoanganhtuan95ptit.core:crashlytics:1.1.18",
+//            crashlytics_log     : "com.github.hoanganhtuan95ptit.core:crashlytics-log:1.1.18",
+//            crashlytics_firebase: "com.github.hoanganhtuan95ptit.core:crashlytics-firebase:1.1.18",
 //
-//            translate           : "com.github.hoanganhtuan95ptit.core:translate:1.1.17",
-//            translate_mlkit     : "com.github.hoanganhtuan95ptit.core:translate-mlkit:1.1.17"
+//            detect              : "com.github.hoanganhtuan95ptit.core:detect:1.1.18",
+//            detect_mlkit        : "com.github.hoanganhtuan95ptit.core:detect-mlkit:1.1.18",
+//
+//            translate           : "com.github.hoanganhtuan95ptit.core:translate:1.1.18",
+//            translate_mlkit     : "com.github.hoanganhtuan95ptit.core:translate-mlkit:1.1.18"
 
     ]
 }

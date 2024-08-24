@@ -27,6 +27,8 @@ import com.simple.image.exts.Image
 //
 
 fun Any.toBitmap(context: Context, width: Int, height: Int): Bitmap = Glide.with(context).asBitmap()
+    .diskCacheStrategy(DiskCacheStrategy.NONE)
+    .skipMemoryCache(true)
     .load(this)
     .submit(width, height)
     .get()
@@ -40,6 +42,8 @@ fun Any.toBitmap(context: Context, width: Int, height: Int, vararg transformatio
     .get()
 
 fun Any.toBitmap(context: Context, vararg transformations: Transformation<Bitmap>): Bitmap = Glide.with(context).asBitmap()
+    .diskCacheStrategy(DiskCacheStrategy.NONE)
+    .skipMemoryCache(true)
     .transform(*transformations)
     .load(this)
     .submit()

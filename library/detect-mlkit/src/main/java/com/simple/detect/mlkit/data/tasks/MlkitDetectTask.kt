@@ -4,7 +4,6 @@ import android.content.Context
 import com.google.mlkit.nl.languageid.LanguageIdentification
 import com.google.mlkit.nl.languageid.LanguageIdentificationOptions
 import com.google.mlkit.vision.text.Text
-import com.simple.analytics.logAnalytics
 import com.simple.core.utils.extentions.resumeActive
 import com.simple.core.utils.extentions.toArrayList
 import com.simple.core.utils.extentions.validate
