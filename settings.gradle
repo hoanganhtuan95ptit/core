@@ -4,7 +4,6 @@ include ':app'
 
 include ':constant'
 
-include ':core'
 include ':core:base'
 include ':core:android'
 
@@ -34,3 +33,7 @@ include ':library:detect-mlkit'
 
 include ':library:translate'
 include ':library:translate-mlkit'
+
+include ':library:deeplink'
+include ':library:deeplink-processor'
+include ':library:deeplink-annotation'

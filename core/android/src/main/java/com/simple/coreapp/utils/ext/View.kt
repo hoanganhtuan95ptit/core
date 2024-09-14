@@ -5,8 +5,11 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Rect
+import android.os.Build
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.view.WindowInsets
 import android.view.animation.LinearInterpolator
 import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
@@ -17,14 +20,26 @@ import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.core.view.marginTop
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import androidx.lifecycle.LifecycleOwner
+import androidx.transition.AutoTransition
+import androidx.transition.Scene
+import androidx.transition.Transition
+import androidx.transition.Transition.TransitionListener
 import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import com.simple.coreapp.utils.extentions.animation
 import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 
@@ -405,4 +420,140 @@ fun ViewGroup.show(startView: View, endView: View) {
 
     startView.visibility = View.GONE
     endView.visibility = View.VISIBLE
+}
+
+suspend fun View.awaitDraw(timeout: Long = 350) = channelFlow {
+
+    var job: Job? = null
+
+    val runnable = kotlinx.coroutines.Runnable {
+
+        job?.cancel()
+        job = launch {
+
+            delay(timeout)
+            trySend(Unit)
+        }
+    }
+
+    val listener = ViewTreeObserver.OnDrawListener {
+
+        runnable.run()
+    }
+
+    post {
+
+        runnable.run()
+    }
+
+    viewTreeObserver.addOnDrawListener(listener)
+
+    awaitClose {
+
+        viewTreeObserver.removeOnDrawListener(listener)
+    }
+}.first()
+
+suspend fun View.awaitAmin(vararg target: View, transition: TransitionSet = AutoTransition().setDuration(350)) = channelFlow {
+
+    val timeoutJob = launch {
+
+        delay(350)
+        trySend(Unit)
+    }
+
+    anim(*target, transition = transition, listener = object : TransitionListener {
+
+        override fun onTransitionStart(transition: Transition) {
+            timeoutJob.cancel()
+        }
+
+        override fun onTransitionEnd(transition: Transition) {
+            trySend(Unit)
+        }
+
+        override fun onTransitionCancel(transition: Transition) {
+            trySend(Unit)
+        }
+
+        override fun onTransitionPause(transition: Transition) {
+        }
+
+        override fun onTransitionResume(transition: Transition) {
+        }
+    })
+
+    awaitClose()
+}.first()
+
+fun View.anim(vararg target: View, transition: TransitionSet = AutoTransition().setDuration(350), listener: TransitionListener? = null) {
+
+    if (this !is ViewGroup) {
+
+        listener?.onTransitionCancel(transition)
+        return
+    }
+
+    target.forEach {
+
+        transition.addTarget(it)
+    }
+
+    listener?.let {
+
+        transition.addListener(it)
+    }
+
+    TransitionManager.go(Scene(this), transition)
+}
+
+
+fun View.doOnChangeHeightStatusAndHeightNavigation(
+    lifecycleOwner: LifecycleOwner, onChange: suspend (heightStatusBar: Int, heightNavigationBar: Int) -> Unit
+) = listenerOnChangeHeightStatusAndHeightNavigation().distinctUntilChanged().launchCollect(lifecycleOwner) {
+
+    onChange(it.first, it.second)
+}
+
+fun View.listenerOnChangeHeightStatusAndHeightNavigation() = listenerOnApplyWindowInsetsAsync().mapNotNull { insets ->
+
+    val heightStatusBar = insets.getStatusBar().takeIf { it >= 10 } ?: getStatusBarHeight(context)
+    val heightNavigationBar = insets.getNavigationBar().takeIf { it >= 10 } ?: getStatusBarHeight(context)
+
+    if (heightStatusBar <= 0 || heightNavigationBar <= 0) {
+        null
+    } else {
+        Pair(heightStatusBar, heightNavigationBar)
+    }
+}
+
+private fun View.listenerOnApplyWindowInsetsAsync() = channelFlow {
+
+    val listener = View.OnApplyWindowInsetsListener { _, insets ->
+
+        trySend(insets)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowInsets.CONSUMED
+        } else {
+            insets
+        }
+    }
+
+    setOnApplyWindowInsetsListener(listener)
+
+    rootWindowInsets?.let {
+
+        trySend(it)
+    }
+
+    post {
+
+        trySend(rootWindowInsets ?: return@post)
+    }
+
+    awaitClose {
+
+        setOnApplyWindowInsetsListener(null)
+    }
 }
