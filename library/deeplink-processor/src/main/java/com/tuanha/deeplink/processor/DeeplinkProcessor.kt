@@ -66,7 +66,7 @@ class DeeplinkProcessor : AbstractProcessor() {
         val list = ClassName.get("java.util", "List")
         val arrayList = ClassName.get("java.util", "ArrayList")
 
-        val navigationDeepLink = ClassName.get("com.tuanha.deeplink", "DeepLinkHandle")
+        val navigationDeepLink = ClassName.get("java.lang", "Object")
         val listOfNavigationDeepLink: TypeName = ParameterizedTypeName.get(list, navigationDeepLink)
 
         var builder = MethodSpec.methodBuilder("navigation")
