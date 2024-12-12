@@ -33,6 +33,8 @@ public class RoundViewDelegate {
 
     private int strokeWidth;
     private int strokeColor;
+    private int strokeDashGap;
+    private int strokeDashWidth;
     private int strokePressColor;
     private int textPressColor;
 
@@ -55,6 +57,9 @@ public class RoundViewDelegate {
         cornerRadius = ta.getDimensionPixelSize(R.styleable.RoundView_rv_cornerRadius, 0);
         strokeWidth = ta.getDimensionPixelSize(R.styleable.RoundView_rv_strokeWidth, 0);
         strokeColor = ta.getColor(R.styleable.RoundView_rv_strokeColor, Color.TRANSPARENT);
+        strokeDashGap = ta.getDimensionPixelSize(R.styleable.RoundView_rv_strokeDashGap, 0);
+        strokeDashWidth = ta.getDimensionPixelSize(R.styleable.RoundView_rv_strokeDashWidth, 0);
+        strokePressColor = ta.getColor(R.styleable.RoundView_rv_strokePressColor, Integer.MAX_VALUE);
         strokePressColor = ta.getColor(R.styleable.RoundView_rv_strokePressColor, Integer.MAX_VALUE);
         textPressColor = ta.getColor(R.styleable.RoundView_rv_textPressColor, Integer.MAX_VALUE);
         isRadiusHalfHeight = ta.getBoolean(R.styleable.RoundView_rv_isRadiusHalfHeight, false);
@@ -213,7 +218,7 @@ public class RoundViewDelegate {
             gd.setCornerRadius(cornerRadius);
         }
 
-        gd.setStroke(strokeWidth, strokeColor);
+        gd.setStroke(strokeWidth, strokeColor, strokeDashWidth, strokeDashGap);
     }
 
     public void setBgSelector() {

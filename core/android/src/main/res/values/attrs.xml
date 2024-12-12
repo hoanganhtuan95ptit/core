@@ -77,8 +77,10 @@
     <attr name="rv_backgroundColor" format="color" />
     <attr name="rv_backgroundPressColor" format="color" />
     <attr name="rv_cornerRadius" format="dimension" />
-    <attr name="rv_strokeWidth" format="dimension" />
     <attr name="rv_strokeColor" format="color" />
+    <attr name="rv_strokeWidth" format="dimension" />
+    <attr name="rv_strokeDashGap" format="dimension" />
+    <attr name="rv_strokeDashWidth" format="dimension" />
     <attr name="rv_strokePressColor" format="color" />
     <attr name="rv_textPressColor" format="color" />
     <attr name="rv_isRadiusHalfHeight" format="boolean" />
@@ -95,23 +97,8 @@
         <attr name="rv_cornerRadius" />
         <attr name="rv_strokeWidth" />
         <attr name="rv_strokeColor" />
-        <attr name="rv_strokePressColor" />
-        <attr name="rv_textPressColor" />
-        <attr name="rv_isRadiusHalfHeight" />
-        <attr name="rv_isWidthHeightEqual" />
-        <attr name="rv_cornerRadius_TL" />
-        <attr name="rv_cornerRadius_TR" />
-        <attr name="rv_cornerRadius_BL" />
-        <attr name="rv_cornerRadius_BR" />
-        <attr name="rv_isRippleEnable" />
-    </declare-styleable>
-
-    <declare-styleable name="RoundTextView">
-        <attr name="rv_backgroundColor" />
-        <attr name="rv_backgroundPressColor" />
-        <attr name="rv_cornerRadius" />
-        <attr name="rv_strokeWidth" />
-        <attr name="rv_strokeColor" />
+        <attr name="rv_strokeDashGap" />
+        <attr name="rv_strokeDashWidth" />
         <attr name="rv_strokePressColor" />
         <attr name="rv_textPressColor" />
         <attr name="rv_isRadiusHalfHeight" />
@@ -129,7 +116,10 @@
         <attr name="rv_cornerRadius" />
         <attr name="rv_strokeWidth" />
         <attr name="rv_strokeColor" />
+        <attr name="rv_strokeDashGap" />
+        <attr name="rv_strokeDashWidth" />
         <attr name="rv_strokePressColor" />
+        <attr name="rv_textPressColor" />
         <attr name="rv_isRadiusHalfHeight" />
         <attr name="rv_isWidthHeightEqual" />
         <attr name="rv_cornerRadius_TL" />
@@ -145,7 +135,10 @@
         <attr name="rv_cornerRadius" />
         <attr name="rv_strokeWidth" />
         <attr name="rv_strokeColor" />
+        <attr name="rv_strokeDashGap" />
+        <attr name="rv_strokeDashWidth" />
         <attr name="rv_strokePressColor" />
+        <attr name="rv_textPressColor" />
         <attr name="rv_isRadiusHalfHeight" />
         <attr name="rv_isWidthHeightEqual" />
         <attr name="rv_cornerRadius_TL" />
@@ -161,7 +154,10 @@
         <attr name="rv_cornerRadius" />
         <attr name="rv_strokeWidth" />
         <attr name="rv_strokeColor" />
+        <attr name="rv_strokeDashGap" />
+        <attr name="rv_strokeDashWidth" />
         <attr name="rv_strokePressColor" />
+        <attr name="rv_textPressColor" />
         <attr name="rv_isRadiusHalfHeight" />
         <attr name="rv_isWidthHeightEqual" />
         <attr name="rv_cornerRadius_TL" />
@@ -177,7 +173,10 @@
         <attr name="rv_cornerRadius" />
         <attr name="rv_strokeWidth" />
         <attr name="rv_strokeColor" />
+        <attr name="rv_strokeDashGap" />
+        <attr name="rv_strokeDashWidth" />
         <attr name="rv_strokePressColor" />
+        <attr name="rv_textPressColor" />
         <attr name="rv_isRadiusHalfHeight" />
         <attr name="rv_isWidthHeightEqual" />
         <attr name="rv_cornerRadius_TL" />
@@ -193,7 +192,10 @@
         <attr name="rv_cornerRadius" />
         <attr name="rv_strokeWidth" />
         <attr name="rv_strokeColor" />
+        <attr name="rv_strokeDashGap" />
+        <attr name="rv_strokeDashWidth" />
         <attr name="rv_strokePressColor" />
+        <attr name="rv_textPressColor" />
         <attr name="rv_isRadiusHalfHeight" />
         <attr name="rv_isWidthHeightEqual" />
         <attr name="rv_cornerRadius_TL" />
@@ -209,7 +211,10 @@
         <attr name="rv_cornerRadius" />
         <attr name="rv_strokeWidth" />
         <attr name="rv_strokeColor" />
+        <attr name="rv_strokeDashGap" />
+        <attr name="rv_strokeDashWidth" />
         <attr name="rv_strokePressColor" />
+        <attr name="rv_textPressColor" />
         <attr name="rv_isRadiusHalfHeight" />
         <attr name="rv_isWidthHeightEqual" />
         <attr name="rv_cornerRadius_TL" />
