@@ -98,6 +98,16 @@ public class RoundViewDelegate {
         setBgSelector();
     }
 
+    public void setStrokeDashGap(int strokeDashGap) {
+        this.strokeDashGap = strokeDashGap;
+        setBgSelector();
+    }
+
+    public void setStrokeDashWidth(int strokeDashWidth) {
+        this.strokeDashWidth = strokeDashWidth;
+        setBgSelector();
+    }
+
     public void setStrokePressColor(int strokePressColor) {
         this.strokePressColor = strokePressColor;
         setBgSelector();
