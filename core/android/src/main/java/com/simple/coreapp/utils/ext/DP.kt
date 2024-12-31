@@ -6,6 +6,7 @@ object DP {
 
     val DP_05 by lazy { 0.5f.toPx() }
 
+    val DP_1 by lazy { 1.toPx() }
     val DP_2 by lazy { 2.toPx() }
     val DP_4 by lazy { 4.toPx() }
     val DP_6 by lazy { 6.toPx() }
