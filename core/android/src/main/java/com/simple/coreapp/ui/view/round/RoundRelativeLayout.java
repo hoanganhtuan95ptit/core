@@ -39,6 +39,7 @@ public class RoundRelativeLayout extends RelativeLayout {
         super.onLayout(changed, left, top, right, bottom);
         if (delegate.isRadiusHalfHeight()) {
             delegate.setCornerRadius(getHeight() / 2);
+            delegate.setBgSelector();
         }else {
             delegate.setBgSelector();
         }

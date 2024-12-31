@@ -18,7 +18,9 @@ public class RoundConstraintLayout extends ConstraintLayout {
         delegate = new RoundViewDelegate(this, context, attrs);
     }
 
-    /** use delegate to set attr */
+    /**
+     * use delegate to set attr
+     */
     public RoundViewDelegate getDelegate() {
         return delegate;
     }
@@ -41,7 +43,8 @@ public class RoundConstraintLayout extends ConstraintLayout {
         super.onLayout(changed, left, top, right, bottom);
         if (delegate.isRadiusHalfHeight()) {
             delegate.setCornerRadius(getHeight() / 2);
-        }else {
+            delegate.setBgSelector();
+        } else {
             delegate.setBgSelector();
         }
     }

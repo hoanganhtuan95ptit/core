@@ -41,6 +41,7 @@ public class RoundHorizontalScrollView extends HorizontalScrollView {
         super.onLayout(changed, left, top, right, bottom);
         if (delegate.isRadiusHalfHeight()) {
             delegate.setCornerRadius(getHeight() / 2);
+            delegate.setBgSelector();
         }else {
             delegate.setBgSelector();
         }
