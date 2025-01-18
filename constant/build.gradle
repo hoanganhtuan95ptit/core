@@ -129,29 +129,29 @@ project.ext {
 
     hoanganhtuan95Dependencies = [
 
-            base                : project(':core:base'),
-            android             : project(':core:android'),
-
-            job                 : project(':library:job'),
-            task                : project(':library:task'),
-            state               : project(':library:state'),
-            image               : project(':library:image'),
-            binding             : project(':library:binding'),
-            adapter             : project(':library:adapter'),
-
-            analytics           : project(':library:analytics'),
-            analytics_log       : project(':library:analytics-log'),
-            analytics_firebase  : project(':library:analytics-firebase'),
-
-            crashlytics         : project(':library:crashlytics'),
-            crashlytics_log     : project(':library:crashlytics-log'),
-            crashlytics_firebase: project(':library:crashlytics-firebase'),
-
-            detect              : project(':library:detect'),
-            detect_mlkit        : project(':library:detect-mlkit'),
-
-            translate           : project(':library:translate'),
-            translate_mlkit     : project(':library:translate-mlkit'),
+//            base                : project(':core:base'),
+//            android             : project(':core:android'),
+//
+//            job                 : project(':library:job'),
+//            task                : project(':library:task'),
+//            state               : project(':library:state'),
+//            image               : project(':library:image'),
+//            binding             : project(':library:binding'),
+//            adapter             : project(':library:adapter'),
+//
+//            analytics           : project(':library:analytics'),
+//            analytics_log       : project(':library:analytics-log'),
+//            analytics_firebase  : project(':library:analytics-firebase'),
+//
+//            crashlytics         : project(':library:crashlytics'),
+//            crashlytics_log     : project(':library:crashlytics-log'),
+//            crashlytics_firebase: project(':library:crashlytics-firebase'),
+//
+//            detect              : project(':library:detect'),
+//            detect_mlkit        : project(':library:detect-mlkit'),
+//
+//            translate           : project(':library:translate'),
+//            translate_mlkit     : project(':library:translate-mlkit'),
 //
 //            base                : "com.github.hoanganhtuan95ptit.core:base:1.1.18",
 //            android             : "com.github.hoanganhtuan95ptit.core:android:1.1.18",
