@@ -3,7 +3,7 @@ package com.simple.coreapp.ui.adapters
 import android.view.View
 import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.entities.ViewItem
-import com.simple.coreapp.databinding.ItemTextImageBinding
+import com.simple.coreapp.databinding.ItemTextBinding
 import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
@@ -17,9 +17,9 @@ import com.simple.coreapp.ui.view.setTextStyle
 import com.simple.coreapp.utils.ext.setVisible
 import com.simple.image.setImage
 
-open class TextImageAdapter(onItemClick: (View, TextImageViewItem) -> Unit = { _, _ -> }) : ViewItemAdapter<TextImageViewItem, ItemTextImageBinding>(onItemClick) {
+open class TextAdapter(onItemClick: (View, TextViewItem) -> Unit = { _, _ -> }) : ViewItemAdapter<TextViewItem, ItemTextBinding>(onItemClick) {
 
-    override fun bind(binding: ItemTextImageBinding, viewType: Int, position: Int, item: TextImageViewItem, payloads: MutableList<Any>) {
+    override fun bind(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem, payloads: MutableList<Any>) {
         super.bind(binding, viewType, position, item, payloads)
 
         if (payloads.contains(PAYLOAD_SIZE)) refreshSize(binding, item)
@@ -31,7 +31,7 @@ open class TextImageAdapter(onItemClick: (View, TextImageViewItem) -> Unit = { _
         if (payloads.contains(PAYLOAD_BACKGROUND)) refreshBackground(binding, item)
     }
 
-    override fun bind(binding: ItemTextImageBinding, viewType: Int, position: Int, item: TextImageViewItem) {
+    override fun bind(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem) {
         super.bind(binding, viewType, position, item)
 
         binding.root.transitionName = item.id
@@ -45,17 +45,17 @@ open class TextImageAdapter(onItemClick: (View, TextImageViewItem) -> Unit = { _
         refreshBackground(binding, item)
     }
 
-    private fun refreshText(binding: ItemTextImageBinding, item: TextImageViewItem) {
+    private fun refreshText(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.text = item.text
     }
 
-    private fun refreshSize(binding: ItemTextImageBinding, item: TextImageViewItem) {
+    private fun refreshSize(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.root.setSize(item.size)
     }
 
-    private fun refreshImage(binding: ItemTextImageBinding, item: TextImageViewItem) {
+    private fun refreshImage(binding: ItemTextBinding, item: TextViewItem) {
 
         item.image?.end?.let {
             binding.ivEnd.setImage(it)
@@ -68,28 +68,28 @@ open class TextImageAdapter(onItemClick: (View, TextImageViewItem) -> Unit = { _
         binding.ivStart.setVisible(item.image?.start != null)
     }
 
-    private fun refreshMargin(binding: ItemTextImageBinding, item: TextImageViewItem) {
+    private fun refreshMargin(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.root.setMargin(item.margin)
     }
 
-    private fun refreshPadding(binding: ItemTextImageBinding, item: TextImageViewItem) {
+    private fun refreshPadding(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.root.setPadding(item.padding)
+        binding.tvTitle.setPadding(item.padding)
     }
 
-    private fun refreshTextStyle(binding: ItemTextImageBinding, item: TextImageViewItem) {
+    private fun refreshTextStyle(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.setTextStyle(item.textStyle)
     }
 
-    private fun refreshBackground(binding: ItemTextImageBinding, item: TextImageViewItem) {
+    private fun refreshBackground(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.root.delegate.setBackground(item.background)
     }
 }
 
-data class TextImageViewItem(
+data class TextViewItem(
     val id: String = "",
     val data: Any? = null,
 
