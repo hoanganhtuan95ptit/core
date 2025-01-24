@@ -63,7 +63,7 @@ interface ToastView {
         dialog.show(fragmentManagerWrap, "")
 
         awaitClose {
-
+            dialog.dismiss()
         }
     }.firstOrNull()
 
