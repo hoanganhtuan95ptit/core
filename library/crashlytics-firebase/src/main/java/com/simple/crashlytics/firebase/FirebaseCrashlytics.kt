@@ -1,6 +1,7 @@
 package com.simple.crashlytics.firebase
 
-import com.google.firebase.crashlytics.FirebaseCrashlytics
+import com.google.firebase.crashlytics.ktx.crashlytics
+import com.google.firebase.ktx.Firebase
 import com.simple.crashlytics.Crashlytics
 
 class FirebaseCrashlytics : Crashlytics {
@@ -9,6 +10,6 @@ class FirebaseCrashlytics : Crashlytics {
 
         val map = hashMapOf("eventName" to eventName, *params)
 
-        FirebaseCrashlytics.getInstance().recordException(RuntimeException(map.toString(), throwable))
+        Firebase.crashlytics.recordException(RuntimeException(map.toString(), throwable))
     }
 }
