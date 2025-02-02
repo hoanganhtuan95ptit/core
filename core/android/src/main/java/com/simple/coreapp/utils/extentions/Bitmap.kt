@@ -1,6 +1,11 @@
 package com.simple.coreapp.utils.extentions
 
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.ColorFilter
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
+import android.graphics.Paint
 
 fun Bitmap.filter(colorFilter: ColorFilter): Bitmap {
     val paint = Paint().apply {

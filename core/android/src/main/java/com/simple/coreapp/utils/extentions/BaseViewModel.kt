@@ -3,8 +3,8 @@ package com.simple.coreapp.utils.extentions
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModels.BaseViewModel
+import androidx.lifecycle.viewModelScope
 import com.simple.coreapp.utils.ext.handler
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers

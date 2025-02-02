@@ -5,7 +5,7 @@ import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.entities.ViewItem
 import com.simple.coreapp.databinding.ItemEmptyBinding
 
-open class EmptyAdapter(onItemClick: (View, EmptyViewItem) -> Unit = { _, _ -> }) : ViewItemAdapter<EmptyViewItem, ItemEmptyBinding>(onItemClick) {
+open class EmptyAdapter(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : ViewItemAdapter<EmptyViewItem, ItemEmptyBinding>(onItemClick) {
 
     override fun bind(binding: ItemEmptyBinding, viewType: Int, position: Int, item: EmptyViewItem) {
         super.bind(binding, viewType, position, item)

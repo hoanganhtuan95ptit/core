@@ -3,7 +3,6 @@ package com.simple.coreapp.ui.view.round
 import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.RecyclerView
-import com.simple.coreapp.ui.view.round.RoundViewDelegate
 import kotlin.math.max
 
 class RoundRecyclerView @JvmOverloads constructor(

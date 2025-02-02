@@ -98,19 +98,13 @@ class MultiAdapter(
         onViewHolderDetachedFromWindow?.invoke(holder)
     }
 
-    override fun onBindViewHolder(holder: BaseBindingViewHolder<ViewBinding>, position: Int, payloads: MutableList<Any>) {
-        super.onBindViewHolder(holder, position, payloads)
-
-        typeAndAdapter[holder.viewType]?.onBindViewHolder(holder, holder.binding, position)
-    }
-
     override fun bind(binding: ViewBinding, viewType: Int, position: Int, item: ViewItem, payloads: MutableList<Any>) {
 
-        typeAndAdapter[viewType]?.bindView(binding, viewType, position, item, payloads)
+        typeAndAdapter[viewType]?.bind(binding, viewType, position, item, payloads)
     }
 
     override fun bind(binding: ViewBinding, viewType: Int, position: Int, item: ViewItem) {
 
-        typeAndAdapter[viewType]?.bindView(binding, viewType, position, item)
+        typeAndAdapter[viewType]?.bind(binding, viewType, position, item)
     }
 }

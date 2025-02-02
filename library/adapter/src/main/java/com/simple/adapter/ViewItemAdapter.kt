@@ -10,21 +10,18 @@ import com.simple.binding.findBinding
 import com.simple.core.utils.extentions.findGenericClassBySuperClass
 
 abstract class ViewItemAdapter<out VI : ViewItem, out VB : ViewBinding>(
-    private val onItemClick: (View, VI) -> Unit = { _, _ -> }
+    private val onItemClick: ((View, VI) -> Unit)? = null
 ) {
 
 
     var adapter: BaseAsyncAdapter<*, *>? = null
 
-    val transitionName: String by lazy {
-
-        this.javaClass.name
-    }
 
     val viewItemClass: Class<ViewItem> by lazy {
 
         this.findGenericClassBySuperClass(ViewItem::class.java)!!.java
     }
+
 
     private val viewBindingClass: Class<ViewBinding> by lazy {
 
@@ -49,6 +46,8 @@ abstract class ViewItemAdapter<out VI : ViewItem, out VB : ViewBinding>(
 
         val binding = viewHolder.binding
 
+        val onItemClick = onItemClick ?: return viewHolder
+
         binding.root.setOnClickListener { view ->
 
             getViewItem(viewHolder.bindingAdapterPosition)?.let { onItemClick.invoke(view, it) }
@@ -72,27 +71,10 @@ abstract class ViewItemAdapter<out VI : ViewItem, out VB : ViewBinding>(
     }
 
 
-    open fun onBindViewHolder(holder: BaseBindingViewHolder<ViewBinding>, binding: @UnsafeVariance VB, position: Int) {
-
-        binding.root.transitionName = "$transitionName-$position"
+    open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI, payloads: MutableList<Any>) {
     }
 
-
-    fun bindView(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI, payloads: MutableList<Any>) {
-
-        bind(binding, viewType, position, item, payloads)
-    }
-
-    protected open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI, payloads: MutableList<Any>) {
-    }
-
-
-    fun bindView(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
-
-        bind(binding, viewType, position, item)
-    }
-
-    protected open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
+    open fun bind(binding: @UnsafeVariance VB, viewType: Int, position: Int, item: @UnsafeVariance VI) {
     }
 
 

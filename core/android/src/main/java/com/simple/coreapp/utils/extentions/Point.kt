@@ -2,8 +2,7 @@ package com.simple.coreapp.utils.extentions
 
 import android.graphics.Point
 import android.util.Size
-import java.util.*
-import kotlin.Comparator
+import java.util.Collections
 import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin

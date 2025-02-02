@@ -1,7 +1,5 @@
-package com.simple.coreapp.ui.adapters
+package com.simple.coreapp.ui.adapters.texts
 
-import android.view.View
-import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.entities.ViewItem
 import com.simple.coreapp.databinding.ItemTextBinding
 import com.simple.coreapp.ui.view.Margin
@@ -17,10 +15,9 @@ import com.simple.coreapp.ui.view.setTextStyle
 import com.simple.coreapp.utils.ext.setVisible
 import com.simple.image.setImage
 
-open class TextAdapter(onItemClick: (View, TextViewItem) -> Unit = { _, _ -> }) : ViewItemAdapter<TextViewItem, ItemTextBinding>(onItemClick) {
+internal interface TextAdapter {
 
-    override fun bind(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem, payloads: MutableList<Any>) {
-        super.bind(binding, viewType, position, item, payloads)
+    fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem, payloads: MutableList<Any>) {
 
         if (payloads.contains(PAYLOAD_SIZE)) refreshSize(binding, item)
         if (payloads.contains(PAYLOAD_TEXT)) refreshText(binding, item)
@@ -31,8 +28,7 @@ open class TextAdapter(onItemClick: (View, TextViewItem) -> Unit = { _, _ -> }) 
         if (payloads.contains(PAYLOAD_BACKGROUND)) refreshBackground(binding, item)
     }
 
-    override fun bind(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem) {
-        super.bind(binding, viewType, position, item)
+    fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem) {
 
         binding.root.transitionName = item.id
 
@@ -89,19 +85,22 @@ open class TextAdapter(onItemClick: (View, TextViewItem) -> Unit = { _, _ -> }) 
     }
 }
 
-data class TextViewItem(
-    val id: String = "",
-    val data: Any? = null,
+open class TextViewItem : ViewItem {
 
-    var text: CharSequence = "",
+    open val id: String = ""
 
-    val size: Size? = null,
-    val image: Image? = null,
-    val margin: Margin? = null,
-    val padding: Padding? = null,
-    var textStyle: TextStyle? = null,
-    var background: Background? = null
-) : ViewItem {
+    open val data: Any? = null
+
+    open var text: CharSequence = ""
+
+    open val size: Size? = null
+
+    open val image: Image? = null
+
+    open val margin: Margin? = null
+    open val padding: Padding? = null
+    open var textStyle: TextStyle? = null
+    open var background: Background? = null
 
     override fun areItemsTheSame(): List<Any> = listOf(
         id

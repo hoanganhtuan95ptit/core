@@ -13,7 +13,7 @@ class FirebaseAnalyticsInitializer : Initializer<Unit> {
 
         loadKoinModules(listOf(module {
 
-            single { FirebaseAnalytics() } bind Analytics::class
+            single { FirebaseAnalytics(get()) } bind Analytics::class
 
         }))
 
