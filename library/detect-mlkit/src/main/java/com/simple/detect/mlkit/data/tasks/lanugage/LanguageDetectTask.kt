@@ -3,11 +3,11 @@ package com.simple.detect.mlkit.data.tasks.lanugage
 import android.graphics.Bitmap
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
-import com.simple.state.ResultState
-import com.simple.task.Task
-import com.simple.crashlytics.logCrashlytics
 import com.simple.coreapp.utils.extentions.resumeActive
+import com.simple.crashlytics.logCrashlytics
+import com.simple.state.ResultState
 import com.simple.task.LowException
+import com.simple.task.Task
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 
