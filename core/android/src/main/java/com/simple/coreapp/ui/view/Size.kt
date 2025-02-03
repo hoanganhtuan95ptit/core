@@ -2,13 +2,15 @@ package com.simple.coreapp.ui.view
 
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import com.simple.coreapp.utils.ext.updateMargin
 
 data class Size(
-    val width: Int = ViewGroup.LayoutParams.MATCH_PARENT,
-    val height: Int = ViewGroup.LayoutParams.WRAP_CONTENT
+    val width: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
+    val height: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
+    val weight: Float = 1f
 )
 
 data class Margin(
@@ -32,6 +34,10 @@ fun View.setSize(size: Size? = null) {
     updateLayoutParams {
         width = size.width
         height = size.height
+
+        if (this is LinearLayout.LayoutParams) {
+            weight = size.weight
+        }
     }
 }
 

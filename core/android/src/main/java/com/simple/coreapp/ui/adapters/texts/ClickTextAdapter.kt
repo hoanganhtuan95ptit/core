@@ -27,11 +27,17 @@ data class ClickTextViewItem(
     override val data: Any? = null,
 
     override var text: CharSequence = "",
+    override var textStyle: TextStyle? = null,
+
+    override val image: Image? = null,
 
     override val size: Size? = null,
-    override val image: Image? = null,
     override val margin: Margin? = null,
     override val padding: Padding? = null,
-    override var textStyle: TextStyle? = null,
-    override var background: Background? = null
+    override var background: Background? = null,
+
+    override val textSize: Size? = null,
+    override val textMargin: Margin? = null,
+    override val textPadding: Padding? = null,
+    override var textBackground: Background? = null
 ) : TextViewItem()

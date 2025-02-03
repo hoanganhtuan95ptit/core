@@ -14,12 +14,11 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
-    <TextView
+    <com.simple.coreapp.ui.view.round.RoundTextView
         android:id="@+id/tv_title"
         style="@style/TextBody1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="?attr/colorOnSurface" />
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/iv_end"
