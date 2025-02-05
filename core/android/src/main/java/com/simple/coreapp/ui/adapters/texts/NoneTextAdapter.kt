@@ -25,18 +25,30 @@ data class NoneTextViewItem(
     override val id: String = "",
     override val data: Any? = null,
 
-    override var text: CharSequence = "",
-    override var textStyle: TextStyle? = null,
-
-    override val image: Image? = null,
-
     override val size: Size? = null,
     override val margin: Margin? = null,
     override val padding: Padding? = null,
     override var background: Background? = null,
 
+
+    override var text: CharSequence = "",
+    override var textStyle: TextStyle? = null,
     override val textSize: Size? = null,
     override val textMargin: Margin? = null,
     override val textPadding: Padding? = null,
-    override var textBackground: Background? = null
+    override var textBackground: Background? = null,
+
+
+    override val imageLeft: Int? = null,
+    override val imageLeftSize: Size? = null,
+    override val imageLeftMargin: Margin? = null,
+    override val imageLeftPadding: Padding? = null,
+    override var imageLeftBackground: Background? = null,
+
+
+    override val imageRight: Int? = null,
+    override val imageRightSize: Size? = null,
+    override val imageRightMargin: Margin? = null,
+    override val imageRightPadding: Padding? = null,
+    override var imageRightBackground: Background? = null,
 ) : TextViewItem()
