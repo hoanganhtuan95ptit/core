@@ -19,61 +19,56 @@ internal interface TextAdapter {
 
     fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem, payloads: MutableList<Any>) {
 
-        if (payloads.contains(PAYLOAD_TEXT)) refreshText(binding, item)
-        if (payloads.contains(PAYLOAD_TEXT_STYLE)) refreshTextStyle(binding, item)
-
-        if (payloads.contains(PAYLOAD_IMAGE)) refreshImage(binding, item)
-
         if (payloads.contains(PAYLOAD_SIZE)) refreshSize(binding, item)
         if (payloads.contains(PAYLOAD_MARGIN)) refreshMargin(binding, item)
         if (payloads.contains(PAYLOAD_PADDING)) refreshPadding(binding, item)
         if (payloads.contains(PAYLOAD_BACKGROUND)) refreshBackground(binding, item)
 
+        if (payloads.contains(PAYLOAD_TEXT)) refreshText(binding, item)
+        if (payloads.contains(PAYLOAD_TEXT_STYLE)) refreshTextStyle(binding, item)
         if (payloads.contains(PAYLOAD_TEXT_SIZE)) refreshTextSize(binding, item)
         if (payloads.contains(PAYLOAD_TEXT_MARGIN)) refreshTextMargin(binding, item)
         if (payloads.contains(PAYLOAD_TEXT_PADDING)) refreshTextPadding(binding, item)
         if (payloads.contains(PAYLOAD_TEXT_BACKGROUND)) refreshTextBackground(binding, item)
+
+        if (payloads.contains(PAYLOAD_IMAGE_LEFT)) refreshImageLeft(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_LEFT_SIZE)) refreshImageLeftSize(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_LEFT_MARGIN)) refreshImageLeftMargin(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_LEFT_PADDING)) refreshImageLeftPadding(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_LEFT_BACKGROUND)) refreshImageLeftBackground(binding, item)
+
+        if (payloads.contains(PAYLOAD_IMAGE_RIGHT)) refreshImageRight(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_RIGHT_SIZE)) refreshImageRightSize(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_RIGHT_MARGIN)) refreshImageRightMargin(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_RIGHT_PADDING)) refreshImageRightPadding(binding, item)
+        if (payloads.contains(PAYLOAD_IMAGE_RIGHT_BACKGROUND)) refreshImageRightBackground(binding, item)
     }
 
     fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem) {
-
-        refreshText(binding, item)
-        refreshTextStyle(binding, item)
-
-        refreshImage(binding, item)
 
         refreshSize(binding, item)
         refreshMargin(binding, item)
         refreshPadding(binding, item)
         refreshBackground(binding, item)
 
+        refreshText(binding, item)
+        refreshTextStyle(binding, item)
         refreshTextSize(binding, item)
         refreshTextMargin(binding, item)
         refreshTextPadding(binding, item)
         refreshTextBackground(binding, item)
-    }
 
-    private fun refreshText(binding: ItemTextBinding, item: TextViewItem) {
+        refreshImageLeft(binding, item)
+        refreshImageLeftSize(binding, item)
+        refreshImageLeftMargin(binding, item)
+        refreshImageLeftPadding(binding, item)
+        refreshImageLeftBackground(binding, item)
 
-        binding.tvTitle.text = item.text
-    }
-
-    private fun refreshTextStyle(binding: ItemTextBinding, item: TextViewItem) {
-
-        binding.tvTitle.setTextStyle(item.textStyle)
-    }
-
-    private fun refreshImage(binding: ItemTextBinding, item: TextViewItem) {
-
-        item.image?.end?.let {
-            binding.ivEnd.setImage(it)
-        }
-        binding.ivEnd.setVisible(item.image?.end != null)
-
-        item.image?.start?.let {
-            binding.ivStart.setImage(it)
-        }
-        binding.ivStart.setVisible(item.image?.start != null)
+        refreshImageRight(binding, item)
+        refreshImageRightSize(binding, item)
+        refreshImageRightMargin(binding, item)
+        refreshImageRightPadding(binding, item)
+        refreshImageRightBackground(binding, item)
     }
 
     private fun refreshSize(binding: ItemTextBinding, item: TextViewItem) {
@@ -96,6 +91,17 @@ internal interface TextAdapter {
         binding.root.delegate.setBackground(item.background)
     }
 
+
+    private fun refreshText(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.tvTitle.text = item.text
+    }
+
+    private fun refreshTextStyle(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.tvTitle.setTextStyle(item.textStyle)
+    }
+
     private fun refreshTextSize(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.setSize(item.textSize)
@@ -115,6 +121,58 @@ internal interface TextAdapter {
 
         binding.tvTitle.delegate.setBackground(item.textBackground)
     }
+
+
+    private fun refreshImageLeft(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivLeft.setImage(item.imageLeft ?: return)
+    }
+
+    private fun refreshImageLeftSize(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivLeft.setSize(item.imageLeftSize)
+    }
+
+    private fun refreshImageLeftMargin(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivLeft.setMargin(item.imageLeftMargin)
+    }
+
+    private fun refreshImageLeftPadding(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivLeft.setPadding(item.imageLeftPadding)
+    }
+
+    private fun refreshImageLeftBackground(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivLeft.delegate.setBackground(item.imageLeftBackground)
+    }
+
+
+    private fun refreshImageRight(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivRight.setImage(item.imageRight ?: return)
+    }
+
+    private fun refreshImageRightSize(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivRight.setSize(item.imageRightSize)
+    }
+
+    private fun refreshImageRightMargin(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivRight.setMargin(item.imageRightMargin)
+    }
+
+    private fun refreshImageRightPadding(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivRight.setPadding(item.imageRightPadding)
+    }
+
+    private fun refreshImageRightBackground(binding: ItemTextBinding, item: TextViewItem) {
+
+        binding.ivRight.delegate.setBackground(item.imageRightBackground)
+    }
 }
 
 open class TextViewItem : ViewItem {
@@ -123,59 +181,102 @@ open class TextViewItem : ViewItem {
 
     open val data: Any? = null
 
-    open val image: Image? = null
-
-    open var text: CharSequence = ""
-    open var textStyle: TextStyle? = null
-
     open val size: Size? = null
     open val margin: Margin? = null
     open val padding: Padding? = null
     open var background: Background? = null
+
+
+    open var text: CharSequence = ""
+    open var textStyle: TextStyle? = null
 
     open val textSize: Size? = null
     open val textMargin: Margin? = null
     open val textPadding: Padding? = null
     open var textBackground: Background? = null
 
+
+    open val imageLeft: Int? = null
+
+    open val imageLeftSize: Size? = null
+    open val imageLeftMargin: Margin? = null
+    open val imageLeftPadding: Padding? = null
+    open var imageLeftBackground: Background? = null
+
+
+    open val imageRight: Int? = null
+
+    open val imageRightSize: Size? = null
+    open val imageRightMargin: Margin? = null
+    open val imageRightPadding: Padding? = null
+    open var imageRightBackground: Background? = null
+
+
     override fun areItemsTheSame(): List<Any> = listOf(
         id
     )
 
     override fun getContentsCompare(): List<Pair<Any, String>> = listOf(
-        text to PAYLOAD_TEXT,
-        (textStyle ?: PAYLOAD_TEXT_STYLE) to PAYLOAD_TEXT_STYLE,
-
-        (image ?: PAYLOAD_IMAGE) to PAYLOAD_IMAGE,
-
         (size ?: PAYLOAD_SIZE) to PAYLOAD_SIZE,
         (margin ?: PAYLOAD_MARGIN) to PAYLOAD_MARGIN,
         (padding ?: PAYLOAD_PADDING) to PAYLOAD_PADDING,
         (background ?: PAYLOAD_BACKGROUND) to PAYLOAD_BACKGROUND,
 
+
+        text to PAYLOAD_TEXT,
+        (textStyle ?: PAYLOAD_TEXT_STYLE) to PAYLOAD_TEXT_STYLE,
         (textSize ?: PAYLOAD_TEXT_SIZE) to PAYLOAD_TEXT_SIZE,
         (textMargin ?: PAYLOAD_TEXT_MARGIN) to PAYLOAD_TEXT_MARGIN,
         (textPadding ?: PAYLOAD_TEXT_PADDING) to PAYLOAD_TEXT_PADDING,
-        (textBackground ?: PAYLOAD_TEXT_BACKGROUND) to PAYLOAD_TEXT_BACKGROUND
+        (textBackground ?: PAYLOAD_TEXT_BACKGROUND) to PAYLOAD_TEXT_BACKGROUND,
+
+
+        (imageLeft ?: PAYLOAD_IMAGE_LEFT) to PAYLOAD_IMAGE_LEFT,
+        (imageLeftSize ?: PAYLOAD_IMAGE_LEFT_SIZE) to PAYLOAD_IMAGE_LEFT_SIZE,
+        (imageLeftMargin ?: PAYLOAD_IMAGE_LEFT_MARGIN) to PAYLOAD_IMAGE_LEFT_MARGIN,
+        (imageLeftPadding ?: PAYLOAD_IMAGE_LEFT_PADDING) to PAYLOAD_IMAGE_LEFT_PADDING,
+        (imageLeftBackground ?: PAYLOAD_IMAGE_LEFT_BACKGROUND) to PAYLOAD_IMAGE_LEFT_BACKGROUND,
+
+
+        (imageRight ?: PAYLOAD_IMAGE_RIGHT) to PAYLOAD_IMAGE_RIGHT,
+        (imageRightSize ?: PAYLOAD_IMAGE_RIGHT_SIZE) to PAYLOAD_IMAGE_RIGHT_SIZE,
+        (imageRightMargin ?: PAYLOAD_IMAGE_RIGHT_MARGIN) to PAYLOAD_IMAGE_RIGHT_MARGIN,
+        (imageRightPadding ?: PAYLOAD_IMAGE_RIGHT_PADDING) to PAYLOAD_IMAGE_RIGHT_PADDING,
+        (imageRightBackground ?: PAYLOAD_IMAGE_RIGHT_BACKGROUND) to PAYLOAD_IMAGE_RIGHT_BACKGROUND
     )
 
     data class Image(
         val end: Int? = null,
-        val start: Int? = null
     )
 }
-
-private const val PAYLOAD_TEXT = "PAYLOAD_TEXT"
-private const val PAYLOAD_TEXT_STYLE = "PAYLOAD_TEXT_STYLE"
-
-private const val PAYLOAD_IMAGE = "PAYLOAD_IMAGE"
 
 private const val PAYLOAD_SIZE = "PAYLOAD_SIZE"
 private const val PAYLOAD_MARGIN = "PAYLOAD_MARGIN"
 private const val PAYLOAD_PADDING = "PAYLOAD_PADDING"
 private const val PAYLOAD_BACKGROUND = "PAYLOAD_BACKGROUND"
 
+
+private const val PAYLOAD_TEXT = "PAYLOAD_TEXT"
+private const val PAYLOAD_TEXT_STYLE = "PAYLOAD_TEXT_STYLE"
+
 private const val PAYLOAD_TEXT_SIZE = "PAYLOAD_TEXT_SIZE"
 private const val PAYLOAD_TEXT_MARGIN = "PAYLOAD_TEXT_MARGIN"
 private const val PAYLOAD_TEXT_PADDING = "PAYLOAD_TEXT_PADDING"
 private const val PAYLOAD_TEXT_BACKGROUND = "PAYLOAD_TEXT_BACKGROUND"
+
+
+private const val PAYLOAD_IMAGE_LEFT = "PAYLOAD_IMAGE_LEFT"
+
+private const val PAYLOAD_IMAGE_LEFT_SIZE = "PAYLOAD_IMAGE_LEFT_SIZE"
+private const val PAYLOAD_IMAGE_LEFT_MARGIN = "PAYLOAD_IMAGE_LEFT_MARGIN"
+private const val PAYLOAD_IMAGE_LEFT_PADDING = "PAYLOAD_IMAGE_LEFT_PADDING"
+private const val PAYLOAD_IMAGE_LEFT_BACKGROUND = "PAYLOAD_IMAGE_LEFT_BACKGROUND"
+
+
+private const val PAYLOAD_IMAGE_RIGHT = "PAYLOAD_IMAGE_RIGHT"
+
+private const val PAYLOAD_IMAGE_RIGHT_SIZE = "PAYLOAD_IMAGE_RIGHT_SIZE"
+private const val PAYLOAD_IMAGE_RIGHT_MARGIN = "PAYLOAD_IMAGE_RIGHT_MARGIN"
+private const val PAYLOAD_IMAGE_RIGHT_PADDING = "PAYLOAD_IMAGE_RIGHT_PADDING"
+private const val PAYLOAD_IMAGE_RIGHT_BACKGROUND = "PAYLOAD_IMAGE_RIGHT_BACKGROUND"
+
