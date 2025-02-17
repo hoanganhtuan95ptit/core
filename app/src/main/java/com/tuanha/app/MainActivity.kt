@@ -11,9 +11,12 @@ import com.simple.adapter.MultiAdapter
 import com.simple.coreapp.ui.adapters.texts.NoneTextAdapter
 import com.simple.coreapp.ui.adapters.texts.NoneTextViewItem
 import com.simple.coreapp.ui.base.activities.BaseViewBindingActivity
+import com.simple.coreapp.ui.dialogs.confirm.HorizontalConfirmDialogFragment
+import com.simple.coreapp.ui.dialogs.confirm.VerticalConfirmDialogFragment
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.round.Background
+import com.simple.coreapp.utils.ext.ButtonInfo
 import com.simple.coreapp.utils.ext.DP
 import com.simple.coreapp.utils.ext.with
 import com.tuanha.app.databinding.ActivityMainBinding
@@ -77,6 +80,34 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
                 )
             )
             adapter.submitList(list)
+        }
+
+        lifecycleScope.launch {
+
+            delay(5 * 1000)
+
+            HorizontalConfirmDialogFragment.newInstance(
+                isCancel = true,
+
+                keyRequest = "keyRequest",
+
+                anim = com.simple.coreapp.R.raw.img_core_error,
+
+                title = "title",
+                message = "message",
+                positive = ButtonInfo(
+                    text = "positive",
+                    background = Background(
+
+                    )
+                ),
+                negative = ButtonInfo(
+                    text = "negative",
+                    background = Background(
+
+                    )
+                )
+            ).show(supportFragmentManager, "")
         }
     }
 }

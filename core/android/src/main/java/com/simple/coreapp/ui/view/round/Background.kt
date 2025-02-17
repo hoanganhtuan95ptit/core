@@ -1,5 +1,9 @@
 package com.simple.coreapp.ui.view.round
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Background(
     var backgroundColor: Int? = null,
 
@@ -13,7 +17,7 @@ data class Background(
     val strokeColor: Int? = null,
     val strokeDashGap: Int? = null,
     val strokeDashWidth: Int? = null
-)
+) : Parcelable
 
 
 fun RoundViewDelegate.setBackground(background: Background? = null) {

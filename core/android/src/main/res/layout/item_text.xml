@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
     android:orientation="horizontal">
 
     <com.simple.coreapp.ui.view.round.RoundImageView
         android:id="@+id/iv_left"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
         android:visibility="gone"
         tools:visibility="visible" />
 
@@ -17,7 +17,7 @@
         android:id="@+id/tv_title"
         style="@style/TextBody1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         tools:text="Demo" />
 
     <com.simple.coreapp.ui.view.round.RoundImageView

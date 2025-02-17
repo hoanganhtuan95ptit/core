@@ -38,10 +38,10 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
 
         val binding = binding ?: return
 
-        val message = arguments?.getString(Param.PARAM_MESSAGE)
+        val message = arguments?.getString(Param.MESSAGE)
         binding.tvMessage.text = message
 
-        val image = arguments?.getInt(Param.PARAM_IMAGE).orZero()
+        val image = arguments?.getInt(Param.IMAGE).orZero()
         binding.ivImage.setImageResource(image)
         binding.ivImage.setVisible(image != 0)
 
@@ -76,8 +76,9 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
 
             arguments = bundleOf(
                 Param.STATE to type.name,
-                Param.PARAM_IMAGE to image,
-                Param.PARAM_MESSAGE to message,
+
+                Param.IMAGE to image,
+                Param.MESSAGE to message,
             )
         }
     }
