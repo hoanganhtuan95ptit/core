@@ -40,7 +40,6 @@ class HorizontalConfirmDialogFragment : BaseViewBindingSheetFragment<DialogConfi
 
         binding.ivLogo.setVisible(anim != 0 || image != 0)
 
-
         val title = arguments?.getCharSequence(Param.TITLE)
         binding.tvTitle.text = title
         binding.tvTitle.setVisible(!title.isNullOrBlank())
@@ -54,7 +53,6 @@ class HorizontalConfirmDialogFragment : BaseViewBindingSheetFragment<DialogConfi
 
         val background = arguments?.getParcelableOrNull<Background>(Param.BACKGROUND)
         binding.root.delegate.setBackground(background)
-
 
         val negative = arguments?.getParcelableOrNull<ButtonInfo>(Param.NEGATIVE)
         binding.tvNegative.setVisible(negative != null)

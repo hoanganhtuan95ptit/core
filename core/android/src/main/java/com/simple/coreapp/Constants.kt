@@ -12,8 +12,11 @@ object Param {
 
     const val ANIM = "ANIM"
     const val IMAGE = "IMAGE"
+    const val IMAGE_CLOSE = "IMAGE_CLOSE"
 
     const val ANCHOR = "ANCHOR"
+    const val MARGIN = "MARGIN"
+    const val PADDING = "PADDING"
     const val BACKGROUND = "BACKGROUND"
 
     const val CANCEL = "CANCEL"

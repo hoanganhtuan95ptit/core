@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.os.bundleOf
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import com.simple.core.utils.extentions.orZero
 import com.simple.coreapp.Param
@@ -16,6 +17,13 @@ import com.simple.coreapp.databinding.DialogToastBinding
 import com.simple.coreapp.entities.ToastType
 import com.simple.coreapp.entities.ToastType.Companion.toToastType
 import com.simple.coreapp.ui.base.dialogs.BaseViewBindingDialogFragment
+import com.simple.coreapp.ui.view.Margin
+import com.simple.coreapp.ui.view.Padding
+import com.simple.coreapp.ui.view.round.Background
+import com.simple.coreapp.ui.view.round.setBackground
+import com.simple.coreapp.ui.view.setMargin
+import com.simple.coreapp.ui.view.setPadding
+import com.simple.coreapp.utils.ext.getParcelableOrNull
 import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.coreapp.utils.ext.setVisible
 import com.simple.coreapp.utils.extentions.getColorFromAttr
@@ -38,21 +46,25 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
 
         val binding = binding ?: return
 
-        val message = arguments?.getString(Param.MESSAGE)
+        val message = arguments?.getCharSequence(Param.MESSAGE)
         binding.tvMessage.text = message
 
         val image = arguments?.getInt(Param.IMAGE).orZero()
         binding.ivImage.setImageResource(image)
         binding.ivImage.setVisible(image != 0)
 
-        val type = arguments?.getString(Param.STATE).orEmpty().toToastType()
-        if (type == ToastType.SUCCESS) {
-            binding.tvMessage.setTextColor(view.context.getColorFromAttr(R.attr.colorOnToastSuccess))
-            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_toast_success)
-        } else if (type == ToastType.ERROR) {
-            binding.tvMessage.setTextColor(view.context.getColorFromAttr(R.attr.colorOnToastError))
-            binding.frameContent.setBackgroundResource(R.drawable.bg_corner_12dp_solid_toast_error)
-        }
+        val imageClose = arguments?.getInt(Param.IMAGE_CLOSE).orZero()
+        binding.ivClose.setImageResource(imageClose)
+        binding.ivClose.setVisible(imageClose != 0)
+
+        val margin = arguments?.getParcelableOrNull<Margin>(Param.MARGIN)
+        binding.frameContent.setMargin(margin)
+
+        val padding = arguments?.getParcelableOrNull<Padding>(Param.PADDING)
+        binding.frameContent.setPadding(padding)
+
+        val background = arguments?.getParcelableOrNull<Background>(Param.BACKGROUND)
+        binding.frameContent.delegate.setBackground(background)
 
         binding.ivClose.setDebouncedClickListener {
 
@@ -69,16 +81,25 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
     companion object {
 
         fun newInstance(
-            type: ToastType,
             image: Int? = null,
-            message: String? = null,
+            imageClose: Int? = null,
+
+            message: CharSequence? = null,
+
+            margin: Margin? = null,
+            padding: Padding? = null,
+            background: Background? = null
         ) = ToastDialog().apply {
 
             arguments = bundleOf(
-                Param.STATE to type.name,
-
                 Param.IMAGE to image,
+                Param.IMAGE_CLOSE to imageClose,
+
                 Param.MESSAGE to message,
+
+                Param.MARGIN to margin,
+                Param.PADDING to padding,
+                Param.BACKGROUND to background,
             )
         }
     }
