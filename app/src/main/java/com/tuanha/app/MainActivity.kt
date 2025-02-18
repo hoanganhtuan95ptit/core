@@ -120,7 +120,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
             ToastDialog.newInstance(
                 message = "message",
                 background = Background(
-                    strokeColor = Color.WHITE,
+                    backgroundColor = Color.WHITE,
                     cornerRadius = DP.DP_16
                 ),
             ).showOrAwaitDismiss(supportFragmentManager, "")
