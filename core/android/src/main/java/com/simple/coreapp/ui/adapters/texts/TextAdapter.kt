@@ -46,6 +46,8 @@ internal interface TextAdapter {
 
     fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem) {
 
+        binding.root.transitionName = item.id
+
         refreshSize(binding, item)
         refreshMargin(binding, item)
         refreshPadding(binding, item)

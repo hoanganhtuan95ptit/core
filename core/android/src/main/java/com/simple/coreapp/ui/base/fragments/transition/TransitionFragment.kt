@@ -2,12 +2,14 @@ package com.simple.coreapp.ui.base.fragments.transition
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.annotation.CallSuper
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.asFlow
 import androidx.lifecycle.lifecycleScope
+import androidx.transition.Slide
 import com.google.android.material.transition.Hold
 import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
@@ -30,7 +32,12 @@ abstract class TransitionFragment<T : androidx.viewbinding.ViewBinding, VM : Tra
         getActivityViewModel()
     }
 
+
+    private val transitionDuration = 350L
+
+
     private var fromCreate: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,15 +60,14 @@ abstract class TransitionFragment<T : androidx.viewbinding.ViewBinding, VM : Tra
             view.transitionName = it
         }
 
+
+        setTransitionAnimation()
+
+
         lockTransition.asFlow().map { map ->
 
             map.isNotEmpty() && map.values.all { it.isSuccess() }
         }.distinctUntilChanged().launchCollect(viewLifecycleOwner) { start ->
-
-            if (start) {
-
-                setTransitionAnimation()
-            }
 
             if (!fromCreate) if (start) {
 
@@ -123,19 +129,9 @@ abstract class TransitionFragment<T : androidx.viewbinding.ViewBinding, VM : Tra
         lockTransition.postValue(map)
     }
 
-    private fun setTransitionAnimation() {
-
-        val arguments = arguments
-
-        val isAnim = arguments != null && arguments.containsKey(Param.ROOT_TRANSITION_NAME)
-        val transitionDuration = 350L
+    protected fun setTransitionAnimation() {
 
         exitTransition = Hold().apply {
-
-            duration = transitionDuration
-        }
-
-        returnTransition = Hold().apply {
 
             duration = transitionDuration
         }
@@ -145,7 +141,20 @@ abstract class TransitionFragment<T : androidx.viewbinding.ViewBinding, VM : Tra
             duration = transitionDuration
         }
 
-        sharedElementReturnTransition = MaterialContainerTransform(requireContext(), true).apply {
+        customEnterTransition()
+        customReturnTransition()
+    }
+
+    protected open fun customReturnTransition() {
+
+        val arguments = arguments
+
+        val isAnim = arguments != null && arguments.containsKey(Param.ROOT_TRANSITION_NAME)
+
+        if (isAnim) if (arguments?.getString(Param.ROOT_TRANSITION_NAME)?.isEmpty() == true) returnTransition = Slide(Gravity.END).apply {
+
+            duration = transitionDuration
+        } else sharedElementReturnTransition = MaterialContainerTransform(requireContext(), true).apply {
 
             duration = transitionDuration
 
@@ -157,7 +166,18 @@ abstract class TransitionFragment<T : androidx.viewbinding.ViewBinding, VM : Tra
             scrimColor = Color.TRANSPARENT
         }
 
-        if (isAnim) sharedElementEnterTransition = MaterialContainerTransform(requireContext(), true).apply {
+    }
+
+    protected open fun customEnterTransition() {
+
+        val arguments = arguments
+
+        val isAnim = arguments != null && arguments.containsKey(Param.ROOT_TRANSITION_NAME)
+
+        if (isAnim) if (arguments?.getString(Param.ROOT_TRANSITION_NAME)?.isEmpty() == true) enterTransition = Slide(Gravity.BOTTOM).apply {
+
+            duration = transitionDuration
+        } else sharedElementEnterTransition = MaterialContainerTransform(requireContext(), true).apply {
 
             duration = transitionDuration
 
