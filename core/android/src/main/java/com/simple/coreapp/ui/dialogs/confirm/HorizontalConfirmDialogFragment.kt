@@ -8,8 +8,8 @@ import com.simple.core.utils.extentions.orZero
 import com.simple.coreapp.Param
 import com.simple.coreapp.databinding.DialogConfirmHorizontalBinding
 import com.simple.coreapp.ui.base.dialogs.sheet.BaseViewBindingSheetFragment
-import com.simple.coreapp.ui.view.round.Background
-import com.simple.coreapp.ui.view.round.setBackground
+import com.simple.coreapp.ui.view.Background
+import com.simple.coreapp.ui.view.setBackground
 import com.simple.coreapp.utils.ext.ButtonInfo
 import com.simple.coreapp.utils.ext.doOnHeightStatusAndHeightNavigationChange
 import com.simple.coreapp.utils.ext.getParcelableOrNull

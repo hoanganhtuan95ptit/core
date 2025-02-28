@@ -1,9 +1,8 @@
 package com.simple.coreapp.utils.ext
 
 import android.os.Parcelable
-import com.simple.coreapp.ui.view.round.Background
+import com.simple.coreapp.ui.view.Background
 import kotlinx.parcelize.Parcelize
-import java.io.Serializable
 
 @Parcelize
 data class ButtonInfo(

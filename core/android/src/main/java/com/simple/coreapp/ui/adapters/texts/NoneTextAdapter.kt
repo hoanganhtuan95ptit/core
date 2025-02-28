@@ -2,11 +2,11 @@ package com.simple.coreapp.ui.adapters.texts
 
 import com.simple.adapter.ViewItemAdapter
 import com.simple.coreapp.databinding.ItemTextBinding
+import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
-import com.simple.coreapp.ui.view.round.Background
 
 open class NoneTextAdapter : ViewItemAdapter<NoneTextViewItem, ItemTextBinding>(), TextAdapter {
 

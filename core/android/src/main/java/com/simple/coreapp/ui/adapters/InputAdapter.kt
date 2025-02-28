@@ -8,9 +8,9 @@ import com.simple.adapter.BaseBindingViewHolder
 import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.entities.ViewItem
 import com.simple.coreapp.databinding.ItemInputBinding
+import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.TextStyle
-import com.simple.coreapp.ui.view.round.Background
-import com.simple.coreapp.ui.view.round.setBackground
+import com.simple.coreapp.ui.view.setBackground
 import com.simple.coreapp.ui.view.setTextStyle
 
 open class InputAdapter(

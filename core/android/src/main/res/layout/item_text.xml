@@ -9,8 +9,9 @@
         android:id="@+id/iv_left"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_gravity="center_vertical"
+        android:layout_gravity="center_vertical|start"
         android:visibility="gone"
+        tools:src="@drawable/ic_notification"
         tools:visibility="visible" />
 
     <com.simple.coreapp.ui.view.round.RoundTextView
@@ -18,13 +19,16 @@
         style="@style/TextBody1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         tools:text="Demo" />
 
     <com.simple.coreapp.ui.view.round.RoundImageView
         android:id="@+id/iv_right"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:layout_gravity="center_vertical|end"
         android:visibility="gone"
+        tools:src="@drawable/ic_notification"
         tools:visibility="visible" />
 
 </com.simple.coreapp.ui.view.round.RoundFrameLayout>

@@ -2,12 +2,12 @@ package com.simple.coreapp.ui.adapters.texts
 
 import com.simple.adapter.entities.ViewItem
 import com.simple.coreapp.databinding.ItemTextBinding
+import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
-import com.simple.coreapp.ui.view.round.Background
-import com.simple.coreapp.ui.view.round.setBackground
+import com.simple.coreapp.ui.view.setBackground
 import com.simple.coreapp.ui.view.setMargin
 import com.simple.coreapp.ui.view.setPadding
 import com.simple.coreapp.ui.view.setSize
@@ -247,10 +247,6 @@ open class TextViewItem : ViewItem {
         (imageRightMargin ?: PAYLOAD_IMAGE_RIGHT_MARGIN) to PAYLOAD_IMAGE_RIGHT_MARGIN,
         (imageRightPadding ?: PAYLOAD_IMAGE_RIGHT_PADDING) to PAYLOAD_IMAGE_RIGHT_PADDING,
         (imageRightBackground ?: PAYLOAD_IMAGE_RIGHT_BACKGROUND) to PAYLOAD_IMAGE_RIGHT_BACKGROUND
-    )
-
-    data class Image(
-        val end: Int? = null,
     )
 }
 

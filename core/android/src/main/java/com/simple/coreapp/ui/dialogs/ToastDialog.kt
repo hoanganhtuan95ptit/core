@@ -8,25 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.core.os.bundleOf
-import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import com.simple.core.utils.extentions.orZero
 import com.simple.coreapp.Param
-import com.simple.coreapp.R
 import com.simple.coreapp.databinding.DialogToastBinding
-import com.simple.coreapp.entities.ToastType
-import com.simple.coreapp.entities.ToastType.Companion.toToastType
 import com.simple.coreapp.ui.base.dialogs.BaseViewBindingDialogFragment
+import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
-import com.simple.coreapp.ui.view.round.Background
-import com.simple.coreapp.ui.view.round.setBackground
+import com.simple.coreapp.ui.view.setBackground
 import com.simple.coreapp.ui.view.setMargin
 import com.simple.coreapp.ui.view.setPadding
 import com.simple.coreapp.utils.ext.getParcelableOrNull
 import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.coreapp.utils.ext.setVisible
-import com.simple.coreapp.utils.extentions.getColorFromAttr
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
