@@ -12,7 +12,11 @@ include ':library:job'
 include ':library:task'
 include ':library:state'
 include ':library:image'
+
 include ':library:adapter'
+include ':library:adapter-processor'
+include ':library:adapter-annotation'
+
 include ':library:binding'
 
 include ':library:config'
