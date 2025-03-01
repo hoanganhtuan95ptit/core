@@ -127,8 +127,8 @@ internal interface TextAdapter {
 
     private fun refreshImageLeft(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.ivLeft.setImage(item.imageLeft ?: return)
         binding.ivLeft.setVisible(item.imageLeft != null)
+        binding.ivLeft.setImage(item.imageLeft ?: return)
     }
 
     private fun refreshImageLeftSize(binding: ItemTextBinding, item: TextViewItem) {
@@ -154,8 +154,8 @@ internal interface TextAdapter {
 
     private fun refreshImageRight(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.ivRight.setImage(item.imageRight ?: return)
         binding.ivRight.setVisible(item.imageRight != null)
+        binding.ivRight.setImage(item.imageRight ?: return)
     }
 
     private fun refreshImageRightSize(binding: ItemTextBinding, item: TextViewItem) {
