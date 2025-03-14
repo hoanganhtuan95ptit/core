@@ -18,14 +18,14 @@ suspend fun BaseDialogFragment.showOrAwaitDismiss(fragmentManager: FragmentManag
         }
     }
 
-    if (isActive()) kotlin.runCatching{
+    if (isActive()) kotlin.runCatching {
 
         show(fragmentManager, tag)
     }
 
     awaitClose {
 
-        dismiss()
+        if (isAdded && !isStateSaved) dismiss()
     }
 }.firstOrNull()
 
@@ -46,6 +46,6 @@ suspend fun BaseSheetFragment.showOrAwaitDismiss(fragmentManager: FragmentManage
 
     awaitClose {
 
-        dismiss()
+        if (isAdded && !isStateSaved) dismiss()
     }
 }.firstOrNull()

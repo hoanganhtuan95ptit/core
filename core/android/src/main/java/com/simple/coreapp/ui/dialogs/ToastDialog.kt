@@ -69,7 +69,7 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
 
             delay(5 * 1000)
-            dismiss()
+            if (isAdded && !isStateSaved) dismiss()
         }
     }
 
