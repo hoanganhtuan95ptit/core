@@ -13,9 +13,9 @@ include ':library:task'
 include ':library:state'
 include ':library:image'
 
-include ':library:adapter'
-include ':library:adapter-processor'
-include ':library:adapter-annotation'
+//include ':library:adapter'
+//include ':library:adapter-processor'
+//include ':library:adapter-annotation'
 
 include ':library:binding'
 
@@ -38,9 +38,9 @@ include ':library:detect-mlkit'
 include ':library:translate'
 include ':library:translate-mlkit'
 
-include ':library:deeplink'
-include ':library:deeplink-processor'
-include ':library:deeplink-annotation'
+//include ':library:deeplink'
+//include ':library:deeplink-processor'
+//include ':library:deeplink-annotation'
 
 include ':library:size'
 include ':library:event'

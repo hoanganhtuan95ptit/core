@@ -7,17 +7,17 @@ import com.simple.coreapp.databinding.ItemEmptyBinding
 import com.tuanha.adapter.annotation.ItemAdapter
 
 @ItemAdapter
-class EmptyAdapterV2(onItemClick: ((View, EmptyViewItemV2) -> Unit)? = null) : com.tuanha.adapter.ViewItemAdapter<EmptyViewItemV2, ItemEmptyBinding>(onItemClick) {
+class EmptyAdapterV2(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : com.tuanha.adapter.ViewItemAdapter<EmptyViewItem, ItemEmptyBinding>(onItemClick) {
 
-    override val viewItemClass: Class<EmptyViewItemV2> by lazy {
-        EmptyViewItemV2::class.java
+    override val viewItemClass: Class<EmptyViewItem> by lazy {
+        EmptyViewItem::class.java
     }
 
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemEmptyBinding {
         return ItemEmptyBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
-    override fun onBindViewHolder(binding: ItemEmptyBinding, viewType: Int, position: Int, item: EmptyViewItemV2) {
+    override fun onBindViewHolder(binding: ItemEmptyBinding, viewType: Int, position: Int, item: EmptyViewItem) {
 
         binding.root.transitionName = item.id
 
@@ -26,7 +26,7 @@ class EmptyAdapterV2(onItemClick: ((View, EmptyViewItemV2) -> Unit)? = null) : c
     }
 }
 
-class EmptyViewItemV2(
+class EmptyViewItem(
     val id: String = "",
 
     var message: CharSequence = "",

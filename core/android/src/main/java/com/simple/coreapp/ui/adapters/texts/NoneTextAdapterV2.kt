@@ -10,28 +10,28 @@ import com.simple.coreapp.ui.view.TextStyle
 import com.tuanha.adapter.annotation.ItemAdapter
 
 @ItemAdapter
-class NoneTextAdapterV2 : com.tuanha.adapter.ViewItemAdapter<NoneTextViewItemV2, ItemTextBinding>(), TextAdapterV2 {
+class NoneTextAdapterV2 : com.tuanha.adapter.ViewItemAdapter<NoneTextViewItem, ItemTextBinding>(), TextAdapterV2 {
 
-    override val viewItemClass: Class<NoneTextViewItemV2> by lazy {
-        NoneTextViewItemV2::class.java
+    override val viewItemClass: Class<NoneTextViewItem> by lazy {
+        NoneTextViewItem::class.java
     }
 
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemTextBinding {
         return createBinding(parent, viewType)
     }
 
-    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: NoneTextViewItemV2, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: NoneTextViewItem, payloads: MutableList<Any>) {
 
-        binding(binding, viewType, position, item as TextViewItemV2, payloads)
+        binding(binding, viewType, position, item as TextViewItem, payloads)
     }
 
-    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: NoneTextViewItemV2) {
+    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: NoneTextViewItem) {
 
-        binding(binding, viewType, position, item as TextViewItemV2)
+        binding(binding, viewType, position, item as TextViewItem)
     }
 }
 
-data class NoneTextViewItemV2(
+data class NoneTextViewItem(
     override val id: String = "",
     override val data: Any? = null,
 
@@ -61,4 +61,4 @@ data class NoneTextViewItemV2(
     override val imageRightMargin: Margin? = null,
     override val imageRightPadding: Padding? = null,
     override var imageRightBackground: Background? = null,
-) : TextViewItemV2()
+) : TextViewItem()

@@ -22,7 +22,7 @@ internal interface TextAdapterV2 {
         return ItemTextBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
-    fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItemV2, payloads: MutableList<Any>) {
+    fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem, payloads: MutableList<Any>) {
 
         binding.root.transitionName = item.id
 
@@ -51,7 +51,7 @@ internal interface TextAdapterV2 {
         if (payloads.contains(PAYLOAD_IMAGE_RIGHT_BACKGROUND)) refreshImageRightBackground(binding, item)
     }
 
-    fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItemV2) {
+    fun binding(binding: ItemTextBinding, viewType: Int, position: Int, item: TextViewItem) {
 
         binding.root.transitionName = item.id
 
@@ -80,113 +80,113 @@ internal interface TextAdapterV2 {
         refreshImageRightBackground(binding, item)
     }
 
-    private fun refreshSize(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshSize(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.root.setSize(item.size)
     }
 
-    private fun refreshMargin(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshMargin(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.root.setMargin(item.margin)
     }
 
-    private fun refreshPadding(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshPadding(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.root.setPadding(item.padding)
     }
 
-    private fun refreshBackground(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshBackground(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.root.delegate.setBackground(item.background)
     }
 
 
-    private fun refreshText(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshText(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.text = item.text
     }
 
-    private fun refreshTextStyle(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshTextStyle(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.setTextStyle(item.textStyle)
     }
 
-    private fun refreshTextSize(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshTextSize(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.setSize(item.textSize)
     }
 
-    private fun refreshTextMargin(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshTextMargin(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.setMargin(item.textMargin)
     }
 
-    private fun refreshTextPadding(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshTextPadding(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.setPadding(item.textPadding)
     }
 
-    private fun refreshTextBackground(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshTextBackground(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.tvTitle.delegate.setBackground(item.textBackground)
     }
 
 
-    private fun refreshImageLeft(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageLeft(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivLeft.setVisible(item.imageLeft != null)
         binding.ivLeft.setImage(item.imageLeft ?: return)
     }
 
-    private fun refreshImageLeftSize(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageLeftSize(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivLeft.setSize(item.imageLeftSize)
     }
 
-    private fun refreshImageLeftMargin(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageLeftMargin(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivLeft.setMargin(item.imageLeftMargin)
     }
 
-    private fun refreshImageLeftPadding(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageLeftPadding(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivLeft.setPadding(item.imageLeftPadding)
     }
 
-    private fun refreshImageLeftBackground(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageLeftBackground(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivLeft.delegate.setBackground(item.imageLeftBackground)
     }
 
 
-    private fun refreshImageRight(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageRight(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivRight.setVisible(item.imageRight != null)
         binding.ivRight.setImage(item.imageRight ?: return)
     }
 
-    private fun refreshImageRightSize(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageRightSize(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivRight.setSize(item.imageRightSize)
     }
 
-    private fun refreshImageRightMargin(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageRightMargin(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivRight.setMargin(item.imageRightMargin)
     }
 
-    private fun refreshImageRightPadding(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageRightPadding(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivRight.setPadding(item.imageRightPadding)
     }
 
-    private fun refreshImageRightBackground(binding: ItemTextBinding, item: TextViewItemV2) {
+    private fun refreshImageRightBackground(binding: ItemTextBinding, item: TextViewItem) {
 
         binding.ivRight.delegate.setBackground(item.imageRightBackground)
     }
 }
 
-open class TextViewItemV2 : com.tuanha.adapter.entities.ViewItem {
+open class TextViewItem : com.tuanha.adapter.entities.ViewItem {
 
     open val id: String = ""
 

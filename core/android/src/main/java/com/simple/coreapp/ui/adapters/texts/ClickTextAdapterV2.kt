@@ -13,10 +13,10 @@ import com.tuanha.adapter.base.BaseBindingViewHolder
 import com.tuanha.event.sendEvent
 
 @ItemAdapter
-class ClickTextAdapterV2 : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItemV2V2, ItemTextBinding>(), TextAdapterV2 {
+class ClickTextAdapterV2 : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(), TextAdapterV2 {
 
-    override val viewItemClass: Class<ClickTextViewItemV2V2> by lazy {
-        ClickTextViewItemV2V2::class.java
+    override val viewItemClass: Class<ClickTextViewItem> by lazy {
+        ClickTextViewItem::class.java
     }
 
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemTextBinding {
@@ -37,18 +37,18 @@ class ClickTextAdapterV2 : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItemV
         return viewHolder
     }
 
-    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: ClickTextViewItemV2V2, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: ClickTextViewItem, payloads: MutableList<Any>) {
 
-        binding(binding, viewType, position, item as TextViewItemV2, payloads)
+        binding(binding, viewType, position, item as TextViewItem, payloads)
     }
 
-    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: ClickTextViewItemV2V2) {
+    override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: ClickTextViewItem) {
 
-        binding(binding, viewType, position, item as TextViewItemV2)
+        binding(binding, viewType, position, item as TextViewItem)
     }
 }
 
-data class ClickTextViewItemV2V2(
+data class ClickTextViewItem(
     override val id: String = "",
     override val data: Any? = null,
 
@@ -78,4 +78,4 @@ data class ClickTextViewItemV2V2(
     override val imageRightMargin: Margin? = null,
     override val imageRightPadding: Padding? = null,
     override var imageRightBackground: Background? = null,
-) : TextViewItemV2()
+) : TextViewItem()

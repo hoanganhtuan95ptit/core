@@ -16,10 +16,10 @@ import com.tuanha.adapter.base.BaseBindingViewHolder
 import com.tuanha.event.sendEvent
 
 @ItemAdapter
-class ImageAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ImageViewItemV2, ItemImageBinding>() {
+class ImageAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ImageViewItem, ItemImageBinding>() {
 
-    override val viewItemClass: Class<ImageViewItemV2> by lazy {
-        ImageViewItemV2::class.java
+    override val viewItemClass: Class<ImageViewItem> by lazy {
+        ImageViewItem::class.java
     }
 
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemImageBinding {
@@ -50,7 +50,7 @@ class ImageAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ImageViewItemV2, Ite
         holder.binding.asObjectOrNull<ItemImageBinding>()?.ivImage?.pauseAnimation()
     }
 
-    override fun onBindViewHolder(binding: ItemImageBinding, viewType: Int, position: Int, item: ImageViewItemV2, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(binding: ItemImageBinding, viewType: Int, position: Int, item: ImageViewItem, payloads: MutableList<Any>) {
 
         binding.root.transitionName = item.id
 
@@ -59,7 +59,7 @@ class ImageAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ImageViewItemV2, Ite
         if (payloads.contains(PAYLOAD_BACKGROUND)) refreshBackground(binding, item)
     }
 
-    override fun onBindViewHolder(binding: ItemImageBinding, viewType: Int, position: Int, item: ImageViewItemV2) {
+    override fun onBindViewHolder(binding: ItemImageBinding, viewType: Int, position: Int, item: ImageViewItem) {
 
         binding.root.transitionName = item.id
 
@@ -68,12 +68,12 @@ class ImageAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ImageViewItemV2, Ite
         refreshBackground(binding, item)
     }
 
-    private fun refreshSize(binding: ItemImageBinding, item: ImageViewItemV2) {
+    private fun refreshSize(binding: ItemImageBinding, item: ImageViewItem) {
 
         binding.root.setSize(item.size)
     }
 
-    private fun refreshImage(binding: ItemImageBinding, item: ImageViewItemV2) {
+    private fun refreshImage(binding: ItemImageBinding, item: ImageViewItem) {
 
         if (item.anim != null) {
 
@@ -84,13 +84,13 @@ class ImageAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ImageViewItemV2, Ite
         }
     }
 
-    private fun refreshBackground(binding: ItemImageBinding, item: ImageViewItemV2) {
+    private fun refreshBackground(binding: ItemImageBinding, item: ImageViewItem) {
 
         binding.root.delegate.setBackground(item.background)
     }
 }
 
-class ImageViewItemV2(
+class ImageViewItem(
     val id: String = "",
 
     var anim: Int? = null,
