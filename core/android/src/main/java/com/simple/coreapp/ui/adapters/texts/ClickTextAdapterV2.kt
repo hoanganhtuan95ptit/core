@@ -13,17 +13,19 @@ import com.tuanha.adapter.base.BaseBindingViewHolder
 import com.tuanha.event.sendEvent
 
 @ItemAdapter
-class ClickTextAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItemV2V2, ItemTextBinding>(), TextAdapterV2 {
+class ClickTextAdapterV2 : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItemV2V2, ItemTextBinding>(), TextAdapterV2 {
 
     override val viewItemClass: Class<ClickTextViewItemV2V2> by lazy {
         ClickTextViewItemV2V2::class.java
     }
 
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemTextBinding {
+
         return createBinding(parent, viewType)
     }
 
     override fun createViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<ItemTextBinding>? {
+
         val viewHolder = super.createViewHolder(parent, viewType) ?: return null
 
         viewHolder.binding.root.setDebouncedClickListener {

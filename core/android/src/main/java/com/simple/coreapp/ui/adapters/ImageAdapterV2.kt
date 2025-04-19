@@ -1,7 +1,6 @@
 package com.simple.coreapp.ui.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.simple.core.utils.extentions.asObjectOrNull
@@ -10,21 +9,35 @@ import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.setBackground
 import com.simple.coreapp.ui.view.setSize
+import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.image.setImage
 import com.tuanha.adapter.annotation.ItemAdapter
 import com.tuanha.adapter.base.BaseBindingViewHolder
+import com.tuanha.event.sendEvent
 
 @ItemAdapter
-class ImageAdapterV2(
-    onItemClick: (View, ImageViewItemV2) -> Unit
-) : com.tuanha.adapter.ViewItemAdapter<ImageViewItemV2, ItemImageBinding>(onItemClick) {
+class ImageAdapterV2() : com.tuanha.adapter.ViewItemAdapter<ImageViewItemV2, ItemImageBinding>() {
 
     override val viewItemClass: Class<ImageViewItemV2> by lazy {
         ImageViewItemV2::class.java
     }
 
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemImageBinding {
+
         return ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    }
+
+    override fun createViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<ItemImageBinding>? {
+
+        val viewHolder = super.createViewHolder(parent, viewType) ?: return null
+
+        viewHolder.binding.root.setDebouncedClickListener {
+
+            val item = getViewItem(viewHolder.absoluteAdapterPosition) ?: return@setDebouncedClickListener
+            sendEvent("CLICK_IMAGE", item)
+        }
+
+        return viewHolder
     }
 
     override fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>) {

@@ -2,7 +2,7 @@ package com.tuanha.event
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
-import com.simple.coreapp.utils.ext.launchCollect
+import com.tuanha.event.utils.exts.launchCollect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
