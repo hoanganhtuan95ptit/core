@@ -4,7 +4,7 @@ project.ext {
     targetSdkVersion = 34
     compileSdkVersion = 34
 
-    javaVersion = JavaVersion.VERSION_17
+    javaVersion = JavaVersion.VERSION_1_8
 
     kotlin_version = '1.7.10'
     kotlin_plugin_version = '1.7.10'
