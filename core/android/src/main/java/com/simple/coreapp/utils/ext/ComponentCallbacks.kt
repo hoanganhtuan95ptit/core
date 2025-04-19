@@ -62,7 +62,7 @@ fun ComponentCallbacks.doOnHeightStatusAndHeightNavigationChange(onChange: suspe
     }
 }
 
-private fun ComponentCallbacks.listenerOnHeightStatusAndHeightNavigationChange() = listenerOnApplyWindowInsetsAsync().mapNotNull { insets ->
+fun ComponentCallbacks.listenerOnHeightStatusAndHeightNavigationChange() = listenerOnApplyWindowInsetsAsync().mapNotNull { insets ->
 
     val activity = getActivity()
     val heightStatusBar = insets.getStatusBar().takeIf { it >= 10 } ?: getStatusBarHeight(activity)

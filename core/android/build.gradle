@@ -3,7 +3,6 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-android'
     id 'kotlin-kapt'
-//    id 'androidx.navigation.safeargs.kotlin'
 }
 
 apply from: "../../constant/build.gradle"
@@ -40,6 +39,7 @@ dependencies {
     implementation project(path: ':library:job')
     implementation project(path: ':library:task')
     implementation project(path: ':library:state')
+    implementation project(path: ':library:event')
     implementation project(path: ':library:image')
     implementation project(path: ':library:binding')
     implementation project(path: ':library:adapter')
@@ -61,4 +61,10 @@ dependencies {
     implementation "com.airbnb.android:lottie:$lottie_version"
 
     implementation "io.supercharge:shimmerlayout:$shimmerlayout_version"
+
+    implementation 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter:1.0.5'
+    kapt 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter-processor:1.0.5'
+
+    implementation 'com.github.hoanganhtuan95ptit.Deeplink:deeplink:1.0.2'
+    kapt 'com.github.hoanganhtuan95ptit.Deeplink:deeplink-processor:1.0.2'
 }

@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_corner_24dp_solid_divider" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.tuanha.adapter.MultiRecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

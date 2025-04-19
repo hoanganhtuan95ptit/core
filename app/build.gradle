@@ -1,13 +1,14 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 apply from: "../constant/build.gradle"
 
 android {
     namespace "com.tuanha.app"
-  
+
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
@@ -47,7 +48,9 @@ dependencies {
 
     implementation project(':core:android')
 
-    implementation project(':library:adapter')
+//    implementation project(':library:adapter')
+//    implementation project(':library:deeplink-annotation')
+//    kapt project(':library:deeplink-processor')
 
 //    implementation project(path: ':lib-core-ads')
 //    implementation project(path: ':lib-core-app')
