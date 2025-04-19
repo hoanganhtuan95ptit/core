@@ -62,9 +62,9 @@ dependencies {
 
     implementation "io.supercharge:shimmerlayout:$shimmerlayout_version"
 
-    implementation 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter:1.0.5'
-    kapt 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter-processor:1.0.5'
+    implementation 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter:1.0.6'
+    kapt 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter-processor:1.0.6'
 
-    implementation 'com.github.hoanganhtuan95ptit.Deeplink:deeplink:1.0.2'
-    kapt 'com.github.hoanganhtuan95ptit.Deeplink:deeplink-processor:1.0.2'
+    implementation 'com.github.hoanganhtuan95ptit.Deeplink:deeplink:1.0.5'
+    kapt 'com.github.hoanganhtuan95ptit.Deeplink:deeplink-processor:1.0.5'
 }
