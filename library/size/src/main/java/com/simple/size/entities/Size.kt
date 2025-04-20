@@ -1,4 +1,4 @@
-package com.tuanha.size.entities
+package com.simple.size.entities
 
 data class Size(
     val width: Int = 0,

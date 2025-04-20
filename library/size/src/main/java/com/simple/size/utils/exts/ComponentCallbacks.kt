@@ -1,6 +1,6 @@
 @file:Suppress("DEPRECATION")
 
-package com.tuanha.size.utils.exts
+package com.simple.size.utils.exts
 
 import android.annotation.SuppressLint
 import android.app.Activity

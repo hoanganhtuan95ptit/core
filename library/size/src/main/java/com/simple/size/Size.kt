@@ -1,14 +1,14 @@
-package com.tuanha.size
+package com.simple.size
 
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
-import com.tuanha.size.entities.Size
-import com.tuanha.size.utils.exts.getScreenHeight
-import com.tuanha.size.utils.exts.getScreenWidth
-import com.tuanha.size.utils.exts.launchCollect
-import com.tuanha.size.utils.exts.listenerOnHeightStatusAndHeightNavigationChange
+import com.simple.size.entities.Size
+import com.simple.size.utils.exts.getScreenHeight
+import com.simple.size.utils.exts.getScreenWidth
+import com.simple.size.utils.exts.launchCollect
+import com.simple.size.utils.exts.listenerOnHeightStatusAndHeightNavigationChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.awaitClose
@@ -51,12 +51,12 @@ internal fun ComponentActivity.setupSize() = channelFlow<Unit> {
 }.launchIn(this.lifecycleScope)
 
 
-suspend fun listenerSize(block: suspend (data: Any) -> Unit) {
+suspend fun listenerSize(block: suspend (data: Size) -> Unit) {
 
     listenerSize(coroutineScope = CoroutineScope(coroutineContext), block = block)
 }
 
-fun listenerSize(lifecycle: Lifecycle, block: suspend (data: Any) -> Unit) {
+fun listenerSize(lifecycle: Lifecycle, block: suspend (data: Size) -> Unit) {
 
     listenerSize(coroutineScope = lifecycle.coroutineScope, block = block)
 }

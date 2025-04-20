@@ -1,4 +1,4 @@
-package com.tuanha.size.utils.exts
+package com.simple.size.utils.exts
 
 import android.content.Context
 import android.graphics.Point

@@ -1,4 +1,4 @@
-package com.tuanha.event.utils.exts
+package com.simple.event.utils.exts
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope

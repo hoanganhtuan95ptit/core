@@ -10,7 +10,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.tuanha.size.SizeInitializer"
+                android:name="com.simple.size.SizeInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

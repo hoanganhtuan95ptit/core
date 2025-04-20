@@ -1,4 +1,4 @@
-package com.tuanha.size
+package com.simple.size
 
 import android.app.Activity
 import android.app.Application

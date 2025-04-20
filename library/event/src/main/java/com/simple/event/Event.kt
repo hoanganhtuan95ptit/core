@@ -1,8 +1,8 @@
-package com.tuanha.event
+package com.simple.event
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
-import com.tuanha.event.utils.exts.launchCollect
+import com.simple.event.utils.exts.launchCollect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow

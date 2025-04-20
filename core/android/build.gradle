@@ -37,6 +37,7 @@ dependencies {
 
     implementation project(path: ':library:job')
     implementation project(path: ':library:task')
+    implementation project(path: ':library:size')
     implementation project(path: ':library:state')
     implementation project(path: ':library:event')
     implementation project(path: ':library:image')
