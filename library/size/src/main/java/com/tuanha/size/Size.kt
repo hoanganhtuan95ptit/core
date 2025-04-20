@@ -4,11 +4,11 @@ import androidx.activity.ComponentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
-import com.simple.coreapp.utils.ext.launchCollect
-import com.simple.coreapp.utils.ext.listenerOnHeightStatusAndHeightNavigationChange
-import com.simple.coreapp.utils.extentions.getScreenHeight
-import com.simple.coreapp.utils.extentions.getScreenWidth
 import com.tuanha.size.entities.Size
+import com.tuanha.size.utils.exts.getScreenHeight
+import com.tuanha.size.utils.exts.getScreenWidth
+import com.tuanha.size.utils.exts.launchCollect
+import com.tuanha.size.utils.exts.listenerOnHeightStatusAndHeightNavigationChange
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.awaitClose

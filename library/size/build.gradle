@@ -25,6 +25,6 @@ android {
 dependencies {
 
     implementation project(':core:base')
-    implementation project(':core:android')
+//    implementation project(':core:android')
     implementation androidxDependencies.values()
 }
