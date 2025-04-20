@@ -16,7 +16,7 @@ import com.tuanha.adapter.annotation.ItemAdapter
 import com.tuanha.adapter.base.BaseBindingViewHolder
 
 @ItemAdapter
-class ImageAdapter(onItemClick: ((View, ImageViewItem) -> Unit)?) : ViewItemAdapter<ImageViewItem, ItemImageBinding>(onItemClick) {
+class ImageAdapter(onItemClick: ((View, ImageViewItem) -> Unit)? = null) : ViewItemAdapter<ImageViewItem, ItemImageBinding>(onItemClick) {
 
     override val viewItemClass: Class<ImageViewItem> by lazy {
         ImageViewItem::class.java

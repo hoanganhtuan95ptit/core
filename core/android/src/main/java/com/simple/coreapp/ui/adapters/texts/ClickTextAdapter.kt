@@ -11,7 +11,7 @@ import com.simple.coreapp.ui.view.TextStyle
 import com.tuanha.adapter.annotation.ItemAdapter
 
 @ItemAdapter
-class ClickTextAdapter(onItemClick: ((View, ClickTextViewItem) -> Unit)?) : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(onItemClick), TextAdapter {
+class ClickTextAdapter(onItemClick: ((View, ClickTextViewItem) -> Unit)? = null) : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(onItemClick), TextAdapter {
 
     override val viewItemClass: Class<ClickTextViewItem> by lazy {
         ClickTextViewItem::class.java
