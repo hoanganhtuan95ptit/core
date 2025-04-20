@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import androidx.startup.Initializer
 
 class DeeplinkInitializer : Initializer<Unit> {
@@ -14,8 +15,11 @@ class DeeplinkInitializer : Initializer<Unit> {
 
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 
-                groupQueue.forEach {
-                    it.setupDeepLink(activity)
+                groupQueue.forEach { it.setupDeepLink(activity) }
+
+                if (activity is FragmentActivity) activity.supportFragmentManager.addFragmentOnAttachListener { fragmentManager, fragment ->
+
+                    groupQueue.forEach { it.setupDeepLink(fragment) }
                 }
             }
 
