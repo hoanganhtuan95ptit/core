@@ -2,16 +2,18 @@ package com.simple.coreapp.ui.adapters.texts
 
 import android.view.View
 import android.view.ViewGroup
+import com.simple.adapter.annotation.ItemAdapter
+import com.simple.adapter.base.BaseBindingViewHolder
 import com.simple.coreapp.databinding.ItemTextBinding
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
-import com.simple.adapter.annotation.ItemAdapter
+import com.simple.event.sendEvent
 
 @ItemAdapter
-class ClickTextAdapter(onItemClick: ((View, ClickTextViewItem) -> Unit)? = null) : com.simple.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(onItemClick), TextAdapter {
+class ClickTextAdapter(val onItemClick: ((View, ClickTextViewItem) -> Unit)? = null) : com.simple.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(), TextAdapter {
 
     override val viewItemClass: Class<ClickTextViewItem> by lazy {
         ClickTextViewItem::class.java
@@ -20,6 +22,23 @@ class ClickTextAdapter(onItemClick: ((View, ClickTextViewItem) -> Unit)? = null)
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemTextBinding {
 
         return createBinding(parent, viewType)
+    }
+
+    override fun createViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<ItemTextBinding> {
+
+        val viewHolder = BaseBindingViewHolder(createViewBinding(parent, viewType), viewType)
+
+        val binding = viewHolder.binding
+
+        binding.root.setOnClickListener { view ->
+
+            val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setOnClickListener
+
+            onItemClick?.invoke(view, viewItem)
+            sendEvent("TEXT_VIEW_ITEM_CLICKED", viewItem)
+        }
+
+        return viewHolder
     }
 
     override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: ClickTextViewItem, payloads: MutableList<Any>) {

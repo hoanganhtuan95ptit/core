@@ -4,19 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
+import com.simple.adapter.ViewItemAdapter
+import com.simple.adapter.annotation.ItemAdapter
+import com.simple.adapter.base.BaseBindingViewHolder
 import com.simple.core.utils.extentions.asObjectOrNull
 import com.simple.coreapp.databinding.ItemImageBinding
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.setBackground
 import com.simple.coreapp.ui.view.setSize
+import com.simple.event.sendEvent
 import com.simple.image.setImage
-import com.simple.adapter.ViewItemAdapter
-import com.simple.adapter.annotation.ItemAdapter
-import com.simple.adapter.base.BaseBindingViewHolder
 
 @ItemAdapter
-class ImageAdapter(onItemClick: ((View, ImageViewItem) -> Unit)? = null) : ViewItemAdapter<ImageViewItem, ItemImageBinding>(onItemClick) {
+class ImageAdapter(val onItemClick: ((View, ImageViewItem) -> Unit)? = null) : ViewItemAdapter<ImageViewItem, ItemImageBinding>() {
 
     override val viewItemClass: Class<ImageViewItem> by lazy {
         ImageViewItem::class.java
@@ -25,6 +26,23 @@ class ImageAdapter(onItemClick: ((View, ImageViewItem) -> Unit)? = null) : ViewI
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemImageBinding {
 
         return ItemImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    }
+
+    override fun createViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<ItemImageBinding> {
+
+        val viewHolder = BaseBindingViewHolder(createViewBinding(parent, viewType), viewType)
+
+        val binding = viewHolder.binding
+
+        binding.root.setOnClickListener { view ->
+
+            val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setOnClickListener
+
+            onItemClick?.invoke(view, viewItem)
+            sendEvent("IMAGE_VIEW_ITEM_CLICKED", viewItem)
+        }
+
+        return viewHolder
     }
 
     override fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>) {
