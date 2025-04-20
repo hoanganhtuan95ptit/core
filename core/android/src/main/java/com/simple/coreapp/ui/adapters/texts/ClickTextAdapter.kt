@@ -35,7 +35,7 @@ class ClickTextAdapter(val onItemClick: ((View, ClickTextViewItem) -> Unit)? = n
             val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setOnClickListener
 
             onItemClick?.invoke(view, viewItem)
-            sendEvent("TEXT_VIEW_ITEM_CLICKED", viewItem)
+            sendEvent("TEXT_VIEW_ITEM_CLICKED", view to viewItem)
         }
 
         return viewHolder

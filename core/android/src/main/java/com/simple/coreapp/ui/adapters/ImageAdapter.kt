@@ -39,7 +39,7 @@ class ImageAdapter(val onItemClick: ((View, ImageViewItem) -> Unit)? = null) : V
             val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setOnClickListener
 
             onItemClick?.invoke(view, viewItem)
-            sendEvent("IMAGE_VIEW_ITEM_CLICKED", viewItem)
+            sendEvent("IMAGE_VIEW_ITEM_CLICKED", view to viewItem)
         }
 
         return viewHolder
