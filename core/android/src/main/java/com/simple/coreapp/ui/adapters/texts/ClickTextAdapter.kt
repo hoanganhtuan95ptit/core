@@ -1,5 +1,6 @@
 package com.simple.coreapp.ui.adapters.texts
 
+import android.view.View
 import android.view.ViewGroup
 import com.simple.coreapp.databinding.ItemTextBinding
 import com.simple.coreapp.ui.view.Background
@@ -7,13 +8,10 @@ import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
-import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.tuanha.adapter.annotation.ItemAdapter
-import com.tuanha.adapter.base.BaseBindingViewHolder
-import com.tuanha.event.sendEvent
 
 @ItemAdapter
-class ClickTextAdapter : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(), TextAdapter {
+class ClickTextAdapter(onItemClick: ((View, ClickTextViewItem) -> Unit)?) : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(onItemClick), TextAdapter {
 
     override val viewItemClass: Class<ClickTextViewItem> by lazy {
         ClickTextViewItem::class.java
@@ -22,19 +20,6 @@ class ClickTextAdapter : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItem, I
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ItemTextBinding {
 
         return createBinding(parent, viewType)
-    }
-
-    override fun createViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<ItemTextBinding>? {
-
-        val viewHolder = super.createViewHolder(parent, viewType) ?: return null
-
-        viewHolder.binding.root.setDebouncedClickListener {
-
-            val item = getViewItem(viewHolder.absoluteAdapterPosition) ?: return@setDebouncedClickListener
-            sendEvent("CLICK_TEXT", item)
-        }
-
-        return viewHolder
     }
 
     override fun onBindViewHolder(binding: ItemTextBinding, viewType: Int, position: Int, item: ClickTextViewItem, payloads: MutableList<Any>) {
