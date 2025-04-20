@@ -8,6 +8,7 @@ import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.annotation.ItemAdapter
 import com.simple.adapter.base.BaseBindingViewHolder
 import com.simple.core.utils.extentions.asObjectOrNull
+import com.simple.coreapp.EventName
 import com.simple.coreapp.databinding.ItemImageBinding
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Size
@@ -39,7 +40,7 @@ class ImageAdapter(val onItemClick: ((View, ImageViewItem) -> Unit)? = null) : V
             val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setOnClickListener
 
             onItemClick?.invoke(view, viewItem)
-            sendEvent("IMAGE_VIEW_ITEM_CLICKED", view to viewItem)
+            sendEvent(EventName.IMAGE_VIEW_ITEM_CLICKED, view to viewItem)
         }
 
         return viewHolder

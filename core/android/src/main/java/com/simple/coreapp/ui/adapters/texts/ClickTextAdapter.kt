@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.simple.adapter.annotation.ItemAdapter
 import com.simple.adapter.base.BaseBindingViewHolder
+import com.simple.coreapp.EventName
 import com.simple.coreapp.databinding.ItemTextBinding
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Margin
@@ -35,7 +36,7 @@ class ClickTextAdapter(val onItemClick: ((View, ClickTextViewItem) -> Unit)? = n
             val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setOnClickListener
 
             onItemClick?.invoke(view, viewItem)
-            sendEvent("TEXT_VIEW_ITEM_CLICKED", view to viewItem)
+            sendEvent(EventName.TEXT_VIEW_ITEM_CLICKED, view to viewItem)
         }
 
         return viewHolder
