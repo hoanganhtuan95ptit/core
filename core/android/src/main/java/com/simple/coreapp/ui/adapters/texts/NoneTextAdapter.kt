@@ -7,10 +7,10 @@ import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
-import com.tuanha.adapter.annotation.ItemAdapter
+import com.simple.adapter.annotation.ItemAdapter
 
 @ItemAdapter
-class NoneTextAdapter : com.tuanha.adapter.ViewItemAdapter<NoneTextViewItem, ItemTextBinding>(), TextAdapter {
+class NoneTextAdapter : com.simple.adapter.ViewItemAdapter<NoneTextViewItem, ItemTextBinding>(), TextAdapter {
 
     override val viewItemClass: Class<NoneTextViewItem> by lazy {
         NoneTextViewItem::class.java

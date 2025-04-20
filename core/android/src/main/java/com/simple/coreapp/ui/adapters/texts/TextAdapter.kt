@@ -186,7 +186,7 @@ internal interface TextAdapter {
     }
 }
 
-open class TextViewItem : com.tuanha.adapter.entities.ViewItem {
+open class TextViewItem : com.simple.adapter.entities.ViewItem {
 
     open val id: String = ""
 

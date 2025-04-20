@@ -3,7 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
-apply from: "../../constant/build.gradle"
+apply from: "../../dependencies.gradle"
 
 android {
     namespace 'com.simple.binding'

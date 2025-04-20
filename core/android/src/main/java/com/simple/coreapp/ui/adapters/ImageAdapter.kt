@@ -11,9 +11,9 @@ import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.setBackground
 import com.simple.coreapp.ui.view.setSize
 import com.simple.image.setImage
-import com.tuanha.adapter.ViewItemAdapter
-import com.tuanha.adapter.annotation.ItemAdapter
-import com.tuanha.adapter.base.BaseBindingViewHolder
+import com.simple.adapter.ViewItemAdapter
+import com.simple.adapter.annotation.ItemAdapter
+import com.simple.adapter.base.BaseBindingViewHolder
 
 @ItemAdapter
 class ImageAdapter(onItemClick: ((View, ImageViewItem) -> Unit)? = null) : ViewItemAdapter<ImageViewItem, ItemImageBinding>(onItemClick) {
@@ -85,7 +85,7 @@ class ImageViewItem(
 
     val size: Size? = null,
     var background: Background? = null,
-) : com.tuanha.adapter.entities.ViewItem {
+) : com.simple.adapter.entities.ViewItem {
 
     override fun areItemsTheSame(): List<Any> = listOf(
         id

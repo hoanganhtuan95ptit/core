@@ -1,13 +1,14 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
-apply from: "../../constant/build.gradle"
+apply from: "../../dependencies.gradle"
 
 android {
     namespace "com.simple.adapter"
-  
+
     defaultConfig {
         compileSdk project.ext.compileSdkVersion
         minSdkVersion project.ext.minSdkVersion
@@ -32,11 +33,15 @@ android {
 
 dependencies {
 
-    implementation project(path: ':core:base')
-    implementation project(path: ':library:binding')
+    implementation "androidx.recyclerview:recyclerview:1.2.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
 
-    implementation androidxDependencies.values()
     implementation coroutinesDependencies.values()
 
-    implementation "io.supercharge:shimmerlayout:$shimmerlayout_version"
+    api("com.google.auto.service:auto-service:1.0-rc4") {
+        exclude group: "com.google.guava"
+    }
+
+    api project(':library:adapter-annotation')
+    kapt project(':library:adapter-processor')
 }

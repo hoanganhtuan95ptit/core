@@ -5,7 +5,7 @@ plugins {
     id 'kotlin-kapt'
 }
 
-apply from: "../../constant/build.gradle"
+apply from: "../../dependencies.gradle"
 
 android {
     namespace "com.simple.coreapp"
@@ -31,7 +31,6 @@ android {
         abortOnError false
     }
 }
-
 dependencies {
 
     implementation project(path: ':core:base')
@@ -43,8 +42,14 @@ dependencies {
     implementation project(path: ':library:image')
     implementation project(path: ':library:binding')
 
-    implementation project(path: ':library:analytics')
-    implementation project(path: ':library:crashlytics')
+    implementation project(':library:analytics')
+    implementation project(':library:crashlytics')
+
+    implementation project(path: ':library:adapter')
+    kapt project(path: ':library:adapter-processor')
+
+    implementation project(path: ':library:deeplink')
+    kapt project(path: ':library:deeplink-processor')
 
     implementation koinDependencies.values()
     implementation androidxDependencies.values()
@@ -52,18 +57,11 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.12.0'
 
-    implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-
     implementation "com.airbnb.android:lottie:$lottie_version"
-
+    implementation "com.github.bumptech.glide:glide:$glide_version"
     implementation "io.supercharge:shimmerlayout:$shimmerlayout_version"
 
-    implementation 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter:1.0.13'
-    kapt 'com.github.hoanganhtuan95ptit.MultiTypeAdapter:adapter-processor:1.0.13'
-
-    implementation 'com.github.hoanganhtuan95ptit.Deeplink:deeplink:1.0.8'
-    kapt 'com.github.hoanganhtuan95ptit.Deeplink:deeplink-processor:1.0.8'
+    implementation "com.squareup.retrofit2:converter-jackson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
 }
+

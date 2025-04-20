@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.simple.coreapp.databinding.ItemEmptyBinding
-import com.tuanha.adapter.annotation.ItemAdapter
+import com.simple.adapter.annotation.ItemAdapter
 
 @ItemAdapter
-class EmptyAdapter(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : com.tuanha.adapter.ViewItemAdapter<EmptyViewItem, ItemEmptyBinding>(onItemClick) {
+class EmptyAdapter(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : com.simple.adapter.ViewItemAdapter<EmptyViewItem, ItemEmptyBinding>(onItemClick) {
 
     override val viewItemClass: Class<EmptyViewItem> by lazy {
         EmptyViewItem::class.java
@@ -32,7 +32,7 @@ class EmptyViewItem(
     var message: CharSequence = "",
 
     var imageRes: Int = 0,
-) : com.tuanha.adapter.entities.ViewItem {
+) : com.simple.adapter.entities.ViewItem {
 
     override fun areItemsTheSame(): List<Any> = listOf(
         id

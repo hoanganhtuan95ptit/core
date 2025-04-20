@@ -1,9 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
-apply from: "../../constant/build.gradle"
+apply from: "../../dependencies.gradle"
 
 android {
     namespace "com.simple.deeplink"
@@ -31,10 +32,21 @@ android {
 }
 
 dependencies {
+    implementation androidxDependencies.appcompat
+    implementation androidxDependencies.fragment
+    implementation androidxDependencies.lifecycle_common
+    implementation androidxDependencies.lifecycle_viewmodel
 
-    implementation project(':core:base')
-    implementation project(':core:android')
-
-    implementation androidxDependencies.values()
+    implementation koinDependencies.values()
     implementation coroutinesDependencies.values()
+
+    implementation 'androidx.startup:startup-runtime:1.2.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2"
+
+    api("com.google.auto.service:auto-service:1.0-rc4") {
+        exclude group: "com.google.guava"
+    }
+
+    api project(':library:deeplink-annotation')
+    kapt project(':library:deeplink-processor')
 }

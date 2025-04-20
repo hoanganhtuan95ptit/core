@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tuanha.adapter.MultiAdapter
-import com.tuanha.adapter.entities.ViewItem
+import com.simple.adapter.MultiAdapter
+import com.simple.adapter.entities.ViewItem
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 

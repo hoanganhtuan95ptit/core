@@ -2,25 +2,27 @@ rootProject.name = "Core"
 
 include ':app'
 
-include ':constant'
-
 include ':core:base'
 include ':core:android'
 
 include ':library'
 include ':library:job'
+include ':library:size'
 include ':library:task'
 include ':library:state'
 include ':library:image'
-
-//include ':library:adapter'
-//include ':library:adapter-processor'
-//include ':library:adapter-annotation'
+include ':library:event'
 
 include ':library:binding'
 
 include ':library:config'
 include ':library:config-firebase'
+
+include ':library:detect'
+include ':library:detect-mlkit'
+
+include ':library:translate'
+include ':library:translate-mlkit'
 
 include ':library:analytics'
 include ':library:analytics-log'
@@ -32,15 +34,10 @@ include ':library:crashlytics-log'
 include ':library:crashlytics-sentry'
 include ':library:crashlytics-firebase'
 
-include ':library:detect'
-include ':library:detect-mlkit'
+include ':library:deeplink'
+include ':library:deeplink-processor'
+include ':library:deeplink-annotation'
 
-include ':library:translate'
-include ':library:translate-mlkit'
-
-//include ':library:deeplink'
-//include ':library:deeplink-processor'
-//include ':library:deeplink-annotation'
-
-include ':library:size'
-include ':library:event'
+include ':library:adapter'
+include ':library:adapter-processor'
+include ':library:adapter-annotation'

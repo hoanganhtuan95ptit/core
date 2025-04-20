@@ -8,10 +8,10 @@ import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
-import com.tuanha.adapter.annotation.ItemAdapter
+import com.simple.adapter.annotation.ItemAdapter
 
 @ItemAdapter
-class ClickTextAdapter(onItemClick: ((View, ClickTextViewItem) -> Unit)? = null) : com.tuanha.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(onItemClick), TextAdapter {
+class ClickTextAdapter(onItemClick: ((View, ClickTextViewItem) -> Unit)? = null) : com.simple.adapter.ViewItemAdapter<ClickTextViewItem, ItemTextBinding>(onItemClick), TextAdapter {
 
     override val viewItemClass: Class<ClickTextViewItem> by lazy {
         ClickTextViewItem::class.java
