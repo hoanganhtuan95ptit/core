@@ -11,6 +11,7 @@ import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
+import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.event.sendEvent
 
 @ItemAdapter
@@ -31,9 +32,9 @@ class ClickTextAdapter(val onItemClick: ((View, ClickTextViewItem) -> Unit)? = n
 
         val binding = viewHolder.binding
 
-        binding.root.setOnClickListener { view ->
+        binding.root.setDebouncedClickListener { view ->
 
-            val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setOnClickListener
+            val viewItem = getViewItem(viewHolder.bindingAdapterPosition) ?: return@setDebouncedClickListener
 
             onItemClick?.invoke(view, viewItem)
             sendEvent(EventName.TEXT_VIEW_ITEM_CLICKED, view to viewItem)
