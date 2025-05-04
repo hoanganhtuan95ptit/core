@@ -37,17 +37,15 @@ abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+        val dialog = (dialog as? BottomSheetDialog) ?: return
+        dialog.window?.navigationBarColor = Color.TRANSPARENT
+
         super.onViewCreated(view, savedInstanceState)
 
-
-        val dialog = (dialog as? BottomSheetDialog) ?: return
-
         this.behavior = dialog.behavior
-
         this.container = container ?: dialog.findViewById(com.google.android.material.R.id.container)!!
         this.coordinator = coordinator ?: dialog.findViewById(com.google.android.material.R.id.coordinator)!!
         this.bottomSheet = bottomSheet ?: dialog.findViewById(com.google.android.material.R.id.design_bottom_sheet)!!
-
 
         view.doOnLayout {
 
