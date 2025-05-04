@@ -11,10 +11,8 @@ import androidx.core.view.doOnLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.simple.coreapp.R
 import com.simple.coreapp.ui.base.dialogs.OnDismissListener
 import com.simple.coreapp.utils.autoCleared
-import com.simple.coreapp.utils.extentions.getColorFromAttr
 
 abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) : BottomSheetDialogFragment() {
 
@@ -39,12 +37,10 @@ abstract class BaseSheetFragment(@LayoutRes open val contentLayoutId: Int = 0) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
-        val dialog = (dialog as? BottomSheetDialog) ?: return
-
-        dialog.window?.navigationBarColor = view.context.getColorFromAttr(R.attr.colorNavigationBar)
-
         super.onViewCreated(view, savedInstanceState)
 
+
+        val dialog = (dialog as? BottomSheetDialog) ?: return
 
         this.behavior = dialog.behavior
 
