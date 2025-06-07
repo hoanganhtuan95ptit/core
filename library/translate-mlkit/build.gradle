@@ -38,8 +38,9 @@ dependencies {
     implementation project(':library:analytics')
     implementation project(':library:translate')
     implementation project(':library:crashlytics')
+
     implementation koinDependencies.values()
     implementation androidxDependencies.values()
-
-    implementation 'com.google.mlkit:translate:17.0.2'
+    
+    implementation mlkitDependencies.translate
 }

@@ -1,16 +1,17 @@
-project.ext {
-
+ext {
+    // --- Android SDK ---
     minSdkVersion = 23
     targetSdkVersion = 34
     compileSdkVersion = 34
 
+    // --- Java & Kotlin ---
     javaVersion = JavaVersion.VERSION_1_8
-
     kotlin_version = '1.7.10'
     kotlin_plugin_version = '1.7.10'
 
+    // --- Version Catalog ---
     nav_version = '2.7.7'
-    ktx_version = '1.9.22'
+    ktx_version = '1.13.1'
     koin_version = '3.4.1'
     room_version = "2.5.2"
     work_version = "2.7.1"
@@ -18,15 +19,11 @@ project.ext {
     junit_version = '4.12'
     okhttp_version = '4.11.0'
     jackson_version = "2.11.3"
-
     core_version = "1.1.4"
     core_app_version = "1.1.4"
-
     detect_version = "1.1.4"
-
     camerax_version = '1.1.0'
     camera_view_version = '1.1.0'
-
     lottie_version = '4.2.1'
     retrofit_version = '2.9.0'
     fragment_version = '1.5.1'
@@ -40,47 +37,65 @@ project.ext {
     preference_ktx_version = '1.1.1'
     constraint_layout_version = '2.1.4'
     swiperefreshlayout_version = '1.1.0'
-    material_components_version = '1.6.1'
+    material_components_version = '1.12.0' // dùng bản mới nhất cho UI
     lifecycle_extensions_version = '2.2.0'
     localbroadcastmanager_version = '1.0.0'
-
     shimmerlayout_version = '2.1.0'
-
     play_core_ktx_version = '1.10.3'
-
     firebase_bom_version = '30.3.1'
     firebase_ads_version = '21.1.0'
+    flexbox_version = '3.0.0'
+    gson_version = '2.9.1'
+    review_version = '2.0.0'
+    update_version = '2.0.0'
+    startup_runtime_version = '1.1.1'
+    coroutines_version = '1.6.4'
+    sentry_version = '6.28.0'
+    auto_service_version = '1.0-rc4'
 
+    // --- ML Kit Versions ---
+    mlkit_translate_version = '17.0.2'
+    mlkit_language_id_version = '17.0.5'
+    mlkit_text_recognition_version = '16.0.0'
+
+    // --- Classpath (build plugins) ---
+    classpath = [
+            gradle              : "com.android.tools.build:gradle:7.3.1",
+            kotlin_gradle_plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version"
+    ]
+
+    // --- Dependency Groups ---
+
+    // Koin
     koinDependencies = [
-
             core   : "io.insert-koin:koin-core:$koin_version",
             android: "io.insert-koin:koin-android:$koin_version",
     ]
 
+    // Room
     roomDependencies = [
-
             room_ktx    : "androidx.room:room-ktx:$room_version",
             room_runtime: "androidx.room:room-runtime:$room_version",
     ]
 
+    // Retrofit2
     retrofit2Dependencies = [
-
-            retrofit           : "com.squareup.retrofit2:retrofit:2.9.0",
-            converter_jackson  : "com.squareup.retrofit2:converter-jackson:2.9.0",
-            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:4.12.0",
+            retrofit           : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            converter_jackson  : "com.squareup.retrofit2:converter-jackson:$retrofit_version",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
     ]
 
+    // Jackson
     jacksonDependencies = [
-
             core       : "com.fasterxml.jackson.core:jackson-core:$jackson_version",
             databind   : "com.fasterxml.jackson.core:jackson-databind:$jackson_version",
             annotations: "com.fasterxml.jackson.core:jackson-annotations:$jackson_version",
     ]
 
+    // AndroidX
     androidxDependencies = [
-
-            startup_runtim       : "androidx.startup:startup-runtime:1.1.1",
-            core                 : "androidx.core:core-ktx:1.13.1",
+            startup_runtime      : "androidx.startup:startup-runtime:$startup_runtime_version",
+            core                 : "androidx.core:core-ktx:$ktx_version",
             multidex             : "androidx.multidex:multidex:$multidex_version",
             appcompat            : "androidx.appcompat:appcompat:$appcompat_version",
             fragment             : "androidx.fragment:fragment-ktx:$fragment_version",
@@ -91,25 +106,26 @@ project.ext {
             swiperefreshlayout   : "androidx.swiperefreshlayout:swiperefreshlayout:$swiperefreshlayout_version",
             recyclerview         : "androidx.recyclerview:recyclerview:$recycler_version",
             localbroadcastmanager: "androidx.localbroadcastmanager:localbroadcastmanager:$localbroadcastmanager_version",
-
+            lifecycle_runtime    : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.2",
             work                 : "androidx.work:work-runtime-ktx:$work_version",
-
             navigation_ui        : "androidx.navigation:navigation-ui-ktx:$nav_version",
             navigation_runtime   : "androidx.navigation:navigation-runtime-ktx:$nav_version",
             navigation_fragment  : "androidx.navigation:navigation-fragment-ktx:$nav_version",
-
             lifecycle_process    : "androidx.lifecycle:lifecycle-process:$lifecycle_version",
             lifecycle_livedata   : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
             lifecycle_common     : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
             lifecycle_viewmodel  : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
     ]
 
+    // Play Core/Review/Update
     playDependencies = [
-            review: "com.google.android.play:review-ktx:2.0.0",
-            update: "com.google.android.play:app-update-ktx:2.0.0",
+            review: "com.google.android.play:review-ktx:$review_version",
+            update: "com.google.android.play:app-update-ktx:$update_version",
     ]
 
+    // Firebase
     firebaseDependencies = [
+            bom        : "com.google.firebase:firebase-bom:$firebase_bom_version",
             config     : 'com.google.firebase:firebase-config',
             analytics  : 'com.google.firebase:firebase-analytics',
             crashlytics: 'com.google.firebase:firebase-crashlytics',
@@ -117,63 +133,51 @@ project.ext {
             ads        : "com.google.firebase:firebase-ads:$firebase_ads_version",
     ]
 
+    // Coroutines
     coroutinesDependencies = [
-            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4",
-            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4",
+            core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
+            android: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version",
     ]
 
+    // Sentry
     sentryDependencies = [
-
-            android: "io.sentry:sentry-android:6.28.0"
+            android: "io.sentry:sentry-android:$sentry_version"
     ]
 
-    hoanganhtuan95Dependencies = [
+    // Google
+    googleDependencies = [
+            auto_service: "com.google.auto.service:auto-service:$auto_service_version"
+    ]
 
-//            base                : project(':core:base'),
-//            android             : project(':core:android'),
-//
-//            job                 : project(':library:job'),
-//            task                : project(':library:task'),
-//            state               : project(':library:state'),
-//            image               : project(':library:image'),
-//            binding             : project(':library:binding'),
-//            adapter             : project(':library:adapter'),
-//
-//            analytics           : project(':library:analytics'),
-//            analytics_log       : project(':library:analytics-log'),
-//            analytics_firebase  : project(':library:analytics-firebase'),
-//
-//            crashlytics         : project(':library:crashlytics'),
-//            crashlytics_log     : project(':library:crashlytics-log'),
-//            crashlytics_firebase: project(':library:crashlytics-firebase'),
-//
-//            detect              : project(':library:detect'),
-//            detect_mlkit        : project(':library:detect-mlkit'),
-//
-//            translate           : project(':library:translate'),
-//            translate_mlkit     : project(':library:translate-mlkit'),
-//
-//            base                : "com.github.hoanganhtuan95ptit.core:base:1.1.18",
-//            android             : "com.github.hoanganhtuan95ptit.core:android:1.1.18",
-//
-//            task                : "com.github.hoanganhtuan95ptit.core:task:1.1.18",
-//            state               : "com.github.hoanganhtuan95ptit.core:state:1.1.18",
-//            image               : "com.github.hoanganhtuan95ptit.core:image:1.1.18",
-//            adapter             : "com.github.hoanganhtuan95ptit.core:adapter:1.1.18",
-//
-//            analytics           : "com.github.hoanganhtuan95ptit.core:analytics:1.1.18",
-//            analytics_log       : "com.github.hoanganhtuan95ptit.core:analytics-log:1.1.18",
-//            analytics_firebase  : "com.github.hoanganhtuan95ptit.core:analytics-firebase:1.1.18",
-//
-//            crashlytics         : "com.github.hoanganhtuan95ptit.core:crashlytics:1.1.18",
-//            crashlytics_log     : "com.github.hoanganhtuan95ptit.core:crashlytics-log:1.1.18",
-//            crashlytics_firebase: "com.github.hoanganhtuan95ptit.core:crashlytics-firebase:1.1.18",
-//
-//            detect              : "com.github.hoanganhtuan95ptit.core:detect:1.1.18",
-//            detect_mlkit        : "com.github.hoanganhtuan95ptit.core:detect-mlkit:1.1.18",
-//
-//            translate           : "com.github.hoanganhtuan95ptit.core:translate:1.1.18",
-//            translate_mlkit     : "com.github.hoanganhtuan95ptit.core:translate-mlkit:1.1.18"
+    // --- UI Libraries ---
+    uiDependencies = [
+            flexbox : "com.google.android.flexbox:flexbox:$flexbox_version",
+            material: "com.google.android.material:material:$material_components_version",
+            lottie  : "com.airbnb.android:lottie:$lottie_version",
+            glide   : "com.github.bumptech.glide:glide:$glide_version",
+            shimmer : "io.supercharge:shimmerlayout:$shimmerlayout_version"
+    ]
+
+    // --- Networking & Serialization Libraries ---
+    networkingDependencies = [
+            converter_jackson  : "com.squareup.retrofit2:converter-jackson:$retrofit_version",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:$okhttp_version",
+            gson               : "com.google.code.gson:gson:$gson_version"
+    ]
+
+    // --- ML Kit ---
+    mlkitDependencies = [
+            translate                  : "com.google.mlkit:translate:$mlkit_translate_version",
+            language_id                : "com.google.mlkit:language-id:$mlkit_language_id_version",
+            text_recognition           : "com.google.mlkit:text-recognition:$mlkit_text_recognition_version",
+            text_recognition_chinese   : "com.google.mlkit:text-recognition-chinese:$mlkit_text_recognition_version",
+            text_recognition_devanagari: "com.google.mlkit:text-recognition-devanagari:$mlkit_text_recognition_version",
+            text_recognition_japanese  : "com.google.mlkit:text-recognition-japanese:$mlkit_text_recognition_version",
+            text_recognition_korean    : "com.google.mlkit:text-recognition-korean:$mlkit_text_recognition_version"
+    ]
+
+    // --- Custom/Core/Project Specific ---
+    hoanganhtuan95Dependencies = [
 
     ]
 }

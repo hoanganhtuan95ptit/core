@@ -41,6 +41,6 @@ dependencies {
     implementation koinDependencies.values()
     implementation androidxDependencies.values()
 
-    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    implementation platform(firebaseDependencies.bom)
     implementation firebaseDependencies.config
 }

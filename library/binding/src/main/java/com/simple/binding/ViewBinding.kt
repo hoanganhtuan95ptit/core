@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.simple.binding
 
 import android.content.ComponentCallbacks

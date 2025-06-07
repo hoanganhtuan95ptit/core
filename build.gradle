@@ -1,3 +1,5 @@
+apply from: 'dependencies.gradle'
+
 buildscript {
 
     apply from: 'dependencies.gradle'
@@ -10,17 +12,29 @@ buildscript {
     }
 
     dependencies {
-        classpath "com.android.tools.build:gradle:7.3.1"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version"
+        classpath classpath.gradle
+        classpath classpath.kotlin_gradle_plugin
     }
 }
 
 allprojects {
+
     repositories {
         google()
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
+    }
+
+    configurations.configureEach {
+
+        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+            if (details.requested.group == 'org.jetbrains.kotlin') {
+                details.useVersion "$kotlin_version"
+            }
+        }
+
+        exclude group: 'com.google.guava'
     }
 }
 

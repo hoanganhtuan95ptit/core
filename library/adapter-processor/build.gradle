@@ -9,8 +9,8 @@ apply from: "../../dependencies.gradle"
 dependencies {
     implementation 'com.squareup:kotlinpoet:1.12.0'
 
-    implementation 'com.google.auto.service:auto-service:1.0-rc4'
-    kapt "com.google.auto.service:auto-service:1.0-rc4"
+    implementation googleDependencies.auto_service
+    kapt googleDependencies.auto_service
 }
 
 java {

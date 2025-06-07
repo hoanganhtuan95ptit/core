@@ -32,32 +32,23 @@ android {
 
 dependencies {
 
+    implementation project(':core:base')
     implementation project(':core:android')
     implementation project(':library:task')
     implementation project(':library:state')
+    implementation project(':library:image')
+    implementation project(':library:detect')
     implementation project(':library:analytics')
     implementation project(':library:translate')
     implementation project(':library:crashlytics')
+
     implementation koinDependencies.values()
     implementation androidxDependencies.values()
 
-    implementation 'com.google.mlkit:language-id:17.0.5'
-
-    // To recognize Latin script
-    implementation 'com.google.mlkit:text-recognition:16.0.0'
-
-    // To recognize Chinese script
-    implementation 'com.google.mlkit:text-recognition-chinese:16.0.0'
-
-    // To recognize Devanagari script
-    implementation 'com.google.mlkit:text-recognition-devanagari:16.0.0'
-
-    // To recognize Japanese script
-    implementation 'com.google.mlkit:text-recognition-japanese:16.0.0'
-
-    // To recognize Korean script
-    implementation 'com.google.mlkit:text-recognition-korean:16.0.0'
-    implementation project(':library:detect')
-    implementation project(':core:base')
-    implementation project(':library:image')
+    implementation mlkitDependencies.language_id
+    implementation mlkitDependencies.text_recognition
+    implementation mlkitDependencies.text_recognition_korean
+    implementation mlkitDependencies.text_recognition_chinese
+    implementation mlkitDependencies.text_recognition_devanagari
+    implementation mlkitDependencies.text_recognition_japanese
 }

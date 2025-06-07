@@ -1,3 +1,5 @@
+@file:Suppress("UNCHECKED_CAST")
+
 package com.simple.core.utils.extentions
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect
@@ -99,7 +101,7 @@ inline fun <reified T> Collection<*>?.asListOrDefault(needCheck: Boolean = false
     return asListOrNull(needCheck) ?: list
 }
 
-inline fun <reified T> Collection<*>?.asListOrEmpty(needCheck: Boolean = false, list: Collection<T>): Collection<T> {
+inline fun <reified T> Collection<*>?.asListOrEmpty(needCheck: Boolean = false): Collection<T> {
 
     return asListOrDefault(needCheck, emptyList())
 }

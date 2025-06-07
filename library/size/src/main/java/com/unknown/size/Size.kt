@@ -5,8 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import com.unknown.coroutines.handler
 import com.unknown.coroutines.launchCollect
 import com.unknown.size.provider.SizeProvider
-import com.unknown.size.uitls.exts.getScreenHeight
-import com.unknown.size.uitls.exts.getScreenWidth
+import com.unknown.size.uitls.exts.getOrZero
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,13 +13,20 @@ import kotlinx.coroutines.launch
 import java.util.ServiceLoader
 import java.util.concurrent.ConcurrentHashMap
 
-data class Size(
-    val width: Int = 0,
-    val height: Int = 0,
+class Size : ConcurrentHashMap<String, Int>() {
 
-    val heightStatusBar: Int = 0,
-    val heightNavigationBar: Int = 0
-) : ConcurrentHashMap<String, Int>()
+    val width: Int
+        get() = getOrZero("width")
+
+    val height: Int
+        get() = getOrZero("height")
+
+    val heightStatusBar: Int
+        get() = getOrZero("heightStatusBar")
+
+    val heightNavigationBar: Int
+        get() = getOrZero("heightNavigationBar")
+}
 
 
 val appSize by lazy {
@@ -30,10 +36,7 @@ val appSize by lazy {
 
 fun setupSize(activity: FragmentActivity) = activity.lifecycleScope.launch(handler + Dispatchers.IO) {
 
-    val size = Size(
-        width = getScreenWidth(activity),
-        height = getScreenHeight(activity)
-    )
+    val size = Size()
 
     ServiceLoader.load(SizeProvider::class.java).toList().sortedBy { it.priority() }.map { provider ->
 

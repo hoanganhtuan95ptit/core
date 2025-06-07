@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapNotNull
 
+
 fun ComponentCallbacks.doOnHeightStatusAndHeightNavigationChange(onChange: suspend (heightStatusBar: Int, heightNavigationBar: Int) -> Unit) {
 
     val lifecycleOwner: LifecycleOwner = this.asObjectOrNull<Fragment>()?.viewLifecycleOwner ?: this.asObjectOrNull<AppCompatActivity>() ?: return
@@ -29,11 +30,12 @@ fun ComponentCallbacks.doOnHeightStatusAndHeightNavigationChange(onChange: suspe
     }
 }
 
+
 fun ComponentCallbacks.listenerOnHeightStatusAndHeightNavigationChange() = listenerOnApplyWindowInsetsAsync().mapNotNull { insets ->
 
     val activity = getActivity()
-    val heightStatusBar = insets.getStatusBar().takeIf { it >= 10 } ?: getStatusBarHeight(activity)
-    val heightNavigationBar = insets.getNavigationBar().takeIf { it >= 10 } ?: getNavigationBarHeight(activity)
+    val heightStatusBar = insets.getStatusBar().takeIf { it >= 10 } ?: activity.statusBarHeight()
+    val heightNavigationBar = insets.getNavigationBar().takeIf { it >= 10 } ?: activity.navigationBarHeight()
 
     if (heightStatusBar <= 0 || heightNavigationBar <= 0) {
         null
@@ -41,6 +43,7 @@ fun ComponentCallbacks.listenerOnHeightStatusAndHeightNavigationChange() = liste
         Pair(heightStatusBar, heightNavigationBar)
     }
 }.distinctUntilChanged()
+
 
 fun ComponentCallbacks.listenerOnApplyWindowInsetsAsync() = channelFlow {
 
@@ -79,5 +82,6 @@ fun ComponentCallbacks.listenerOnApplyWindowInsetsAsync() = channelFlow {
         decorView.setOnApplyWindowInsetsListener(null)
     }
 }
+
 
 private fun ComponentCallbacks.getActivity() = this.asObjectOrNull<Fragment>()?.activity ?: this.asObject<Activity>()

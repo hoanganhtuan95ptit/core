@@ -4,6 +4,8 @@ import androidx.fragment.app.FragmentActivity
 import com.google.auto.service.AutoService
 import com.unknown.size.provider.SizeProvider
 import com.unknown.size.uitls.exts.doOnHeightStatusAndHeightNavigationChange
+import com.unknown.size.uitls.exts.screenHeight
+import com.unknown.size.uitls.exts.screenWidth
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
@@ -17,6 +19,8 @@ class DefaultSizeProvider : SizeProvider {
 
         activity.doOnHeightStatusAndHeightNavigationChange { heightStatusBar, heightNavigationBar ->
 
+            map["width"] = activity.screenWidth()
+            map["height"] = activity.screenHeight()
             map["heightStatusBar"] = heightStatusBar
             map["heightNavigationBar"] = heightNavigationBar
 

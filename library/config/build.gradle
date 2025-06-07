@@ -38,6 +38,5 @@ dependencies {
     api project(path: ':library:state')
 
     api koinDependencies.values()
-
     api coroutinesDependencies.values()
 }

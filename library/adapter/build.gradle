@@ -38,9 +38,7 @@ dependencies {
 
     implementation coroutinesDependencies.values()
 
-    api("com.google.auto.service:auto-service:1.0-rc4") {
-        exclude group: "com.google.guava"
-    }
+    api googleDependencies.auto_service
 
     api project(':library:adapter-annotation')
     kapt project(':library:adapter-processor')

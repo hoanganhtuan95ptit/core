@@ -36,7 +36,7 @@ dependencies {
 
     implementation project(path: ':library:analytics')
 
-    implementation platform("com.google.firebase:firebase-bom:$firebase_bom_version")
+    implementation platform(firebaseDependencies.bom)
     implementation firebaseDependencies.analytics
 
     implementation koinDependencies.values()
