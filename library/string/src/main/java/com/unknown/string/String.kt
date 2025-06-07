@@ -13,7 +13,7 @@ import java.util.ServiceLoader
 import java.util.concurrent.ConcurrentHashMap
 
 
-val string by lazy {
+val appString by lazy {
 
     MutableSharedFlow<Map<String, String>>(replay = 1, extraBufferCapacity = Int.MAX_VALUE, onBufferOverflow = BufferOverflow.SUSPEND)
 }
@@ -27,7 +27,7 @@ fun setupString(activity: FragmentActivity) = activity.lifecycleScope.launch(han
         provider.provide(activity).launchCollect(this) {
 
             map.putAll(it)
-            string.tryEmit(map)
+            appString.tryEmit(map)
         }
     }
 }

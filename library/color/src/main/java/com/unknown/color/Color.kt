@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import java.util.ServiceLoader
 import java.util.concurrent.ConcurrentHashMap
 
-val color by lazy {
+val appColor by lazy {
 
     MutableSharedFlow<Map<String, Int>>(replay = 1, extraBufferCapacity = Int.MAX_VALUE, onBufferOverflow = BufferOverflow.SUSPEND)
 }
@@ -26,7 +26,7 @@ fun setupColor(activity: FragmentActivity) = activity.lifecycleScope.launch(hand
         provider.provide(activity).launchCollect(this) {
 
             map.putAll(it)
-            color.tryEmit(map)
+            appColor.tryEmit(map)
         }
     }
 }
