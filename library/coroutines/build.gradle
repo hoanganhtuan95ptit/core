@@ -8,7 +8,7 @@ plugins {
 apply from: "../../dependencies.gradle"
 
 android {
-    namespace 'com.unknown.size'
+    namespace 'com.unknown.coroutines'
     compileSdk project.ext.compileSdkVersion
 
     defaultConfig {
@@ -27,7 +27,7 @@ android {
 dependencies {
 
     implementation project(':core:base')
-    implementation project(':library:coroutines')
+    implementation project(':library:crashlytics')
 
     implementation androidxDependencies.values()
 

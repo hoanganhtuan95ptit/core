@@ -1,11 +1,9 @@
 @file:Suppress("DEPRECATION")
 
-package com.simple.size.utils.exts
+package com.unknown.size.uitls.exts
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ComponentCallbacks
-import android.content.Context
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
@@ -15,44 +13,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.simple.core.utils.extentions.asObject
 import com.simple.core.utils.extentions.asObjectOrNull
+import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.mapNotNull
 
-internal fun WindowInsets.getStatusBar() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-    getInsets(WindowInsets.Type.systemBars()).top
-} else {
-    systemWindowInsetTop
-}
-
-@SuppressLint("InternalInsetResource")
-internal fun getStatusBarHeight(context: Context): Int {
-    var result = 0
-    val resourceId: Int = context.resources.getIdentifier("status_bar_height", "dimen", "android")
-    if (resourceId > 0) {
-        result = context.resources.getDimensionPixelSize(resourceId)
-    }
-    return result
-}
-
-
-internal fun WindowInsets.getNavigationBar() = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-    getInsets(WindowInsets.Type.navigationBars()).bottom
-} else {
-    systemWindowInsetBottom
-}
-
-@SuppressLint("InternalInsetResource")
-internal fun getNavigationBarHeight(context: Context): Int {
-    val resources = context.resources
-    val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
-    return if (resourceId > 0) {
-        resources.getDimensionPixelSize(resourceId)
-    } else 0
-}
-
-internal fun ComponentCallbacks.doOnHeightStatusAndHeightNavigationChange(onChange: suspend (heightStatusBar: Int, heightNavigationBar: Int) -> Unit) {
+fun ComponentCallbacks.doOnHeightStatusAndHeightNavigationChange(onChange: suspend (heightStatusBar: Int, heightNavigationBar: Int) -> Unit) {
 
     val lifecycleOwner: LifecycleOwner = this.asObjectOrNull<Fragment>()?.viewLifecycleOwner ?: this.asObjectOrNull<AppCompatActivity>() ?: return
 
@@ -62,7 +29,7 @@ internal fun ComponentCallbacks.doOnHeightStatusAndHeightNavigationChange(onChan
     }
 }
 
-internal fun ComponentCallbacks.listenerOnHeightStatusAndHeightNavigationChange() = listenerOnApplyWindowInsetsAsync().mapNotNull { insets ->
+fun ComponentCallbacks.listenerOnHeightStatusAndHeightNavigationChange() = listenerOnApplyWindowInsetsAsync().mapNotNull { insets ->
 
     val activity = getActivity()
     val heightStatusBar = insets.getStatusBar().takeIf { it >= 10 } ?: getStatusBarHeight(activity)
@@ -75,7 +42,7 @@ internal fun ComponentCallbacks.listenerOnHeightStatusAndHeightNavigationChange(
     }
 }.distinctUntilChanged()
 
-private fun ComponentCallbacks.listenerOnApplyWindowInsetsAsync() = channelFlow {
+fun ComponentCallbacks.listenerOnApplyWindowInsetsAsync() = channelFlow {
 
     val activity = getActivity()
 

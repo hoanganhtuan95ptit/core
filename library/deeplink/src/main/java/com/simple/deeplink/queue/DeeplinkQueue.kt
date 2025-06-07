@@ -31,7 +31,7 @@ abstract class DeeplinkQueue {
 
                 groupDeeplink[getQueue()]?.find {
 
-                    it.acceptDeeplink(deepLink)
+                    it.acceptDeeplink(componentCallbacks, deepLink)
                 }
             }
 

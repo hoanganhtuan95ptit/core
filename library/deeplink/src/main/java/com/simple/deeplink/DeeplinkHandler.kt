@@ -9,6 +9,8 @@ interface DeeplinkHandler {
 
     suspend fun acceptDeeplink(deepLink: String): Boolean = deepLink == getDeeplink()
 
+    suspend fun acceptDeeplink(componentCallbacks: ComponentCallbacks, deepLink: String): Boolean = acceptDeeplink(deepLink)
+
     suspend fun navigation(componentCallbacks: ComponentCallbacks, deepLink: String, extras: Map<String, Any?>?, sharedElement: Map<String, View>?): Boolean
 }
 

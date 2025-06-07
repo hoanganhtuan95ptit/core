@@ -8,7 +8,7 @@ plugins {
 apply from: "../../dependencies.gradle"
 
 android {
-    namespace 'com.unknown.size'
+    namespace 'com.unknown.string'
     compileSdk project.ext.compileSdkVersion
 
     defaultConfig {

@@ -10,7 +10,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.unknown.size.SizeInitializer"
+                android:name="com.unknown.string.StringInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

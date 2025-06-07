@@ -10,8 +10,9 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.unknown.size.SizeInitializer"
+                android:name="com.unknown.color.ColorInitializer"
                 android:value="androidx.startup" />
+
         </provider>
     </application>
 </manifest>

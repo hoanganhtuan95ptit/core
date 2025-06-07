@@ -12,7 +12,7 @@ open class BaseActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
     }
-    
+
     override fun onWindowFocusChanged(hasFocus: Boolean) {
         super.onWindowFocusChanged(hasFocus)
 

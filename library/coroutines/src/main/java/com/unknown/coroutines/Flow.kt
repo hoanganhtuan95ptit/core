@@ -1,4 +1,4 @@
-package com.simple.size.utils.exts
+package com.unknown.coroutines
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
-internal fun <T> Flow<T>.launchCollect(
+fun <T> Flow<T>.launchCollect(
     lifecycleOwner: LifecycleOwner,
 
     start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -24,14 +24,14 @@ internal fun <T> Flow<T>.launchCollect(
     coroutineScope = lifecycleOwner.lifecycleScope
 )
 
-internal fun <T> Flow<T>.launchCollect(
+fun <T> Flow<T>.launchCollect(
     coroutineScope: CoroutineScope,
 
     start: CoroutineStart = CoroutineStart.DEFAULT,
     context: CoroutineContext = EmptyCoroutineContext,
 
     collector: FlowCollector<T>
-) = coroutineScope.launch(start = start, context = context) {
+) = coroutineScope.launch(start = start, context = handler + context) {
 
     this@launchCollect.collect(collector)
 }
