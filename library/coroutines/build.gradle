@@ -31,6 +31,8 @@ dependencies {
 
     implementation androidxDependencies.values()
 
-    implementation googleDependencies.auto_service
+    implementation(googleDependencies.auto_service){
+        exclude group: 'com.google.guava'
+    }
     kapt googleDependencies.auto_service
 }

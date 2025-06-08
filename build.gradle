@@ -33,8 +33,6 @@ allprojects {
                 details.useVersion "$kotlin_version"
             }
         }
-
-        exclude group: 'com.google.guava'
     }
 }
 

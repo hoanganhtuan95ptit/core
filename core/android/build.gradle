@@ -34,10 +34,8 @@ android {
 dependencies {
 
     implementation project(path: ':core:base')
-
     implementation project(path: ':library:job')
     implementation project(path: ':library:task')
-//    implementation project(path: ':library:size')
     implementation project(path: ':library:state')
     implementation project(path: ':library:event')
     implementation project(path: ':library:image')
@@ -56,12 +54,12 @@ dependencies {
     implementation androidxDependencies.values()
     implementation coroutinesDependencies.values()
 
+    implementation uiDependencies.glide
+    implementation uiDependencies.lottie
+    implementation uiDependencies.shimmer
     implementation uiDependencies.flexbox
     implementation uiDependencies.material
-    implementation uiDependencies.lottie
-    implementation uiDependencies.glide
-    implementation uiDependencies.shimmer
+
     implementation networkingDependencies.converter_jackson
     implementation networkingDependencies.logging_interceptor
 }
-
