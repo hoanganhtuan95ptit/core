@@ -36,10 +36,6 @@ class MlkitDetectTask(
 
     override suspend fun executeTask(param: DetectTask.Param): List<Paragraph> {
 
-        if (param.source !is String) {
-
-            throw LowException("not support source ${param.source.javaClass.simpleName}")
-        }
 
         if (!param.detectOption.isDetectText()) {
 
