@@ -7,6 +7,9 @@ import com.simple.coreapp.ui.base.activities.BaseViewBindingActivity
 import com.simple.coreapp.ui.dialogs.ToastDialog
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.utils.ext.DP
+import com.simple.coreapp.utils.ext.RichSpan
+import com.simple.coreapp.utils.ext.setText
+import com.simple.coreapp.utils.ext.with
 import com.simple.coreapp.utils.exts.showOrAwaitDismiss
 import com.tuanha.app.databinding.ActivityMainBinding
 import kotlinx.coroutines.delay
@@ -16,10 +19,9 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding!!.root)
 
-        val binding = binding ?: return
-
-
+        binding!!.tvMessage.setText("hello, wellcome to android".with("hello", RichSpan.Bold).with("wellcome", RichSpan.ForegroundColor(Color.RED)))
 //        val adapter = MultiAdapter(NoneTextAdapter()).apply {
 //
 //            setRecyclerView(binding.recyclerView)
