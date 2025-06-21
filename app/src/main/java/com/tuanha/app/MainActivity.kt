@@ -21,7 +21,11 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
         super.onCreate(savedInstanceState)
         setContentView(binding!!.root)
 
-        binding!!.tvMessage.setText("hello, wellcome to android".with("hello", RichSpan.Bold).with("wellcome", RichSpan.ForegroundColor(Color.RED)))
+        val text = "hello, wellcome to android"
+            .with("hello", RichSpan.Bold)
+            .with(RichSpan.ForegroundColor(Color.RED))
+
+        binding!!.tvMessage.setText(text)
 //        val adapter = MultiAdapter(NoneTextAdapter()).apply {
 //
 //            setRecyclerView(binding.recyclerView)

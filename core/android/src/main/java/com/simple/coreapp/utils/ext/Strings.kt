@@ -62,6 +62,9 @@ fun CharSequence.with(bold: CharSequence, vararg spannable: Any): CharSequence {
 }
 
 
+fun emptyText() = RichText("")
+
+
 fun String.with(vararg spannable: RichSpan): RichText {
 
     return RichText(this).with(this, *spannable)
@@ -114,7 +117,7 @@ data class RichText(
         spans.forEach { span ->
             span.styles.forEach { styleData ->
                 val style = styleData.toAndroidSpan()
-                spannable.setSpan(style, span.range.first, span.range.last + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannable.setSpan(style, span.range.first, span.range.last, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
         textChar = spannable
