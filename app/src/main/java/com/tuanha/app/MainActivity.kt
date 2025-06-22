@@ -5,12 +5,11 @@ import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.simple.coreapp.ui.base.activities.BaseViewBindingActivity
 import com.simple.coreapp.ui.dialogs.toast.ToastDialog
-import com.simple.coreapp.ui.dialogs.confirm.VerticalConfirmDialogFragment
 import com.simple.coreapp.ui.view.Background
+import com.simple.coreapp.utils.ext.Bold
 import com.simple.coreapp.utils.ext.DP
-import com.simple.coreapp.utils.ext.RichSpan
+import com.simple.coreapp.utils.ext.ForegroundColor
 import com.simple.coreapp.utils.ext.setText
-import com.simple.coreapp.utils.ext.toRich
 import com.simple.coreapp.utils.ext.with
 import com.simple.coreapp.utils.exts.showOrAwaitDismiss
 import com.tuanha.app.databinding.ActivityMainBinding
@@ -24,8 +23,8 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
         setContentView(binding!!.root)
 
         val text = "hello, wellcome to android"
-            .with("hello", RichSpan.Bold)
-            .with(RichSpan.ForegroundColor(Color.RED))
+            .with("hello", Bold)
+            .with(ForegroundColor(Color.RED))
 
         binding!!.tvMessage.setText(text)
 //        val adapter = MultiAdapter(NoneTextAdapter()).apply {
@@ -117,7 +116,7 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
 
             ToastDialog.newInstance(
                 this@MainActivity,
-                message = "message".with(RichSpan.ForegroundColor(Color.RED)),
+                message = "message".with(ForegroundColor(Color.RED)),
                 background = Background(
                     backgroundColor = Color.WHITE,
                     cornerRadius = DP.DP_16

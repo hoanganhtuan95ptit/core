@@ -8,6 +8,8 @@ import android.text.style.ForegroundColorSpan
 import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.widget.TextView
+import com.google.auto.service.AutoService
+import java.util.ServiceLoader
 
 
 fun String.boldWith(bold: String): CharSequence {
@@ -107,6 +109,11 @@ fun TextView.setText(text: RichText?) {
 }
 
 
+private val richSpanConvert by lazy {
+    ServiceLoader.load(RichSpanConvert::class.java).toList()
+}
+
+
 data class RichText(
     val text: String,
     val spans: ArrayList<RichStyle> = arrayListOf()
@@ -132,10 +139,9 @@ data class RichText(
         return this
     }
 
-    private fun RichSpan.toAndroidSpan(): CharacterStyle = when (this) {
-        is RichSpan.Bold -> StyleSpan(Typeface.BOLD)
-        is RichSpan.ForegroundColor -> ForegroundColorSpan(color)
-        is RichSpan.RelativeSize -> RelativeSizeSpan(proportion)
+    private fun RichSpan.toAndroidSpan(): CharacterStyle {
+
+        return richSpanConvert.firstNotNullOf { it.getAndroidSpan(this) }
     }
 }
 
@@ -149,11 +155,42 @@ data class RichRange(
     val end: Int
 )
 
-sealed class RichSpan {
 
-    object Bold : RichSpan()
+sealed class RichSpan
 
-    data class RelativeSize(val proportion: Float) : RichSpan()
+interface RichSpanConvert {
+    fun getAndroidSpan(richSpan: RichSpan): CharacterStyle?
+}
 
-    data class ForegroundColor(val color: Int) : RichSpan()
+
+object Bold : RichSpan()
+
+@AutoService(RichSpanConvert::class)
+class BoldConvert : RichSpanConvert {
+
+    override fun getAndroidSpan(richSpan: RichSpan): CharacterStyle? {
+        return if (richSpan is Bold) StyleSpan(Typeface.BOLD) else null
+    }
+}
+
+
+data class RelativeSize(val proportion: Float) : RichSpan()
+
+@AutoService(RichSpanConvert::class)
+class RelativeSizeConvert : RichSpanConvert {
+
+    override fun getAndroidSpan(richSpan: RichSpan): CharacterStyle? {
+        return if (richSpan is RelativeSize) RelativeSizeSpan(richSpan.proportion) else null
+    }
+}
+
+
+data class ForegroundColor(val color: Int) : RichSpan()
+
+@AutoService(RichSpanConvert::class)
+class ForegroundColorConvert : RichSpanConvert {
+
+    override fun getAndroidSpan(richSpan: RichSpan): CharacterStyle? {
+        return if (richSpan is ForegroundColor) ForegroundColorSpan(richSpan.color) else null
+    }
 }

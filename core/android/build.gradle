@@ -50,6 +50,8 @@ dependencies {
     implementation project(path: ':library:deeplink')
     kapt project(path: ':library:deeplink-processor')
 
+    kapt googleDependencies.auto_service
+
     implementation koinDependencies.values()
     implementation androidxDependencies.values()
     implementation coroutinesDependencies.values()
