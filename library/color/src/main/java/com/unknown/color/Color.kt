@@ -23,9 +23,12 @@ fun setupColor(activity: FragmentActivity) = activity.lifecycleScope.launch(hand
 
     ServiceLoader.load(ColorProvider::class.java).toList().sortedBy { it.priority() }.map { provider ->
 
-        provider.provide(activity).launchCollect(this) {
+        provider.provide(activity).launchCollect(this) { stringIntMap ->
 
-            map.putAll(it)
+            stringIntMap.forEach {
+                if (!map.contains(it.key)) map[it.key] = it.value
+            }
+
             appColor.tryEmit(map)
         }
     }

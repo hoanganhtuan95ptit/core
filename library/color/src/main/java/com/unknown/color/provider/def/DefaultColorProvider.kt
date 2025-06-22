@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.channelFlow
 class DefaultColorProvider : ColorProvider {
 
     override fun priority(): Int {
-        return 0
+        return 1
     }
 
     override suspend fun provide(activity: FragmentActivity): Flow<Map<String, Int>> = channelFlow {

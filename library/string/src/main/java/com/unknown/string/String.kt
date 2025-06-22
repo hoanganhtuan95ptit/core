@@ -24,9 +24,11 @@ fun setupString(activity: FragmentActivity) = activity.lifecycleScope.launch(han
 
     ServiceLoader.load(StringProvider::class.java).toList().sortedBy { it.priority() }.map { provider ->
 
-        provider.provide(activity).launchCollect(this) {
+        provider.provide(activity).launchCollect(this) { stringStringMap ->
 
-            map.putAll(it)
+            stringStringMap.forEach {
+                if (!map.contains(it.key)) map[it.key] = it.value
+            }
             appString.tryEmit(map)
         }
     }
