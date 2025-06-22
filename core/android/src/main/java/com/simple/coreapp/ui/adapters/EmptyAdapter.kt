@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.simple.coreapp.databinding.ItemEmptyBinding
 import com.simple.adapter.annotation.ItemAdapter
+import com.simple.coreapp.utils.ext.RichText
+import com.simple.coreapp.utils.ext.emptyText
+import com.simple.coreapp.utils.ext.setText
 
 @ItemAdapter
 class EmptyAdapter(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : com.simple.adapter.ViewItemAdapter<EmptyViewItem, ItemEmptyBinding>(onItemClick) {
@@ -21,7 +24,7 @@ class EmptyAdapter(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : com.s
 
         binding.root.transitionName = item.id
 
-        binding.tvMessage.text = item.message
+        binding.tvMessage.setText(item.message)
         binding.lottieAnimationView.setAnimation(item.imageRes)
     }
 }
@@ -29,7 +32,7 @@ class EmptyAdapter(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : com.s
 class EmptyViewItem(
     val id: String = "",
 
-    var message: CharSequence = "",
+    var message: RichText = emptyText(),
 
     var imageRes: Int = 0,
 ) : com.simple.adapter.entities.ViewItem {

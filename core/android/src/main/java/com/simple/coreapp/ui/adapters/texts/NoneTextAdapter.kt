@@ -1,13 +1,15 @@
 package com.simple.coreapp.ui.adapters.texts
 
 import android.view.ViewGroup
+import com.simple.adapter.annotation.ItemAdapter
 import com.simple.coreapp.databinding.ItemTextBinding
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Margin
 import com.simple.coreapp.ui.view.Padding
 import com.simple.coreapp.ui.view.Size
 import com.simple.coreapp.ui.view.TextStyle
-import com.simple.adapter.annotation.ItemAdapter
+import com.simple.coreapp.utils.ext.RichText
+import com.simple.coreapp.utils.ext.emptyText
 
 @ItemAdapter
 class NoneTextAdapter : com.simple.adapter.ViewItemAdapter<NoneTextViewItem, ItemTextBinding>(), TextAdapter {
@@ -41,7 +43,7 @@ data class NoneTextViewItem(
     override var background: Background? = null,
 
 
-    override var text: CharSequence = "",
+    override var text: RichText = emptyText(),
     override var textStyle: TextStyle? = null,
     override val textSize: Size? = null,
     override val textMargin: Margin? = null,

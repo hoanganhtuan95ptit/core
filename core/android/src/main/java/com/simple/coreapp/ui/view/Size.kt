@@ -1,7 +1,6 @@
 package com.simple.coreapp.ui.view
 
 import android.graphics.Color
-import android.os.Parcelable
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -9,14 +8,12 @@ import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
 import com.simple.coreapp.ui.view.round.RoundViewDelegate
 import com.simple.coreapp.utils.ext.updateMargin
-import kotlinx.parcelize.Parcelize
 
-@Parcelize
 data class Size(
     val width: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
     val height: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
     val weight: Float = 1f
-) : Parcelable
+)
 
 val DEFAULT_SIZE = Size()
 
@@ -35,13 +32,12 @@ fun View.setSize(size: Size? = null) {
 }
 
 
-@Parcelize
 data class Margin(
     val top: Int = 0,
     val bottom: Int = 0,
     val left: Int = 0,
     val right: Int = 0
-) : Parcelable
+)
 
 val DEFAULT_MARGIN = Margin()
 
@@ -77,13 +73,12 @@ fun View.setMargin(margin: Margin? = null) {
 }
 
 
-@Parcelize
 data class Padding(
     val top: Int = 0,
     val bottom: Int = 0,
     val left: Int = 0,
     val right: Int = 0
-) : Parcelable
+)
 
 val DEFAULT_PADDING = Padding()
 
@@ -118,8 +113,6 @@ fun View.setPadding(padding: Padding? = null) {
     )
 }
 
-
-@Parcelize
 data class Background(
     var backgroundColor: Int = Color.TRANSPARENT,
 
@@ -132,7 +125,7 @@ data class Background(
     val strokeColor: Int = Color.TRANSPARENT,
     val strokeDashGap: Int = 0,
     val strokeDashWidth: Int = 0
-) : Parcelable
+)
 
 val DEFAULT_BACKGROUND = Background()
 

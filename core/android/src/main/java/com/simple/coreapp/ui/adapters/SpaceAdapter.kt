@@ -3,12 +3,12 @@ package com.simple.coreapp.ui.adapters
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.view.updateLayoutParams
 import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.annotation.ItemAdapter
 import com.simple.adapter.entities.ViewItem
 import com.simple.coreapp.databinding.ItemSpaceBinding
 import com.simple.coreapp.ui.view.Size
+import com.simple.coreapp.ui.view.setSize
 
 @ItemAdapter
 class SpaceAdapter : ViewItemAdapter<SpaceViewItem, ItemSpaceBinding>() {
@@ -43,35 +43,30 @@ class SpaceAdapter : ViewItemAdapter<SpaceViewItem, ItemSpaceBinding>() {
 
     private fun refreshSize(binding: ItemSpaceBinding, item: SpaceViewItem) {
 
-        binding.space.updateLayoutParams {
-
-            width = item.width
-            height = item.height
-        }
+        binding.space.setSize(item.size)
     }
 }
 
 fun SpaceViewItem(
     id: String = "",
 
-    size: Size = Size(
-        width = ViewGroup.LayoutParams.MATCH_PARENT,
-        height = ViewGroup.LayoutParams.MATCH_PARENT,
-    ),
+    width: Int = ViewGroup.LayoutParams.MATCH_PARENT,
+    height: Int = ViewGroup.LayoutParams.MATCH_PARENT,
 
     background: Int? = null
 ) = SpaceViewItem(
     id = id,
-    width = size.width,
-    height = size.height,
+    size = Size(width = width, height = height),
     background = background
 )
 
 data class SpaceViewItem(
     val id: String = "",
 
-    val width: Int = ViewGroup.LayoutParams.MATCH_PARENT,
-    val height: Int = ViewGroup.LayoutParams.MATCH_PARENT,
+    val size: Size = Size(
+        width = ViewGroup.LayoutParams.MATCH_PARENT,
+        height = ViewGroup.LayoutParams.MATCH_PARENT,
+    ),
 
     val background: Int? = null
 ) : ViewItem {
@@ -81,8 +76,7 @@ data class SpaceViewItem(
     )
 
     override fun getContentsCompare(): List<Pair<Any, String>> = listOf(
-        width to PAYLOAD_SIZE,
-        height to PAYLOAD_SIZE
+        size to PAYLOAD_SIZE,
     )
 }
 

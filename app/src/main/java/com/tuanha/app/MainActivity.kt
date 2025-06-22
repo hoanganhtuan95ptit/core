@@ -4,11 +4,13 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.simple.coreapp.ui.base.activities.BaseViewBindingActivity
-import com.simple.coreapp.ui.dialogs.ToastDialog
+import com.simple.coreapp.ui.dialogs.toast.ToastDialog
+import com.simple.coreapp.ui.dialogs.confirm.VerticalConfirmDialogFragment
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.utils.ext.DP
 import com.simple.coreapp.utils.ext.RichSpan
 import com.simple.coreapp.utils.ext.setText
+import com.simple.coreapp.utils.ext.toRich
 import com.simple.coreapp.utils.ext.with
 import com.simple.coreapp.utils.exts.showOrAwaitDismiss
 import com.tuanha.app.databinding.ActivityMainBinding
@@ -114,7 +116,8 @@ class MainActivity : BaseViewBindingActivity<ActivityMainBinding>() {
             delay(7 * 1000)
 
             ToastDialog.newInstance(
-                message = "message",
+                this@MainActivity,
+                message = "message".with(RichSpan.ForegroundColor(Color.RED)),
                 background = Background(
                     backgroundColor = Color.WHITE,
                     cornerRadius = DP.DP_16

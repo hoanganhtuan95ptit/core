@@ -13,6 +13,9 @@ import com.simple.coreapp.ui.view.setMargin
 import com.simple.coreapp.ui.view.setPadding
 import com.simple.coreapp.ui.view.setSize
 import com.simple.coreapp.ui.view.setTextStyle
+import com.simple.coreapp.utils.ext.RichText
+import com.simple.coreapp.utils.ext.emptyText
+import com.simple.coreapp.utils.ext.setText
 import com.simple.coreapp.utils.ext.setVisible
 import com.simple.image.setImage
 
@@ -103,7 +106,7 @@ internal interface TextAdapter {
 
     private fun refreshText(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.tvTitle.text = item.text
+        binding.tvTitle.setText(item.text)
     }
 
     private fun refreshTextStyle(binding: ItemTextBinding, item: TextViewItem) {
@@ -198,7 +201,7 @@ open class TextViewItem : com.simple.adapter.entities.ViewItem {
     open var background: Background? = null
 
 
-    open var text: CharSequence = ""
+    open var text: RichText = emptyText()
     open var textStyle: TextStyle? = null
 
     open val textSize: Size? = null

@@ -65,6 +65,12 @@ fun CharSequence.with(bold: CharSequence, vararg spannable: Any): CharSequence {
 fun emptyText() = RichText("")
 
 
+fun String.toRich(): RichText {
+
+    return RichText(this)
+}
+
+
 fun String.with(vararg spannable: RichSpan): RichText {
 
     return RichText(this).with(this, *spannable)
@@ -88,15 +94,15 @@ fun RichText.with(bold: String, vararg spannable: RichSpan): RichText {
     val end = start + bold.length
     if (end > text.length) return this
 
-    spans.add(RichStyle(IntRange(start, end), arrayListOf(*spannable)))
+    spans.add(RichStyle(RichRange(start, end), arrayListOf(*spannable)))
 
     return refresh()
 }
 
 
-fun TextView.setText(text: RichText) {
+fun TextView.setText(text: RichText?) {
 
-    setText(text.textChar)
+    setText(text?.textChar)
 }
 
 
@@ -117,7 +123,7 @@ data class RichText(
         spans.forEach { span ->
             span.styles.forEach { styleData ->
                 val style = styleData.toAndroidSpan()
-                spannable.setSpan(style, span.range.first, span.range.last, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+                spannable.setSpan(style, span.range.start, span.range.end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
             }
         }
         textChar = spannable
@@ -132,8 +138,13 @@ data class RichText(
 }
 
 data class RichStyle(
-    val range: IntRange,
+    val range: RichRange,
     val styles: List<RichSpan> = arrayListOf()
+)
+
+data class RichRange(
+    val start: Int,
+    val end: Int
 )
 
 sealed class RichSpan {

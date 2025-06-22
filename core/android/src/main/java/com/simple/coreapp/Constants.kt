@@ -6,6 +6,7 @@ const val TRANSITION_DURATION = 350L
 
 object Param {
 
+    const val ID = "ID"
     const val STATE = "STATE"
     const val KEY_REQUEST = "KEY_REQUEST"
     const val RESULT_CODE = "RESULT_CODE"
