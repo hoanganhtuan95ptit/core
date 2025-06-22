@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import com.simple.deeplink.flow
 import com.simple.deeplink.groupDeeplink
-import com.simple.deeplink.utils.exts.awaitResume
 import com.simple.deeplink.utils.exts.launchCollect
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -34,8 +33,6 @@ abstract class DeeplinkQueue {
                     it.acceptDeeplink(componentCallbacks, deepLink)
                 }
             }
-
-            lifecycleOwner.awaitResume()
 
             if (navigation?.navigation(componentCallbacks, deepLink, extras, sharedElement) == true) {
 
