@@ -156,7 +156,7 @@ data class RichRange(
 )
 
 
-sealed class RichSpan
+open class RichSpan
 
 interface RichSpanConvert {
     fun getAndroidSpan(richSpan: RichSpan): CharacterStyle?
