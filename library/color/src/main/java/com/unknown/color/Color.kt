@@ -25,10 +25,7 @@ fun setupColor(activity: FragmentActivity) = activity.lifecycleScope.launch(hand
 
         provider.provide(activity).launchCollect(this) { stringIntMap ->
 
-            stringIntMap.forEach {
-                if (!map.contains(it.key)) map[it.key] = it.value
-            }
-
+            map.putAll(stringIntMap)
             appColor.tryEmit(map)
         }
     }

@@ -26,9 +26,7 @@ fun setupString(activity: FragmentActivity) = activity.lifecycleScope.launch(han
 
         provider.provide(activity).launchCollect(this) { stringStringMap ->
 
-            stringStringMap.forEach {
-                if (!map.contains(it.key)) map[it.key] = it.value
-            }
+            map.putAll(stringStringMap)
             appString.tryEmit(map)
         }
     }
