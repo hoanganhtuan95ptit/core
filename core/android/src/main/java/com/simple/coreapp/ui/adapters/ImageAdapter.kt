@@ -7,6 +7,7 @@ import androidx.viewbinding.ViewBinding
 import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.annotation.ItemAdapter
 import com.simple.adapter.base.BaseBindingViewHolder
+import com.simple.adapter.entities.ViewItem
 import com.simple.core.utils.extentions.asObjectOrNull
 import com.simple.coreapp.EventName
 import com.simple.coreapp.databinding.ItemImageBinding
@@ -96,7 +97,7 @@ class ImageAdapter(val onItemClick: ((View, ImageViewItem) -> Unit)? = null) : V
     }
 }
 
-class ImageViewItem(
+data class ImageViewItem(
     val id: String = "",
 
     var anim: Int? = null,
@@ -104,7 +105,7 @@ class ImageViewItem(
 
     val size: Size? = null,
     var background: Background? = null,
-) : com.simple.adapter.entities.ViewItem {
+) : ViewItem {
 
     override fun areItemsTheSame(): List<Any> = listOf(
         id

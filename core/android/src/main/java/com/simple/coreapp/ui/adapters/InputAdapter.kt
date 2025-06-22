@@ -104,7 +104,7 @@ class InputAdapter(
     }
 }
 
-class InputViewItem(
+data class InputViewItem(
     val id: String = "",
 
     val hint: CharSequence = "",

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.simple.coreapp.databinding.ItemEmptyBinding
 import com.simple.adapter.annotation.ItemAdapter
+import com.simple.adapter.entities.ViewItem
 import com.simple.coreapp.utils.ext.RichText
 import com.simple.coreapp.utils.ext.emptyText
 import com.simple.coreapp.utils.ext.setText
@@ -29,13 +30,13 @@ class EmptyAdapter(onItemClick: ((View, EmptyViewItem) -> Unit)? = null) : com.s
     }
 }
 
-class EmptyViewItem(
+data class EmptyViewItem(
     val id: String = "",
 
     var message: RichText = emptyText(),
 
     var imageRes: Int = 0,
-) : com.simple.adapter.entities.ViewItem {
+) : ViewItem {
 
     override fun areItemsTheSame(): List<Any> = listOf(
         id

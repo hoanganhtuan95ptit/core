@@ -2,6 +2,7 @@ package com.simple.coreapp.ui.adapters.texts
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.simple.adapter.entities.ViewItem
 import com.simple.coreapp.databinding.ItemTextBinding
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.ui.view.Margin
@@ -189,7 +190,7 @@ internal interface TextAdapter {
     }
 }
 
-open class TextViewItem : com.simple.adapter.entities.ViewItem {
+open class TextViewItem : ViewItem {
 
     open val id: String = ""
 
