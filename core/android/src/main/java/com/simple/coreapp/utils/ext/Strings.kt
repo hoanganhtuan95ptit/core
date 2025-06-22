@@ -5,6 +5,7 @@ import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.CharacterStyle
 import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
 import android.text.style.StyleSpan
 import android.widget.TextView
 
@@ -134,6 +135,7 @@ data class RichText(
     private fun RichSpan.toAndroidSpan(): CharacterStyle = when (this) {
         is RichSpan.Bold -> StyleSpan(Typeface.BOLD)
         is RichSpan.ForegroundColor -> ForegroundColorSpan(color)
+        is RichSpan.RelativeSize -> RelativeSizeSpan(proportion)
     }
 }
 
@@ -150,6 +152,8 @@ data class RichRange(
 sealed class RichSpan {
 
     object Bold : RichSpan()
+
+    data class RelativeSize(val proportion: Float) : RichSpan()
 
     data class ForegroundColor(val color: Int) : RichSpan()
 }
