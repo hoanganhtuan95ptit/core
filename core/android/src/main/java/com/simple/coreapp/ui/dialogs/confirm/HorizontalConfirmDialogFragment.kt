@@ -19,6 +19,8 @@ import com.simple.coreapp.utils.ext.doOnHeightStatusAndHeightNavigationChange
 import com.simple.coreapp.utils.ext.setDebouncedClickListener
 import com.simple.coreapp.utils.ext.setText
 import com.simple.coreapp.utils.ext.setVisible
+import com.simple.image.RichImage
+import com.simple.image.setImage
 import java.util.UUID
 
 class HorizontalConfirmDialogFragment : BaseViewBindingSheetFragment<DialogConfirmHorizontalBinding>() {
@@ -50,9 +52,9 @@ class HorizontalConfirmDialogFragment : BaseViewBindingSheetFragment<DialogConfi
             if (anim != 0) binding.ivLogo.setAnimation(anim)
 
             val image = it.image
-            if (image != 0) binding.ivLogo.setImageResource(image)
+            if (image != null) binding.ivLogo.setImage(image)
 
-            binding.ivLogo.setVisible(anim != 0 || image != 0)
+            binding.ivLogo.setVisible(anim != 0 || image != null)
 
 
             val title = it.title
@@ -105,7 +107,7 @@ class HorizontalConfirmDialogFragment : BaseViewBindingSheetFragment<DialogConfi
             keyRequest: String? = null,
 
             anim: Int? = null,
-            image: Int? = null,
+            image: RichImage? = null,
 
             anchor: Background? = null,
             background: Background? = null,
@@ -127,7 +129,7 @@ class HorizontalConfirmDialogFragment : BaseViewBindingSheetFragment<DialogConfi
                 keyRequest = keyRequestWrap,
 
                 anim = anim.orZero(),
-                image = image.orZero(),
+                image = image,
 
                 anchor = anchor,
                 background = background,

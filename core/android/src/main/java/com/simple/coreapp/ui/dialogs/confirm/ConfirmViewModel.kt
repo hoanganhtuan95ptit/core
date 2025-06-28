@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModels.BaseViewModel
 import com.simple.coreapp.ui.view.Background
 import com.simple.coreapp.utils.ext.ButtonInfo
 import com.simple.coreapp.utils.ext.RichText
+import com.simple.image.RichImage
 import java.util.concurrent.ConcurrentHashMap
 
 internal class ConfirmViewModel : BaseViewModel() {
@@ -15,7 +16,7 @@ internal class ConfirmViewModel : BaseViewModel() {
         keyRequest: String,
 
         anim: Int = 0,
-        image: Int = 0,
+        image: RichImage? = null,
 
         anchor: Background? = null,
         background: Background? = null,
@@ -49,7 +50,7 @@ internal class ConfirmViewModel : BaseViewModel() {
 
     data class ConfirmInfo(
         val anim: Int = 0,
-        val image: Int = 0,
+        val image: RichImage? = null,
 
         val anchor: Background? = null,
         val background: Background? = null,

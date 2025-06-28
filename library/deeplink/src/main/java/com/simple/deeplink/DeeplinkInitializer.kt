@@ -4,7 +4,10 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
 import androidx.startup.Initializer
 
 class DeeplinkInitializer : Initializer<Unit> {
@@ -17,10 +20,14 @@ class DeeplinkInitializer : Initializer<Unit> {
 
                 groupQueue.forEach { it.setupDeepLink(activity) }
 
-                if (activity is FragmentActivity) activity.supportFragmentManager.addFragmentOnAttachListener { fragmentManager, fragment ->
+                if (activity is FragmentActivity) activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentLifecycleCallbacks() {
 
-                    groupQueue.forEach { it.setupDeepLink(fragment) }
-                }
+                    override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
+
+                        groupQueue.forEach { it.setupDeepLink(f) }
+                    }
+
+                }, true)
             }
 
             override fun onActivityStarted(activity: Activity) {}
