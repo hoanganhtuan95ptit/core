@@ -22,7 +22,7 @@ fun <T> BaseViewModel.mediatorLiveData(context: CoroutineContext? = null, start:
         onChanged.invoke(liveData)
     }
 
-    return liveData.distinctUntilChanged()
+    return liveData
 }
 
 @MainThread
@@ -63,7 +63,7 @@ fun <T> BaseViewModel.combineSources(vararg sources: LiveData<*>, context: Corou
         }
     }
 
-    return liveData.distinctUntilChanged()
+    return liveData
 }
 
 @MainThread
@@ -104,7 +104,7 @@ fun <T> BaseViewModel.listenerSources(vararg sources: LiveData<*>, context: Coro
         }
     }
 
-    return liveData.distinctUntilChanged()
+    return liveData
 }
 
 @MainThread
