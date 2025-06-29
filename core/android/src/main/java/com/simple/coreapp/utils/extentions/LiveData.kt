@@ -111,6 +111,12 @@ fun <T> LiveData<T>?.postDifferentValue(t: T) {
 }
 
 @AnyThread
+suspend fun <T> LiveData<T>?.postValueIfActive(t: T?) {
+    
+    if (isActive()) postValue(t)
+}
+
+@AnyThread
 fun <T> LiveData<T>?.postValue(t: T?) {
     when (this) {
         is MediatorLiveData<T> -> this.postValue(t)
