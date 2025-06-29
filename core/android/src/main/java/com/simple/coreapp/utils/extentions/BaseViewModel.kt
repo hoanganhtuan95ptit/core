@@ -106,3 +106,26 @@ fun <T> BaseViewModel.listenerSources(vararg sources: LiveData<*>, context: Coro
 
     return liveData.distinctUntilChanged()
 }
+
+@MainThread
+fun <T> BaseViewModel.mediatorLiveDataWithDiff(
+    context: CoroutineContext? = null,
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    onChanged: suspend MediatorLiveData<T>.() -> Unit
+): LiveData<T> = mediatorLiveData(context, start, onChanged).distinctUntilChanged()
+
+@MainThread
+fun <T> BaseViewModel.combineSourcesWithDiff(
+    vararg sources: LiveData<*>,
+    context: CoroutineContext? = null,
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    onChanged: suspend MediatorLiveData<T>.(List<LiveData<*>>) -> Unit
+): LiveData<T> = combineSources(sources = sources, context, start, onChanged).distinctUntilChanged()
+
+@MainThread
+fun <T> BaseViewModel.listenerSourcesWithDiff(
+    vararg sources: LiveData<*>,
+    context: CoroutineContext? = null,
+    start: CoroutineStart = CoroutineStart.DEFAULT,
+    onChanged: suspend MediatorLiveData<T>.(List<LiveData<*>>) -> Unit
+): LiveData<T> = listenerSources(sources = sources, context, start, onChanged).distinctUntilChanged()
