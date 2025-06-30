@@ -4,9 +4,10 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.ViewModels.BaseViewModel
-import androidx.lifecycle.distinctUntilChanged
+import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.simple.coreapp.utils.ext.handler
+import com.simple.coreapp.utils.ext.launchCollect
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -112,7 +113,18 @@ fun <T> BaseViewModel.mediatorLiveDataWithDiff(
     context: CoroutineContext? = null,
     start: CoroutineStart = CoroutineStart.DEFAULT,
     onChanged: suspend MediatorLiveData<T>.() -> Unit
-): LiveData<T> = mediatorLiveData(context, start, onChanged).distinctUntilChanged()
+): LiveData<T> = MediatorLiveData<T>().apply {
+
+    var old: T? = null
+
+    mediatorLiveData(context, start, onChanged).asFlow().launchCollect(viewModelScope, context = Dispatchers.IO) {
+
+        if (old == it) return@launchCollect
+        old = it
+
+        postValue(it)
+    }
+}
 
 @MainThread
 fun <T> BaseViewModel.combineSourcesWithDiff(
@@ -120,7 +132,18 @@ fun <T> BaseViewModel.combineSourcesWithDiff(
     context: CoroutineContext? = null,
     start: CoroutineStart = CoroutineStart.DEFAULT,
     onChanged: suspend MediatorLiveData<T>.(List<LiveData<*>>) -> Unit
-): LiveData<T> = combineSources(sources = sources, context, start, onChanged).distinctUntilChanged()
+): LiveData<T> = MediatorLiveData<T>().apply {
+
+    var old: T? = null
+
+    combineSources(sources = sources, context, start, onChanged).asFlow().launchCollect(viewModelScope, context = Dispatchers.IO) {
+
+        if (old == it) return@launchCollect
+        old = it
+
+        postValue(it)
+    }
+}
 
 @MainThread
 fun <T> BaseViewModel.listenerSourcesWithDiff(
@@ -128,4 +151,15 @@ fun <T> BaseViewModel.listenerSourcesWithDiff(
     context: CoroutineContext? = null,
     start: CoroutineStart = CoroutineStart.DEFAULT,
     onChanged: suspend MediatorLiveData<T>.(List<LiveData<*>>) -> Unit
-): LiveData<T> = listenerSources(sources = sources, context, start, onChanged).distinctUntilChanged()
+): LiveData<T> = MediatorLiveData<T>().apply {
+
+    var old: T? = null
+
+    listenerSources(sources = sources, context, start, onChanged).asFlow().launchCollect(viewModelScope, context = Dispatchers.IO) {
+
+        if (old == it) return@launchCollect
+        old = it
+
+        postValue(it)
+    }
+}
