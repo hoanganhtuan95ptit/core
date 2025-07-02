@@ -71,7 +71,7 @@ class ToastDialog : BaseViewBindingDialogFragment<DialogToastBinding>() {
             binding.frameContent.setPadding(padding)
 
             val background = it.background
-            binding.frameContent.delegate.setBackground(background)
+            binding.frameContent.setBackground(background)
         }
 
         val binding = binding ?: return

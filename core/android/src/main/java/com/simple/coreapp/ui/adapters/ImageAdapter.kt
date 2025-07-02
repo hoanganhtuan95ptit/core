@@ -93,7 +93,7 @@ class ImageAdapter(val onItemClick: ((View, ImageViewItem) -> Unit)? = null) : V
 
     private fun refreshBackground(binding: ItemImageBinding, item: ImageViewItem) {
 
-        binding.root.delegate.setBackground(item.background)
+        binding.root.setBackground(item.background)
     }
 }
 

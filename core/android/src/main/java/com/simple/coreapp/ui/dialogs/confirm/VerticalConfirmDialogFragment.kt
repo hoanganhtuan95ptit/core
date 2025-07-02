@@ -66,20 +66,20 @@ class VerticalConfirmDialogFragment : BaseViewBindingSheetFragment<DialogConfirm
             binding.tvMessage.setVisible(!message?.text.isNullOrBlank())
 
             val anchor = it.anchor
-            binding.anchor.delegate.setBackground(anchor)
+            binding.anchor.setBackground(anchor)
 
             val background = it.background
-            binding.root.delegate.setBackground(background)
+            binding.root.setBackground(background)
 
             val negative = it.negative
             binding.tvNegative.setVisible(negative != null)
             binding.tvNegative.setText(negative?.text)
-            binding.tvNegative.delegate.setBackground(negative?.background)
+            binding.tvNegative.setBackground(negative?.background)
 
             val positive = it.positive
             binding.tvPositive.setVisible(positive != null)
             binding.tvPositive.setText(positive?.text)
-            binding.tvPositive.delegate.setBackground(positive?.background)
+            binding.tvPositive.setBackground(positive?.background)
         }
 
 

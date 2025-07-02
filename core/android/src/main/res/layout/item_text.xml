@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.simple.coreapp.ui.view.round.RoundFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <com.simple.coreapp.ui.view.round.RoundImageView
+    <ImageView
         android:id="@+id/iv_left"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -14,7 +14,7 @@
         tools:src="@drawable/ic_notification"
         tools:visibility="visible" />
 
-    <com.simple.coreapp.ui.view.round.RoundTextView
+    <TextView
         android:id="@+id/tv_title"
         style="@style/TextBody1"
         android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
         android:layout_gravity="center_vertical"
         tools:text="Demo" />
 
-    <com.simple.coreapp.ui.view.round.RoundImageView
+    <ImageView
         android:id="@+id/iv_right"
         android:layout_width="24dp"
         android:layout_height="24dp"
@@ -31,4 +31,4 @@
         tools:src="@drawable/ic_notification"
         tools:visibility="visible" />
 
-</com.simple.coreapp.ui.view.round.RoundFrameLayout>
+</FrameLayout>

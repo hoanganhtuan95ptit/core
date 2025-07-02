@@ -100,7 +100,7 @@ class InputAdapter(
 
     private fun refreshBackground(binding: ItemInputBinding, item: InputViewItem) {
 
-        binding.root.delegate.setBackground(item.background)
+        binding.root.setBackground(item.background)
     }
 }
 

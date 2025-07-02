@@ -101,7 +101,7 @@ internal interface TextAdapter {
 
     private fun refreshBackground(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.root.delegate.setBackground(item.background)
+        binding.root.setBackground(item.background)
     }
 
 
@@ -132,7 +132,7 @@ internal interface TextAdapter {
 
     private fun refreshTextBackground(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.tvTitle.delegate.setBackground(item.textBackground)
+        binding.tvTitle.setBackground(item.textBackground)
     }
 
 
@@ -159,7 +159,7 @@ internal interface TextAdapter {
 
     private fun refreshImageLeftBackground(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.ivLeft.delegate.setBackground(item.imageLeftBackground)
+        binding.ivLeft.setBackground(item.imageLeftBackground)
     }
 
 
@@ -186,7 +186,7 @@ internal interface TextAdapter {
 
     private fun refreshImageRightBackground(binding: ItemTextBinding, item: TextViewItem) {
 
-        binding.ivRight.delegate.setBackground(item.imageRightBackground)
+        binding.ivRight.setBackground(item.imageRightBackground)
     }
 }
 

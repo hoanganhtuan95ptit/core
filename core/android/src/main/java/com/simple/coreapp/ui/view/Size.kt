@@ -1,6 +1,8 @@
 package com.simple.coreapp.ui.view
 
 import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
@@ -113,6 +115,13 @@ fun View.setPadding(padding: Padding? = null) {
     )
 }
 
+
+fun View.setBackground(background: Background?) {
+
+    setBackground(background?.drawable)
+}
+
+
 data class Background(
     var backgroundColor: Int = Color.TRANSPARENT,
 
@@ -125,7 +134,40 @@ data class Background(
     val strokeColor: Int = Color.TRANSPARENT,
     val strokeDashGap: Int = 0,
     val strokeDashWidth: Int = 0
-)
+) {
+
+    var drawable: Drawable? = null
+
+    init {
+        refresh()
+    }
+
+    fun refresh(): Background {
+
+        drawable = GradientDrawable().apply {
+
+            setColor(backgroundColor)
+
+            this.shape = GradientDrawable.RECTANGLE
+
+            // Gán corner
+            this.cornerRadii = floatArrayOf(
+                cornerRadius_TL.toFloat(), cornerRadius_TL.toFloat(),
+                cornerRadius_TR.toFloat(), cornerRadius_TR.toFloat(),
+                cornerRadius_BR.toFloat(), cornerRadius_BR.toFloat(),
+                cornerRadius_BL.toFloat(), cornerRadius_BL.toFloat()
+            )
+
+            // Gán stroke nếu có
+            if (strokeWidth > 0) {
+
+                setStroke(strokeWidth, strokeColor, strokeDashWidth.toFloat(), strokeDashGap.toFloat())
+            }
+        }
+
+        return this
+    }
+}
 
 val DEFAULT_BACKGROUND = Background()
 
@@ -152,6 +194,7 @@ fun Background(
     strokeDashWidth = strokeDashWidth
 )
 
+@Deprecated("")
 fun RoundViewDelegate.setBackground(background: Background? = null) {
 
     background ?: return
