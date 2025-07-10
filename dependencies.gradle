@@ -1,13 +1,12 @@
 ext {
     // --- Android SDK ---
     minSdkVersion = 23
-    targetSdkVersion = 34
-    compileSdkVersion = 34
+    targetSdkVersion = 35
+    compileSdkVersion = 35
 
     // --- Java & Kotlin ---
-    javaVersion = JavaVersion.VERSION_1_8
-    kotlin_version = '1.7.10'
-    kotlin_plugin_version = '1.7.10'
+    javaVersion = JavaVersion.VERSION_21
+    kotlin_version = '1.9.21'
 
     // --- Version Catalog ---
     nav_version = '2.7.7'
@@ -54,14 +53,14 @@ ext {
     auto_service_version = '1.0-rc4'
 
     // --- ML Kit Versions ---
-    mlkit_translate_version = '17.0.2'
-    mlkit_language_id_version = '17.0.5'
-    mlkit_text_recognition_version = '16.0.0'
+    mlkit_translate_version = '17.0.3'
+    mlkit_language_id_version = '17.0.6'
+    mlkit_text_recognition_version = '16.0.1'
 
     // --- Classpath (build plugins) ---
     classpath = [
-            gradle              : "com.android.tools.build:gradle:8.2.0",
-            kotlin_gradle_plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_plugin_version"
+            gradle              : "com.android.tools.build:gradle:8.4.2",
+            kotlin_gradle_plugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     ]
 
     // --- Dependency Groups ---

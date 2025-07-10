@@ -6,13 +6,14 @@ import android.graphics.ColorFilter
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
 import android.graphics.Paint
+import androidx.core.graphics.createBitmap
 
 fun Bitmap.filter(colorFilter: ColorFilter): Bitmap {
     val paint = Paint().apply {
         this.colorFilter = colorFilter
     }
 
-    val resultBitmap = Bitmap.createBitmap(width, height, config)
+    val resultBitmap = createBitmap(width, height, config!!)
 
     Canvas(resultBitmap).drawBitmap(this, 0f, 0f, paint)
 

@@ -14,7 +14,7 @@ import com.simple.coreapp.utils.ext.updateMargin
 data class Size(
     val width: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
     val height: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
-    val weight: Float = 1f
+    val weight: Float = 0f
 )
 
 val DEFAULT_SIZE = Size()
