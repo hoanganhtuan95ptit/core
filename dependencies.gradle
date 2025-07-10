@@ -5,7 +5,7 @@ ext {
     compileSdkVersion = 35
 
     // --- Java & Kotlin ---
-    javaVersion = JavaVersion.VERSION_21
+    javaVersion = JavaVersion.VERSION_17
     kotlin_version = '1.9.21'
 
     // --- Version Catalog ---
