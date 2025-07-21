@@ -68,7 +68,7 @@ fun ImageView.setImage(source: Any, vararg transformations: Transformation<Bitma
         .load(source.data)
         .into(this)
 
-    is BitmapImageData -> Glide.with(context).asGif()
+    is BitmapImageData -> Glide.with(context).asBitmap()
         .transform(*transformations)
         .load(source.data)
         .into(this)
