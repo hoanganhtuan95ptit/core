@@ -17,9 +17,9 @@ android {
         sourceCompatibility project.ext.javaVersion
         targetCompatibility project.ext.javaVersion
     }
-    kotlinOptions {
-        jvmTarget = project.ext.javaVersion.toString()
-    }
+//    kotlinOptions {
+//        jvmTarget = project.ext.javaVersion.toString()
+//    }
 }
 
 dependencies {

@@ -23,9 +23,9 @@ android {
     buildFeatures {
         viewBinding true
     }
-    kotlinOptions {
-        jvmTarget = project.ext.javaVersion.toString()
-    }
+//    kotlinOptions {
+//        jvmTarget = project.ext.javaVersion.toString()
+//    }
     lintOptions {
         abortOnError false
     }
@@ -42,10 +42,6 @@ dependencies {
     implementation koinDependencies.values()
     implementation coroutinesDependencies.values()
 
-    api(googleDependencies.auto_service){
-        exclude group: 'com.google.guava'
-    }
-
-    api project(':library:deeplink-annotation')
+    api 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.4'
     kapt project(':library:deeplink-processor')
 }

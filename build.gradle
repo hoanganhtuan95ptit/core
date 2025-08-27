@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 apply from: 'dependencies.gradle'
 
 buildscript {
@@ -14,6 +16,7 @@ buildscript {
     dependencies {
         classpath classpath.gradle
         classpath classpath.kotlin_gradle_plugin
+        classpath 'com.github.hoanganhtuan95ptit.AutoService:autobind-plugin:1.0.4'
     }
 }
 
@@ -31,6 +34,12 @@ allprojects {
         resolutionStrategy.eachDependency { DependencyResolveDetails details ->
             if (details.requested.group == 'org.jetbrains.kotlin') {
                 details.useVersion "$kotlin_version"
+            }
+        }
+
+        tasks.withType(KotlinCompile).configureEach {
+            kotlinOptions {
+                jvmTarget = "${project.ext.javaVersion}"
             }
         }
     }

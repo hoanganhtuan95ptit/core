@@ -1,35 +1,30 @@
 package com.simple.deeplink.processor
 
-import com.google.auto.service.AutoService
-import com.squareup.kotlinpoet.AnnotationSpec
-import com.squareup.kotlinpoet.ClassName
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import com.squareup.kotlinpoet.TypeSpec
-import java.io.File
+import com.squareup.javapoet.AnnotationSpec
+import com.squareup.javapoet.ClassName
+import com.squareup.javapoet.JavaFile
+import com.squareup.javapoet.MethodSpec
+import com.squareup.javapoet.ParameterizedTypeName
+import com.squareup.javapoet.TypeSpec
 import javax.annotation.processing.AbstractProcessor
 import javax.annotation.processing.ProcessingEnvironment
-import javax.annotation.processing.Processor
 import javax.annotation.processing.RoundEnvironment
 import javax.annotation.processing.SupportedSourceVersion
 import javax.lang.model.SourceVersion
+import javax.lang.model.element.Modifier
 import javax.lang.model.element.TypeElement
-import javax.tools.StandardLocation
 
 @Suppress("unused")
-@AutoService(Processor::class)
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 class DeeplinkProviderProcessor : AbstractProcessor() {
 
     private val annotationName = "com.simple.deeplink.annotation.Deeplink"
 
-    private val deeplinkQueueClassName = ClassName("com.simple.deeplink.queue", "DeeplinkQueue")
+    private val deeplinkQueueClassName = ClassName.get("com.simple.deeplink.queue", "DeeplinkQueue")
 
-    private val deeplinkHandlerClassName = ClassName("com.simple.deeplink", "DeeplinkHandler")
+    private val deeplinkHandlerClassName = ClassName.get("com.simple.deeplink", "DeeplinkHandler")
 
-    private val deeplinkProviderClassName = ClassName("com.simple.deeplink.provider", "DeeplinkProvider")
+    private val deeplinkProviderClassName = ClassName.get("com.simple.deeplink.provider", "DeeplinkProvider")
 
 
     private val classInfoList: MutableList<ClassInfo> = arrayListOf()
@@ -81,20 +76,17 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
             return true
         }
 
-
-        val kaptKotlinGeneratedDir = processingEnv.options["kapt.kotlin.generated"] ?: return false
-
-        val packageName = findCommonPackageName(classInfoList)
-
-        generateScopeAndProvider(classInfoList = classInfoList, packageName = packageName, kaptKotlinGeneratedDir = kaptKotlinGeneratedDir, processingEnv = processingEnv)
+        generateScopeAndProvider(classInfoList = classInfoList, processingEnv = processingEnv)
 
         return true
     }
 
-    private fun generateScopeAndProvider(classInfoList: List<ClassInfo>, packageName: String, kaptKotlinGeneratedDir: String, processingEnv: ProcessingEnvironment) {
+    private fun generateScopeAndProvider(classInfoList: List<ClassInfo>, processingEnv: ProcessingEnvironment) {
 
-        generateScopeFiles(classInfoList, packageName, kaptKotlinGeneratedDir, processingEnv)
-        generateDeeplinkProvider(classInfoList, packageName, kaptKotlinGeneratedDir, processingEnv)
+        val packageName = findCommonPackageName(classInfoList)
+
+        generateScopeFiles(classInfoList, packageName, processingEnv)
+        generateDeeplinkProvider(classInfoList, packageName, processingEnv)
     }
 
     private fun findCommonPackageName(classInfoList: List<ClassInfo>): String {
@@ -105,7 +97,7 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
         }
     }
 
-    private fun generateScopeFiles(classInfoList: List<ClassInfo>, packageName: String, kaptDir: String, processingEnv: ProcessingEnvironment) {
+    private fun generateScopeFiles(classInfoList: List<ClassInfo>, packageName: String, processingEnv: ProcessingEnvironment) {
 
         val autoServiceAnnotation = createAutoServiceAnnotation(deeplinkQueueClassName)
 
@@ -113,69 +105,77 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
         val queueNames = classInfoList.map { it.queueName }.distinct()
 
         queueNames.forEach { queueName ->
-            val className = "${queueName}$suffix"
-            val classSpec = buildQueueClass(queueName, className, deeplinkQueueClassName, autoServiceAnnotation)
-            FileSpec.builder(packageName, className)
-                .addType(classSpec)
-                .build()
-                .writeTo(File(kaptDir))
-        }
 
-        writeMetaInf(
-            classNames = queueNames.map { "${it}$suffix" },
-            packageName = packageName,
-            interfaceClass = deeplinkQueueClassName,
-            processingEnv = processingEnv
-        )
+            val className = "${queueName}$suffix"
+
+            val classSpec = buildQueueClass(queueName, className, deeplinkQueueClassName, autoServiceAnnotation)
+
+            val javaFile = JavaFile.builder(packageName, classSpec)
+                .build()
+
+            // ghi trực tiếp ra Filer (chuẩn kapt/javac/ksp)
+            javaFile.writeTo(processingEnv.filer)
+        }
     }
 
     private fun buildQueueClass(queueName: String, className: String, superClass: ClassName, annotation: AnnotationSpec): TypeSpec {
 
-        val getQueueMethod = FunSpec.builder("getQueue")
-            .addModifiers(KModifier.OVERRIDE)
-            .returns(String::class)
-            .addStatement("return %S", queueName)
+        val getQueueMethod = MethodSpec.methodBuilder("getQueue")
+            .addAnnotation(Override::class.java)
+            .addModifiers(Modifier.PUBLIC)
+            .returns(ClassName.get(String::class.java))
+            .addStatement("return \$S", queueName)
             .build()
 
         return TypeSpec.classBuilder(className)
             .superclass(superClass)
             .addAnnotation(annotation)
-            .addModifiers(KModifier.PUBLIC)
-            .addFunction(getQueueMethod)
+            .addModifiers(Modifier.PUBLIC)
+            .addMethod(getQueueMethod)
             .build()
     }
 
-    private fun generateDeeplinkProvider(classInfoList: List<ClassInfo>, packageName: String, kaptDir: String, processingEnv: ProcessingEnvironment) {
+    private fun generateDeeplinkProvider(classInfoList: List<ClassInfo>, packageName: String, processingEnv: ProcessingEnvironment) {
 
-        val providerFunction = buildProviderFunction(classInfoList)
-        val providerClass = buildProviderClass(providerFunction)
+        // Tạo method provider()
+        val providerMethod = buildProviderFunction(classInfoList)
 
-        FileSpec.builder(packageName, deeplinkProviderClassName.simpleName)
-            .addType(providerClass)
+        // Tạo class DeeplinkProvider
+        val providerClass = buildProviderClass(providerMethod)
+
+        // Tạo file Java
+        val javaFile = JavaFile.builder(packageName, providerClass)
             .build()
-            .writeTo(File(kaptDir))
 
-        writeMetaInf(
-            classNames = listOf(deeplinkProviderClassName.simpleName),
-            packageName = packageName,
-            interfaceClass = deeplinkProviderClassName,
-            processingEnv = processingEnv
+        // Xuất file bằng Filer (chuẩn, không cần kaptDir)
+        javaFile.writeTo(processingEnv.filer)
+    }
+
+    private fun buildProviderFunction(classInfoList: List<ClassInfo>): MethodSpec {
+
+        val stringClass = ClassName.get("java.lang", "String")
+        val pairClass = ParameterizedTypeName.get(
+            ClassName.get("kotlin", "Pair"),
+            stringClass,
+            deeplinkHandlerClassName
         )
-    }
+        val listClass = ParameterizedTypeName.get(
+            ClassName.get("java.util", "List"),
+            pairClass
+        )
+        val arrayListClass = ParameterizedTypeName.get(
+            ClassName.get("java.util", "ArrayList"),
+            pairClass
+        )
 
-    private fun buildProviderFunction(classInfoList: List<ClassInfo>): FunSpec {
-
-        val stringClass = ClassName("kotlin", "String")
-        val pairClass = ClassName("kotlin", "Pair").parameterizedBy(stringClass, deeplinkHandlerClassName)
-        val listClass = ClassName("kotlin.collections", "List").parameterizedBy(pairClass)
-
-        val builder = FunSpec.builder("provider")
-            .addModifiers(KModifier.OVERRIDE, KModifier.PUBLIC)
+        val builder = MethodSpec.methodBuilder("provider")
+            .addAnnotation(Override::class.java)
+            .addModifiers(Modifier.PUBLIC)
             .returns(listClass)
-            .addStatement("val result = mutableListOf<%T>()", pairClass)
+            .addStatement("\$T result = new \$T<>()", listClass, arrayListClass)
 
         classInfoList.forEach {
-            builder.addStatement("result.add(%T(%S, %T()))", pairClass, it.queueName, ClassName(it.packageName, it.className))
+            builder.addStatement("result.add(new \$T(\$S, new \$T()))", pairClass, it.queueName, ClassName.get(it.packageName, it.className))
         }
 
         builder.addStatement("return result")
@@ -183,41 +183,26 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
         return builder.build()
     }
 
-    private fun buildProviderClass(providerFunction: FunSpec): TypeSpec {
 
-        val keepAnnotation = AnnotationSpec.builder(ClassName("androidx.annotation", "Keep")).build()
+    private fun buildProviderClass(providerMethod: MethodSpec): TypeSpec {
 
-        val autoServiceAnnotation = createAutoServiceAnnotation(deeplinkProviderClassName)
+        // @Keep
+        val keepAnnotation = AnnotationSpec.builder(ClassName.get("androidx.annotation", "Keep")).build()
 
-        return TypeSpec.classBuilder(deeplinkProviderClassName.simpleName)
-            .superclass(deeplinkProviderClassName)
+        return TypeSpec.classBuilder(deeplinkProviderClassName.simpleName())
+            .superclass(deeplinkProviderClassName)  // deeplinkProviderClassName là ClassName.get(...)
             .addAnnotation(keepAnnotation)
-            .addAnnotation(autoServiceAnnotation)
-            .addModifiers(KModifier.PUBLIC)
-            .addFunction(providerFunction)
+            .addAnnotation(createAutoServiceAnnotation(deeplinkProviderClassName))
+            .addModifiers(javax.lang.model.element.Modifier.PUBLIC)
+            .addMethod(providerMethod) // JavaPoet dùng addMethod thay vì addFunction
             .build()
     }
 
     private fun createAutoServiceAnnotation(baseInterface: ClassName): AnnotationSpec {
 
-        return AnnotationSpec.builder(ClassName("com.google.auto.service", "AutoService"))
-            .addMember("%T::class", baseInterface)
+        return AnnotationSpec.builder(ClassName.get("com.hoanganhtuan95ptit.autobind.annotation", "AutoBind"))
+            .addMember("value", "\$T.class", baseInterface)
             .build()
-    }
-
-    private fun writeMetaInf(classNames: List<String>, packageName: String, interfaceClass: ClassName, processingEnv: ProcessingEnvironment) = kotlin.runCatching {
-
-        val resource = processingEnv.filer.createResource(
-            StandardLocation.CLASS_OUTPUT,
-            "",
-            "META-INF/services/${interfaceClass.canonicalName}"
-        )
-
-        resource.openWriter().use { writer ->
-            classNames.forEach {
-                writer.write("$packageName.$it\n")
-            }
-        }
     }
 
     private fun String.formatAndRemoveWhitespace(): String {

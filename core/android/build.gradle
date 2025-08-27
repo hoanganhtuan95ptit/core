@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'com.hoanganhtuan95ptit.autobind'
 }
 
 apply from: "../../dependencies.gradle"
@@ -24,9 +25,9 @@ android {
     buildFeatures {
         viewBinding true
     }
-    kotlinOptions {
-        jvmTarget = project.ext.javaVersion.toString()
-    }
+//    kotlinOptions {
+//        jvmTarget = project.ext.javaVersion.toString()
+//    }
     lintOptions {
         abortOnError false
     }
@@ -50,7 +51,13 @@ dependencies {
     implementation project(path: ':library:deeplink')
     kapt project(path: ':library:deeplink-processor')
 
+    api(googleDependencies.auto_service){
+        exclude group: 'com.google.guava'
+    }
     kapt googleDependencies.auto_service
+
+    implementation 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.4'
+    kapt 'com.github.hoanganhtuan95ptit.AutoService:autobind-processor:1.0.4'
 
     implementation koinDependencies.values()
     implementation androidxDependencies.values()

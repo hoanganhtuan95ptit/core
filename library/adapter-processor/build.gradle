@@ -7,12 +7,15 @@ plugins {
 apply from: "../../dependencies.gradle"
 
 dependencies {
-    implementation 'com.squareup:kotlinpoet:1.12.0'
+//    implementation 'com.squareup:kotlinpoet:1.12.0'
+    implementation 'com.squareup:javapoet:1.13.0'
 
-    implementation(googleDependencies.auto_service){
-        exclude group: 'com.google.guava'
-    }
-    kapt googleDependencies.auto_service
+//    implementation(googleDependencies.auto_service){
+//        exclude group: 'com.google.guava'
+//    }
+//    kapt googleDependencies.auto_service
+//    implementation 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.4'
+//    implementation 'com.github.hoanganhtuan95ptit.AutoService:autobind-processor:1.0.4'
 }
 
 java {

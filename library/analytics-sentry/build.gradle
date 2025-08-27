@@ -22,9 +22,9 @@ android {
     buildFeatures {
         viewBinding true
     }
-    kotlinOptions {
-        jvmTarget = project.ext.javaVersion.toString()
-    }
+//    kotlinOptions {
+//        jvmTarget = project.ext.javaVersion.toString()
+//    }
     lintOptions {
         abortOnError false
     }

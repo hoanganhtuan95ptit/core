@@ -7,12 +7,7 @@ plugins {
 apply from: "../../dependencies.gradle"
 
 dependencies {
-    implementation 'com.squareup:kotlinpoet:1.12.0'
-
-    implementation(googleDependencies.auto_service){
-        exclude group: 'com.google.guava'
-    }
-    kapt googleDependencies.auto_service
+    implementation 'com.squareup:javapoet:1.13.0'
 }
 
 java {
