@@ -1,10 +1,10 @@
 package com.simple.adapter
 
+import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.simple.adapter.provider.AdapterProvider
-import java.util.ServiceLoader
 
 
 internal val provider: List<AdapterProvider> by lazy {
 
-    ServiceLoader.load(AdapterProvider::class.java).toList()
+    AutoBind.load(AdapterProvider::class.java, false)
 }

@@ -1,11 +1,11 @@
 package com.simple.deeplink
 
 import android.view.View
+import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.simple.deeplink.provider.DeeplinkProvider
 import com.simple.deeplink.queue.DeeplinkQueue
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import java.util.ServiceLoader
 
 
 internal val flow by lazy {
@@ -15,7 +15,7 @@ internal val flow by lazy {
 
 internal val groupDeeplink: Map<String, List<DeeplinkHandler>> by lazy {
 
-    val plugins = ServiceLoader.load(DeeplinkProvider::class.java)
+    val plugins = AutoBind.load(DeeplinkProvider::class.java, false)
 
     plugins.flatMap {
         it.provider()
@@ -28,7 +28,7 @@ internal val groupDeeplink: Map<String, List<DeeplinkHandler>> by lazy {
 
 internal val groupQueue: List<DeeplinkQueue> by lazy {
 
-    val plugins = ServiceLoader.load(DeeplinkQueue::class.java)
+    val plugins = AutoBind.load(DeeplinkQueue::class.java, true)
 
     plugins.toList()
 }
