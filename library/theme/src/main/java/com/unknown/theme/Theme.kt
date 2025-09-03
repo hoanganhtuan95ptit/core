@@ -1,5 +1,6 @@
 package com.unknown.theme
 
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.hoanganhtuan95ptit.autobind.AutoBind
@@ -27,6 +28,7 @@ fun setupTheme(activity: FragmentActivity) = activity.lifecycleScope.launch(hand
         list.sortedBy { it.priority() }
     }.launchCollect(this) {
 
+        Log.d("tuanha", "setupTheme: ${it.map { it.javaClass.simpleName }}}")
         it.map { provider ->
 
             provider.provide(activity).launchCollect(this) { themeMap ->

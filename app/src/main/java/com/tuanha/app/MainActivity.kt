@@ -12,6 +12,7 @@ import com.simple.coreapp.ui.adapters.texts.NoneTextViewItem
 import com.simple.coreapp.utils.ext.ForegroundColor
 import com.simple.coreapp.utils.ext.with
 import com.tuanha.app.databinding.ActivityMainBinding
+import com.unknown.theme.appTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : FragmentActivity() {
@@ -33,6 +34,14 @@ class MainActivity : FragmentActivity() {
 
             binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             binding.recyclerView.submitListAwait(items)
+        }
+        
+        lifecycleScope.launch {
+            
+            appTheme.collect {
+
+                Log.d("tuanha", "onCreate: ${it}")
+            }
         }
     }
 

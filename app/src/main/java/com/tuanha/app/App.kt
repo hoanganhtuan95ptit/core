@@ -18,6 +18,9 @@ class App : Application() {
 
 
         AutoBind.loadAsync(ModuleInitializer::class.java, true).launchCollect(ProcessLifecycleOwner.get().lifecycleScope) {
+
+            it.map { Log.d("tuanha", "attachBaseContext: ${it.javaClass.simpleName}") }
+            
             Log.d("tuanha", "attachBaseContext: ${System.currentTimeMillis() - start}")
         }
     }

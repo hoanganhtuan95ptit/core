@@ -28,10 +28,10 @@ class DeeplinkInitializer : ModuleInitializer {
 
                 var jobs: List<Job>? = null
 
-                com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(activity) {
+                com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(activity) { list ->
 
                     jobs?.map { it.cancel() }
-                    jobs = it.mapNotNull { it.setupDeepLink(activity) }
+                    jobs = list.mapNotNull { it.setupDeepLink(activity) }
                 }
 
                 if (activity is FragmentActivity) activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
@@ -40,10 +40,10 @@ class DeeplinkInitializer : ModuleInitializer {
 
                         var jobs: List<Job>? = null
 
-                        com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(f) {
+                        com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(f) { list ->
 
                             jobs?.map { it.cancel() }
-                            jobs = it.mapNotNull { it.setupDeepLink(activity) }
+                            jobs = list.mapNotNull { it.setupDeepLink(activity) }
                         }
                     }
 
