@@ -3,9 +3,9 @@ package com.unknown.theme
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.hoanganhtuan95ptit.autobind.AutoBind
-import com.unknown.theme.provider.ThemeProvider
 import com.unknown.coroutines.handler
 import com.unknown.coroutines.launchCollect
+import com.unknown.theme.provider.ThemeProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow

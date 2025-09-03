@@ -19,9 +19,6 @@ android {
         sourceCompatibility project.ext.javaVersion
         targetCompatibility project.ext.javaVersion
     }
-//    kotlinOptions {
-//        jvmTarget = project.ext.javaVersion.toString()
-//    }
 }
 
 dependencies {
@@ -29,7 +26,9 @@ dependencies {
     implementation project(':core:base')
     implementation project(':library:coroutines')
 
-    implementation androidxDependencies.values()
+    implementation androidxDependencies.fragment
+    implementation androidxDependencies.appcompat
+    implementation androidxDependencies.lifecycle_process
 
     api hoanganhtuan95Dependencies.autobind
     kapt hoanganhtuan95Dependencies.autobind_processor
