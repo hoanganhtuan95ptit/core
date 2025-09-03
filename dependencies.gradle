@@ -178,5 +178,7 @@ ext {
     // --- Custom/Core/Project Specific ---
     hoanganhtuan95Dependencies = [
 
+            autobind: 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.9',
+            autobind_processor: 'com.github.hoanganhtuan95ptit.AutoService:autobind-processor:1.0.9',
     ]
 }

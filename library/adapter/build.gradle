@@ -38,6 +38,6 @@ dependencies {
 
     implementation coroutinesDependencies.values()
 
-    api 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.4'
+    api hoanganhtuan95Dependencies.autobind
     kapt project(':library:adapter-processor')
 }

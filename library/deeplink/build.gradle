@@ -42,6 +42,8 @@ dependencies {
     implementation koinDependencies.values()
     implementation coroutinesDependencies.values()
 
-    api 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.4'
-    kapt project(':library:deeplink-processor')
+    api hoanganhtuan95Dependencies.autobind
+    kapt hoanganhtuan95Dependencies.autobind_processor
+
+    kapt project(':library:adapter-processor')
 }

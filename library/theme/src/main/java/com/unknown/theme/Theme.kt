@@ -1,11 +1,11 @@
-package com.unknown.size
+package com.unknown.theme
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import com.hoanganhtuan95ptit.autobind.AutoBind
+import com.unknown.theme.provider.ThemeProvider
 import com.unknown.coroutines.handler
 import com.unknown.coroutines.launchCollect
-import com.unknown.size.provider.SizeProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -13,26 +13,26 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
-val appSize by lazy {
+val appTheme by lazy {
 
-    MutableSharedFlow<Map<String, Int>>(replay = 1, extraBufferCapacity = Int.MAX_VALUE, onBufferOverflow = BufferOverflow.SUSPEND)
+    MutableSharedFlow<Map<String, Any>>(replay = 1, extraBufferCapacity = Int.MAX_VALUE, onBufferOverflow = BufferOverflow.SUSPEND)
 }
 
-fun setupSize(activity: FragmentActivity) = activity.lifecycleScope.launch(handler + Dispatchers.IO) {
+fun setupTheme(activity: FragmentActivity) = activity.lifecycleScope.launch(handler + Dispatchers.IO) {
 
-    val size = ConcurrentHashMap<String, Int>()
+    val map = ConcurrentHashMap<String, Any>()
 
-    AutoBind.loadAsync(SizeProvider::class.java, true).map { list ->
+    AutoBind.loadAsync(ThemeProvider::class.java, true).map { list ->
 
         list.sortedBy { it.priority() }
     }.launchCollect(this) {
 
         it.map { provider ->
 
-            provider.provide(activity).launchCollect(this) { sizeMap ->
+            provider.provide(activity).launchCollect(this) { themeMap ->
 
-                size.putAll(sizeMap)
-                appSize.tryEmit(size)
+                map.putAll(themeMap)
+                appTheme.tryEmit(map)
             }
         }
     }

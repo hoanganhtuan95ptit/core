@@ -4,13 +4,19 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
+import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
-import androidx.startup.Initializer
+import com.hoanganhtuan95ptit.autobind.annotation.AutoBind
+import com.hoanganhtuan95ptit.startapp.ModuleInitializer
+import com.simple.deeplink.queue.DeeplinkQueue
+import com.simple.deeplink.utils.exts.launchCollect
+import kotlinx.coroutines.Job
 
-class DeeplinkInitializer : Initializer<Unit> {
+@AutoBind(ModuleInitializer::class)
+class DeeplinkInitializer : ModuleInitializer {
 
     override fun create(context: Context) {
 
@@ -18,13 +24,27 @@ class DeeplinkInitializer : Initializer<Unit> {
 
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 
-                groupQueue.forEach { it.setupDeepLink(activity) }
+                if (activity !is ComponentActivity) return
 
-                if (activity is FragmentActivity) activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentLifecycleCallbacks() {
+                var jobs: List<Job>? = null
+
+                com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(activity) {
+
+                    jobs?.map { it.cancel() }
+                    jobs = it.mapNotNull { it.setupDeepLink(activity) }
+                }
+
+                if (activity is FragmentActivity) activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
                     override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
 
-                        groupQueue.forEach { it.setupDeepLink(f) }
+                        var jobs: List<Job>? = null
+
+                        com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(f) {
+
+                            jobs?.map { it.cancel() }
+                            jobs = it.mapNotNull { it.setupDeepLink(activity) }
+                        }
                     }
 
                 }, true)
@@ -37,9 +57,5 @@ class DeeplinkInitializer : Initializer<Unit> {
             override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
             override fun onActivityDestroyed(activity: Activity) {}
         })
-
-        return
     }
-
-    override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()
 }

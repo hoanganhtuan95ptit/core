@@ -2,14 +2,15 @@ package com.unknown.color
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
+import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.unknown.color.provider.ColorProvider
 import com.unknown.coroutines.handler
 import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import java.util.ServiceLoader
 import java.util.concurrent.ConcurrentHashMap
 
 val appColor by lazy {
@@ -21,12 +22,18 @@ fun setupColor(activity: FragmentActivity) = activity.lifecycleScope.launch(hand
 
     val map = ConcurrentHashMap<String, Int>()
 
-    ServiceLoader.load(ColorProvider::class.java).toList().sortedBy { it.priority() }.map { provider ->
+    AutoBind.loadAsync(ColorProvider::class.java, true).map { list ->
 
-        provider.provide(activity).launchCollect(this) { stringIntMap ->
+        list.sortedBy { it.priority() }
+    }.launchCollect(this) {
 
-            map.putAll(stringIntMap)
-            appColor.tryEmit(map)
+        it.map { provider ->
+
+            provider.provide(activity).launchCollect(this) { colorMap ->
+
+                map.putAll(colorMap)
+                appColor.tryEmit(map)
+            }
         }
     }
 }

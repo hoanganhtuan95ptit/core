@@ -1,81 +1,40 @@
 package com.simple.adapter
 
 import android.view.ViewGroup
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.hoanganhtuan95ptit.autobind.AutoBind
+import com.hoanganhtuan95ptit.autobind.utils.exts.createObject
 import com.simple.adapter.base.BaseAsyncAdapter
 import com.simple.adapter.base.BaseBindingViewHolder
 import com.simple.adapter.entities.ViewItem
+import com.simple.adapter.provider.AdapterProvider
 
 class MultiAdapter(
     vararg adapter: ViewItemAdapter<ViewItem, ViewBinding>,
 ) : BaseAsyncAdapter<ViewItem, ViewBinding>() {
 
-    private val list: List<ViewItemAdapter<ViewItem, ViewBinding>> by lazy {
 
-        val adapters = arrayListOf<ViewItemAdapter<ViewItem, ViewBinding>>()
+    private val adapters = ArrayList<ViewItemAdapter<ViewItem, ViewBinding>>()
 
-        adapters.addAll(adapter)
+    private val adapterClassNames = ArrayList<String>()
 
-        val listViewItemClass by lazy {
-            adapter.map { it.viewItemClass }
-        }
 
-        val listAdapterFromProvider = if (adapter.isEmpty()) {
-            providerItemAdapter()
-        } else providerItemAdapter().filter {
-            it.viewItemClass !in listViewItemClass
-        }
-        adapters.addAll(listAdapterFromProvider)
+    private val typeAndAdapter = HashMap<Int, ViewItemAdapter<ViewItem, ViewBinding>>()
 
-        adapters
-    }
+    private val viewItemClassAndType = HashMap<Class<*>, Int>()
 
-    private val typeAndAdapter: Map<Int, ViewItemAdapter<ViewItem, ViewBinding>> by lazy {
 
-        val map = HashMap<Int, ViewItemAdapter<ViewItem, ViewBinding>>()
+    init {
 
-        list.forEachIndexed { index, viewItemAdapter ->
-            map[index] = viewItemAdapter
-        }
-
-        map
-    }
-
-    private val viewItemClassAndType: Map<Class<*>, Int> by lazy {
-
-        val map = HashMap<Class<*>, Int>()
-
-        list.forEachIndexed { index, viewItemAdapter ->
-            map[viewItemAdapter.viewItemClass] = index
-        }
-
-        map
-    }
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-
-        list.forEach {
-            it.adapter = this
-            it.onAttachedToRecyclerView(recyclerView)
-        }
-    }
-
-    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
-        super.onDetachedFromRecyclerView(recyclerView)
-
-        list.forEach {
-            it.adapter = null
-            it.onDetachedFromRecyclerView(recyclerView)
-        }
+        updateViewItemAdapter(adapter.toList())
+        refreshViewItemAdapter()
     }
 
     override fun getItemViewType(position: Int): Int {
 
-        val itemClass = getItem(position).javaClass
-
-        return viewItemClassAndType[itemClass] ?: error("not found adapter support item ${itemClass.name}")
+        return getItemViewTypeOrDefault(position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<ViewBinding> {
@@ -108,8 +67,44 @@ class MultiAdapter(
         typeAndAdapter[viewType]?.onBindViewHolder(binding, viewType, position, item)
     }
 
-    private fun providerItemAdapter(): List<ViewItemAdapter<ViewItem, ViewBinding>> {
+    private fun getItemViewTypeOrDefault(position: Int): Int {
 
-        return provider.flatMap { it.provider() }.filterIsInstance<ViewItemAdapter<ViewItem, ViewBinding>>()
+        val itemClass = getItem(position).javaClass
+
+        return viewItemClassAndType[itemClass] ?: refreshViewItemAdapter().let {
+
+            viewItemClassAndType[itemClass] ?: error("not found adapter support item ${itemClass.name}")
+        }
+    }
+
+    private fun refreshViewItemAdapter() {
+
+        val adapterProviderClass = AdapterProvider::class.java
+
+        val adapterClassNameNew = AutoBind.loadName(adapterProviderClass).filter { it !in adapterClassNames }
+        if (adapterClassNameNew.isEmpty()) return
+
+        adapterClassNames.addAll(adapterClassNameNew)
+
+        val viewItemAdapter = adapterClassNameNew.flatMap { it.createObject(adapterProviderClass)?.provider().orEmpty() }.filterIsInstance<ViewItemAdapter<*, *>>()
+        updateViewItemAdapter(viewItemAdapter)
+    }
+
+    private fun updateViewItemAdapter(viewItemAdapter: List<ViewItemAdapter<*, *>>) {
+
+        if (viewItemAdapter.isEmpty()) return
+
+        val viewItemAdapter = viewItemAdapter.filter { viewItemClassAndType[it.viewItemClass] == null }
+        adapters.addAll(viewItemAdapter)
+
+        val size = adapters.size
+
+        viewItemAdapter.forEachIndexed { index, viewItemAdapter ->
+
+            val type = size + index
+
+            typeAndAdapter.put(type, viewItemAdapter)
+            viewItemClassAndType.put(viewItemAdapter.viewItemClass, type)
+        }
     }
 }

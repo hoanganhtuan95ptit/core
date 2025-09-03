@@ -2,14 +2,15 @@ package com.unknown.string
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
+import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.unknown.coroutines.handler
 import com.unknown.coroutines.launchCollect
 import com.unknown.string.provider.StringProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import java.util.ServiceLoader
 import java.util.concurrent.ConcurrentHashMap
 
 
@@ -22,12 +23,18 @@ fun setupString(activity: FragmentActivity) = activity.lifecycleScope.launch(han
 
     val map = ConcurrentHashMap<String, String>()
 
-    ServiceLoader.load(StringProvider::class.java).toList().sortedBy { it.priority() }.map { provider ->
+    AutoBind.loadAsync(StringProvider::class.java, true).map { list ->
 
-        provider.provide(activity).launchCollect(this) { stringStringMap ->
+        list.sortedBy { it.priority() }
+    }.launchCollect(this) {
 
-            map.putAll(stringStringMap)
-            appString.tryEmit(map)
+        it.map { provider ->
+
+            provider.provide(activity).launchCollect(this) { stringMap ->
+
+                map.putAll(stringMap)
+                appString.tryEmit(map)
+            }
         }
     }
 }

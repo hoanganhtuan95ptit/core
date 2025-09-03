@@ -1,4 +1,4 @@
-package com.unknown.color
+package com.unknown.theme
 
 import android.app.Activity
 import android.app.Application
@@ -17,7 +17,7 @@ import kotlinx.coroutines.launch
 
 
 @AutoBind(ModuleInitializer::class)
-class ColorInitializer : ModuleInitializer {
+class ThemeInitializer : ModuleInitializer {
 
     override fun create(context: Context) {
 
@@ -25,7 +25,7 @@ class ColorInitializer : ModuleInitializer {
 
         ProcessLifecycleOwner.get().lifecycleScope.launch {
 
-            setupColor(StartApp.activityFlow.filterIsInstance<FragmentActivity>().first())
+            setupTheme(StartApp.activityFlow.filterIsInstance<FragmentActivity>().first())
         }
 
         context.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
@@ -33,7 +33,7 @@ class ColorInitializer : ModuleInitializer {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
 
             override fun onActivityStarted(activity: Activity) {
-                if (activity is FragmentActivity) setupColor(activity)
+                if (activity is FragmentActivity) setupTheme(activity)
             }
 
             override fun onActivityResumed(activity: Activity) {}

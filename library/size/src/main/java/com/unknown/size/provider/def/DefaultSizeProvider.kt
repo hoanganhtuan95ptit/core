@@ -1,7 +1,7 @@
 package com.unknown.size.provider.def
 
 import androidx.fragment.app.FragmentActivity
-import com.google.auto.service.AutoService
+import com.hoanganhtuan95ptit.autobind.annotation.AutoBind
 import com.unknown.size.provider.SizeProvider
 import com.unknown.size.uitls.exts.doOnHeightStatusAndHeightNavigationChange
 import com.unknown.size.uitls.exts.screenHeight
@@ -10,7 +10,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 
-@AutoService(SizeProvider::class)
+@AutoBind(SizeProvider::class)
 class DefaultSizeProvider : SizeProvider {
 
     override suspend fun provide(activity: FragmentActivity): Flow<Map<String, Int>> = channelFlow {

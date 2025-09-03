@@ -6,14 +6,30 @@ import android.app.Application.ActivityLifecycleCallbacks
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ProcessLifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.startup.Initializer
+import com.hoanganhtuan95ptit.autobind.annotation.AutoBind
+import com.hoanganhtuan95ptit.startapp.ModuleInitializer
+import com.hoanganhtuan95ptit.startapp.StartApp
+import kotlinx.coroutines.flow.filterIsInstance
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 
-class SizeInitializer : Initializer<Unit> {
+@AutoBind(ModuleInitializer::class)
+class SizeInitializer : ModuleInitializer {
 
     override fun create(context: Context) {
 
-        if (context is Application) context.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+        if (context !is Application) return
+
+        ProcessLifecycleOwner.get().lifecycleScope.launch {
+
+            setupSize(StartApp.activityFlow.filterIsInstance<FragmentActivity>().first())
+        }
+
+        context.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
 
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
 
@@ -26,10 +42,6 @@ class SizeInitializer : Initializer<Unit> {
             override fun onActivityStopped(activity: Activity) {}
             override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
             override fun onActivityDestroyed(activity: Activity) {}
-        });
-
-        return
+        })
     }
-
-    override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()
 }

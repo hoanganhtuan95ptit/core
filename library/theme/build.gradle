@@ -7,7 +7,7 @@ plugins {
 apply from: "../../dependencies.gradle"
 
 android {
-    namespace 'com.unknown.string'
+    namespace 'com.unknown.theme'
     compileSdk project.ext.compileSdkVersion
 
     defaultConfig {

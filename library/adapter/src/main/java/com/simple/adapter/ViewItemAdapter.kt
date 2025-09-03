@@ -2,9 +2,7 @@ package com.simple.adapter
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
-import com.simple.adapter.base.BaseAsyncAdapter
 import com.simple.adapter.base.BaseBindingViewHolder
 import com.simple.adapter.entities.ViewItem
 
@@ -12,7 +10,7 @@ import com.simple.adapter.entities.ViewItem
 abstract class ViewItemAdapter<out VI : ViewItem, out VB : ViewBinding>(private val onItemClick: ((View, VI) -> Unit)? = null) {
 
 
-    open var adapter: BaseAsyncAdapter<*, *>? = null
+    open var adapter: MultiAdapter? = null
 
 
     abstract val viewItemClass: Class<@UnsafeVariance VI>
@@ -34,12 +32,6 @@ abstract class ViewItemAdapter<out VI : ViewItem, out VB : ViewBinding>(private 
         }
 
         return viewHolder
-    }
-
-    open fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-    }
-
-    open fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
     }
 
     open fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>) {
