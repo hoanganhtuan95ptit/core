@@ -33,30 +33,31 @@ android {
 }
 dependencies {
 
-    implementation project(path: ':core:base')
-    implementation project(path: ':library:job')
-    implementation project(path: ':library:task')
-    implementation project(path: ':library:state')
-    implementation project(path: ':library:event')
-    implementation project(path: ':library:image')
-    implementation project(path: ':library:binding')
+    implementation project(':core:base')
+
+    implementation project(':library:job')
+    implementation project(':library:task')
+    implementation project(':library:state')
+    implementation project(':library:event')
+    implementation project(':library:image')
+    implementation project(':library:binding')
 
     implementation project(':library:analytics')
     implementation project(':library:crashlytics')
 
-    implementation project(path: ':library:adapter')
-    kapt project(path: ':library:adapter-processor')
+    implementation project(':library:adapter')
+    kapt project(':library:adapter-processor')
 
-    implementation project(path: ':library:deeplink')
-    kapt project(path: ':library:deeplink-processor')
+    implementation project(':library:deeplink')
+    kapt project(':library:deeplink-processor')
+
+    implementation project(':library:autobind')
+    kapt project(':library:autobind-processor')
 
     api(googleDependencies.auto_service){
         exclude group: 'com.google.guava'
     }
     kapt googleDependencies.auto_service
-
-    implementation 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.4'
-    kapt 'com.github.hoanganhtuan95ptit.AutoService:autobind-processor:1.0.4'
 
     implementation koinDependencies.values()
     implementation androidxDependencies.values()

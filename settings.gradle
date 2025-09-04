@@ -18,10 +18,10 @@ include ':library:config'
 include ':library:config-firebase'
 
 include ':library:detect'
-//include ':library:detect-mlkit'
+include ':library:detect-mlkit'
 
 include ':library:translate'
-//include ':library:translate-mlkit'
+include ':library:translate-mlkit'
 
 include ':library:analytics'
 include ':library:analytics-log'
@@ -38,6 +38,9 @@ include ':library:deeplink-processor'
 
 include ':library:adapter'
 include ':library:adapter-processor'
+
+include ':library:autobind'
+include ':library:autobind-processor'
 
 include ':library:size'
 include ':library:color'

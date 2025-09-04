@@ -1,0 +1,8 @@
+{
+  "bindings": [
+    {
+      "type": "com.simple.adapter.provider.AdapterProvider",
+      "impl": "com.simple.coreapp.ui.AdapterProvider"
+    }
+  ]
+}

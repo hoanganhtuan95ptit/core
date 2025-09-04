@@ -61,5 +61,5 @@ dependencies {
     implementation project(path: ':library:theme')
     implementation project(path: ':library:string')
 
-    kapt hoanganhtuan95Dependencies.autobind_processor
+    kapt project(':library:autobind-processor')
 }

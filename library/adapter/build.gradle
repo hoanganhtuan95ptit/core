@@ -23,9 +23,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-//    kotlinOptions {
-//        jvmTarget = project.ext.javaVersion.toString()
-//    }
     lintOptions {
         abortOnError false
     }
@@ -38,6 +35,6 @@ dependencies {
 
     implementation coroutinesDependencies.values()
 
-    api hoanganhtuan95Dependencies.autobind
+    api project(':library:autobind')
     kapt project(':library:adapter-processor')
 }

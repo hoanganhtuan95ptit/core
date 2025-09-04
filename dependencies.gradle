@@ -174,11 +174,4 @@ ext {
             text_recognition_japanese  : "com.google.mlkit:text-recognition-japanese:$mlkit_text_recognition_version",
             text_recognition_korean    : "com.google.mlkit:text-recognition-korean:$mlkit_text_recognition_version"
     ]
-
-    // --- Custom/Core/Project Specific ---
-    hoanganhtuan95Dependencies = [
-
-            autobind: 'com.github.hoanganhtuan95ptit.AutoService:autobind:1.0.9',
-            autobind_processor: 'com.github.hoanganhtuan95ptit.AutoService:autobind-processor:1.0.9',
-    ]
 }

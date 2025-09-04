@@ -42,8 +42,8 @@ dependencies {
     implementation koinDependencies.values()
     implementation coroutinesDependencies.values()
 
-    api hoanganhtuan95Dependencies.autobind
-    kapt hoanganhtuan95Dependencies.autobind_processor
+    api project(':library:autobind')
+    kapt project(':library:autobind-processor')
 
     kapt project(':library:adapter-processor')
 }

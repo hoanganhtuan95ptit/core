@@ -30,6 +30,6 @@ dependencies {
     implementation androidxDependencies.appcompat
     implementation androidxDependencies.lifecycle_process
 
-    api hoanganhtuan95Dependencies.autobind
-    kapt hoanganhtuan95Dependencies.autobind_processor
+    api project(':library:autobind')
+    kapt project(':library:autobind-processor')
 }
