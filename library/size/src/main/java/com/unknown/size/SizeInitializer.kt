@@ -6,28 +6,13 @@ import android.app.Application.ActivityLifecycleCallbacks
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import androidx.lifecycle.ProcessLifecycleOwner
-import androidx.lifecycle.lifecycleScope
 import androidx.startup.Initializer
-import com.hoanganhtuan95ptit.autobind.annotation.AutoBind
-import com.hoanganhtuan95ptit.startapp.ModuleInitializer
-import com.hoanganhtuan95ptit.startapp.StartApp
-import kotlinx.coroutines.flow.filterIsInstance
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 
-
-@AutoBind(ModuleInitializer::class)
-class SizeInitializer : ModuleInitializer {
+class SizeInitializer : Initializer<Unit> {
 
     override fun create(context: Context) {
 
         if (context !is Application) return
-
-        ProcessLifecycleOwner.get().lifecycleScope.launch {
-
-            setupSize(StartApp.activityFlow.filterIsInstance<FragmentActivity>().first())
-        }
 
         context.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
 
@@ -44,4 +29,6 @@ class SizeInitializer : ModuleInitializer {
             override fun onActivityDestroyed(activity: Activity) {}
         })
     }
+
+    override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()
 }

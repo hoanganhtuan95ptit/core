@@ -1,11 +1,11 @@
 package com.simple.deeplink.queue
 
 import android.content.ComponentCallbacks
-import androidx.activity.ComponentActivity
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
 import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.simple.deeplink.flow
 import com.simple.deeplink.provider.DeeplinkProvider
+import com.simple.deeplink.utils.exts.getLifecycleOwner
 import com.simple.deeplink.utils.exts.launchCollect
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -19,37 +19,47 @@ abstract class DeeplinkQueue {
     @OptIn(ExperimentalCoroutinesApi::class)
     internal fun setupDeepLink(componentCallbacks: ComponentCallbacks): Job? {
 
-        val lifecycleOwner = (componentCallbacks as? ComponentActivity) ?: (componentCallbacks as? Fragment) ?: return null
+        return setupDeepLink(componentCallbacks, componentCallbacks.getLifecycleOwner() ?: return null)
+    }
 
-        return flow.launchCollect(lifecycleOwner) { pair ->
+    private fun setupDeepLink(componentCallbacks: ComponentCallbacks, lifecycleOwner: LifecycleOwner): Job? = flow.launchCollect(lifecycleOwner) { data ->
 
-            val deepLink = pair.first
+        val deepLink = data.deepLink
 
-            val extras = pair.second.first
-            val sharedElement = pair.second.second
+        val extras = data.extras
+        val sharedElement = data.sharedElement
 
-            val navigation = withContext(Dispatchers.IO) {
+        val navigation = withContext(Dispatchers.IO) {
 
-                val deeplinkProviders = AutoBind.load(DeeplinkProvider::class.java)
+            val deeplinkProviders = AutoBind.load(DeeplinkProvider::class.java)
 
-                val groupDeeplink = deeplinkProviders.flatMap {
-                    it.provider()
-                }.groupBy(keySelector = {
-                    it.first
-                }, valueTransform = {
-                    it.second
-                })
+            val groupDeeplink = deeplinkProviders.flatMap {
+                it.provider()
+            }.groupBy(keySelector = {
+                it.first
+            }, valueTransform = {
+                it.second
+            })
 
-                groupDeeplink[getQueue()]?.find {
+            groupDeeplink[getQueue()]?.find {
 
-                    it.acceptDeeplink(componentCallbacks, deepLink)
-                }
-            }
-
-            if (navigation?.navigation(componentCallbacks, deepLink, extras, sharedElement) == true) {
-
-                flow.resetReplayCache()
+                it.acceptDeeplink(componentCallbacks, deepLink)
             }
         }
+
+        if (navigation == null || data.isHandled) {
+
+            return@launchCollect
+        }
+
+        if (!navigation.navigation(componentCallbacks, deepLink, extras, sharedElement)) {
+
+            return@launchCollect
+        }
+
+        data.isHandled = true
+
+        data.extras = null
+        data.sharedElement = null
     }
 }

@@ -16,7 +16,7 @@ import javax.lang.model.element.TypeElement
 
 @Suppress("unused")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
-class DeeplinkProviderProcessor : AbstractProcessor() {
+class DeeplinkProcessor : AbstractProcessor() {
 
     private val annotationName = "com.simple.deeplink.annotation.Deeplink"
 
@@ -69,11 +69,11 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
 
 
         if (elements.isNotEmpty()) {
-            return true
+            return false
         }
 
         if (classInfoList.isEmpty()) {
-            return true
+            return false
         }
 
         generateScopeAndProvider(classInfoList = classInfoList, processingEnv = processingEnv)
@@ -91,13 +91,30 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
 
     private fun findCommonPackageName(classInfoList: List<ClassInfo>): String {
 
+        if (classInfoList.isEmpty()) return "com.tuanha"
+
         val packages = classInfoList.map { it.packageName }.toSet()
-        return packages.reduce { acc, pkg ->
-            acc.commonPrefixWith(pkg).substringBeforeLast('.')
+
+        val splitPackages = packages.map { it.split(".") }
+
+        println("deeplink: ${splitPackages.toString()}")
+
+        val first = splitPackages.first()
+        val prefixParts = mutableListOf<String>()
+
+        for (i in first.indices) {
+            val part = first[i]
+            if (splitPackages.all { it.size > i && it[i] == part }) {
+                prefixParts.add(part)
+            } else {
+                break
+            }
         }
+
+        return prefixParts.joinToString(".")
     }
 
-    private fun generateScopeFiles(classInfoList: List<ClassInfo>, packageName: String, processingEnv: ProcessingEnvironment) {
+    private fun generateScopeFiles(classInfoList: List<ClassInfo>, packageName: String, processingEnv: ProcessingEnvironment) = runCatching {
 
         val autoServiceAnnotation = createAutoServiceAnnotation(deeplinkQueueClassName)
 
@@ -135,7 +152,7 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
             .build()
     }
 
-    private fun generateDeeplinkProvider(classInfoList: List<ClassInfo>, packageName: String, processingEnv: ProcessingEnvironment) {
+    private fun generateDeeplinkProvider(classInfoList: List<ClassInfo>, packageName: String, processingEnv: ProcessingEnvironment) = runCatching {
 
         // Tạo method provider()
         val providerMethod = buildProviderFunction(classInfoList)
@@ -172,7 +189,7 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
             .addAnnotation(Override::class.java)
             .addModifiers(Modifier.PUBLIC)
             .returns(listClass)
-            .addStatement("\$T result = new \$T<>()", listClass, arrayListClass)
+            .addStatement("\$T result = new \$T()", listClass, arrayListClass)
 
         classInfoList.forEach {
             builder.addStatement("result.add(new \$T(\$S, new \$T()))", pairClass, it.queueName, ClassName.get(it.packageName, it.className))
@@ -193,7 +210,7 @@ class DeeplinkProviderProcessor : AbstractProcessor() {
             .superclass(deeplinkProviderClassName)  // deeplinkProviderClassName là ClassName.get(...)
             .addAnnotation(keepAnnotation)
             .addAnnotation(createAutoServiceAnnotation(deeplinkProviderClassName))
-            .addModifiers(javax.lang.model.element.Modifier.PUBLIC)
+            .addModifiers(Modifier.PUBLIC)
             .addMethod(providerMethod) // JavaPoet dùng addMethod thay vì addFunction
             .build()
     }

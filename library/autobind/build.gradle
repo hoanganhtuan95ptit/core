@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply from: "../../publishing.gradle"
 apply from: '../../dependencies.gradle'
 
 android {

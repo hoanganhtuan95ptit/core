@@ -4,19 +4,17 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
-import com.hoanganhtuan95ptit.autobind.annotation.AutoBind
-import com.hoanganhtuan95ptit.startapp.ModuleInitializer
+import androidx.startup.Initializer
+import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.simple.deeplink.queue.DeeplinkQueue
 import com.simple.deeplink.utils.exts.launchCollect
 import kotlinx.coroutines.Job
 
-@AutoBind(ModuleInitializer::class)
-class DeeplinkInitializer : ModuleInitializer {
+class DeeplinkInitializer : Initializer<Unit> {
 
     override fun create(context: Context) {
 
@@ -28,7 +26,7 @@ class DeeplinkInitializer : ModuleInitializer {
 
                 var jobs: List<Job>? = null
 
-                com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(activity) { list ->
+                AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(activity) { list ->
 
                     jobs?.map { it.cancel() }
                     jobs = list.mapNotNull { it.setupDeepLink(activity) }
@@ -40,10 +38,10 @@ class DeeplinkInitializer : ModuleInitializer {
 
                         var jobs: List<Job>? = null
 
-                        com.hoanganhtuan95ptit.autobind.AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(f) { list ->
+                        AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(f) { list ->
 
                             jobs?.map { it.cancel() }
-                            jobs = list.mapNotNull { it.setupDeepLink(activity) }
+                            jobs = list.mapNotNull { it.setupDeepLink(f) }
                         }
                     }
 
@@ -58,4 +56,6 @@ class DeeplinkInitializer : ModuleInitializer {
             override fun onActivityDestroyed(activity: Activity) {}
         })
     }
+
+    override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()
 }

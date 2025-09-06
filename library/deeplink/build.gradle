@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
 }
 
+apply from: "../../publishing.gradle"
 apply from: "../../dependencies.gradle"
 
 android {
@@ -23,20 +24,18 @@ android {
     buildFeatures {
         viewBinding true
     }
-//    kotlinOptions {
-//        jvmTarget = project.ext.javaVersion.toString()
-//    }
     lintOptions {
         abortOnError false
     }
 }
 
 dependencies {
-    implementation androidxDependencies.appcompat
     implementation androidxDependencies.fragment
+    implementation androidxDependencies.appcompat
     implementation androidxDependencies.startup_runtime
-    implementation androidxDependencies.lifecycle_runtime
     implementation androidxDependencies.lifecycle_common
+    implementation androidxDependencies.lifecycle_process
+    implementation androidxDependencies.lifecycle_runtime
     implementation androidxDependencies.lifecycle_viewmodel
 
     implementation koinDependencies.values()

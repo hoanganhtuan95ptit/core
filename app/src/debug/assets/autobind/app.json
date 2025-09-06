@@ -1,1 +1,1 @@
-{"bindings":[{"type":"com.unknown.theme.provider.ThemeProvider","impl":"com.tuanha.app.Test2ThemeProvider"}]}
+{"bindings":[{"type":"com.unknown.theme.provider.ThemeProvider","impl":"com.tuanha.app.Test2ThemeProvider"},{"type":"com.unknown.theme.provider.ThemeProvider","impl":"com.tuanha.app.Test2ThemeProvider"},{"type":"com.unknown.theme.provider.ThemeProvider","impl":"com.tuanha.app.Test2ThemeProvider"}]}

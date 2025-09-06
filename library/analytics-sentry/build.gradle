@@ -1,8 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
 }
 
+apply from: "../../publishing.gradle"
 apply from: "../../dependencies.gradle"
 
 android {
@@ -22,9 +24,6 @@ android {
     buildFeatures {
         viewBinding true
     }
-//    kotlinOptions {
-//        jvmTarget = project.ext.javaVersion.toString()
-//    }
     lintOptions {
         abortOnError false
     }

@@ -1,8 +1,6 @@
 package com.simple.adapter
 
 import android.view.ViewGroup
-import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.hoanganhtuan95ptit.autobind.utils.exts.createObject
@@ -95,6 +93,7 @@ class MultiAdapter(
         if (viewItemAdapter.isEmpty()) return
 
         val viewItemAdapter = viewItemAdapter.filter { viewItemClassAndType[it.viewItemClass] == null }
+        viewItemAdapter.map { it.adapter = this }
         adapters.addAll(viewItemAdapter)
 
         val size = adapters.size

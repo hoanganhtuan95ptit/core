@@ -14,6 +14,9 @@ import javax.tools.StandardLocation
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 class AutoBindProcessor : AbstractProcessor() {
 
+    // JsonArray để chứa tất cả bindings
+    private val arr = JsonArray()
+
     // Tên annotation mà processor sẽ xử lý
     private val annotationName = "com.hoanganhtuan95ptit.autobind.annotation.AutoBind"
 
@@ -39,9 +42,6 @@ class AutoBindProcessor : AbstractProcessor() {
         if (elements.isEmpty()){
             return false
         }
-
-        // JsonArray để chứa tất cả bindings
-        val arr = JsonArray()
 
         for (element in elements) {
 
@@ -92,7 +92,7 @@ class AutoBindProcessor : AbstractProcessor() {
         val fileObject = processingEnv.filer.createResource(
             StandardLocation.CLASS_OUTPUT,
             "",
-            "dummy.txt"
+            "${System.nanoTime()}.txt"
         )
 
         val path = File(fileObject.toUri())
@@ -118,5 +118,7 @@ class AutoBindProcessor : AbstractProcessor() {
         val outFile = File(assetsDir, "$moduleName.json")
 
         outFile.writeText(content, Charsets.UTF_8)
+    }.getOrElse {
+        it.printStackTrace()
     }
 }

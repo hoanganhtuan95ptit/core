@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+apply from: "../../publishing.gradle"
 apply from: "../../dependencies.gradle"
 
 android {
@@ -22,9 +23,6 @@ android {
         sourceCompatibility project.ext.javaVersion
         targetCompatibility project.ext.javaVersion
     }
-//    kotlinOptions {
-//        jvmTarget = project.ext.javaVersion.toString()
-//    }
     lintOptions {
         abortOnError false
     }

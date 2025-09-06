@@ -60,7 +60,6 @@ class AdapterProcessor : AbstractProcessor() {
             return false
         }
 
-        println("tuanha AdapterProcessor start")
         return generateAdapterProvider(classInfoList = classInfoList, processingEnv = processingEnv)
     }
 
@@ -76,10 +75,24 @@ class AdapterProcessor : AbstractProcessor() {
 
     private fun findCommonPackageName(classInfoList: List<ClassInfo>): String {
 
+        if (classInfoList.isEmpty()) return "com.tuanha"
+
         val packages = classInfoList.map { it.packageName }.toSet()
-        return packages.reduce { acc, pkg ->
-            acc.commonPrefixWith(pkg).substringBeforeLast('.')
+
+        val splitPackages = packages.map { it.split(".") }
+        val first = splitPackages.first()
+        val prefixParts = mutableListOf<String>()
+
+        for (i in first.indices) {
+            val part = first[i]
+            if (splitPackages.all { it.size > i && it[i] == part }) {
+                prefixParts.add(part)
+            } else {
+                break
+            }
         }
+
+        return prefixParts.joinToString(".")
     }
 
     private fun createAdapterProviderFile(classInfoList: List<ClassInfo>, packageName: String): JavaFile {

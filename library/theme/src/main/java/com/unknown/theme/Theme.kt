@@ -28,7 +28,6 @@ fun setupTheme(activity: FragmentActivity) = activity.lifecycleScope.launch(hand
         list.sortedBy { it.priority() }
     }.launchCollect(this) {
 
-        Log.d("tuanha", "setupTheme: ${it.map { it.javaClass.simpleName }}}")
         it.map { provider ->
 
             provider.provide(activity).launchCollect(this) { themeMap ->
