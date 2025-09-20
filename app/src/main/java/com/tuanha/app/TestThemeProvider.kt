@@ -1,7 +1,7 @@
 package com.tuanha.app
 
 import androidx.fragment.app.FragmentActivity
-import com.hoanganhtuan95ptit.autobind.annotation.AutoBind
+import com.simple.autobind.annotation.AutoBind
 import com.unknown.theme.provider.ThemeProvider
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow

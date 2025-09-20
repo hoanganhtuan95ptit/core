@@ -132,7 +132,7 @@ class AdapterProcessor : AbstractProcessor() {
 
     private fun buildAdapterProviderClass(providerFunction: MethodSpec): TypeSpec {
 
-        val annotationSpec = AnnotationSpec.builder(ClassName.get("com.hoanganhtuan95ptit.autobind.annotation", "AutoBind"))
+        val annotationSpec = AnnotationSpec.builder(ClassName.get("com.simple.autobind.annotation", "AutoBind"))
             .addMember("value", "\$T.class", adapterProviderClassName)
             .build()
 

@@ -5,8 +5,8 @@ import android.content.Context
 import android.util.Log
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.lifecycleScope
-import com.hoanganhtuan95ptit.autobind.AutoBind
-import com.hoanganhtuan95ptit.startapp.ModuleInitializer
+import com.simple.autobind.AutoBind
+import com.simple.startapp.ModuleInitializer
 import com.simple.coreapp.utils.ext.launchCollect
 
 class App : Application() {

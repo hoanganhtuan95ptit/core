@@ -1,7 +1,7 @@
 package com.unknown.size.provider.def
 
 import androidx.fragment.app.FragmentActivity
-import com.hoanganhtuan95ptit.autobind.annotation.AutoBind
+import com.simple.autobind.annotation.AutoBind
 import com.unknown.size.provider.SizeProvider
 import com.unknown.size.uitls.exts.doOnHeightStatusAndHeightNavigationChange
 import com.unknown.size.uitls.exts.screenHeight

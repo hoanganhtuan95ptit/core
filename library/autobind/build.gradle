@@ -7,7 +7,7 @@ apply from: "../../publishing.gradle"
 apply from: '../../dependencies.gradle'
 
 android {
-    namespace 'com.hoanganhtuan95ptit.autobind'
+    namespace 'com.simple.autobind'
 
     defaultConfig {
         compileSdk project.ext.compileSdkVersion

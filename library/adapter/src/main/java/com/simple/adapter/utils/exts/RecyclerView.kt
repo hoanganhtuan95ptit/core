@@ -7,17 +7,12 @@ import android.transition.Transition
 import android.transition.TransitionManager
 import android.transition.TransitionSet
 import androidx.recyclerview.widget.RecyclerView
-import com.hoanganhtuan95ptit.autobind.AutoBind
 import com.simple.adapter.MultiAdapter
-import com.simple.adapter.ViewItemAdapter
 import com.simple.adapter.entities.ViewItem
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 suspend fun RecyclerView.submitListAwait(viewItemList: List<ViewItem>) = channelFlow {

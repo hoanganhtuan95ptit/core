@@ -2,8 +2,8 @@ package com.simple.adapter
 
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.hoanganhtuan95ptit.autobind.AutoBind
-import com.hoanganhtuan95ptit.autobind.utils.exts.createObject
+import com.simple.autobind.AutoBind
+import com.simple.autobind.utils.exts.createObject
 import com.simple.adapter.base.BaseAsyncAdapter
 import com.simple.adapter.base.BaseBindingViewHolder
 import com.simple.adapter.entities.ViewItem

@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "../../publishing.gradle"
+apply from: "../../dependencies.gradle"
+
+android {
+    namespace "com.simple.detect_2.mlkit"
+
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    implementation project(':core:base')
+    implementation project(':library:state')
+
+    implementation project(':library:detect-2')
+
+    implementation project(':library:analytics')
+    implementation project(':library:crashlytics')
+
+    implementation project(':library:autobind')
+    kapt project(':library:autobind-processor')
+
+//    implementation koinDependencies.values()
+//    implementation androidxDependencies.values()
+
+    implementation mlkitDependencies.language_id
+    implementation mlkitDependencies.text_recognition
+    implementation mlkitDependencies.text_recognition_korean
+    implementation mlkitDependencies.text_recognition_chinese
+    implementation mlkitDependencies.text_recognition_japanese
+    implementation mlkitDependencies.text_recognition_devanagari
+}

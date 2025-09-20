@@ -1,1 +1,1 @@
-{"bindings":[{"type":"com.unknown.size.provider.SizeProvider","impl":"com.unknown.size.provider.def.DefaultSizeProvider"},{"type":"com.unknown.size.provider.SizeProvider","impl":"com.unknown.size.provider.def.DefaultSizeProvider"},{"type":"com.unknown.size.provider.SizeProvider","impl":"com.unknown.size.provider.def.DefaultSizeProvider"}]}
+{"bindings":[{"type":"com.unknown.size.provider.SizeProvider","impl":"com.unknown.size.provider.def.DefaultSizeProvider"}]}

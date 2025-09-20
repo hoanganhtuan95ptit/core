@@ -1,0 +1,37 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "../../publishing.gradle"
+apply from: "../../dependencies.gradle"
+
+android {
+    namespace "com.tuanha.translate_2"
+
+    defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    implementation project(':library:state')
+    implementation project(':library:autobind')
+
+    implementation coroutinesDependencies.core
+}

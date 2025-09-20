@@ -17,11 +17,20 @@ include ':library:binding'
 include ':library:config'
 include ':library:config-firebase'
 
+
 include ':library:detect'
 include ':library:detect-mlkit'
 
+include ':library:detect-2'
+include ':library:detect-2-mlkit'
+
+
 include ':library:translate'
 include ':library:translate-mlkit'
+
+include ':library:translate-2'
+include ':library:translate-2-mlkit'
+
 
 include ':library:analytics'
 include ':library:analytics-log'

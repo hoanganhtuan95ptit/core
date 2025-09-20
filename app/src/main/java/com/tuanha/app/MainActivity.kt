@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.simple.autobind.AutoBind
 import com.simple.adapter.utils.exts.submitListAwait
 import com.simple.coreapp.ui.adapters.texts.NoneTextViewItem
 import com.simple.coreapp.utils.ext.ForegroundColor
@@ -24,13 +25,15 @@ class MainActivity : FragmentActivity() {
 
         setContentView(binding.root)
 
+        val items = arrayListOf(
+            NoneTextViewItem(
+                text = "test".with(ForegroundColor(Color.RED))
+            )
+        )
+
         lifecycleScope.launch {
 
-            val items = arrayListOf(
-                NoneTextViewItem(
-                    text = "test".with(ForegroundColor(Color.RED))
-                )
-            )
+            AutoBind.awaitLoaded()
 
             binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
             binding.recyclerView.submitListAwait(items)

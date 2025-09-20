@@ -1,6 +1,6 @@
 package com.simple.adapter.utils.exts
 
-import com.hoanganhtuan95ptit.autobind.AutoBind
+import com.simple.autobind.AutoBind
 import com.simple.adapter.provider.AdapterProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine

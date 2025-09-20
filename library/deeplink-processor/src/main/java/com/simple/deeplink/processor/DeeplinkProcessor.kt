@@ -217,7 +217,7 @@ class DeeplinkProcessor : AbstractProcessor() {
 
     private fun createAutoServiceAnnotation(baseInterface: ClassName): AnnotationSpec {
 
-        return AnnotationSpec.builder(ClassName.get("com.hoanganhtuan95ptit.autobind.annotation", "AutoBind"))
+        return AnnotationSpec.builder(ClassName.get("com.simple.autobind.annotation", "AutoBind"))
             .addMember("value", "\$T.class", baseInterface)
             .build()
     }

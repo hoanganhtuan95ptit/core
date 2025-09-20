@@ -2,7 +2,7 @@ package com.unknown.size
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
-import com.hoanganhtuan95ptit.autobind.AutoBind
+import com.simple.autobind.AutoBind
 import com.unknown.coroutines.handler
 import com.unknown.coroutines.launchCollect
 import com.unknown.size.provider.SizeProvider

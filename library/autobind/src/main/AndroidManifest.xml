@@ -10,7 +10,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="com.hoanganhtuan95ptit.startapp.StartAppInitializer"
+                android:name="com.simple.startapp.StartAppInitializer"
                 android:value="androidx.startup" />
         </provider>
     </application>

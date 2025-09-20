@@ -1,0 +1,39 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'maven-publish'
+    id 'kotlin-parcelize'
+}
+
+apply from: "../../publishing.gradle"
+apply from: "../../dependencies.gradle"
+
+android {
+    namespace "com.simple.detect"
+        defaultConfig {
+        compileSdk project.ext.compileSdkVersion
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+
+        multiDexEnabled = true
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+
+    implementation project(path: ':library:task')
+    implementation project(path: ':library:state')
+    implementation koinDependencies.values()
+    implementation androidxDependencies.values()
+}
+

@@ -2,7 +2,7 @@ package com.simple.deeplink.queue
 
 import android.content.ComponentCallbacks
 import androidx.lifecycle.LifecycleOwner
-import com.hoanganhtuan95ptit.autobind.AutoBind
+import com.simple.autobind.AutoBind
 import com.simple.deeplink.flow
 import com.simple.deeplink.provider.DeeplinkProvider
 import com.simple.deeplink.utils.exts.getLifecycleOwner

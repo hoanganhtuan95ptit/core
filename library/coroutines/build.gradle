@@ -19,20 +19,13 @@ android {
         sourceCompatibility project.ext.javaVersion
         targetCompatibility project.ext.javaVersion
     }
-//    kotlinOptions {
-//        jvmTarget = project.ext.javaVersion.toString()
-//    }
 }
 
 dependencies {
 
-    implementation project(':core:base')
     implementation project(':library:crashlytics')
 
-    implementation androidxDependencies.values()
+    implementation coroutinesDependencies.core
 
-    implementation(googleDependencies.auto_service){
-        exclude group: 'com.google.guava'
-    }
-    kapt googleDependencies.auto_service
+    implementation androidxDependencies.lifecycle_common
 }

@@ -12,6 +12,7 @@ task sourcesJar(type: Jar) {
         throw new GradleException("No suitable plugin for sourcesJar in module: ${project.name}")
     }
 }
+
 afterEvaluate {
     publishing {
         publications {
@@ -29,8 +30,8 @@ afterEvaluate {
                     }
                 }
 
-                groupId = 'com.hoanganhtuan95ptit'
-                version = '1.0.7.17'
+                groupId = 'com.simple'
+                version = '1.0.0.9'
                 artifactId = project.name
             }
         }

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.startup.Initializer
-import com.hoanganhtuan95ptit.autobind.AutoBind
+import com.simple.autobind.AutoBind
 import com.simple.deeplink.queue.DeeplinkQueue
 import com.simple.deeplink.utils.exts.launchCollect
 import kotlinx.coroutines.Job
