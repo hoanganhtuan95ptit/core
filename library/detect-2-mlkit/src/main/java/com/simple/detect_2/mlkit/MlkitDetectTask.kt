@@ -33,7 +33,7 @@ abstract class MlkitDetectTask() : DetectTask {
             return emptyList()
         }
 
-        return state.data.wrap()
+        return state.data.wrapTextBlock()
     }
 
     private suspend fun detect(source: Bitmap) = channelFlow {
@@ -55,11 +55,11 @@ abstract class MlkitDetectTask() : DetectTask {
         }
     }.first()
 
-    private fun List<Text.TextBlock>.wrap() = map { _paragraph ->
+    private fun List<Text.TextBlock>.wrapTextBlock() = map { _paragraph ->
 
         val paragraph = Paragraph()
 
-        paragraph.sentences = _paragraph.lines.wrap()
+        paragraph.sentences = _paragraph.lines.wrapLine()
 
         paragraph.text = paragraph.sentences.joinToString(separator = "\n") {
 
@@ -71,11 +71,11 @@ abstract class MlkitDetectTask() : DetectTask {
         paragraph
     }
 
-    private fun List<Text.Line>.wrap() = map { _sequence ->
+    private fun List<Text.Line>.wrapLine() = map { _sequence ->
 
         val sequence = Sentence()
 
-        sequence.words = _sequence.elements.wrap()
+        sequence.words = _sequence.elements.wrapElement()
 
         sequence.text = sequence.words.joinToString(separator = " ") {
 
@@ -89,7 +89,7 @@ abstract class MlkitDetectTask() : DetectTask {
         sequence
     }
 
-    private fun List<Text.Element>.wrap() = map { _word ->
+    private fun List<Text.Element>.wrapElement() = map { _word ->
 
         val word = Word()
 

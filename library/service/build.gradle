@@ -8,7 +8,7 @@ apply from: "../../publishing.gradle"
 apply from: "../../dependencies.gradle"
 
 android {
-    namespace 'com.unknown.string'
+    namespace 'com.simple.service'
     compileSdk project.ext.compileSdkVersion
 
     defaultConfig {
