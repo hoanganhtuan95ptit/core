@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+apply from: "../../publishing.gradle"
+apply from: "../../dependencies.gradle"
+
+android {
+    namespace 'com.unknown.string'
+    compileSdk project.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+    }
+    compileOptions {
+        sourceCompatibility project.ext.javaVersion
+        targetCompatibility project.ext.javaVersion
+    }
+}
+
+dependencies {
+
+    implementation project(':library:coroutines')
+
+    implementation androidxDependencies.fragment
+    implementation androidxDependencies.lifecycle_process
+
+    api project(':library:autobind')
+    kapt project(':library:autobind-processor')
+}
