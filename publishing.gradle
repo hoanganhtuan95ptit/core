@@ -31,7 +31,7 @@ afterEvaluate {
                 }
 
                 groupId = 'com.simple'
-                version = '1.0.0.9'
+                version = '1.0.7'
                 artifactId = project.name
             }
         }

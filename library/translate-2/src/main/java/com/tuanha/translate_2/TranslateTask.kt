@@ -9,6 +9,6 @@ interface TranslateTask {
 
     companion object {
 
-        fun instant() = AutoBind.loadNameAsync(TranslateTask::class.java, true)
+        val instant = AutoBind.loadAsync(TranslateTask::class.java, true)
     }
 }
