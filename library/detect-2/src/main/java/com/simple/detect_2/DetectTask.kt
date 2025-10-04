@@ -6,7 +6,9 @@ import com.simple.detect_2.entities.Paragraph
 
 interface DetectTask {
 
-    suspend fun detect(source: Bitmap, inputLanguageCode: String): List<Paragraph>
+    fun isSupport(languageCode: String): Boolean
+
+    suspend fun detect(source: Bitmap): List<Paragraph>
 
     companion object {
 

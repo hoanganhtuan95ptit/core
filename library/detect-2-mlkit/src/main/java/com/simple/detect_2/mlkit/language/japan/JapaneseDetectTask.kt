@@ -9,6 +9,11 @@ import com.simple.detect_2.mlkit.MlkitDetectTask
 @AutoBind(MlkitDetectTask::class, DetectTask::class)
 class JapaneseDetectTask : MlkitDetectTask() {
 
+    override fun isSupport(languageCode: String): Boolean {
+
+        return languageCode in listOf("ja")
+    }
+
     override fun textRecognizerOptionsInterface(): TextRecognizerOptionsInterface {
         return JapaneseTextRecognizerOptions.Builder().build()
     }

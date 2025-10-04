@@ -9,6 +9,11 @@ import com.simple.detect_2.mlkit.MlkitDetectTask
 @AutoBind(MlkitDetectTask::class, DetectTask::class)
 class ChinaDetectTask : MlkitDetectTask() {
 
+    override fun isSupport(languageCode: String): Boolean {
+
+        return languageCode.lowercase() in listOf("zh-cn", "zh-tw", "zh")
+    }
+
     override fun textRecognizerOptionsInterface(): TextRecognizerOptionsInterface {
         return ChineseTextRecognizerOptions.Builder().build()
     }

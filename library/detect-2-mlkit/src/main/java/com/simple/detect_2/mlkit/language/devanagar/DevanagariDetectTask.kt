@@ -9,6 +9,11 @@ import com.simple.detect_2.mlkit.MlkitDetectTask
 @AutoBind(MlkitDetectTask::class, DetectTask::class)
 class DevanagariDetectTask : MlkitDetectTask() {
 
+    override fun isSupport(languageCode: String): Boolean {
+
+       return languageCode in listOf("hi", "gu")
+    }
+
     override fun textRecognizerOptionsInterface(): TextRecognizerOptionsInterface {
         return DevanagariTextRecognizerOptions.Builder().build()
     }

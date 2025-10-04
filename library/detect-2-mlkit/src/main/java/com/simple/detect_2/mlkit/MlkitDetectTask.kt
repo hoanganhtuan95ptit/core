@@ -19,9 +19,9 @@ abstract class MlkitDetectTask() : DetectTask {
 
     protected abstract fun textRecognizerOptionsInterface(): TextRecognizerOptionsInterface
 
-    override suspend fun detect(source: Bitmap, inputLanguageCode: String): List<Paragraph> {
+    override suspend fun detect(source: Bitmap): List<Paragraph> {
 
-        val state = detect(source = source)
+        val state = detectAwait(source = source)
 
         if (state is ResultState.Failed) {
 
@@ -36,7 +36,7 @@ abstract class MlkitDetectTask() : DetectTask {
         return state.data.wrapTextBlock()
     }
 
-    private suspend fun detect(source: Bitmap) = channelFlow {
+    private suspend fun detectAwait(source: Bitmap) = channelFlow {
 
         TextRecognition.getClient(textRecognizerOptionsInterface()).process(InputImage.fromBitmap(source, 0)).addOnSuccessListener { visionText ->
 
