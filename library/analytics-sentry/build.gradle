@@ -31,7 +31,7 @@ android {
 
 dependencies {
 
-    implementation project(path: ':library:analytics')
+    implementation project(':library:analytics')
 
     implementation koinDependencies.values()
     implementation sentryDependencies.values()

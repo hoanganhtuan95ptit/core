@@ -33,9 +33,9 @@ android {
 
 dependencies {
 
-    implementation project(path: ':core:base')
-    implementation project(path: ':library:job')
-    implementation project(path: ':library:state')
+    implementation project(':core:base')
+    implementation project(':library:job')
+    implementation project(':library:state')
 
     implementation koinDependencies.values()
     implementation coroutinesDependencies.values()

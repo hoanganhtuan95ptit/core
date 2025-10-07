@@ -33,10 +33,10 @@ android {
 
 dependencies {
 
-    api project(path: ':core:base')
-    api project(path: ':library:job')
-    api project(path: ':library:task')
-    api project(path: ':library:state')
+    api project(':core:base')
+    api project(':library:job')
+    api project(':library:task')
+    api project(':library:state')
 
     api koinDependencies.values()
     api coroutinesDependencies.values()

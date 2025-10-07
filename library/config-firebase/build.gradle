@@ -35,9 +35,9 @@ android {
 
 dependencies {
 
-    implementation project(path: ':library:config')
-    implementation project(path: ':library:analytics')
-    implementation project(path: ':library:crashlytics')
+    implementation project(':library:config')
+    implementation project(':library:analytics')
+    implementation project(':library:crashlytics')
 
     implementation koinDependencies.values()
     implementation androidxDependencies.values()

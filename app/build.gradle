@@ -53,10 +53,10 @@ dependencies {
     implementation project(':library:deeplink')
     kapt project(':library:deeplink-processor')
 
-    implementation project(path: ':library:size')
-    implementation project(path: ':library:color')
-    implementation project(path: ':library:theme')
-    implementation project(path: ':library:string')
+    implementation project(':library:size')
+    implementation project(':library:color')
+    implementation project(':library:theme')
+    implementation project(':library:string')
 
     kapt project(':library:autobind-processor')
 }

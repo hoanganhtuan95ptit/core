@@ -52,3 +52,22 @@ inline fun <T> ResultState<T>.doHasData(action: (T) -> Unit) = (toRunning()?.dat
 inline fun <T> ResultState<T>.doFailed(action: (error: Throwable) -> Unit) = toFailed()?.let {
     action.invoke(it.cause)
 }
+
+
+inline fun <T, R> T.runResultState(block: T.() -> R) = runCatching {
+    ResultState.Success(block.invoke(this))
+}.getOrElse {
+    ResultState.Failed(it)
+}
+
+inline fun <T, R> ResultState<T>.wrap(block: T.() -> R): ResultState<R> = if (this is ResultState.Failed) {
+    this
+} else if (this is ResultState.Start) {
+    this
+} else if (this is ResultState.Running) {
+    ResultState.Running(data = block.invoke(this.data))
+} else if (this is ResultState.Success) {
+    ResultState.Success(data = block.invoke(this.data))
+} else {
+    ResultState.Failed(RuntimeException("not support wrap ${this.javaClass.simpleName}"))
+}

@@ -30,8 +30,8 @@ afterEvaluate {
                     }
                 }
 
-                groupId = 'com.simple'
-                version = '1.0.7'
+                groupId = 'com.github.hoanganhtuan95ptit.core'
+                version = '1.3.39.beta6'
                 artifactId = project.name
             }
         }

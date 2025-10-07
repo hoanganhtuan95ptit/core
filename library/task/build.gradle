@@ -30,9 +30,9 @@ android {
 
 dependencies {
 
-    implementation project(path: ':library:state')
-    implementation project(path: ':library:analytics')
-    implementation project(path: ':library:crashlytics')
+    implementation project(':library:state')
+    implementation project(':library:analytics')
+    implementation project(':library:crashlytics')
 
     implementation androidxDependencies.values()
     implementation coroutinesDependencies.values()

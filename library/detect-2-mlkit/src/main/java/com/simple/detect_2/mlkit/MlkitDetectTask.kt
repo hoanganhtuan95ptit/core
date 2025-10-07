@@ -12,6 +12,7 @@ import com.simple.detect_2.entities.Paragraph
 import com.simple.detect_2.entities.Sentence
 import com.simple.detect_2.entities.Word
 import com.simple.state.ResultState
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.first
 
@@ -52,6 +53,13 @@ abstract class MlkitDetectTask() : DetectTask {
         }.addOnFailureListener { e ->
 
             trySend(ResultState.Failed(e))
+        }.addOnCanceledListener {
+
+            trySend(ResultState.Failed(RuntimeException()))
+        }
+
+        awaitClose {
+
         }
     }.first()
 
@@ -115,6 +123,10 @@ abstract class MlkitDetectTask() : DetectTask {
         }.addOnFailureListener {
 
             trySend("")
+        }
+
+        awaitClose {
+
         }
     }.first()
 

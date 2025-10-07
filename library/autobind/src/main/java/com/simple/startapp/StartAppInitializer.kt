@@ -28,15 +28,6 @@ class StartAppInitializer : Initializer<Unit> {
         AutoBind.init(context)
 
 
-        ProcessLifecycleOwner.get().lifecycleScope.launch {
-
-            AutoBind.loadAsync(ModuleInitializer::class.java, true).collect { list ->
-
-                list.forEach { it.create(context) }
-            }
-        }
-
-
         val listener = SplitInstallStateUpdatedListener { state ->
 
             if (state.status() == SplitInstallSessionStatus.INSTALLED) {

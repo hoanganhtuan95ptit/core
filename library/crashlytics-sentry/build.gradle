@@ -30,7 +30,7 @@ android {
 
 dependencies {
 
-    implementation project(path: ':library:crashlytics')
+    implementation project(':library:crashlytics')
 
     implementation koinDependencies.values()
     implementation sentryDependencies.values()

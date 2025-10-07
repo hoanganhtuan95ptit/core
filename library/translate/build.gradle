@@ -30,8 +30,8 @@ android {
 
 dependencies {
 
-    implementation project(path: ':library:task')
-    implementation project(path: ':library:state')
+    implementation project(':library:task')
+    implementation project(':library:state')
     implementation koinDependencies.values()
     implementation androidxDependencies.values()
 }
