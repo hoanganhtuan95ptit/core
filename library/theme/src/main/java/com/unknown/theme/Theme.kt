@@ -2,14 +2,12 @@ package com.unknown.theme
 
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.lifecycleScope
-import com.simple.autobind.AutoBind
 import com.unknown.coroutines.handler
 import com.unknown.coroutines.launchCollect
 import com.unknown.theme.provider.ThemeProvider
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
@@ -22,10 +20,7 @@ fun setupTheme(activity: FragmentActivity) = activity.lifecycleScope.launch(hand
 
     val map = ConcurrentHashMap<String, Any>()
 
-    AutoBind.loadAsync(ThemeProvider::class.java, true).map { list ->
-
-        list.sortedBy { it.priority() }
-    }.launchCollect(this) {
+    ThemeProvider.instant.launchCollect(this) {
 
         it.map { provider ->
 
