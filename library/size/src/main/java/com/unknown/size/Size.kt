@@ -22,10 +22,7 @@ fun setupSize(activity: FragmentActivity) = activity.lifecycleScope.launch(handl
 
     val size = ConcurrentHashMap<String, Int>()
 
-    AutoBind.loadAsync(SizeProvider::class.java, true).map { list ->
-
-        list.sortedBy { it.priority() }
-    }.launchCollect(this) {
+    SizeProvider.instant.launchCollect(this) {
 
         it.map { provider ->
 
