@@ -2,10 +2,10 @@
 
 package com.simple.service
 
-import android.app.Activity
 import android.app.Application
 import android.content.ComponentCallbacks
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 
 interface ComponentService<T : ComponentCallbacks> {
 
@@ -19,9 +19,9 @@ interface ApplicationService : ComponentService<Application> {
     override suspend fun setup(application: Application)
 }
 
-interface ActivityService : ComponentService<Activity> {
+interface ActivityService : ComponentService<FragmentActivity> {
 
-    override suspend fun setup(activity: Activity)
+    override suspend fun setup(fragmentActivity: FragmentActivity)
 }
 
 interface FragmentService : ComponentService<Fragment> {

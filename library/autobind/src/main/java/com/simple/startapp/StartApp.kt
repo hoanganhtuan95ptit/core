@@ -62,6 +62,7 @@ object StartApp {
 
             trySend(ResultState.Success(SplitInstallSessionStatus.INSTALLED))
             awaitClose { }
+            return@channelFlow
         }
 
         val request = SplitInstallRequest

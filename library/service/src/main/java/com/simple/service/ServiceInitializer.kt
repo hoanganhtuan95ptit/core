@@ -41,7 +41,7 @@ class ServiceInitializer : Initializer<Unit> {
 
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
 
-                setupActivity(activity)
+                if (activity is FragmentActivity) setupActivity(activity)
             }
 
             override fun onActivityStarted(activity: Activity) {}
@@ -53,19 +53,19 @@ class ServiceInitializer : Initializer<Unit> {
         })
     }
 
-    private fun setupActivity(activity: Activity) {
+    private fun setupActivity(fragmentActivity: FragmentActivity) {
 
-        AutoBind.loadAsync(ActivityService::class.java, true).launchCollect(ProcessLifecycleOwner.get()) { list ->
+        AutoBind.loadAsync(ActivityService::class.java, true).launchCollect(fragmentActivity) { list ->
 
-            list.sortedBy { it.priority() }.map { it.setup(activity) }
+            list.sortedBy { it.priority() }.map { it.setup(fragmentActivity) }
         }
 
-        AutoBind.loadNameAsync(activity.javaClass, true).launchCollect(ProcessLifecycleOwner.get()) { list ->
+        AutoBind.loadNameAsync(fragmentActivity.javaClass, true).launchCollect(fragmentActivity) { list ->
 
-            list.mapNotNull { it.createObject(ActivityService::class.java) }.sortedBy { it.priority() }.map { it.setup(activity) }
+            list.mapNotNull { it.createObject(ActivityService::class.java) }.sortedBy { it.priority() }.map { it.setup(fragmentActivity) }
         }
 
-        if (activity is FragmentActivity) activity.fragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
+        fragmentActivity.fragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
             override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View, savedInstanceState: Bundle?) {
 
@@ -76,12 +76,12 @@ class ServiceInitializer : Initializer<Unit> {
 
     private fun setupFragment(fragment: Fragment) {
 
-        AutoBind.loadAsync(FragmentService::class.java, true).launchCollect(ProcessLifecycleOwner.get()) { list ->
+        AutoBind.loadAsync(FragmentService::class.java, true).launchCollect(fragment.viewLifecycleOwner) { list ->
 
             list.sortedBy { it.priority() }.map { it.setup(fragment) }
         }
 
-        AutoBind.loadNameAsync(fragment.javaClass, true).launchCollect(ProcessLifecycleOwner.get()) { list ->
+        AutoBind.loadNameAsync(fragment.javaClass, true).launchCollect(fragment.viewLifecycleOwner) { list ->
 
             list.mapNotNull { it.createObject(FragmentService::class.java) }.sortedBy { it.priority() }.map { it.setup(fragment) }
         }
