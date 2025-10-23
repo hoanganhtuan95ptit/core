@@ -36,6 +36,9 @@ dependencies {
 
     implementation coroutinesDependencies.values()
 
+    implementation project(':library:analytics')
+    implementation project(':library:crashlytics')
+
     api project(':library:autobind')
     kapt project(':library:adapter-processor')
 }

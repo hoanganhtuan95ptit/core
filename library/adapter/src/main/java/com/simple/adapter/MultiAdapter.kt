@@ -1,13 +1,16 @@
 package com.simple.adapter
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.simple.autobind.AutoBind
-import com.simple.autobind.utils.exts.createObject
 import com.simple.adapter.base.BaseAsyncAdapter
 import com.simple.adapter.base.BaseBindingViewHolder
+import com.simple.adapter.databinding.ItemDefaultBinding
 import com.simple.adapter.entities.ViewItem
 import com.simple.adapter.provider.AdapterProvider
+import com.simple.analytics.logAnalytics
+import com.simple.autobind.AutoBind
+import com.simple.autobind.utils.exts.createObject
 
 class MultiAdapter(
     vararg adapter: ViewItemAdapter<ViewItem, ViewBinding>,
@@ -37,12 +40,12 @@ class MultiAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseBindingViewHolder<ViewBinding> {
 
-        return typeAndAdapter[viewType]!!.createViewHolder(parent, viewType) ?: super.onCreateViewHolder(parent, viewType)
+        return typeAndAdapter[viewType]?.createViewHolder(parent, viewType) ?: super.onCreateViewHolder(parent, viewType)
     }
 
     override fun createViewBinding(parent: ViewGroup, viewType: Int): ViewBinding {
 
-        return typeAndAdapter[viewType]!!.createViewBinding(parent, viewType)
+        return typeAndAdapter[viewType]?.createViewBinding(parent, viewType) ?: ItemDefaultBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
     override fun onViewAttachedToWindow(holder: BaseBindingViewHolder<ViewBinding>) {
@@ -71,7 +74,11 @@ class MultiAdapter(
 
         return viewItemClassAndType[itemClass] ?: refreshViewItemAdapter().let {
 
-            viewItemClassAndType[itemClass] ?: error("not found adapter support item ${itemClass.name}")
+            viewItemClassAndType[itemClass]
+        } ?: let {
+
+            logAnalytics("adapter_miss_${itemClass.simpleName.replace(".", "_").lowercase()}")
+            -1
         }
     }
 
@@ -92,15 +99,21 @@ class MultiAdapter(
 
         if (viewItemAdapter.isEmpty()) return
 
-        val viewItemAdapter = viewItemAdapter.filter { viewItemClassAndType[it.viewItemClass] == null }
-        viewItemAdapter.map { it.adapter = this }
-        adapters.addAll(viewItemAdapter)
+        // loại bỏ các adapter đã tồn tại ra
+        val viewItemAdapterNew = viewItemAdapter.filter { viewItemClassAndType[it.viewItemClass] == null }
+        viewItemAdapterNew.map { it.adapter = this }
 
-        val size = adapters.size
+        adapters.addAll(viewItemAdapterNew)
 
-        viewItemAdapter.forEachIndexed { index, viewItemAdapter ->
+        var type = typeAndAdapter.size
+        viewItemAdapterNew.forEachIndexed { index, viewItemAdapter ->
 
-            val type = size + index
+            type++
+
+            if (typeAndAdapter.contains(type)) {
+                logAnalytics("multi_adapter_duplicate")
+                return
+            }
 
             typeAndAdapter.put(type, viewItemAdapter)
             viewItemClassAndType.put(viewItemAdapter.viewItemClass, type)

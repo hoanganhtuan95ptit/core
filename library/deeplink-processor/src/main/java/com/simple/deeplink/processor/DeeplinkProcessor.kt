@@ -48,6 +48,10 @@ class DeeplinkProcessor : AbstractProcessor() {
             processingEnv.elementUtils.getTypeElement(annotationName)
         )
 
+        if (elements.isEmpty()) {
+            return false
+        }
+
         for (element in elements) {
 
             val className = element.simpleName.toString()
@@ -65,11 +69,6 @@ class DeeplinkProcessor : AbstractProcessor() {
 
             println("queueName:$queueName")
             classInfoList.add(ClassInfo(queueName = queueName ?: "Deeplink", className = className, packageName = packageName))
-        }
-
-
-        if (elements.isNotEmpty()) {
-            return false
         }
 
         if (classInfoList.isEmpty()) {
