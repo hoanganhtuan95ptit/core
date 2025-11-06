@@ -42,13 +42,10 @@ dependencies {
     implementation project(':library:autobind')
     kapt project(':library:autobind-processor')
 
-//    implementation koinDependencies.values()
-//    implementation androidxDependencies.values()
-
     implementation mlkitDependencies.language_id
-    implementation mlkitDependencies.text_recognition
-    implementation mlkitDependencies.text_recognition_korean
-    implementation mlkitDependencies.text_recognition_chinese
-    implementation mlkitDependencies.text_recognition_japanese
-    implementation mlkitDependencies.text_recognition_devanagari
+    implementation mlkitDependencies.text_recognition_services
+    implementation mlkitDependencies.text_recognition_services_korean
+    implementation mlkitDependencies.text_recognition_services_chinese
+    implementation mlkitDependencies.text_recognition_services_japanese
+    implementation mlkitDependencies.text_recognition_services_devanagari
 }

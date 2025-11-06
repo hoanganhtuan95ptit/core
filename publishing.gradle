@@ -31,7 +31,7 @@ afterEvaluate {
                 }
 
                 groupId = 'com.github.hoanganhtuan95ptit.core'
-                version = '1.3.39.beta16'
+                version = '1.3.39.beta19'
                 artifactId = project.name
             }
         }

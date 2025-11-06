@@ -63,11 +63,9 @@ class DeeplinkProcessor : AbstractProcessor() {
             }?.let {
                 it.elementValues?.toList()?.firstOrNull()?.second?.value
             }?.let {
-                println(it)
                 "$it".formatAndRemoveWhitespace()
             }
 
-            println("queueName:$queueName")
             classInfoList.add(ClassInfo(queueName = queueName ?: "Deeplink", className = className, packageName = packageName))
         }
 
@@ -95,8 +93,6 @@ class DeeplinkProcessor : AbstractProcessor() {
         val packages = classInfoList.map { it.packageName }.toSet()
 
         val splitPackages = packages.map { it.split(".") }
-
-        println("deeplink: ${splitPackages.toString()}")
 
         val first = splitPackages.first()
         val prefixParts = mutableListOf<String>()
