@@ -3,6 +3,7 @@ package com.simple.service
 import android.app.Activity
 import android.app.Application
 import android.app.Application.ActivityLifecycleCallbacks
+import android.content.ComponentCallbacks
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -34,7 +35,7 @@ class ServiceInitializer : Initializer<Unit> {
 
         AutoBind.loadAsync(ApplicationService::class.java, true).launchCollect(ProcessLifecycleOwner.get()) { list ->
 
-            list.sortedBy { it.priority() }.map { it.setup(context) }
+            list.setup(context)
         }
 
         context.registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
@@ -57,35 +58,62 @@ class ServiceInitializer : Initializer<Unit> {
 
         AutoBind.loadAsync(ActivityService::class.java, true).launchCollect(fragmentActivity) { list ->
 
-            list.sortedBy { it.priority() }.map { it.setup(fragmentActivity) }
+            list.setup(fragmentActivity)
         }
 
         AutoBind.loadNameAsync(fragmentActivity.javaClass, true).launchCollect(fragmentActivity) { list ->
 
-            list.mapNotNull { it.createObject(ActivityService::class.java) }.sortedBy { it.priority() }.map { it.setup(fragmentActivity) }
+            list.mapNotNull { it.createObject(ActivityService::class.java) }.setup(fragmentActivity)
         }
+
 
         fragmentActivity.fragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
+            override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
+
+                setupFragmentCreated(f)
+            }
+
             override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View, savedInstanceState: Bundle?) {
 
-                setupFragment(f)
+                setupFragmentViewCreated(f)
             }
         })
     }
 
-    private fun setupFragment(fragment: Fragment) {
 
-        AutoBind.loadAsync(FragmentService::class.java, true).launchCollect(fragment.viewLifecycleOwner) { list ->
+    private fun setupFragmentCreated(fragment: Fragment) {
 
-            list.sortedBy { it.priority() }.map { it.setup(fragment) }
+        AutoBind.loadAsync(FragmentCreatedService::class.java, true).launchCollect(fragment) { list ->
+
+            list.setup(fragment)
+        }
+
+        AutoBind.loadNameAsync(fragment.javaClass, true).launchCollect(fragment) { list ->
+
+            list.mapNotNull { it.createObject(FragmentCreatedService::class.java) }.setup(fragment)
+        }
+    }
+
+    private fun setupFragmentViewCreated(fragment: Fragment) {
+
+        AutoBind.loadAsync(FragmentViewCreatedService::class.java, true).launchCollect(fragment.viewLifecycleOwner) { list ->
+
+            list.setup(fragment)
         }
 
         AutoBind.loadNameAsync(fragment.javaClass, true).launchCollect(fragment.viewLifecycleOwner) { list ->
 
-            list.mapNotNull { it.createObject(FragmentService::class.java) }.sortedBy { it.priority() }.map { it.setup(fragment) }
+            list.mapNotNull { it.createObject(FragmentViewCreatedService::class.java) }.setup(fragment)
         }
     }
+
+
+    private fun <T : ComponentCallbacks> List<ComponentService<T>>.setup(t: T) {
+
+        sortedBy { it.priority() }.map { it.setup(t) }
+    }
+
 
     private fun FragmentActivity.fragmentLifecycleCallbacks(fragmentLifecycleCallbacks: FragmentManager.FragmentLifecycleCallbacks) = channelFlow<Unit> {
 
