@@ -1,1 +1,1 @@
-{"bindings":[{"type":"com.tuanha.translate_2.TranslateTask","impl":"com.tuanha.translate_2.mlkit.MlkitTranslateTask"}]}
+{"bindings":[{"type":"com.tuanha.translate_2.TranslateTask","impl":"com.tuanha.translate_2.mlkit.tasks.MlkitTranslateTask"},{"type":"com.simple.service.ApplicationService","impl":"com.tuanha.translate_2.mlkit.MlkitTranslateService"}]}

@@ -58,5 +58,11 @@ dependencies {
     implementation project(':library:theme')
     implementation project(':library:string')
 
+    implementation project(':library:detect-2')
+    implementation project(':library:detect-2-mlkit')
+
+    implementation project(':library:translate-2')
+    implementation project(':library:translate-2-mlkit')
+
     kapt project(':library:autobind-processor')
 }

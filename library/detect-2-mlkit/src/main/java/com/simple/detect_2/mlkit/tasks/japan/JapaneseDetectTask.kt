@@ -1,16 +1,15 @@
-package com.simple.detect_2.mlkit.language.japan
+package com.simple.detect_2.mlkit.tasks.japan
 
 import com.google.mlkit.vision.text.TextRecognizerOptionsInterface
 import com.google.mlkit.vision.text.japanese.JapaneseTextRecognizerOptions
 import com.simple.autobind.annotation.AutoBind
 import com.simple.detect_2.DetectTask
-import com.simple.detect_2.mlkit.MlkitDetectTask
+import com.simple.detect_2.mlkit.tasks.MlkitDetectTask
 
 @AutoBind(MlkitDetectTask::class, DetectTask::class)
 class JapaneseDetectTask : MlkitDetectTask() {
 
-    override fun isSupport(languageCode: String): Boolean {
-
+    override fun isSupportLanguage(languageCode: String): Boolean {
         return languageCode in listOf("ja")
     }
 

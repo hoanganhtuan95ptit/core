@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.startup.Initializer
 import com.simple.autobind.AutoBind
 import com.simple.deeplink.queue.DeeplinkQueue
-import com.simple.deeplink.utils.exts.launchCollect
+import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.Job
 
 class DeeplinkInitializer : Initializer<Unit> {
@@ -26,7 +26,7 @@ class DeeplinkInitializer : Initializer<Unit> {
 
                 var jobs: List<Job>? = null
 
-                AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(activity) { list ->
+                AutoBind.loadAsync(DeeplinkQueue::class.java, distinctPattern = false).launchCollect(activity) { list ->
 
                     jobs?.map { it.cancel() }
                     jobs = list.mapNotNull { it.setupDeepLink(activity) }
@@ -38,7 +38,7 @@ class DeeplinkInitializer : Initializer<Unit> {
 
                         var jobs: List<Job>? = null
 
-                        AutoBind.loadAsync(DeeplinkQueue::class.java).launchCollect(f) { list ->
+                        AutoBind.loadAsync(DeeplinkQueue::class.java, distinctPattern = false).launchCollect(f) { list ->
 
                             jobs?.map { it.cancel() }
                             jobs = list.mapNotNull { it.setupDeepLink(f) }

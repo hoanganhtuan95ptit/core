@@ -2,7 +2,7 @@ package com.simple.event
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
-import com.simple.event.utils.exts.launchCollect
+import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow

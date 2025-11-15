@@ -38,6 +38,9 @@ dependencies {
 
     implementation project(':library:translate-2')
 
+    implementation project(':library:service')
+    implementation project(':library:coroutines')
+
     implementation project(':library:autobind')
     kapt project(':library:autobind-processor')
 

@@ -44,5 +44,5 @@ dependencies {
     api project(':library:autobind')
     kapt project(':library:autobind-processor')
 
-    kapt project(':library:adapter-processor')
+    implementation project(':library:coroutines')
 }

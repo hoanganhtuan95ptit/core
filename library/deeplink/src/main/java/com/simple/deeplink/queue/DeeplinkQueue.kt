@@ -6,7 +6,7 @@ import com.simple.autobind.AutoBind
 import com.simple.deeplink.flow
 import com.simple.deeplink.provider.DeeplinkProvider
 import com.simple.deeplink.utils.exts.getLifecycleOwner
-import com.simple.deeplink.utils.exts.launchCollect
+import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job

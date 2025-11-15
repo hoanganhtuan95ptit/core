@@ -42,6 +42,7 @@ dependencies {
     implementation project(':library:event')
     implementation project(':library:image')
     implementation project(':library:binding')
+    implementation project(':library:coroutines')
 
     implementation project(':library:analytics')
     implementation project(':library:crashlytics')

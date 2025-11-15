@@ -15,9 +15,9 @@ import com.google.android.material.transition.MaterialArcMotion
 import com.google.android.material.transition.MaterialContainerTransform
 import com.simple.coreapp.Param
 import com.simple.coreapp.ui.base.fragments.BaseViewModelFragment
-import com.simple.coreapp.utils.ext.launchCollect
 import com.simple.state.ResultState
 import com.simple.state.isSuccess
+import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch

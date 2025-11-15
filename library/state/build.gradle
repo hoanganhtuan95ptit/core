@@ -29,4 +29,6 @@ android {
 }
 
 dependencies {
+
+    implementation coroutinesDependencies.core
 }

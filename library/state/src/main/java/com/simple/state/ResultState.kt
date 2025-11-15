@@ -1,5 +1,10 @@
 package com.simple.state
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
+
 
 sealed class ResultState<out T> {
 
@@ -60,14 +65,94 @@ inline fun <T, R> T.runResultState(block: T.() -> R) = runCatching {
     ResultState.Failed(it)
 }
 
-inline fun <T, R> ResultState<T>.wrap(block: T.() -> R): ResultState<R> = if (this is ResultState.Failed) {
+
+inline fun <T, R> ResultState<T>.map(block: (T) -> R): ResultState<R> = if (this is ResultState.Running) runCatching {
+
+    ResultState.Running(data = block.invoke(this.data))
+}.getOrElse {
+
+    ResultState.Failed(it)
+} else if (this is ResultState.Success) runCatching {
+
+    ResultState.Success(data = block.invoke(this.data))
+}.getOrElse {
+
+    ResultState.Failed(it)
+} else if (this is ResultState.Failed) {
+
     this
 } else if (this is ResultState.Start) {
+
     this
-} else if (this is ResultState.Running) {
-    ResultState.Running(data = block.invoke(this.data))
-} else if (this is ResultState.Success) {
-    ResultState.Success(data = block.invoke(this.data))
 } else {
+
     ResultState.Failed(RuntimeException("not support wrap ${this.javaClass.simpleName}"))
+}
+
+inline fun <T, R> ResultState<T>.mapToState(block: (T) -> ResultState<R>): ResultState<R> = if (this is ResultState.Running) runCatching {
+
+    block.invoke(this.data)
+}.getOrElse {
+
+    ResultState.Failed(it)
+} else if (this is ResultState.Success) runCatching {
+
+    block.invoke(this.data)
+}.getOrElse {
+
+    ResultState.Failed(it)
+} else if (this is ResultState.Failed) {
+
+    this
+} else if (this is ResultState.Start) {
+
+    this
+} else {
+
+    ResultState.Failed(RuntimeException("not support wrap ${this.javaClass.simpleName}"))
+}
+
+inline fun <T, R> ResultState<T>.mapToFlowState(block: (T) -> Flow<ResultState<R>>): Flow<ResultState<R>> = if (this is ResultState.Running) runCatching {
+
+    block.invoke(this.data)
+}.getOrElse {
+
+    flowOf(ResultState.Failed(it))
+} else if (this is ResultState.Success) runCatching {
+
+    block.invoke(this.data)
+}.getOrElse {
+
+    flowOf(ResultState.Failed(it))
+} else if (this is ResultState.Failed) {
+
+    flowOf(this)
+} else if (this is ResultState.Start) {
+
+    flowOf(this)
+} else {
+
+    flowOf(ResultState.Failed(RuntimeException("not support wrap ${this.javaClass.simpleName}")))
+}
+
+
+fun <T, R> Flow<ResultState<T>>.mapToData(block: suspend (T) -> R): Flow<ResultState<R>> = map { state ->
+
+    state.map {
+        block.invoke(it)
+    }
+}
+
+fun <T, R> Flow<ResultState<T>>.mapToState(block: suspend (T) -> ResultState<R>): Flow<ResultState<R>> = map { state ->
+
+    state.mapToState {
+        block.invoke(it)
+    }
+}
+
+fun <T, R> Flow<ResultState<T>>.flatMapLatestState(block: suspend (T) -> Flow<ResultState<R>>): Flow<ResultState<R>> = flatMapLatest { state ->
+
+    state.mapToFlowState {
+        block.invoke(it)
+    }
 }

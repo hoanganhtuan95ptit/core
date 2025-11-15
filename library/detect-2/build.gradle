@@ -35,7 +35,7 @@ dependencies {
     implementation project(':library:state')
     implementation project(':library:autobind')
 
-    implementation koinDependencies.values()
+//    implementation koinDependencies.values()
     implementation androidxDependencies.values()
 }
 

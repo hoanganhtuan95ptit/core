@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.simple.core.utils.extentions.asObject
 import com.simple.core.utils.extentions.asObjectOrNull
+import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
