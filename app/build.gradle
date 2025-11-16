@@ -56,6 +56,7 @@ dependencies {
     implementation project(':library:size')
     implementation project(':library:color')
     implementation project(':library:theme')
+    implementation project(':library:state')
     implementation project(':library:string')
 
     implementation project(':library:detect-2')

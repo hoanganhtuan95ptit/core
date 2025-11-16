@@ -7,12 +7,11 @@ import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
 import com.simple.analytics.logAnalytics
 import com.simple.autobind.annotation.AutoBind
-import com.simple.crashlytics.logCrashlytics
 import com.simple.state.ResultState
-import com.simple.state.doFailed
 import com.simple.state.flatMapLatestState
 import com.simple.state.isFailed
 import com.simple.state.isSuccess
+import com.simple.state.mapToState
 import com.tuanha.translate_2.TranslateTask
 import com.tuanha.translate_2.entities.Translate
 import com.tuanha.translate_2.mlkit.MlkitTranslate
@@ -23,7 +22,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.coroutineContext
 
@@ -65,23 +63,50 @@ class MlkitTranslateTask() : TranslateTask {
 
             list.find { it.isFailed() } ?: ResultState.Success(true)
         }
-    }.map {
-
-        it.doFailed {
-
-            logCrashlytics("isSupportState", it)
-        }
-
-        it
     }.first()
 
     override suspend fun isSupport(vararg languageCode: String): Boolean = isSupportState(languageCode = languageCode).isSuccess()
 
 
-    override suspend fun translateState(input: List<Translate.Request>, outputLanguageCode: String): ResultState<List<Translate.Response>> {
+    override suspend fun translateState(input: List<Translate.Request>, outputLanguageCode: String): ResultState<List<Translate.Response>> = let {
 
-        TODO("Not yet implemented")
-    }
+        val listLanguage = arrayListOf(outputLanguageCode, *input.groupBy { it.languageCode }.keys.toTypedArray())
+
+        val listWrap = listLanguage.map {
+
+            wrapLanguageCode(it).lowercase()
+        }
+
+        flowOf(ResultState.Success(listWrap))
+    }.flatMapLatestState { listWrap ->
+
+        val flows = listWrap.map {
+
+            checkAndDownloadAsync(it)
+        }
+
+        combine(flows = flows) { list ->
+
+            list.find { it.isFailed() } ?: ResultState.Success(true)
+        }
+    }.mapToState {
+
+        input.map {
+
+            // thực hiện dịch
+            val options = TranslatorOptions.Builder()
+                .setSourceLanguage(it.languageCode)
+                .setTargetLanguage(outputLanguageCode)
+                .build()
+
+            val translator = Translation.getClient(options)
+
+            Translate.Response(text = it.text, state = com.tuanha.translate_2.mlkit.utils.exts.translateText(translator = translator, text = it.text))
+        }.let {
+
+            ResultState.Success(it)
+        }
+    }.first()
 
     override suspend fun translate(input: List<Translate.Request>, outputLanguageCode: String): List<Translate.Response> = withContext(coroutineContext) {
 

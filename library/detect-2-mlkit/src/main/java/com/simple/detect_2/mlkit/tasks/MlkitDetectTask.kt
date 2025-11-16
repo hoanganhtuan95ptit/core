@@ -12,14 +12,12 @@ import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.Text
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.TextRecognizerOptionsInterface
-import com.simple.crashlytics.logCrashlytics
 import com.simple.detect_2.DetectTask
 import com.simple.detect_2.entities.Paragraph
 import com.simple.detect_2.entities.Sentence
 import com.simple.detect_2.entities.Word
 import com.simple.detect_2.mlkit.MlkitDetect
 import com.simple.state.ResultState
-import com.simple.state.doFailed
 import com.simple.state.flatMapLatestState
 import com.simple.state.isSuccess
 import com.simple.state.mapToData
@@ -29,7 +27,6 @@ import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 
 abstract class MlkitDetectTask() : DetectTask {
 
@@ -46,21 +43,13 @@ abstract class MlkitDetectTask() : DetectTask {
             ResultState.Success(true)
         } else {
 
-            ResultState.Failed(RuntimeException("not suppport language"))
+            ResultState.Failed(RuntimeException("not suppport language:$languageCode"))
         }
 
         emit(state)
     }.flatMapLatestState {
 
         checkAndDownloadAsync()
-    }.map {
-
-        it.doFailed {
-
-            logCrashlytics("isSupportState", it)
-        }
-
-        it
     }.first()
 
     override suspend fun isSupport(languageCode: String): Boolean = isSupportState(languageCode = languageCode).isSuccess()
@@ -72,14 +61,6 @@ abstract class MlkitDetectTask() : DetectTask {
     }.flatMapLatestState {
 
         detectAsync(source = source)
-    }.map {
-
-        it.doFailed {
-
-            logCrashlytics("detectState", it)
-        }
-
-        it
     }.first()
 
     override suspend fun detect(source: Bitmap): List<Paragraph> = detectState(source = source).toSuccess()?.data.orEmpty()
