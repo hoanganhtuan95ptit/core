@@ -8,3 +8,5 @@ fun <T> String.createObject(clazz: Class<T>) = runCatching {
 
     null
 }
+
+fun <T> List<String>?.createObject(clazz: Class<T>) = this?.mapNotNull { it.createObject(clazz) }.orEmpty()

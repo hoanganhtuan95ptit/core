@@ -8,11 +8,15 @@ import androidx.activity.ComponentActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.lifecycleScope
 import androidx.startup.Initializer
 import com.simple.autobind.AutoBind
 import com.simple.deeplink.queue.DeeplinkQueue
 import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.launchIn
 
 class DeeplinkInitializer : Initializer<Unit> {
 
@@ -32,7 +36,7 @@ class DeeplinkInitializer : Initializer<Unit> {
                     jobs = list.mapNotNull { it.setupDeepLink(activity) }
                 }
 
-                if (activity is FragmentActivity) activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
+                if (activity is FragmentActivity) activity.fragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
 
                     override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
 
@@ -44,8 +48,7 @@ class DeeplinkInitializer : Initializer<Unit> {
                             jobs = list.mapNotNull { it.setupDeepLink(f) }
                         }
                     }
-
-                }, true)
+                })
             }
 
             override fun onActivityStarted(activity: Activity) {}
@@ -58,4 +61,15 @@ class DeeplinkInitializer : Initializer<Unit> {
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()
+
+
+    private fun FragmentActivity.fragmentLifecycleCallbacks(fragmentLifecycleCallbacks: FragmentManager.FragmentLifecycleCallbacks) = channelFlow<Unit> {
+
+        supportFragmentManager.registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, true)
+
+        awaitClose {
+
+            supportFragmentManager.unregisterFragmentLifecycleCallbacks(fragmentLifecycleCallbacks)
+        }
+    }.launchIn(this.lifecycleScope)
 }

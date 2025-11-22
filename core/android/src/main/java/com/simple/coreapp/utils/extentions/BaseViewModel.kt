@@ -117,12 +117,12 @@ fun <T> BaseViewModel.mediatorLiveDataWithDiff(
 
     var old: T? = null
 
-    mediatorLiveData(context, start, onChanged).asFlow().launchCollect(viewModelScope, context = Dispatchers.IO) {
+    mediatorLiveData(context, start, onChanged).asFlow().launchCollect(viewModelScope) {
 
         if (old == it) return@launchCollect
         old = it
 
-        postValue(it)
+        value = it
     }
 }
 
@@ -136,12 +136,12 @@ fun <T> BaseViewModel.combineSourcesWithDiff(
 
     var old: T? = null
 
-    combineSources(sources = sources, context, start, onChanged).asFlow().launchCollect(viewModelScope, context = Dispatchers.IO) {
+    combineSources(sources = sources, context, start, onChanged).asFlow().launchCollect(viewModelScope) {
 
         if (old == it) return@launchCollect
         old = it
 
-        postValue(it)
+        value = it
     }
 }
 
@@ -155,11 +155,11 @@ fun <T> BaseViewModel.listenerSourcesWithDiff(
 
     var old: T? = null
 
-    listenerSources(sources = sources, context, start, onChanged).asFlow().launchCollect(viewModelScope, context = Dispatchers.IO) {
+    listenerSources(sources = sources, context, start, onChanged).asFlow().launchCollect(viewModelScope) {
 
         if (old == it) return@launchCollect
         old = it
 
-        postValue(it)
+        value = it
     }
 }

@@ -19,6 +19,7 @@ import com.unknown.coroutines.launchCollect
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 
 class ServiceInitializer : Initializer<Unit> {
 
@@ -61,9 +62,9 @@ class ServiceInitializer : Initializer<Unit> {
             list.setup(fragmentActivity)
         }
 
-        AutoBind.loadNameAsync(fragmentActivity.javaClass, true).launchCollect(fragmentActivity) { list ->
+        AutoBind.loadAsync(className = fragmentActivity.javaClass.name, clazz = ActivityService::class.java, true).launchCollect(fragmentActivity) { list ->
 
-            list.mapNotNull { it.createObject(ActivityService::class.java) }.setup(fragmentActivity)
+            list.setup(fragmentActivity)
         }
 
 
@@ -84,27 +85,28 @@ class ServiceInitializer : Initializer<Unit> {
 
     private fun setupFragmentCreated(fragment: Fragment) {
 
+
         AutoBind.loadAsync(FragmentCreatedService::class.java, true).launchCollect(fragment) { list ->
 
             list.setup(fragment)
         }
 
-        AutoBind.loadNameAsync(fragment.javaClass, true).launchCollect(fragment) { list ->
+        AutoBind.loadAsync(className = fragment.javaClass.name, clazz = FragmentCreatedService::class.java, true).launchCollect(fragment) { list ->
 
-            list.mapNotNull { it.createObject(FragmentCreatedService::class.java) }.setup(fragment)
+            list.setup(fragment)
         }
     }
 
     private fun setupFragmentViewCreated(fragment: Fragment) {
 
-        AutoBind.loadAsync(FragmentViewCreatedService::class.java, true).launchCollect(fragment.viewLifecycleOwner) { list ->
+        AutoBind.loadAsync(FragmentViewCreatedService::class.java, true).launchCollect(fragment) { list ->
 
             list.setup(fragment)
         }
 
-        AutoBind.loadNameAsync(fragment.javaClass, true).launchCollect(fragment.viewLifecycleOwner) { list ->
+        AutoBind.loadAsync(className = fragment.javaClass.name, clazz = FragmentViewCreatedService::class.java, true).launchCollect(fragment) { list ->
 
-            list.mapNotNull { it.createObject(FragmentViewCreatedService::class.java) }.setup(fragment)
+            list.setup(fragment)
         }
     }
 

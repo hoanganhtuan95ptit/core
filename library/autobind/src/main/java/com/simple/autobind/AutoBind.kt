@@ -8,12 +8,14 @@ import androidx.lifecycle.lifecycleScope
 import com.simple.autobind.utils.exts.createObject
 import com.simple.autobind.utils.exts.distinctPattern
 import com.simple.autobind.utils.exts.reloadBinding
+import com.unknown.coroutines.handler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
@@ -23,9 +25,9 @@ object AutoBind {
     lateinit var application: Application
 
 
-    private val map = ConcurrentHashMap<String, List<String>>()
+    val map = ConcurrentHashMap<String, List<String>>()
 
-    private val loadState = MutableStateFlow(false)
+    val loadState = MutableStateFlow(false)
 
 
     fun init(application: Application) {
@@ -74,26 +76,30 @@ object AutoBind {
         map[clazz.name].createObject(clazz)
 
     fun <T> loadAsync(clazz: Class<T>, distinctPattern: Boolean = true): Flow<List<T>> =
-        loadNamesFlow(clazz, distinctPattern).map { it.createObject(clazz) }
+        loadNamesFlow(className = clazz.name, distinctPattern).map { it.createObject(clazz) }.flowOn(handler)
+
+    fun <T> loadAsync(className: String, clazz: Class<T>, distinctPattern: Boolean = true): Flow<List<T>> =
+        loadNamesFlow(className = className, distinctPattern).map { it.createObject(clazz) }.flowOn(handler)
 
 
     fun <T> loadName(clazz: Class<T>): List<String> =
         map[clazz.name].orEmpty()
 
+    fun loadName(className: String): List<String> =
+        map[className].orEmpty()
+
     fun <T> loadNameAsync(clazz: Class<T>, distinctPattern: Boolean = true): Flow<List<String>> =
-        loadNamesFlow(clazz, distinctPattern)
+        loadNamesFlow(className = clazz.name, distinctPattern).flowOn(handler)
 
 
     suspend fun awaitLoaded() = loadState.filter { it }.first()
 
 
-    private fun <T> List<String>?.createObject(clazz: Class<T>) = this?.mapNotNull { it.createObject(clazz) }.orEmpty()
-
-    private fun <T> loadNamesFlow(clazz: Class<T>, distinctPattern: Boolean = false): Flow<List<String>> {
+    private fun loadNamesFlow(className: String, distinctPattern: Boolean = false): Flow<List<String>> {
 
         var flow: Flow<List<String>> = loadState
             .filter { it }                 // chỉ lấy khi true
-            .map { loadName(clazz) }       // map sang list
+            .map { loadName(className = className) }       // map sang list
 
         if (distinctPattern) {
             flow = flow.distinctPattern()
