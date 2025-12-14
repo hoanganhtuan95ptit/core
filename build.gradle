@@ -14,8 +14,8 @@ buildscript {
     }
 
     dependencies {
-        classpath classpath.gradle
-        classpath classpath.kotlin_gradle_plugin
+        classpath "com.android.tools.build:gradle:8.13.0"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21"
     }
 }
 
@@ -28,20 +28,20 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 
-    configurations.configureEach {
-
-        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-            if (details.requested.group == 'org.jetbrains.kotlin') {
-                details.useVersion "$kotlin_version"
-            }
-        }
-
-        tasks.withType(KotlinCompile).configureEach {
-            kotlinOptions {
-                jvmTarget = "${project.ext.javaVersion}"
-            }
-        }
-    }
+//    configurations.configureEach {
+//
+//        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+//            if (details.requested.group == 'org.jetbrains.kotlin') {
+//                details.useVersion "$kotlin_version"
+//            }
+//        }
+//
+//        tasks.withType(KotlinCompile).configureEach {
+//            kotlinOptions {
+//                jvmTarget = "${project.ext.javaVersion}"
+//            }
+//        }
+//    }
 }
 
 task clean(type: Delete) {
