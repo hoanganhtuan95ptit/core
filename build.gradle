@@ -27,23 +27,59 @@ allprojects {
         mavenCentral()
         maven { url "https://jitpack.io" }
     }
-
-//    configurations.configureEach {
-//
-//        resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-//            if (details.requested.group == 'org.jetbrains.kotlin') {
-//                details.useVersion "$kotlin_version"
-//            }
-//        }
-//
-//        tasks.withType(KotlinCompile).configureEach {
-//            kotlinOptions {
-//                jvmTarget = "${project.ext.javaVersion}"
-//            }
-//        }
-//    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+subprojects { subproject ->
+    afterEvaluate {
+        if (subproject.plugins.hasPlugin("com.android.library")||subproject.plugins.hasPlugin("com.android.dynamic-feature")) {
+
+            subproject.android {
+
+                compileSdkVersion rootProject.ext.compileSdkVersion
+
+                defaultConfig {
+                    minSdkVersion rootProject.ext.minSdkVersion
+                    targetSdkVersion rootProject.ext.targetSdkVersion
+                }
+
+                buildFeatures {
+                    viewBinding true
+                    buildConfig true
+                }
+
+                lintOptions {
+                    abortOnError false
+                }
+            }
+        }
+    }
+}
+
+allprojects {
+
+    tasks.withType(KotlinCompile).configureEach {
+        kotlinOptions {
+            jvmTarget = project.ext.javaVersion.toString()
+        }
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        sourceCompatibility = project.ext.javaVersion
+        targetCompatibility = project.ext.javaVersion
+    }
+}
+
+tasks.register('publish1CorePublic', Exec) {
+    group = 'publishing'
+    description = 'Run publish command'
+
+    if (System.getProperty('os.name').toLowerCase().contains('windows')) {
+        commandLine 'cmd', '/c', './gradlew', 'publish'
+    } else {
+        commandLine './gradlew', 'publish'
+    }
 }
